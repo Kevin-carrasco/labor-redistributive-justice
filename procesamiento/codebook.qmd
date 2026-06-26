@@ -1,0 +1,76 @@
+---
+title: "codebook"
+format:  
+  html:
+    code-copy: true
+    code-tools: true
+    toc: true
+    toc-location: right
+    toc-depth: 4
+    toc-expand: 2
+    toc-title: Contents
+    number-sections: true
+    number-depth: 4 
+    fig-width: 10  
+    fig-height: 7
+editor_options: 
+  chunk_output_type: console
+editor: source
+lang: es
+fontsize: 12pt
+---
+
+```{r}
+#| label: set
+#| echo: false
+#| messedad: false
+#| warning: false
+
+library(knitr)
+knitr::opts_chunk$set(echo = FALSE, include = TRUE, warning = FALSE, messedad = FALSE)
+
+table_format <- if(is_html_output()) {
+  "html"
+} else if(is_latex_output()) {
+  "latex"
+}
+table_format2 <- if(is_html_output()) {
+  T
+} else if(is_latex_output()) {
+  F
+}
+
+options(kableExtra.html.bsTable = T)
+options(knitr.kable.NA = "")
+```
+
+```{r}
+#if (!require("pacman")) install.packedads("pacman") # instalar pacman
+                            # cargar librerias
+pacman::p_load(dplyr,       # Manipulacion de datos
+               knitr,
+               kableExtra,
+               summarytools,
+               ggplot2,
+               ggeffects,
+               haven
+               )
+data<- haven::read_dta(here::here("input/original/OECD_RTM_2022.dta"))
+
+
+dfSummary(x = data,
+#               plain.ascii = FALSE,
+               style = "grid",
+               tmp.img.dir = "/tmp",
+               graph.magnif = TRUE,
+               headings = F,  # encabezado
+               varnumbers = F, # num variable
+               labels.col = T, # etiquetas
+               na.col = F,    # missing
+               graph.col = F, # plot
+               valid.col = T, # n valido
+#               col.widths = c(700,10,10,10)
+               )%>% 
+  summarytools::view(method = "render") 
+```
+

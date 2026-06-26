@@ -1,0 +1,166 @@
+﻿
+This study uses data from the Risks That Matter (RTM) survey of the OECD, a cross-national public opinion survey applied in 27 member countries of the Organisation for Economic Co-operation and Development. The most recent wave (2024) is used, which includes more than 40,000 people across 27 OECD countries: Australia, Austria, Belgium, Canada, Chile, Colombia, Costa Rica, the Czech Republic, Denmark, Estonia, Finland, France, Germany, Greece, Hungary, Ireland, Israel, Italy, Japan, Korea, Lithuania, Mexico, the Netherlands, New Zealand, Poland, Portugal and the United States. The survey collects nationally representative data on adults aged between 18 and 64, using stratified sampling with post-stratification weights calibrated by age, sex, region and educational level. The 2024 wave is especially relevant for this study because it captures attitudes in the period following the COVID-19 pandemic, an episode that dramatically accelerated the digitalisation of work, expanded platform employment and exposed the cracks in the social insurance systems of the OECD countries.
+
+
+## Variables
+
+The dependent variable is the perception of redistributive justice, measured by the item: "I feel that I receive a fair share of public benefits, given the taxes and social contributions that I pay and/or have paid in the past", answered on a five-point Likert scale ranging from strongly disagree to strongly agree. This item captures the person's evaluative judgement of the fairness of the exchange with the state and is treated as an ordinal variable in all the analyses.
+
+Three sets of independent variables constitute the core of the analysis. The first concerns labour market position and job insecurity. Type of employment is operationalised as a three-category variable distinguishing formal waged employment (permanent or long-term dependent employment), platform work (work mediated by digital platforms) and self-employment. Job insecurity is measured by the item: "How likely do you think it is that you could lose your job or your self-employment income in the next 12 months?", with response categories ranging from very unlikely to very likely. This item captures the subjective, anticipatory dimension of precarity: workers' sense of how exposed they are to income loss in the short term.
+
+The second set of variables captures the perception of technological change with respect to one's own job. These variables are measured through a battery that asks: “How likely do you think it is that the following will happen in your job (or job opportunities) in the next five years?”, with items rated on a four-point probability scale. The battery includes four displacement items —the likelihood that the job will be replaced by a robot, that it will be replaced by an artificial intelligence tool such as ChatGPT, and that it will be replaced by a person offering a similar service through an internet platform, and the likelihood of losing the job through not being sufficiently technologically skilled— and three benefit items —that technology will make working hours more compatible with private life, that it will make work less dangerous or physically demanding, and that it will make it less boring, repetitive, stressful or mentally demanding. However, the exploratory factor analysis carried out on these seven items yields a three-factor structure: the three displacement items load on a first factor; the three benefit items load on a second factor; and the skill obsolescence item separates from both, so that it is retained as a single indicator, capturing an internal element of risk perception, distinct from the other two factors, which are considered external elements. Following the usual practice in constructing composite indices from attitudinal batteries, two scales are built —Technological Displacement Risk (the average of the three displacement items) and Perceived Technological Benefit (the average of the three benefit items)— and Perceived Skill Obsolescence is used as a single item. In all cases, higher values indicate a greater perception of the corresponding risk or benefit.
+
+The third set of independent variables concerns the perceived deservingness of others, operationalised through the item that measures the degree of agreement with the statement «Many people receive public benefits without deserving them», rated on a five-point scale (1 = strongly disagree to 5 = strongly agree). Unlike the dependent variable, which captures the individual's judgement of the fairness of their own relationship with the system, this item captures their judgement of the deservingness of other beneficiaries, a central distinction in the literature on deservingness [@oorschot_who_2000; @vanoorschot_making_2006]. Higher values indicate a more widespread perception of undue deservingness on the part of third parties. 
+
+The welfare regime is operationalised as a three-category variable (social democratic, liberal, conservative-corporatist) following @bambra_sifting_2007 and @Fenger2006WelfareRI. To classify the countries of southern Europe and of central and eastern Europe present in the sample, the extensions of @ferrera_southern_1996, @Fenger2006WelfareRI and @aidukaite_welfare_2011 are followed, which document both the initial specificity of the post-socialist regimes and their progressive convergence towards the continental types after two decades of transition. On that basis, and given the small number of countries per category, the study adopts a three-regime classification —social democratic, liberal and conservative-corporatist—, in which the countries of southern Europe and of central and eastern Europe are integrated into the conservative category, while the Baltic states, characterised by a more liberal orientation of their post-socialist reforms, are incorporated into the liberal regime [@aidukaite_welfare_2011].
+
+All the models include a set of control variables that have been shown to be associated with attitudes towards the welfare state and perceived redistributive justice: sex, age, educational level (operationalised as the highest level of studies completed) and income decile (self-reported position in the national income distribution).
+
+A summary of these variables and their main descriptive statistics is available in @tbl-summary
+
+```{r}
+#| label: tbl-summary
+#| tbl-cap: "Main descriptive statistics"
+#| tbl-cap-location: top
+#| results: asis
+#| echo: false
+
+if (! require("pacman")) install.packages("pacman")
+
+pacman::p_load(tidyverse, 
+               sjmisc, 
+               sjPlot, 
+               lme4, 
+               here, 
+               performance,
+               marginaleffects,
+               texreg, 
+               ggdist,
+               kableExtra,
+               ggalluvial, 
+               shadowtext,
+               MetBrewer,
+               patchwork,
+               sjlabelled,
+               summarytools,
+               interactions,
+               cowplot,
+               ggpubr)
+load(file=here::here("input/proc/data.RData"))
+
+data <- data %>% select(ctrcode,country, distributive, sex, age, educ, income, selfemploy, unnemployment, platform, tecnoestres, pos_tecnoestres, skills, deservingness, gdp_2024, welfare_regime)
+
+data <- na.omit(data)
+
+data$distributive  <- set_label(x = data$distributive, label = "Redistributive justice")
+data$tecnoestres  <- set_label(x = data$tecnoestres, label = "Technological displacement	")
+data$pos_tecnoestres  <- set_label(x = data$pos_tecnoestres, label = "Perceived technological benefit")
+data$skills  <- set_label(x = data$skills, label = "Lose job due skills")
+data$unnemployment  <- set_label(x = data$unnemployment, label = "Lose job")
+
+data$deservingness <- as.numeric(as_factor(data$deservingness))
+data$deservingness  <- set_label(x = data$deservingness, label = "Deservingness of others")
+data$gdp_2024  <- set_label(x = data$gdp_2024, label = "GDP per-capita")
+
+data$selfemploy  <- set_label(x = data$selfemploy, label = "Self-empleoyment worker")
+data$platform  <- set_label(x = data$platform, label = "Platform worker")
+
+data$sex  <- set_label(x = data$sex, label = "Sex")
+data$age  <- set_label(x = data$age, label = "Age group")
+data$educ  <- set_label(x = data$educ, label = "Educational level")
+
+descriptive <- data %>% select(distributive, sex, age, educ, income, selfemploy, platform, unnemployment, tecnoestres, pos_tecnoestres, skills, deservingness, gdp_2024, welfare_regime)
+
+descriptive$distributive <- factor(descriptive$distributive,
+            levels = c(1, 2, 3, 4, 5),
+            labels = c("Strongly disagree", "Disagree",
+                       "Neither agree nor disagree", "Agree", "Strongly agree"))
+
+descriptive$sex <- factor(descriptive$sex,
+            levels = c(1, 2),
+            labels = c("Man", "Woman"))
+
+descriptive$age <- factor(descriptive$age,
+            levels = c(1, 2, 3, 4, 5),
+            labels = c("18-24", "25-34", "35-44", "45-54", "55-64"))
+
+descriptive$educ <- factor(descriptive$educ,
+            levels = c(1, 2, 3),
+            labels = c("Low", "Medium", "High"))
+
+descriptive$selfemploy <- factor(descriptive$selfemploy,
+            levels= c(1,2),
+            labels=c( "No",
+                      "Yes"))
+
+descriptive$unnemployment <- factor(descriptive$unnemployment,
+            levels = c(1, 2, 3, 4),
+            labels = c("Not at all concerned", "Not so concerned",
+                       "Somewhat concerned", "Very concerned"))
+
+descriptive$platform <- factor(descriptive$platform,
+            levels = c(1, 2),
+            labels = c("No", "Yes"))
+
+descriptive$skills <- factor(descriptive$skills,
+            levels = c(1, 2, 3, 4),
+            labels = c("Very unlikely", "Unlikely",
+                       "Likely", "Very likely"))
+
+descriptive$deservingness <- factor(descriptive$deservingness,
+            levels = c(1, 2, 3, 4, 5),
+            labels = c("Strongly disagree", "Disagree",
+                       "Neither agree nor disagree", "Agree", "Strongly agree"))
+
+descriptive$sex <- as_factor(descriptive$sex)
+descriptive$age <- as_factor(descriptive$age)
+descriptive$educ <- as_factor(descriptive$educ)
+descriptive$selfemploy <- as_factor(descriptive$selfemploy)
+descriptive$unnemployment <- as_factor(descriptive$unnemployment)
+descriptive$platform <- as_factor(descriptive$platform)
+descriptive$skills <- as_factor(descriptive$skills)
+descriptive$deservingness <- as_factor(descriptive$deservingness)
+
+descriptive$distributive  <- set_label(x = descriptive$distributive, label = "Redistributive justice")
+descriptive$tecnoestres  <- set_label(x = descriptive$tecnoestres, label = "Technological displacement	")
+descriptive$pos_tecnoestres  <- set_label(x = descriptive$pos_tecnoestres, label = "Perceived technological benefit")
+descriptive$skills  <- set_label(x = descriptive$skills, label = "Lose job due skills")
+descriptive$unnemployment  <- set_label(x = descriptive$unnemployment, label = "Lose job")
+
+descriptive$deservingness  <- set_label(x = descriptive$deservingness, label = "Deservingness of others")
+descriptive$gdp_2024  <- set_label(x = descriptive$gdp_2024, label = "GDP per-capita")
+
+descriptive$selfemploy  <- set_label(x = descriptive$selfemploy, label = "Self-empleoyment worker")
+descriptive$platform  <- set_label(x = descriptive$platform, label = "Platform worker")
+
+descriptive$sex  <- set_label(x = descriptive$sex, label = "Sex")
+descriptive$age  <- set_label(x = descriptive$age, label = "Age group")
+descriptive$educ  <- set_label(x = descriptive$educ, label = "Educational level")
+descriptive$welfare_regime  <- set_label(x = descriptive$welfare_regime, label = "Welfare regime")
+
+descriptive$distributive  <- set_label(x = descriptive$distributive, label = "Redistributive justice")
+
+
+df<-dfSummary(descriptive,
+               plain.ascii = FALSE,
+               style = "multiline",
+               tmp.img.dir = "/tmp",
+               graph.magnif = 0.75,
+               headings = F,  # encabezado
+               varnumbers = F, # num variable
+               labels.col = T, # etiquetas
+               na.col = F,    # missing
+               graph.col = F, # plot
+               valid.col = T, # n valido
+               col.widths = c(30,10,10,10))
+
+df$Variable <- NULL # delete variable column
+
+print(df)
+```
+
+## Methods
+
+Multilevel ordinal logistic regression models with individuals nested in countries are used to examine the relationship between labour market position, the perception of technological risk or benefit, the deservingness of others and the perception of redistributive justice across different national contexts. This approach makes it possible to account for the hierarchical structure of the comparative data and to decompose the variance of the outcome between individual factors and country characteristics [@snijders_multilevel_2012; @hox_multilevel_2017]. Random intercepts are estimated for each country to control heterogeneity at the macro level. The models are estimated sequentially: a model including if the workers are self-employed or platform-worker (Model 1), a second model adding job insecurity (Model 2), a third model incorporating the perception of technological risk and benefit (Model 3), a fourth model adding the perception of the deservingness of others (Model 4), a fifth model incorporating the type of welfare regime (Model 5), and a sixt model adding the control variables (Model 6). 
+
+In a seven model, interaction terms between the labour market predictors are introduced (Model 7). In the next models, the type of welfare regime are introduced to test the rest of moderation hypotheses (Models 8 to models 12). All the analyses use the individual survey weights provided by the OECD, and standard errors are clustered by country. The models are estimated with the clmm function of the ordinal package in R.

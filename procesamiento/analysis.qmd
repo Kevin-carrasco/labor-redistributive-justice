@@ -1,0 +1,213 @@
+---
+title: "Analysis"
+format:  
+  html:
+    code-copy: true
+    code-tools: true
+    toc: true
+    toc-location: right
+    toc-depth: 4
+    toc-expand: 2
+    toc-title: Contents
+    number-sections: true
+    number-depth: 4 
+    fig-width: 10  
+    fig-height: 7
+editor_options: 
+  chunk_output_type: console
+editor: source
+lang: es
+fontsize: 12pt
+---
+
+```{r}
+#| label: set
+#| echo: false
+#| messedad: false
+#| warning: false
+
+library(knitr)
+knitr::opts_chunk$set(echo = FALSE, include = TRUE, warning = FALSE, messedad = FALSE)
+
+table_format <- if(is_html_output()) {
+  "html"
+} else if(is_latex_output()) {
+  "latex"
+}
+table_format2 <- if(is_html_output()) {
+  T
+} else if(is_latex_output()) {
+  F
+}
+
+options(kableExtra.html.bsTable = T)
+options(knitr.kable.NA = "")
+```
+
+```{r}
+if (!require("pacman")) install.packedads("pacman") # instalar pacman
+                            # cargar librerias
+pacman::p_load(dplyr,       # Manipulacion de datos
+               knitr,
+               kableExtra,
+               summarytools,
+               ggplot2,
+               ggeffects,
+               haven,
+               sjlabelled,
+               lme4,
+               sjmisc,
+               sjPlot,
+               ggrepel,
+               ggpubr
+               )
+
+load(file=here::here("input/proc/data.RData"))
+load(file=here::here("input/proc/digitalization.RData"))
+load(file=here::here("input/proc/country_data.RData"))
+
+digitalization_tab <- digitalization %>% 
+  dfSummary(x = ,
+#               plain.ascii = FALSE,
+               style = "grid",
+               tmp.img.dir = "/tmp",
+               graph.magnif = TRUE,
+               headings = F,  # encabezado
+               varnumbers = F, # num variable
+               labels.col = T, # etiquetas
+               na.col = F,    # missing
+               graph.col = F, # plot
+               valid.col = T, # n valido
+#               col.widths = c(700,10,10,10)
+               )
+
+
+sjPlot::tab_corr(
+  digitalization
+)
+
+sjPlot::tab_fa(digitalization)
+```
+
+```{r}
+ggplot(country_data,
+       aes(x = gdp_2024,
+           y = distributive,
+           label = ctrcode)) +
+  geom_point() +
+  geom_smooth(method = "lm", se = FALSE) +
+  stat_cor(method = "pearson") +
+  geom_text_repel(size = 3, min.segment.length = 0) +
+  labs(
+    x = "GDP per capita 2024",
+    y = "Distributive"
+  ) +
+  scale_y_continuous(limits = c(1, 5)) +
+  theme_bw()
+
+```
+
+```{r}
+data <- data %>% select(ctrcode,country, distributive, sex, age, educ, income, selfemploy, unnemployment, platform, tecnoestres, pos_tecnoestres, skills, deservingness, gdp_2024, welfare_regime)
+
+data <- na.omit(data)
+
+data$distributive  <- set_label(x = data$distributive, label = "Retributive justice")
+data$tecnoestres  <- set_label(x = data$tecnoestres, label = "Tecnoestres")
+data$pos_tecnoestres  <- set_label(x = data$pos_tecnoestres, label = "Positive tecnoestres")
+data$skills  <- set_label(x = data$skills, label = "Lose job due skills")
+data$unnemployment  <- set_label(x = data$unnemployment, label = "Lose job")
+data$deservingness  <- set_label(x = data$deservingness, label = "Deservingness of others")
+data$gdp_2024  <- set_label(x = data$gdp_2024, label = "GDP per-capita")
+
+data$selfemploy  <- set_label(x = data$selfemploy, label = "Self-empleoyment worker")
+data$platform  <- set_label(x = data$platform, label = "Platform worker")
+
+data$selfemploy <- set_labels(data$selfemploy,
+            labels=c( "No"=1,
+                      "Yes"=2))
+data$platform <- set_labels(data$platform,
+            labels=c( "No"=1,
+                      "Yes"=2))
+
+reg1 <- lmer(distributive ~ sex + age + educ + income + selfemploy + platform + tecnoestres + pos_tecnoestres + skills + (1|ctrcode), data=data)
+reg2 <- lmer(distributive ~ sex + age + educ + income + selfemploy + platform + tecnoestres + pos_tecnoestres + skills + unnemployment + (1|ctrcode), data=data)
+reg3 <- lmer(distributive ~ sex + age + educ + income + selfemploy + platform + tecnoestres + pos_tecnoestres + skills + unnemployment + deservingness + (1|ctrcode), data=data)
+
+reg4 <- lmer(distributive ~ sex + age + educ + income + selfemploy + platform + tecnoestres + pos_tecnoestres + skills + unnemployment + deservingness + gdp_2024 + (1|ctrcode), data=data)
+reg5 <-lmer(distributive ~ sex + age + educ + income + selfemploy + platform + tecnoestres + pos_tecnoestres + skills + unnemployment + deservingness + gdp_2024 + welfare_regime+ (1|ctrcode), data=data)
+
+reg6 <- lmer(distributive ~ sex + age + educ + income + selfemploy + platform + tecnoestres*platform + pos_tecnoestres + skills + unnemployment + deservingness + gdp_2024 + welfare_regime + (1|ctrcode), data=data)
+reg7 <- lmer(distributive ~ sex + age + educ + income + selfemploy + platform + tecnoestres + pos_tecnoestres*platform + skills + unnemployment + deservingness + gdp_2024 + welfare_regime + (1|ctrcode), data=data)
+reg8 <- lmer(distributive ~ sex + age + educ + income + selfemploy + platform + tecnoestres + pos_tecnoestres + skills*platform + unnemployment + deservingness + gdp_2024 + welfare_regime + (1|ctrcode), data=data)
+reg9 <- lmer(distributive ~ sex + age + educ + income + selfemploy + platform*selfemploy + tecnoestres + pos_tecnoestres + skills + unnemployment + deservingness + gdp_2024 + welfare_regime + (1|ctrcode), data=data)
+reg10 <- lmer(distributive ~ sex + age + educ + income + selfemploy + platform + tecnoestres*welfare_regime + pos_tecnoestres + skills + unnemployment + deservingness + welfare_regime + gdp_2024 + (1|ctrcode), data=data)
+reg11 <- lmer(distributive ~ sex + age + educ + income + selfemploy + platform*welfare_regime + tecnoestres + pos_tecnoestres + skills + unnemployment + deservingness + welfare_regime + gdp_2024 + (1|ctrcode), data=data)
+reg12 <- lmer(distributive ~ sex + age + educ + income + selfemploy*welfare_regime + platform + tecnoestres + pos_tecnoestres + skills + unnemployment + deservingness + welfare_regime + gdp_2024 + (1|ctrcode), data=data)
+reg13 <- lmer(distributive ~ sex + age + educ + income + selfemploy + platform + tecnoestres + pos_tecnoestres + skills + unnemployment + deservingness*welfare_regime + welfare_regime + gdp_2024 + (1|ctrcode), data=data)
+
+tab_model(reg1, reg2, reg3, reg4, reg5, reg9, reg10, reg11, reg12, reg13, show.ci=FALSE)
+```
+
+```{r}
+int1<-plot_model(reg10, type="int")+
+  theme_bw() +
+  scale_y_continuous(limits = c(2, 4))
+```
+
+```{r}
+int2<-plot_model(reg13, type="int")+
+  theme_bw() +
+  theme(axis.title.y = element_blank()) +
+  scale_y_continuous(limits = c(2, 4)) +
+  scale_x_continuous(name = "Deservingness of others")
+```
+
+```{r}
+int3<-plot_model(reg11, type="int")+
+  theme_bw()+
+  scale_y_continuous(limits = c(2, 4)) +
+  scale_x_continuous(name = "Platforms workers",
+                     breaks = c(1,2),
+                     labels = c("No", "Si"))
+```
+
+```{r}
+int4<-plot_model(reg12, type="int")+
+  theme_bw()+
+  theme(axis.title.y = element_blank()) +
+  scale_y_continuous(limits = c(2, 4)) +
+  scale_x_continuous(name = "Self-employed workers",
+                     breaks = c(1,2),
+                     labels = c("No", "Si"))
+```
+
+```{r}
+ggarrange(int1, int2, int3, int4,
+          ncol=2,
+          nrow=2,
+          common.legend = TRUE)
+```
+
+## Test sin controles
+
+```{r}
+reg1 <- lmer(distributive ~ selfemploy + platform + tecnoestres + pos_tecnoestres + skills + (1|ctrcode), data=data)
+reg2 <- lmer(distributive ~ selfemploy + platform + tecnoestres + pos_tecnoestres + skills + unnemployment + (1|ctrcode), data=data)
+reg3 <- lmer(distributive ~ selfemploy + platform + tecnoestres + pos_tecnoestres + skills + unnemployment + deservingness + (1|ctrcode), data=data)
+
+reg4 <- lmer(distributive ~ selfemploy + platform + tecnoestres + pos_tecnoestres + skills + unnemployment + deservingness + gdp_2024 + (1|ctrcode), data=data)
+reg5 <-lmer(distributive ~ selfemploy + platform + tecnoestres + pos_tecnoestres + skills + unnemployment + deservingness + gdp_2024 + welfare_regime+ (1|ctrcode), data=data)
+
+reg6 <- lmer(distributive ~ selfemploy + platform + tecnoestres*platform + pos_tecnoestres + skills + unnemployment + deservingness + gdp_2024 + welfare_regime + (1|ctrcode), data=data)
+reg7 <- lmer(distributive ~ selfemploy + platform + tecnoestres + pos_tecnoestres*platform + skills + unnemployment + deservingness + gdp_2024 + welfare_regime + (1|ctrcode), data=data)
+reg8 <- lmer(distributive ~ selfemploy + platform + tecnoestres + pos_tecnoestres + skills*platform + unnemployment + deservingness + gdp_2024 + welfare_regime + (1|ctrcode), data=data)
+reg9 <- lmer(distributive ~ selfemploy + platform*selfemploy + tecnoestres + pos_tecnoestres + skills + unnemployment + deservingness + gdp_2024 + welfare_regime + (1|ctrcode), data=data)
+reg10 <- lmer(distributive ~ selfemploy + platform + tecnoestres*welfare_regime + pos_tecnoestres + skills + unnemployment + deservingness + welfare_regime + gdp_2024 + (1|ctrcode), data=data)
+reg11 <- lmer(distributive ~ selfemploy + platform*welfare_regime + tecnoestres + pos_tecnoestres + skills + unnemployment + deservingness + welfare_regime + gdp_2024 + (1|ctrcode), data=data)
+reg12 <- lmer(distributive ~ selfemploy*welfare_regime + platform + tecnoestres + pos_tecnoestres + skills + unnemployment + deservingness + welfare_regime + gdp_2024 + (1|ctrcode), data=data)
+
+tab_model(reg1, reg2, reg3, reg4, reg5, reg9, reg10, reg11, reg12, show.ci=FALSE)
+```
+
+

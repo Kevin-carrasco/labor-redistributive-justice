@@ -1,0 +1,236 @@
+---
+title: "Preparación"
+format:  
+  html:
+    code-copy: true
+    code-tools: true
+    toc: true
+    toc-location: right
+    toc-depth: 4
+    toc-expand: 2
+    toc-title: Contents
+    number-sections: true
+    number-depth: 4 
+    fig-width: 10  
+    fig-height: 7
+editor_options: 
+  chunk_output_type: console
+editor: source
+lang: es
+fontsize: 12pt
+---
+
+```{r}
+#| label: set
+#| echo: false
+#| messedad: false
+#| warning: false
+
+library(knitr)
+knitr::opts_chunk$set(echo = FALSE, include = TRUE, warning = FALSE, messedad = FALSE)
+
+table_format <- if(is_html_output()) {
+  "html"
+} else if(is_latex_output()) {
+  "latex"
+}
+table_format2 <- if(is_html_output()) {
+  T
+} else if(is_latex_output()) {
+  F
+}
+
+options(kableExtra.html.bsTable = T)
+options(knitr.kable.NA = "")
+```
+
+```{r}
+if (!require("pacman")) install.packedads("pacman") # instalar pacman
+                            # cargar librerias
+pacman::p_load(dplyr,       # Manipulacion de datos
+               knitr,
+               kableExtra,
+               summarytools,
+               ggplot2,
+               ggeffects,
+               haven,
+               sjlabelled,
+               lme4,
+               sjmisc,
+               sjPlot,
+               ggrepel,
+               ggpubr
+               )
+
+data_original<- haven::read_dta(here::here("input/original/OECD_RTM_2024.dta"))
+
+data <- data_original %>%
+  dplyr::select(id,
+              country,
+              ctrcode, 
+              year, 
+              ctryear, 
+              weight, 
+              sex=s2,
+              age=s3_agegroup,
+              educ=s7_cat3,
+              income=s9_dec,
+              employment=s25,
+              selfemploy=s11,
+              platform=s29,
+              distributive=q16,
+              unnemployment=q2b,
+              tecnoestres_1=q25a,
+              tecnoestres_2=q25b,
+              tecnoestres_3=q25c,
+              tecnoestres_4=q25d,
+              tecnoestres_5=q25e,
+              tecnoestres_6=q25f,
+              tecnoestres_7=q25g,
+              tecnoestres_8=q25h,
+              tecnoestres_9=q25i,
+              deservingness=q17              
+              )
+
+gdp_2024 <- tibble::tribble(
+  ~ctrcode, ~gdp_2024,
+  "AUT",  58373,
+  "BEL",  56796,
+  "CAN",  54283,
+  "CHE", 108256,
+  "CHL",  17203,
+  "DEU",  56087,
+  "DNK",  71214,
+  "ESP",  36076,
+  "EST",  31419,
+  "FIN",  53189,
+  "FRA",  46150,
+  "GBR",  52637,
+  "GRC",  24716,
+  "IRL", 112356,
+  "ISR",  54177,
+  "ITA",  40226,
+  "KOR",  36500,
+  "LTU",  29379,
+  "LVA",  23243,
+  "MEX",  13826,
+  "NLD",  67690,
+  "NOR",  89684,
+  "POL",  24973,
+  "PRT",  27832,
+  "SVN",  34103,
+  "TUR",  15463,
+  "USA",  86173
+)
+
+data <- data %>% set_na(.,na=c(98,99))
+
+# generate analytical sample
+digitalization <-
+  data %>% #filter(ctrcode=="CHL") %>% 
+  select(tecnoestres_1, tecnoestres_2, tecnoestres_3, tecnoestres_4, tecnoestres_5, 
+          tecnoestres_6, tecnoestres_7, tecnoestres_8, tecnoestres_9 #tecnoestres
+         )
+
+
+
+vars <- paste0("tecnoestres_", 1:9)
+
+labelled::var_label(digitalization)[vars] <- labelled::var_label(digitalization)[vars] %>%
+  stringr::str_remove("^q25[a-z]:\\s*Digitaln\\. and your job:\\s*")
+
+
+save(digitalization, file=here::here("input/proc/digitalization.RData"))
+
+
+data <- data %>% rowwise() %>%
+        mutate(tecnoestres = mean(c(tecnoestres_1, tecnoestres_3, tecnoestres_5), na.rm=TRUE),
+               pos_tecnoestres = mean(c(tecnoestres_7, tecnoestres_8, tecnoestres_9), na.rm=TRUE),
+               skills = tecnoestres_6
+               )
+data <- merge(data, gdp_2024, by="ctrcode")
+
+# ============================================================
+# Clasificación de regímenes de bienestar — versión revisada
+# Fuentes principales:
+#   Esping-Andersen (1990) Three Worlds of Welfare Capitalism
+#   Ferrera (1996) Southern European regime
+#   Aidukaite (2011) Post-communist welfare reforms
+#   Fenger (2007) CEE typology
+# ============================================================
+
+data <- data %>%
+  mutate(
+    welfare_regime = case_when(
+
+      # 1. SOCIALDEMÓCRATA
+      # Esping-Andersen (1990): universalismo, alta desmercantilización
+      country %in% c(5,   # Denmark
+                     7,   # Finland
+                     19,  # Norway
+                     18   # Netherlands
+                     ) ~ "Social-democratic",
+
+      # 2. LIBERAL
+      # Esping-Andersen (1990): residual, focalizado, mercado
+      # Martínez Franzoni (2008): Chile y México — liberal latinoamericano
+      # Aidukaite (2011): bálticos con orientación liberal post-soviética
+      country %in% c(3,   # Canada
+                     11,  # Ireland
+                     26,  # United Kingdom
+                     27,  # United States
+                     4,   # Chile
+                     17,  # Mexico
+                     6,   # Estonia
+                     15,  # Latvia
+                     16   # Lithuania
+                     ) ~ "Liberal",
+
+      # 3. CONSERVADOR-CORPORATIVISTA + SUR DE EUROPA
+      # Esping-Andersen (1990) + Ferrera (1996)
+      country %in% c(1,   # Austria
+                     2,   # Belgium
+                     8,   # France
+                     9,   # Germany
+                     24,  # Switzerland
+                     10,  # Greece
+                     13,  # Italy
+                     21,  # Portugal
+                     23,  # Spain
+                     12,  # Israel
+                     14,  # Korea
+                     25,   # Türkiye
+                     20,  # Poland
+                     22   # Slovenia
+                     ) ~ "Conservative",
+
+      TRUE ~ NA_character_
+    ),
+    welfare_regime = factor(welfare_regime,
+                            levels = c("Liberal",
+                                       "Social-democratic",
+                                       "Conservative"))
+  )
+
+data$sex <- as_factor(data$sex)
+data$age <- as_factor(data$age)
+data$educ <- as_factor(data$educ)
+data$selfemploy <- as_factor(data$selfemploy)
+data$platform <- as_factor(data$platform)
+data$platform <- car::recode(data$platform, "2=1;1=2;3=2")
+data$selfemploy <- car::recode(data$selfemploy, "1=1;2=2;3=2")
+
+save(data, file=here::here("input/proc/data.RData"))
+```
+
+```{r}
+distributive <- data %>% select(distributive, country, ctrcode, welfare_regime, gdp_2024)
+
+
+
+country_data <- distributive %>% group_by(ctrcode) %>%
+                      summarise(distributive = mean(distributive, na.rm=TRUE),
+                                gdp_2024 = mean(gdp_2024, na.rm=TRUE))
+
+save(country_data, file=here::here("input/proc/country_data.RData"))
+```
