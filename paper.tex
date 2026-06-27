@@ -67,6 +67,46 @@
 \fi
 \makeatother
 
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{241,243,245}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.40,0.45,0.13}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\BuiltInTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\ExtensionTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.28,0.35,0.67}{#1}}
+\newcommand{\ImportTok}[1]{\textcolor[rgb]{0.00,0.46,0.62}{#1}}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.07,0.07,0.07}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
 
 \usepackage{longtable,booktabs,array}
 \newcounter{none} % for unnumbered tables
@@ -252,7 +292,7 @@ market position, Welfare State
 
 
 \setstretch{1.15}
-\# Introduction
+\section{Introduction}\label{introduction}
 
 Contemporary technological transformations, such as automation,
 artificial intelligence, algorithmic management and intermediation
@@ -779,7 +819,7 @@ regime.
 
 \end{tcolorbox}
 
-\# Data, variables and methods
+\section{Data, variables and methods}\label{data-variables-and-methods}
 
 \subsection{Data}\label{data}
 
@@ -858,31 +898,254 @@ strongly disagree to 5 = strongly agree). Unlike the dependent variable,
 which captures the individual's judgement of the fairness of their own
 relationship with the system, this item captures their judgement of the
 deservingness of other beneficiaries, a central distinction in the
-literature on deservingness (van Oorschot, 2000, 2006). Higher values
+literature on deservingness (\citeproc{ref-vanoorschot_making_2006}{Van
+Oorschot, 2006}, \citeproc{ref-oorschot_who_2000}{2000}). Higher values
 indicate a more widespread perception of undue deservingness on the part
 of third parties.
 
 The welfare regime is operationalised as a three-category variable
 (social democratic, liberal, conservative-corporatist) following Bambra
-(2007) and Fenger (2007). To classify the countries of southern Europe
-and of central and eastern Europe present in the sample, the extensions
-of Ferrera (1996), Fenger (2007) and Aidukaite (2011) are followed,
-which document both the initial specificity of the post-socialist
-regimes and their progressive convergence towards the continental types
-after two decades of transition. On that basis, and given the small
-number of countries per category, the study adopts a three-regime
-classification ---social democratic, liberal and
-conservative-corporatist---, in which the countries of southern Europe
-and of central and eastern Europe are integrated into the conservative
-category, while the Baltic states, characterised by a more liberal
-orientation of their post-socialist reforms, are incorporated into the
-liberal regime (Aidukaite, 2011).
+(\citeproc{ref-bambra_sifting_2007}{2007}) and Fenger
+(\citeproc{ref-Fenger2006WelfareRI}{2006}). To classify the countries of
+southern Europe and of central and eastern Europe present in the sample,
+the extensions of Ferrera (\citeproc{ref-ferrera_southern_1996}{1996}),
+Fenger (\citeproc{ref-Fenger2006WelfareRI}{2006}) and Aidukaite
+(\citeproc{ref-aidukaite_welfare_2011}{2011}) are followed, which
+document both the initial specificity of the post-socialist regimes and
+their progressive convergence towards the continental types after two
+decades of transition. On that basis, and given the small number of
+countries per category, the study adopts a three-regime classification
+---social democratic, liberal and conservative-corporatist---, in which
+the countries of southern Europe and of central and eastern Europe are
+integrated into the conservative category, while the Baltic states,
+characterised by a more liberal orientation of their post-socialist
+reforms, are incorporated into the liberal regime
+(\citeproc{ref-aidukaite_welfare_2011}{Aidukaite, 2011}).
 
 All the models include a set of control variables that have been shown
 to be associated with attitudes towards the welfare state and perceived
 redistributive justice: sex, age, educational level (operationalised as
 the highest level of studies completed) and income decile (self-reported
 position in the national income distribution).
+
+A summary of these variables and their main descriptive statistics is
+available in Table~\ref{tbl-summary}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.3925}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.3084}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.1963}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.1028}}@{}}
+\caption{Main descriptive statistics}\label{tbl-summary}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Label
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Stats / Values
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Freqs (\% of Valid)
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Valid
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Label
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Stats / Values
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Freqs (\% of Valid)
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Valid
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Redistributive justice & \begin{minipage}[t]{\linewidth}\raggedright
+1. Strongly disagree\\
+2. Disagree\\
+3. Neither agree nor disagre\\
+4. Agree\\
+5. Strongly agree\strut
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+3506 (18.3\%)\\
+4651 (24.3\%)\\
+5466 (28.5\%)\\
+4162 (21.7\%)\\
+1384 ( 7.2\%)\strut
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+19169\\
+(100.0\%)\strut
+\end{minipage} \\
+Sex & \begin{minipage}[t]{\linewidth}\raggedright
+1. Man\\
+2. Woman\strut
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+10293 (53.7\%)\\
+8876 (46.3\%)\strut
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+19169\\
+(100.0\%)\strut
+\end{minipage} \\
+Age group & \begin{minipage}[t]{\linewidth}\raggedright
+1. 18-24\\
+2. 25-34\\
+3. 35-44\\
+4. 45-54\\
+5. 55-64\strut
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+2076 (10.8\%)\\
+4522 (23.6\%)\\
+4726 (24.7\%)\\
+4486 (23.4\%)\\
+3359 (17.5\%)\strut
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+19169\\
+(100.0\%)\strut
+\end{minipage} \\
+Educational level & \begin{minipage}[t]{\linewidth}\raggedright
+1. Low\\
+2. Medium\\
+3. High\strut
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+1494 ( 7.8\%)\\
+7913 (41.3\%)\\
+9762 (50.9\%)\strut
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+19169\\
+(100.0\%)\strut
+\end{minipage} \\
+Equivalised disposable household income decile (2023) &
+\begin{minipage}[t]{\linewidth}\raggedright
+Mean (sd) : 4.9 (2.9)\\
+min \textless{} med \textless{} max:\\
+1 \textless{} 5 \textless{} 10\\
+IQR (CV) : 5 (0.6)\strut
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+1 : 3288 (17.2\%)\\
+2 : 1797 ( 9.4\%)\\
+3 : 1723 ( 9.0\%)\\
+4 : 2587 (13.5\%)\\
+5 : 2273 (11.9\%)\\
+6 : 1777 ( 9.3\%)\\
+7 : 1447 ( 7.5\%)\\
+8 : 1401 ( 7.3\%)\\
+9 : 1272 ( 6.6\%)\\
+10 : 1604 ( 8.4\%)\strut
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+19169\\
+(100.0\%)\strut
+\end{minipage} \\
+Self-empleoyment worker & \begin{minipage}[t]{\linewidth}\raggedright
+1. No\\
+2. Yes\strut
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+16459 (85.9\%)\\
+2710 (14.1\%)\strut
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+19169\\
+(100.0\%)\strut
+\end{minipage} \\
+Platform worker & \begin{minipage}[t]{\linewidth}\raggedright
+1. No\\
+2. Yes\strut
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+17361 (90.6\%)\\
+1808 ( 9.4\%)\strut
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+19169\\
+(100.0\%)\strut
+\end{minipage} \\
+Lose job & \begin{minipage}[t]{\linewidth}\raggedright
+1. Not at all concerned\\
+2. Not so concerned\\
+3. Somewhat concerned\\
+4. Very concerned\strut
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+2867 (15.0\%)\\
+5351 (27.9\%)\\
+5920 (30.9\%)\\
+5031 (26.2\%)\strut
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+19169\\
+(100.0\%)\strut
+\end{minipage} \\
+Technological displacement & \begin{minipage}[t]{\linewidth}\raggedright
+Mean (sd) : 2.1 (0.9)\\
+min \textless{} med \textless{} max:\\
+1 \textless{} 2 \textless{} 4\\
+IQR (CV) : 1.7 (0.4)\strut
+\end{minipage} & 13 distinct values &
+\begin{minipage}[t]{\linewidth}\raggedright
+19169\\
+(100.0\%)\strut
+\end{minipage} \\
+Perceived technological benefit &
+\begin{minipage}[t]{\linewidth}\raggedright
+Mean (sd) : 2.6 (0.8)\\
+min \textless{} med \textless{} max:\\
+1 \textless{} 2.7 \textless{} 4\\
+IQR (CV) : 1 (0.3)\strut
+\end{minipage} & 13 distinct values &
+\begin{minipage}[t]{\linewidth}\raggedright
+19169\\
+(100.0\%)\strut
+\end{minipage} \\
+Lose job due skills & \begin{minipage}[t]{\linewidth}\raggedright
+1. Very unlikely\\
+2. Unlikely\\
+3. Likely\\
+4. Very likely\strut
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+6218 (32.4\%)\\
+6595 (34.4\%)\\
+4546 (23.7\%)\\
+1810 ( 9.4\%)\strut
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+19169\\
+(100.0\%)\strut
+\end{minipage} \\
+Deservingness of others & \begin{minipage}[t]{\linewidth}\raggedright
+1. Strongly disagree\\
+2. Disagree\\
+3. Neither agree nor disagre\\
+4. Agree\\
+5. Strongly agree\strut
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+611 ( 3.2\%)\\
+1683 ( 8.8\%)\\
+4299 (22.4\%)\\
+6504 (33.9\%)\\
+6072 (31.7\%)\strut
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+19169\\
+(100.0\%)\strut
+\end{minipage} \\
+GDP per-capita & \begin{minipage}[t]{\linewidth}\raggedright
+Mean (sd) : 49908.9 (26346.1)\\
+min \textless{} med \textless{} max:\\
+13826 \textless{} 46150 \textless{} 112356\\
+IQR (CV) : 28994 (0.5)\strut
+\end{minipage} & 27 distinct values &
+\begin{minipage}[t]{\linewidth}\raggedright
+19169\\
+(100.0\%)\strut
+\end{minipage} \\
+Welfare regime & \begin{minipage}[t]{\linewidth}\raggedright
+1. Liberal\\
+2. Social-democratic\\
+3. Conservative\strut
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+6397 (33.4\%)\\
+2888 (15.1\%)\\
+9884 (51.6\%)\strut
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+19169\\
+(100.0\%)\strut
+\end{minipage} \\
+\end{longtable}
 
 \subsection{Methods}\label{methods}
 
@@ -893,26 +1156,133 @@ deservingness of others and the perception of redistributive justice
 across different national contexts. This approach makes it possible to
 account for the hierarchical structure of the comparative data and to
 decompose the variance of the outcome between individual factors and
-country characteristics (Snijders \& Bosker, 2012; Hox, Moerbeek \& Van
-de Schoot, 2017). Random intercepts are estimated for each country to
-control heterogeneity at the macro level. The models are estimated
-sequentially: a baseline model including only the control variables
-(Model 1), a second model adding type of employment and job insecurity
-(Model 2), a third model incorporating the perception of technological
-risk and benefit (Model 3) and a fourth, full model adding the
-perception of the deservingness of others (Model 4). In a fifth model,
-interaction terms between the labour market predictors and the type of
-welfare regime are introduced to test the moderation hypotheses (Models
-5--------). All the analyses use the individual survey weights provided
+country characteristics (\citeproc{ref-hox_multilevel_2017}{Hox et al.,
+2017}; \citeproc{ref-snijders_multilevel_2012}{Snijders and Bosker,
+2012}). Random intercepts are estimated for each country to control
+heterogeneity at the macro level. The models are estimated sequentially:
+a model including if the workers are self-employed or platform-worker
+(Model 1), a second model adding job insecurity (Model 2), a third model
+incorporating the perception of technological risk and benefit (Model
+3), a fourth model adding the perception of the deservingness of others
+(Model 4), a fifth model incorporating the type of welfare regime (Model
+5), and a sixt model adding the control variables (Model 6).
+
+In a seven model, interaction terms between the labour market predictors
+are introduced (Model 7). In the next models, the type of welfare regime
+are introduced to test the rest of moderation hypotheses (Models 8 to
+models 12). All the analyses use the individual survey weights provided
 by the OECD, and standard errors are clustered by country. The models
 are estimated with the clmm function of the ordinal package in R.
 
-\#\# Analisis descriptivo
+\section{Analysis}\label{analysis}
 
-\subsection{Modelos}\label{modelos}
 
-Presentacion de los resultados de los modelos propuestos, con
-interpretacion y conclusiones.
+
+Figure~\ref{fig-correlation} presents a correlation matrix of the main
+variables analyzed. In this matrix, the correlations vary between low
+and moderate negative and positive values. The main correlation effects
+are between perceived redistributive justice and being a platform worker
+(r=0,32, p\textless0.001), the perceived technological displacement
+(r=0,24, p\textless0,001), the skill obsolescence risk (r=0,26,
+p\textless0,001), and the perceived technological benefit (r=0,21,
+p\textless0,001) which are positive and moderated effects. In other
+sence, the deservingess of others has a negative and moderated effect
+(r=0,16, p\textless0,01).
+
+Regarding the independent variables, the main correlation effects are
+between the corcern about job and income loss and being a platform
+worker (r=0,15, p\textless0,001), and with the perceived of
+technological change variables. Between this this three last variables,
+the correlations effects are positive and significant, contrary to the
+initial intuitions.
+
+\begin{figure}[H]
+
+\caption{\label{fig-correlation}Correlation matrix of the main
+variables}
+
+\centering{
+
+\includegraphics[width=0.85\linewidth,height=\textheight,keepaspectratio]{output/figures/corrplot.png}
+
+}
+
+\end{figure}%
+
+\subsection{Multilevel ordinal logistic regression
+models}\label{multilevel-ordinal-logistic-regression-models}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# DV como factor}
+\FunctionTok{sum}\NormalTok{(}\FunctionTok{is.na}\NormalTok{(data}\SpecialCharTok{$}\NormalTok{distributive))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 0
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{table}\NormalTok{(data}\SpecialCharTok{$}\NormalTok{distributive, }\AttributeTok{useNA =} \StringTok{"ifany"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+
+   1    2    3    4    5 
+3506 4651 5466 4162 1384 
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Conversión numérica: ¿mismos NA?}
+\FunctionTok{sum}\NormalTok{(}\FunctionTok{is.na}\NormalTok{(}\FunctionTok{as.numeric}\NormalTok{(data}\SpecialCharTok{$}\NormalTok{distributive)))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 0
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{table}\NormalTok{(}\FunctionTok{as.numeric}\NormalTok{(data}\SpecialCharTok{$}\NormalTok{distributive), }\AttributeTok{useNA =} \StringTok{"ifany"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+
+   1    2    3    4    5 
+3506 4651 5466 4162 1384 
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Peso: ¿NA o ceros?}
+\FunctionTok{sum}\NormalTok{(}\FunctionTok{is.na}\NormalTok{(data}\SpecialCharTok{$}\NormalTok{weight)); }\FunctionTok{sum}\NormalTok{(data}\SpecialCharTok{$}\NormalTok{weight }\SpecialCharTok{==} \DecValTok{0}\NormalTok{, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 0
+\end{verbatim}
+
+\begin{verbatim}
+[1] 0
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{summary}\NormalTok{(data}\SpecialCharTok{$}\NormalTok{weight)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+ 0.1219  0.5931  0.7869  0.8802  1.0547  8.2564 
+\end{verbatim}
 
 \begin{table}
 
@@ -933,137 +1303,105 @@ Model 4
 
 Model 5
 
-Intercept
-
-3.088***
-
-3.172***
-
-2.204***
-
-2.563***
-
-2.332***
-
-~
-
-(0.071)
-
-(0.074)
-
-(0.078)
-
-(0.081)
-
-(0.142)
+Model 6
 
 self-employed worker (ref. No)
 
--0.020
+-0.059
 
--0.019
+-0.057
 
--0.017
+-0.057
 
--0.023
+-0.068
 
--0.022
+-0.068
+
+-0.069
 
 ~
 
-(0.024)
+(0.039)
 
-(0.024)
+(0.039)
 
-(0.023)
+(0.039)
 
-(0.023)
+(0.039)
 
-(0.023)
+(0.039)
+
+(0.039)
 
 Platform worker (ref. No)
 
-0.607***
+1.174***
 
-0.615***
+1.189***
 
-0.417***
+0.828***
 
-0.422***
+0.844***
 
-0.422***
+0.843***
+
+0.780***
 
 ~
 
-(0.028)
+(0.050)
 
-(0.028)
+(0.050)
 
-(0.028)
+(0.051)
 
-(0.028)
+(0.051)
 
-(0.028)
+(0.051)
+
+(0.051)
 
 Concern about job and income loss
 
 ~
 
--0.030***
+-0.054***
 
--0.098***
+-0.180***
 
--0.094***
+-0.175***
 
--0.094***
+-0.176***
 
-~
-
-~
-
-(0.008)
-
-(0.008)
-
-(0.008)
-
-(0.008)
-
-Perceived technological job change
+-0.166***
 
 ~
 
 ~
 
-~
+(0.014)
+
+(0.015)
+
+(0.015)
+
+(0.015)
+
+(0.015)
+
+Technological displacement
 
 ~
 
 ~
 
-~
+0.265***
 
-~
+0.261***
 
-~
+0.261***
 
-~
-
-~
-
-~
-
-~~~~~Technological displacement
-
-~
-
-~
-
-0.142***
-
-0.141***
-
-0.141***
+0.237***
 
 ~
 
@@ -1071,47 +1409,27 @@ Perceived technological job change
 
 ~
 
-(0.013)
+(0.023)
 
-(0.013)
+(0.023)
 
-(0.013)
+(0.023)
 
-~~~~~Skill obsolescence risk
+(0.024)
 
-~
-
-~
-
-0.065***
-
-0.063***
-
-0.064***
+Skill obsolescence risk
 
 ~
 
 ~
 
-~
+0.126***
 
-(0.011)
+0.123***
 
-(0.011)
+0.123***
 
-(0.011)
-
-~~~~~Perceived technological benefit
-
-~
-
-~
-
-0.240***
-
-0.241***
-
-0.241***
+0.126***
 
 ~
 
@@ -1119,11 +1437,41 @@ Perceived technological job change
 
 ~
 
-(0.012)
+(0.020)
 
-(0.012)
+(0.020)
 
-(0.012)
+(0.020)
+
+(0.020)
+
+Perceived technological benefit
+
+~
+
+~
+
+0.453***
+
+0.456***
+
+0.456***
+
+0.431***
+
+~
+
+~
+
+~
+
+(0.021)
+
+(0.021)
+
+(0.021)
+
+(0.022)
 
 Deservingness of others
 
@@ -1133,23 +1481,11 @@ Deservingness of others
 
 ~
 
--0.099***
+-0.181***
 
--0.099***
+-0.181***
 
-~
-
-~
-
-~
-
-~
-
-(0.007)
-
-(0.007)
-
-GDP per-capita
+-0.177***
 
 ~
 
@@ -1159,21 +1495,17 @@ GDP per-capita
 
 ~
 
-0.000*
+(0.014)
 
-~
+(0.014)
 
-~
-
-~
-
-~
-
-~
-
-(0.000)
+(0.014)
 
 Welfare regime (Ref.= Liberal)
+
+~
+
+~
 
 ~
 
@@ -1207,7 +1539,9 @@ Welfare regime (Ref.= Liberal)
 
 ~
 
-0.143
+0.408
+
+0.395
 
 ~
 
@@ -1219,7 +1553,9 @@ Welfare regime (Ref.= Liberal)
 
 ~
 
-(0.163)
+(0.267)
+
+(0.267)
 
 ~~~~~Conservative
 
@@ -1231,7 +1567,9 @@ Welfare regime (Ref.= Liberal)
 
 ~
 
--0.057
+-0.138
+
+-0.126
 
 ~
 
@@ -1243,37 +1581,39 @@ Welfare regime (Ref.= Liberal)
 
 ~
 
-(0.111)
+(0.190)
+
+(0.190)
 
 BIC
 
-58941.268
+50264.921
 
-58946.018
+50260.479
 
-57712.484
+48843.271
 
-57553.942
+48682.213
 
-57602.839
+48697.344
+
+48616.180
 
 Numb. obs.
 
-19169
+16872
 
-19169
+16872
 
-19169
+16872
 
-19169
+16872
 
-19169
+16872
 
-Num. groups: Country
+16872
 
-27
-
-27
+Groups (Country)
 
 27
 
@@ -1281,40 +1621,76 @@ Num. groups: Country
 
 27
 
-Var: Country (Intercept)
+27
 
-0.093
+27
 
-0.090
+27
 
-0.091
+Variance: Country: (Intercept)
 
-0.086
+0.235
 
-0.066
+0.227
 
-Var: Residual
+0.244
 
-1.248
+0.227
 
-1.248
+0.192
 
-1.167
-
-1.156
-
-1.156
+0.193
 
 Note: Cells contain regression coefficients with standard errors in
 parentheses. ***p \textless{} 0.001; **p \textless{} 0.01; *p
-\textless{} 0.05.
-
-All models are controlled by sex, age and income with significant
-effects and education with no significant effect
+\textless{} 0.05. Model 6 is controlled by sex, age and income with
+significant effects and education with no significant effect
 
 }
 
 \end{table}%
+
+Cumulative-link mixed models were fitted for perceived redistributive
+justice, with a random intercept for country. Note that ordinal package
+reports the number of observations as the sum of the sampling weights
+rather than the count of cases
+(\citeproc{ref-haubo_cumulative_2018}{Haubo and Christensen, 2018}); the
+models were therefore estimated on 19,169 respondents nested in 27
+countries (weighted N = 16,872). Coefficients are cumulative log-odds: a
+positive value indicates greater odds of reporting a higher category of
+perceived redistributive justice.
+
+Table~\ref{tbl-modelos} follows a block-building logic --- employment
+status (Model 1), economic insecurity (Model 2), the
+technological-perception battery (Model 3), deservingness of others
+(Model 4) and welfare regime (Model 5) --- with sociodemographic
+controls (sex, age, income and education) entered only in Model 6.
+Across the sequence the country-level variance declines from 0.235 to
+0.193 and the BIC from 50,264.9 to 48,616.2, indicating improved fit as
+substantive predictors are added.
+
+Platform work is the strongest and most stable predictor. In Model 1 its
+coefficient is 1.174 (p \textless{} 0.001; OR ≈ 3.2); it attenuates as
+the technological and deservingness blocks enter but remains large in
+the fully adjusted Model 6 (0.780, p \textless{} 0.001; OR ≈ 2.2), so
+platform workers have roughly twice the odds of expressing higher
+perceived redistributive justice. Self-employment is non-significant
+throughout (≈ −0.06). Concern about job and income loss is negative and
+strengthens once technological perceptions are held constant, moving
+from −0.054 in Model 2 to −0.166 in Model 6 (p \textless{} 0.001).
+
+The technological-perception battery (from Model 3) is uniformly
+positive. Perceived technological benefit carries the largest effect (≈
+0.43--0.46, p \textless{} 0.001), followed by technological displacement
+(≈ 0.24--0.27, p \textless{} 0.001) and skill-obsolescence risk (≈ 0.12,
+p \textless{} 0.001). The positive sign on technological displacement
+runs counter to the hypothesised direction, a point developed further in
+the discussion. Deservingness of others (Model 4) is negative and stable
+(≈ −0.18, p \textless{} 0.001). Welfare regime, entered as a main effect
+in Model 5, is not significant: relative to liberal regimes, neither the
+social-democratic (≈ 0.40) nor the conservative (≈ −0.13) contrast
+reaches conventional thresholds. The addition of controls in Model 6
+leaves this individual-level structure essentially unchanged.
 
 \begin{table}
 
@@ -1337,233 +1713,205 @@ Model 5
 
 Model 6
 
-Intercept
-
-2.332***
-
-2.323***
-
-2.318***
-
-2.231***
-
-2.218***
-
-2.231***
-
-~
-
-(0.142)
-
-(0.142)
-
-(0.142)
-
-(0.145)
-
-(0.144)
-
-(0.147)
-
 Self-employed worker (ref. No)
 
--0.000
+-0.018
 
-0.011
+0.009
 
--0.023
+-0.071
 
--0.022
+-0.068
 
--0.022
+-0.071
 
--0.023
+-0.071
 
 ~
 
-(0.025)
+(0.042)
 
-(0.038)
+(0.069)
 
-(0.023)
+(0.039)
 
-(0.023)
+(0.039)
 
-(0.023)
+(0.039)
 
-(0.023)
+(0.039)
 
 Platform worker (ref. No)
 
-0.456***
+0.877***
 
-0.422***
+0.781***
 
-0.513***
+0.953***
 
-0.420***
+0.775***
 
-0.421***
+0.777***
 
-0.421***
+0.779***
 
 ~
 
-(0.031)
+(0.058)
 
-(0.028)
+(0.051)
 
-(0.044)
+(0.079)
 
-(0.028)
+(0.051)
 
-(0.028)
+(0.051)
 
-(0.028)
+(0.051)
 
 Concern about job and income loss
 
--0.094***
+-0.167***
 
--0.094***
+-0.166***
 
--0.094***
+-0.165***
 
--0.058***
+-0.098***
 
--0.093***
+-0.165***
 
--0.094***
+-0.165***
 
 ~
 
-(0.008)
+(0.015)
 
-(0.008)
+(0.015)
 
-(0.008)
+(0.015)
 
-(0.014)
+(0.025)
 
-(0.008)
+(0.015)
 
-(0.008)
+(0.015)
 
 Technological displacement
 
-0.141***
+0.237***
 
-0.141***
+0.238***
 
-0.141***
+0.236***
 
-0.141***
+0.238***
 
-0.193***
+0.338***
 
-0.141***
+0.236***
 
 ~
 
-(0.013)
+(0.024)
 
-(0.013)
+(0.024)
 
-(0.013)
+(0.024)
 
-(0.013)
+(0.024)
 
-(0.018)
+(0.032)
 
-(0.013)
+(0.024)
 
 Deservingness of others
 
--0.099***
+-0.176***
 
--0.099***
+-0.177***
 
--0.099***
+-0.177***
 
--0.099***
+-0.177***
 
--0.100***
+-0.178***
 
--0.071***
+-0.122***
 
 ~
 
-(0.007)
+(0.014)
 
-(0.007)
+(0.014)
 
-(0.007)
+(0.014)
 
-(0.007)
+(0.014)
 
-(0.007)
+(0.014)
 
-(0.013)
+(0.024)
 
 Social-democratic
 
-0.142
+0.394
 
-0.160
+0.447
 
-0.183
+0.461
 
-0.257
+0.533
 
-0.377*
+0.843**
 
-0.351
+0.638*
 
 ~
 
-(0.164)
+(0.267)
 
-(0.164)
+(0.270)
 
-(0.163)
+(0.268)
 
-(0.175)
+(0.290)
 
-(0.173)
+(0.286)
 
-(0.184)
+(0.309)
 
 Conservative
 
--0.058
+-0.128
 
--0.053
+-0.117
 
--0.049
+-0.110
 
-0.100
+0.201
 
-0.094
+0.171
 
-0.087
+0.217
 
 ~
 
-(0.111)
+(0.190)
 
-(0.112)
+(0.192)
 
-(0.111)
+(0.191)
 
-(0.121)
+(0.209)
 
-(0.119)
+(0.206)
 
-(0.128)
+(0.223)
 
 Self-employed X Platform worker
 
--0.156*
+-0.413***
 
 ~
 
@@ -1577,7 +1925,7 @@ Self-employed X Platform worker
 
 ~
 
-(0.065)
+(0.116)
 
 ~
 
@@ -1593,7 +1941,7 @@ Self-employed X Social-democratic
 
 ~
 
--0.158*
+-0.400**
 
 ~
 
@@ -1607,7 +1955,7 @@ Self-employed X Social-democratic
 
 ~
 
-(0.077)
+(0.128)
 
 ~
 
@@ -1621,7 +1969,153 @@ Self-employed X Conservative
 
 ~
 
--0.027
+-0.047
+
+~
+
+~
+
+~
+
+~
+
+~
+
+~
+
+(0.087)
+
+~
+
+~
+
+~
+
+~
+
+Platform worker X Social-democratic
+
+~
+
+~
+
+-0.607***
+
+~
+
+~
+
+~
+
+~
+
+~
+
+~
+
+(0.135)
+
+~
+
+~
+
+~
+
+Platform worker X Conservative
+
+~
+
+~
+
+-0.137
+
+~
+
+~
+
+~
+
+~
+
+~
+
+~
+
+(0.109)
+
+~
+
+~
+
+~
+
+Job and income loss X Social-democratic
+
+~
+
+~
+
+~
+
+-0.047
+
+~
+
+~
+
+~
+
+~
+
+~
+
+~
+
+(0.044)
+
+~
+
+~
+
+Job and income loss X Conservative
+
+~
+
+~
+
+~
+
+-0.120***
+
+~
+
+~
+
+~
+
+~
+
+~
+
+~
+
+(0.032)
+
+~
+
+~
+
+Technological displacement X Social-democratic
+
+~
+
+~
+
+~
+
+~
+
+-0.214***
 
 ~
 
@@ -1639,152 +2133,6 @@ Self-employed X Conservative
 
 ~
 
-~
-
-~
-
-~
-
-Platform worker X Social-democratic
-
-~
-
-~
-
--0.355***
-
-~
-
-~
-
-~
-
-~
-
-~
-
-~
-
-(0.076)
-
-~
-
-~
-
-~
-
-Platform worker X Conservative
-
-~
-
-~
-
--0.063
-
-~
-
-~
-
-~
-
-~
-
-~
-
-~
-
-(0.060)
-
-~
-
-~
-
-~
-
-Job and income loss X Social-democratic
-
-~
-
-~
-
-~
-
--0.042
-
-~
-
-~
-
-~
-
-~
-
-~
-
-~
-
-(0.025)
-
-~
-
-~
-
-Job and income loss X Conservative
-
-~
-
-~
-
-~
-
--0.057**
-
-~
-
-~
-
-~
-
-~
-
-~
-
-~
-
-(0.018)
-
-~
-
-~
-
-Technological displacement X Social-democratic
-
-~
-
-~
-
-~
-
-~
-
--0.111***
-
-~
-
-~
-
-~
-
-~
-
-~
-
-~
-
-(0.028)
-
-~
-
 Technological displacement X Conservative
 
 ~
@@ -1795,7 +2143,7 @@ Technological displacement X Conservative
 
 ~
 
--0.070***
+-0.138***
 
 ~
 
@@ -1809,7 +2157,7 @@ Technological displacement X Conservative
 
 ~
 
-(0.020)
+(0.037)
 
 ~
 
@@ -1825,7 +2173,7 @@ Deservingness X Social-democratic
 
 ~
 
--0.056*
+-0.065
 
 ~
 
@@ -1839,7 +2187,7 @@ Deservingness X Social-democratic
 
 ~
 
-(0.023)
+(0.041)
 
 Deservingness X Conservative
 
@@ -1853,7 +2201,7 @@ Deservingness X Conservative
 
 ~
 
--0.038*
+-0.090**
 
 ~
 
@@ -1867,39 +2215,37 @@ Deservingness X Conservative
 
 ~
 
-(0.016)
+(0.031)
 
 BIC
 
-57610.512
+48613.219
 
-57625.860
+48625.127
 
-57607.415
+48615.167
 
-57623.904
+48621.208
 
-57613.881
+48612.196
 
-57626.895
+48626.846
 
 Numb. obs.
 
-19169
+16872
 
-19169
+16872
 
-19169
+16872
 
-19169
+16872
 
-19169
+16872
 
-19169
+16872
 
-Num. groups: Country
-
-27
+Groups (Country)
 
 27
 
@@ -1911,48 +2257,97 @@ Num. groups: Country
 
 27
 
-Var: Country (Intercept)
+27
 
-0.066
+Variance: Country: (Intercept)
 
-0.066
+0.193
 
-0.066
+0.196
 
-0.066
+0.193
 
-0.066
+0.193
 
-0.067
+0.192
 
-Var: Residual
-
-1.156
-
-1.156
-
-1.155
-
-1.156
-
-1.155
-
-1.156
+0.194
 
 Note: Cells contain regression coefficients with standard errors in
 parentheses. ***p \textless{} 0.001; **p \textless{} 0.01; *p
-\textless{} 0.05.
-
-All models are controlled by sex, age and income with significant
-effects and education with no significant effect
+\textless{} 0.05. All models are controlled by sex, age and income with
+significant effects and education with no significant effect
 
 }
 
 \end{table}%
 
+Table~\ref{tbl-interact} takes the fully adjusted specification and
+introduces one interaction at a time: self-employed × platform (Model
+7), followed by the cross-level products of welfare regime with
+self-employment (Model 8), platform work (Model 9), economic insecurity
+(Model 10), technological displacement (Model 11) and deservingness
+(Model 12). The BIC is narrow across these models (48,612.2--48,626.8)
+and the country variance stable (≈ 0.19). The four regime moderations
+are displayed in Figure~\ref{fig-interact}; because emmeans R package
+(\citeproc{ref-lenth_emmeans_2017}{Lenth and Piaskowski, 2017})
+evaluates the fitted model on the latent scale, the panels show
+predicted latent propensity rather than category-specific probabilities,
+which is why each moderation reduces to a single linear panel.
 
+The individual-level interaction is negative ---self-employed × platform
+= −0.413 (p \textless{} 0.001)--- so the platform effect is weaker among
+workers who are simultaneously self-employed. The cross-level terms then
+reveal that the null regime main effects in Table~\ref{tbl-modelos} mask
+substantial moderation. Self-employment matters only in
+social-democratic regimes (× social-democratic = −0.400, p \textless{}
+0.01; × conservative n.s.), shown in the top-left panel as the steep
+social-democratic decline against flat liberal and conservative lines.
+Platform work is positive across all regimes (top right), but its slope
+is much shallower under social-democratic arrangements (×
+social-democratic = −0.607, p \textless{} 0.001), where respondents
+begin from a higher baseline.
 
-Interpreta resultados, limitaciones y aportes.
+The same dampening governs the remaining predictors. Technological
+displacement is positive in every regime (bottom left) but significantly
+attenuated relative to liberal regimes (× social-democratic = −0.214; ×
+conservative = −0.138; both p \textless{} 0.001). Deservingness is
+negative throughout (bottom right), with the steepest slope in
+conservative regimes (× conservative = −0.090, p \textless{} 0.01) and a
+non-significant social-democratic interaction. Economic insecurity
+interacts significantly only with the conservative contrast (−0.120, p
+\textless{} 0.001). Once these interactions are specified, the
+social-democratic main effect becomes significant in the displacement
+and deservingness models (0.843, p \textless{} 0.01; 0.638, p
+\textless{} 0.05), where it was null in Table~\ref{tbl-modelos}.
+
+A consistent pattern emerges: across all four panels the
+social-democratic line is the flattest, and every regime interaction
+with an individual-level predictor is negative. Substantively,
+perceptions of redistributive justice in social-democratic regimes
+appear less responsive to individual labour-market position and
+technological perceptions than under liberal arrangements, consistent
+with the view that encompassing welfare institutions decouple
+distributive attitudes from individual exposure.
+
+\begin{figure}[H]
+
+\caption{\label{fig-interact}Estimated latent propensity for perceived
+redistributive justice, by selected predictors across welfare regimes}
+
+\centering{
+
+\includegraphics[width=0.85\linewidth,height=\textheight,keepaspectratio]{paper_files/figure-pdf/fig-interact-1.pdf}
+
+}
+
+\end{figure}%
+
+emmip no estima probabilidades predicha, estima un factor latente entre
+los cuatro interceptos para estimar propensión latente hacia las
+categorías altas de perceción de justicia redistributiva
+
+\section{Conclusion}\label{conclusion}
 
 
 
@@ -1962,6 +2357,12 @@ Síntesis y proyecciones futuras.
 
 \protect\phantomsection\label{refs}
 \begin{CSLReferences}{1}{0}
+\bibitem[\citeproctext]{ref-aidukaite_welfare_2011}
+Aidukaite, J., 2011. Welfare reforms and socio-economic trends in the 10
+new {EU} member states of {Central} and {Eastern Europe}. Communist and
+Post-Communist Studies 44, 211--219.
+\url{https://doi.org/10.1016/j.postcomstud.2011.07.005}
+
 \bibitem[\citeproctext]{ref-anderson_workers_2007}
 Anderson, C.J., Pontusson, J., 2007. Workers, worries and welfare
 states: {Social} protection and job insecurity in 15 {OECD} countries.
@@ -1984,6 +2385,12 @@ more? {A} state-of-the-art report. Journal of European Social Policy 12,
 Autor, D.H., 2015. Why {Are There Still So Many Jobs}? {The History} and
 {Future} of {Workplace Automation}. Journal of Economic Perspectives 29,
 3--30. \url{https://doi.org/10.1257/jep.29.3.3}
+
+\bibitem[\citeproctext]{ref-bambra_sifting_2007}
+Bambra, C., 2007. {``{Sifting} the {Wheat} from the {Chaff}''}: {A
+Two}-dimensional {Discriminant Analysis} of {Welfare State Regime
+Theory}. Social Policy \& Administration 41, 1--28.
+\url{https://doi.org/10.1111/j.1467-9515.2007.00536.x}
 
 \bibitem[\citeproctext]{ref-behrendt_social_2019}
 Behrendt, C., Nguyen, Q.A., Rani, U., 2019. Social protection systems
@@ -2074,6 +2481,10 @@ Social Policy Preference}? {Employment Insecurity} and {Policy Feedback
 Effect} in {China}. Social Policy and Society 23, 750--768.
 \url{https://doi.org/10.1017/S1474746422000513}
 
+\bibitem[\citeproctext]{ref-Fenger2006WelfareRI}
+Fenger, H.J.M., 2006. Welfare regimes in central and eastern europe:
+{Incorporating} post-communist countries in a welfare regime typology.
+
 \bibitem[\citeproctext]{ref-ferrera_southern_1996}
 Ferrera, M., 1996. The '{Southern Model}' of {Welfare} in {Social
 Europe}. Journal of European Social Policy 6, 17--37.
@@ -2124,11 +2535,21 @@ gig economy couriers in {Argentina} and {Chile}: {Precarity},
 algorithmic control and mobilization. International Labour Review 161,
 441--461. \url{https://doi.org/10.1111/ilr.12376}
 
+\bibitem[\citeproctext]{ref-haubo_cumulative_2018}
+Haubo, R., Christensen, B., 2018. Cumulative link models for ordinal
+regression with the {R} package ordinal.
+
 \bibitem[\citeproctext]{ref-howcroft_digitalisation_2025}
 Howcroft, D., Banister, E., Jarvis-King, L., Rubery, J., Távora, I.,
 2025. Digitalisation and the {Remaking} of the {Ideal Worker}. Work,
 Employment and Society 39, 703--726.
 \url{https://doi.org/10.1177/09500170241301015}
+
+\bibitem[\citeproctext]{ref-hox_multilevel_2017}
+Hox, J.J., Moerbeek, M., Van De Schoot, R., 2017. Multilevel {Analysis}:
+{Techniques} and {Applications}, 3rd ed. Routledge, Third edition.
+\textbar{} New York, NY : Routledge, 2017.\textbar
+\url{https://doi.org/10.4324/9781315650982}
 
 \bibitem[\citeproctext]{ref-im_losers_2019}
 Im, Z.J., Mayer, N., Palier, B., Rovny, J., 2019. The {``losers of
@@ -2178,6 +2599,11 @@ policies. Edward Elgar Publishing, Cheltenham, UK Northampton, MA, USA.
 Larsen, C.A., 2008. The {Institutional Logic} of {Welfare Attitudes}:
 {How Welfare Regimes Influence Public Support}. Comparative Political
 Studies 41, 145--168. \url{https://doi.org/10.1177/0010414006295234}
+
+\bibitem[\citeproctext]{ref-lenth_emmeans_2017}
+Lenth, R.V., Piaskowski, J., 2017. Emmeans: {Estimated Marginal Means},
+aka {Least-Squares Means}.
+\url{https://doi.org/10.32614/CRAN.package.emmeans}
 
 \bibitem[\citeproctext]{ref-lindh_class_2020}
 Lindh, A., McCall, L., 2020. Class {Position} and {Political Opinion} in
@@ -2279,6 +2705,11 @@ Schwander, H., Häusermann, S., 2013. Who is in and who is out? {A}
 risk-based conceptualization of insiders and outsiders. Journal of
 European Social Policy 23, 248--269.
 \url{https://doi.org/10.1177/0958928713480064}
+
+\bibitem[\citeproctext]{ref-snijders_multilevel_2012}
+Snijders, T.A.B., Bosker, R.J., 2012. Multilevel analysis: An
+introduction to basic and advanced multilevel modeling, 2nd ed. ed.
+Sage, Los Angeles.
 
 \bibitem[\citeproctext]{ref-standing_precariat_2014}
 Standing, G., 2014. The precariat: The new dangerous class. Bloomsbury,

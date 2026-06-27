@@ -24,6 +24,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 /* CSS for citations */
 div.csl-bib-body { }
 div.csl-entry {
@@ -491,22 +526,79 @@ IQR (CV) : 28994 (0.5)</td>
 <section id="analysis" class="level1" data-number="3">
 <h1 data-number="3"><span class="header-section-number">3</span> Analysis</h1>
 <p>﻿</p>
-<div class="cell" data-layout-align="center">
+<p><a href="#fig-correlation" class="quarto-xref">Figure&nbsp;2</a> presents a correlation matrix of the main variables analyzed. In this matrix, the correlations vary between low and moderate negative and positive values. The main correlation effects are between perceived redistributive justice and being a platform worker (r=0,32, p&lt;0.001), the perceived technological displacement (r=0,24, p&lt;0,001), the skill obsolescence risk (r=0,26, p&lt;0,001), and the perceived technological benefit (r=0,21, p&lt;0,001) which are positive and moderated effects. In other sence, the deservingess of others has a negative and moderated effect (r=0,16, p&lt;0,01).</p>
+<p>Regarding the independent variables, the main correlation effects are between the corcern about job and income loss and being a platform worker (r=0,15, p&lt;0,001), and with the perceived of technological change variables. Between this this three last variables, the correlations effects are positive and significant, contrary to the initial intuitions.</p>
+<div class="cell fig-cap-location-top" data-layout-align="center">
 <div class="cell-output-display">
-<div id="fig-correlation" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" data-fig-pos="H">
+<div id="fig-correlation" class="quarto-float quarto-figure quarto-figure-center anchored" data-cap-location="top" data-fig-align="center" data-fig-pos="H">
 <figure class="quarto-float quarto-float-fig figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-correlation-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: Correlation matrix of the main variables
+</figcaption>
 <div aria-describedby="fig-correlation-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="output/figures/corrplot.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:85.0%" data-fig-pos="H">
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-correlation-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2: Correlation matrix of the main variables
-</figcaption>
 </figure>
 </div>
 </div>
 </div>
-<section id="modelos" class="level2" data-number="3.1">
-<h2 data-number="3.1" class="anchored" data-anchor-id="modelos"><span class="header-section-number">3.1</span> Modelos</h2>
+<section id="multilevel-ordinal-logistic-regression-models" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="multilevel-ordinal-logistic-regression-models"><span class="header-section-number">3.1</span> Multilevel ordinal logistic regression models</h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># DV como factor</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">is.na</span>(data<span class="sc">$</span>distributive))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0</code></pre>
+</div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(data<span class="sc">$</span>distributive, <span class="at">useNA =</span> <span class="st">"ifany"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+   1    2    3    4    5 
+3506 4651 5466 4162 1384 </code></pre>
+</div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Conversión numérica: ¿mismos NA?</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">is.na</span>(<span class="fu">as.numeric</span>(data<span class="sc">$</span>distributive)))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0</code></pre>
+</div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(<span class="fu">as.numeric</span>(data<span class="sc">$</span>distributive), <span class="at">useNA =</span> <span class="st">"ifany"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+   1    2    3    4    5 
+3506 4651 5466 4162 1384 </code></pre>
+</div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Peso: ¿NA o ceros?</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">is.na</span>(data<span class="sc">$</span>weight)); <span class="fu">sum</span>(data<span class="sc">$</span>weight <span class="sc">==</span> <span class="dv">0</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0</code></pre>
+</div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(data<span class="sc">$</span>weight)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+ 0.1219  0.5931  0.7869  0.8802  1.0547  8.2564 </code></pre>
+</div>
+</div>
 <div id="tbl-modelos" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-tbl-cap-location="top">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-modelos-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -534,67 +626,33 @@ Model 4
 <th style="padding-left: 5px;padding-right: 5px;">
 Model 5
 </th>
+<th style="padding-left: 5px;padding-right: 5px;">
+Model 6
+</th>
 </tr>
 </thead>
 <tbody>
 <tr style="border-top: 1px solid #000000;">
 <td style="padding-left: 5px;padding-right: 5px;">
-Intercept
-</td>
-<td style="padding-left: 5px;padding-right: 5px;">
-3.088<sup>***</sup>
-</td>
-<td style="padding-left: 5px;padding-right: 5px;">
-3.172<sup>***</sup>
-</td>
-<td style="padding-left: 5px;padding-right: 5px;">
-2.204<sup>***</sup>
-</td>
-<td style="padding-left: 5px;padding-right: 5px;">
-2.563<sup>***</sup>
-</td>
-<td style="padding-left: 5px;padding-right: 5px;">
-2.332<sup>***</sup>
-</td>
-</tr>
-<tr>
-<td style="padding-left: 5px;padding-right: 5px;">
-&nbsp;
-</td>
-<td style="padding-left: 5px;padding-right: 5px;">
-(0.071)
-</td>
-<td style="padding-left: 5px;padding-right: 5px;">
-(0.074)
-</td>
-<td style="padding-left: 5px;padding-right: 5px;">
-(0.078)
-</td>
-<td style="padding-left: 5px;padding-right: 5px;">
-(0.081)
-</td>
-<td style="padding-left: 5px;padding-right: 5px;">
-(0.142)
-</td>
-</tr>
-<tr>
-<td style="padding-left: 5px;padding-right: 5px;">
 self-employed worker (ref. No)
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
--0.020
+-0.059
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
--0.019
+-0.057
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
--0.017
+-0.057
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
--0.023
+-0.068
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
--0.022
+-0.068
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+-0.069
 </td>
 </tr>
 <tr>
@@ -602,19 +660,22 @@ self-employed worker (ref. No)
 &nbsp;
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-(0.024)
+(0.039)
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-(0.024)
+(0.039)
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-(0.023)
+(0.039)
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-(0.023)
+(0.039)
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-(0.023)
+(0.039)
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+(0.039)
 </td>
 </tr>
 <tr>
@@ -622,19 +683,22 @@ self-employed worker (ref. No)
 Platform worker (ref. No)
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-0.607<sup>***</sup>
+1.174<sup>***</sup>
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-0.615<sup>***</sup>
+1.189<sup>***</sup>
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-0.417<sup>***</sup>
+0.828<sup>***</sup>
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-0.422<sup>***</sup>
+0.844<sup>***</sup>
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-0.422<sup>***</sup>
+0.843<sup>***</sup>
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+0.780<sup>***</sup>
 </td>
 </tr>
 <tr>
@@ -642,19 +706,22 @@ Platform worker (ref. No)
 &nbsp;
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-(0.028)
+(0.050)
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-(0.028)
+(0.050)
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-(0.028)
+(0.051)
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-(0.028)
+(0.051)
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-(0.028)
+(0.051)
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+(0.051)
 </td>
 </tr>
 <tr>
@@ -665,56 +732,19 @@ Concern about job and income loss
 &nbsp;
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
--0.030<sup>***</sup>
+-0.054<sup>***</sup>
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
--0.098<sup>***</sup>
+-0.180<sup>***</sup>
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
--0.094<sup>***</sup>
+-0.175<sup>***</sup>
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
--0.094<sup>***</sup>
-</td>
-</tr>
-<tr>
-<td style="padding-left: 5px;padding-right: 5px;">
-&nbsp;
+-0.176<sup>***</sup>
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-&nbsp;
-</td>
-<td style="padding-left: 5px;padding-right: 5px;">
-(0.008)
-</td>
-<td style="padding-left: 5px;padding-right: 5px;">
-(0.008)
-</td>
-<td style="padding-left: 5px;padding-right: 5px;">
-(0.008)
-</td>
-<td style="padding-left: 5px;padding-right: 5px;">
-(0.008)
-</td>
-</tr>
-<tr>
-<td style="padding-left: 5px;padding-right: 5px;">
-Perceived technological job change
-</td>
-<td style="padding-left: 5px;padding-right: 5px;">
-&nbsp;
-</td>
-<td style="padding-left: 5px;padding-right: 5px;">
-&nbsp;
-</td>
-<td style="padding-left: 5px;padding-right: 5px;">
-&nbsp;
-</td>
-<td style="padding-left: 5px;padding-right: 5px;">
-&nbsp;
-</td>
-<td style="padding-left: 5px;padding-right: 5px;">
-&nbsp;
+-0.166<sup>***</sup>
 </td>
 </tr>
 <tr>
@@ -725,21 +755,24 @@ Perceived technological job change
 &nbsp;
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-&nbsp;
+(0.014)
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-&nbsp;
+(0.015)
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-&nbsp;
+(0.015)
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-&nbsp;
+(0.015)
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+(0.015)
 </td>
 </tr>
 <tr>
 <td style="padding-left: 5px;padding-right: 5px;">
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Technological displacement
+Technological displacement
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
 &nbsp;
@@ -748,13 +781,16 @@ Perceived technological job change
 &nbsp;
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-0.142<sup>***</sup>
+0.265<sup>***</sup>
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-0.141<sup>***</sup>
+0.261<sup>***</sup>
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-0.141<sup>***</sup>
+0.261<sup>***</sup>
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+0.237<sup>***</sup>
 </td>
 </tr>
 <tr>
@@ -768,38 +804,21 @@ Perceived technological job change
 &nbsp;
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-(0.013)
+(0.023)
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-(0.013)
+(0.023)
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-(0.013)
-</td>
-</tr>
-<tr>
-<td style="padding-left: 5px;padding-right: 5px;">
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Skill obsolescence risk
+(0.023)
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-&nbsp;
-</td>
-<td style="padding-left: 5px;padding-right: 5px;">
-&nbsp;
-</td>
-<td style="padding-left: 5px;padding-right: 5px;">
-0.065<sup>***</sup>
-</td>
-<td style="padding-left: 5px;padding-right: 5px;">
-0.063<sup>***</sup>
-</td>
-<td style="padding-left: 5px;padding-right: 5px;">
-0.064<sup>***</sup>
+(0.024)
 </td>
 </tr>
 <tr>
 <td style="padding-left: 5px;padding-right: 5px;">
-&nbsp;
+Skill obsolescence risk
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
 &nbsp;
@@ -808,33 +827,16 @@ Perceived technological job change
 &nbsp;
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-(0.011)
+0.126<sup>***</sup>
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-(0.011)
+0.123<sup>***</sup>
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-(0.011)
-</td>
-</tr>
-<tr>
-<td style="padding-left: 5px;padding-right: 5px;">
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Perceived technological benefit
+0.123<sup>***</sup>
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-&nbsp;
-</td>
-<td style="padding-left: 5px;padding-right: 5px;">
-&nbsp;
-</td>
-<td style="padding-left: 5px;padding-right: 5px;">
-0.240<sup>***</sup>
-</td>
-<td style="padding-left: 5px;padding-right: 5px;">
-0.241<sup>***</sup>
-</td>
-<td style="padding-left: 5px;padding-right: 5px;">
-0.241<sup>***</sup>
+0.126<sup>***</sup>
 </td>
 </tr>
 <tr>
@@ -848,13 +850,62 @@ Perceived technological job change
 &nbsp;
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-(0.012)
+(0.020)
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-(0.012)
+(0.020)
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-(0.012)
+(0.020)
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+(0.020)
+</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">
+Perceived technological benefit
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+&nbsp;
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+&nbsp;
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+0.453<sup>***</sup>
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+0.456<sup>***</sup>
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+0.456<sup>***</sup>
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+0.431<sup>***</sup>
+</td>
+</tr>
+<tr>
+<td style="padding-left: 5px;padding-right: 5px;">
+&nbsp;
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+&nbsp;
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+&nbsp;
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+(0.021)
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+(0.021)
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+(0.021)
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+(0.022)
 </td>
 </tr>
 <tr>
@@ -871,50 +922,13 @@ Deservingness of others
 &nbsp;
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
--0.099<sup>***</sup>
+-0.181<sup>***</sup>
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
--0.099<sup>***</sup>
-</td>
-</tr>
-<tr>
-<td style="padding-left: 5px;padding-right: 5px;">
-&nbsp;
+-0.181<sup>***</sup>
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-&nbsp;
-</td>
-<td style="padding-left: 5px;padding-right: 5px;">
-&nbsp;
-</td>
-<td style="padding-left: 5px;padding-right: 5px;">
-&nbsp;
-</td>
-<td style="padding-left: 5px;padding-right: 5px;">
-(0.007)
-</td>
-<td style="padding-left: 5px;padding-right: 5px;">
-(0.007)
-</td>
-</tr>
-<tr>
-<td style="padding-left: 5px;padding-right: 5px;">
-GDP per-capita
-</td>
-<td style="padding-left: 5px;padding-right: 5px;">
-&nbsp;
-</td>
-<td style="padding-left: 5px;padding-right: 5px;">
-&nbsp;
-</td>
-<td style="padding-left: 5px;padding-right: 5px;">
-&nbsp;
-</td>
-<td style="padding-left: 5px;padding-right: 5px;">
-&nbsp;
-</td>
-<td style="padding-left: 5px;padding-right: 5px;">
-0.000<sup>*</sup>
+-0.177<sup>***</sup>
 </td>
 </tr>
 <tr>
@@ -931,10 +945,13 @@ GDP per-capita
 &nbsp;
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-&nbsp;
+(0.014)
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-(0.000)
+(0.014)
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+(0.014)
 </td>
 </tr>
 <tr>
@@ -956,8 +973,14 @@ Welfare regime (Ref.= Liberal)
 <td style="padding-left: 5px;padding-right: 5px;">
 &nbsp;
 </td>
+<td style="padding-left: 5px;padding-right: 5px;">
+&nbsp;
+</td>
 </tr>
 <tr>
+<td style="padding-left: 5px;padding-right: 5px;">
+&nbsp;
+</td>
 <td style="padding-left: 5px;padding-right: 5px;">
 &nbsp;
 </td>
@@ -994,7 +1017,10 @@ Welfare regime (Ref.= Liberal)
 &nbsp;
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-0.143
+0.408
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+0.395
 </td>
 </tr>
 <tr>
@@ -1014,7 +1040,10 @@ Welfare regime (Ref.= Liberal)
 &nbsp;
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-(0.163)
+(0.267)
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+(0.267)
 </td>
 </tr>
 <tr>
@@ -1034,7 +1063,10 @@ Welfare regime (Ref.= Liberal)
 &nbsp;
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
--0.057
+-0.138
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+-0.126
 </td>
 </tr>
 <tr>
@@ -1054,7 +1086,10 @@ Welfare regime (Ref.= Liberal)
 &nbsp;
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-(0.111)
+(0.190)
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+(0.190)
 </td>
 </tr>
 <tr style="border-top: 1px solid #000000;">
@@ -1062,19 +1097,22 @@ Welfare regime (Ref.= Liberal)
 BIC
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-58941.268
+50264.921
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-58946.018
+50260.479
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-57712.484
+48843.271
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-57553.942
+48682.213
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-57602.839
+48697.344
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+48616.180
 </td>
 </tr>
 <tr>
@@ -1082,87 +1120,75 @@ BIC
 Numb. obs.
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-19169
+16872
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-19169
+16872
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-19169
+16872
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-19169
+16872
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-19169
-</td>
-</tr>
-<tr>
-<td style="padding-left: 5px;padding-right: 5px;">
-Num. groups: Country
+16872
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-27
-</td>
-<td style="padding-left: 5px;padding-right: 5px;">
-27
-</td>
-<td style="padding-left: 5px;padding-right: 5px;">
-27
-</td>
-<td style="padding-left: 5px;padding-right: 5px;">
-27
-</td>
-<td style="padding-left: 5px;padding-right: 5px;">
-27
+16872
 </td>
 </tr>
 <tr>
 <td style="padding-left: 5px;padding-right: 5px;">
-Var: Country (Intercept)
+Groups (Country)
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-0.093
+27
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-0.090
+27
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-0.091
+27
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-0.086
+27
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-0.066
+27
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+27
 </td>
 </tr>
 <tr style="border-bottom: 2px solid #000000;">
 <td style="padding-left: 5px;padding-right: 5px;">
-Var: Residual
+Variance: Country: (Intercept)
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-1.248
+0.235
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-1.248
+0.227
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-1.167
+0.244
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-1.156
+0.227
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-1.156
+0.192
+</td>
+<td style="padding-left: 5px;padding-right: 5px;">
+0.193
 </td>
 </tr>
 </tbody>
 <tfoot>
 <tr>
-<td style="font-size: 0.8em;" colspan="6">
-<p>Note: Cells contain regression coefficients with standard errors in parentheses. <sup>***</sup>p &lt; 0.001; <sup>**</sup>p &lt; 0.01; <sup>*</sup>p &lt; 0.05.</p>
-All models are controlled by sex, age and income with significant effects and education with no significant effect
+<td style="font-size: 0.8em;" colspan="7">
+Note: Cells contain regression coefficients with standard errors in parentheses. <sup>***</sup>p &lt; 0.001; <sup>**</sup>p &lt; 0.01; <sup>*</sup>p &lt; 0.05. Model 6 is controlled by sex, age and income with significant effects and education with no significant effect
 </td>
 </tr>
 </tfoot>
@@ -1170,6 +1196,10 @@ All models are controlled by sex, age and income with significant effects and ed
 </div>
 </figure>
 </div>
+<p>Cumulative-link mixed models were fitted for perceived redistributive justice, with a random intercept for country. Note that ordinal package reports the number of observations as the sum of the sampling weights rather than the count of cases <span class="citation" data-cites="haubo_cumulative_2018">(<a href="#ref-haubo_cumulative_2018" role="doc-biblioref">Haubo and Christensen, 2018</a>)</span>; the models were therefore estimated on 19,169 respondents nested in 27 countries (weighted N = 16,872). Coefficients are cumulative log-odds: a positive value indicates greater odds of reporting a higher category of perceived redistributive justice.</p>
+<p><a href="#tbl-modelos" class="quarto-xref">Table&nbsp;2</a> follows a block-building logic — employment status (Model 1), economic insecurity (Model 2), the technological-perception battery (Model 3), deservingness of others (Model 4) and welfare regime (Model 5) — with sociodemographic controls (sex, age, income and education) entered only in Model 6. Across the sequence the country-level variance declines from 0.235 to 0.193 and the BIC from 50,264.9 to 48,616.2, indicating improved fit as substantive predictors are added.</p>
+<p>Platform work is the strongest and most stable predictor. In Model 1 its coefficient is 1.174 (p &lt; 0.001; OR ≈ 3.2); it attenuates as the technological and deservingness blocks enter but remains large in the fully adjusted Model 6 (0.780, p &lt; 0.001; OR ≈ 2.2), so platform workers have roughly twice the odds of expressing higher perceived redistributive justice. Self-employment is non-significant throughout (≈ −0.06). Concern about job and income loss is negative and strengthens once technological perceptions are held constant, moving from −0.054 in Model 2 to −0.166 in Model 6 (p &lt; 0.001).</p>
+<p>The technological-perception battery (from Model 3) is uniformly positive. Perceived technological benefit carries the largest effect (≈ 0.43–0.46, p &lt; 0.001), followed by technological displacement (≈ 0.24–0.27, p &lt; 0.001) and skill-obsolescence risk (≈ 0.12, p &lt; 0.001). The positive sign on technological displacement runs counter to the hypothesised direction, a point developed further in the discussion. Deservingness of others (Model 4) is negative and stable (≈ −0.18, p &lt; 0.001). Welfare regime, entered as a main effect in Model 5, is not significant: relative to liberal regimes, neither the social-democratic (≈ 0.40) nor the conservative (≈ −0.13) contrast reaches conventional thresholds. The addition of controls in Model 6 leaves this individual-level structure essentially unchanged.</p>
 <div id="tbl-interact" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-tbl-cap-location="top">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-interact-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -1205,71 +1235,25 @@ Model 6
 <tbody>
 <tr style="border-top: 1px solid #000000;">
 <td style="padding-left: 5px;padding-right: 5px;">
-Intercept
-</td>
-<td style="padding-left: 5px;padding-right: 5px;">
-2.332<sup>***</sup>
-</td>
-<td style="padding-left: 5px;padding-right: 5px;">
-2.323<sup>***</sup>
-</td>
-<td style="padding-left: 5px;padding-right: 5px;">
-2.318<sup>***</sup>
-</td>
-<td style="padding-left: 5px;padding-right: 5px;">
-2.231<sup>***</sup>
-</td>
-<td style="padding-left: 5px;padding-right: 5px;">
-2.218<sup>***</sup>
-</td>
-<td style="padding-left: 5px;padding-right: 5px;">
-2.231<sup>***</sup>
-</td>
-</tr>
-<tr>
-<td style="padding-left: 5px;padding-right: 5px;">
-&nbsp;
-</td>
-<td style="padding-left: 5px;padding-right: 5px;">
-(0.142)
-</td>
-<td style="padding-left: 5px;padding-right: 5px;">
-(0.142)
-</td>
-<td style="padding-left: 5px;padding-right: 5px;">
-(0.142)
-</td>
-<td style="padding-left: 5px;padding-right: 5px;">
-(0.145)
-</td>
-<td style="padding-left: 5px;padding-right: 5px;">
-(0.144)
-</td>
-<td style="padding-left: 5px;padding-right: 5px;">
-(0.147)
-</td>
-</tr>
-<tr>
-<td style="padding-left: 5px;padding-right: 5px;">
 Self-employed worker (ref. No)
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
--0.000
+-0.018
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-0.011
+0.009
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
--0.023
+-0.071
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
--0.022
+-0.068
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
--0.022
+-0.071
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
--0.023
+-0.071
 </td>
 </tr>
 <tr>
@@ -1277,22 +1261,22 @@ Self-employed worker (ref. No)
 &nbsp;
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-(0.025)
+(0.042)
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-(0.038)
+(0.069)
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-(0.023)
+(0.039)
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-(0.023)
+(0.039)
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-(0.023)
+(0.039)
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-(0.023)
+(0.039)
 </td>
 </tr>
 <tr>
@@ -1300,22 +1284,22 @@ Self-employed worker (ref. No)
 Platform worker (ref. No)
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-0.456<sup>***</sup>
+0.877<sup>***</sup>
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-0.422<sup>***</sup>
+0.781<sup>***</sup>
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-0.513<sup>***</sup>
+0.953<sup>***</sup>
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-0.420<sup>***</sup>
+0.775<sup>***</sup>
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-0.421<sup>***</sup>
+0.777<sup>***</sup>
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-0.421<sup>***</sup>
+0.779<sup>***</sup>
 </td>
 </tr>
 <tr>
@@ -1323,22 +1307,22 @@ Platform worker (ref. No)
 &nbsp;
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-(0.031)
+(0.058)
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-(0.028)
+(0.051)
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-(0.044)
+(0.079)
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-(0.028)
+(0.051)
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-(0.028)
+(0.051)
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-(0.028)
+(0.051)
 </td>
 </tr>
 <tr>
@@ -1346,22 +1330,22 @@ Platform worker (ref. No)
 Concern about job and income loss
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
--0.094<sup>***</sup>
+-0.167<sup>***</sup>
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
--0.094<sup>***</sup>
+-0.166<sup>***</sup>
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
--0.094<sup>***</sup>
+-0.165<sup>***</sup>
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
--0.058<sup>***</sup>
+-0.098<sup>***</sup>
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
--0.093<sup>***</sup>
+-0.165<sup>***</sup>
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
--0.094<sup>***</sup>
+-0.165<sup>***</sup>
 </td>
 </tr>
 <tr>
@@ -1369,22 +1353,22 @@ Concern about job and income loss
 &nbsp;
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-(0.008)
+(0.015)
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-(0.008)
+(0.015)
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-(0.008)
+(0.015)
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-(0.014)
+(0.025)
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-(0.008)
+(0.015)
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-(0.008)
+(0.015)
 </td>
 </tr>
 <tr>
@@ -1392,22 +1376,22 @@ Concern about job and income loss
 Technological displacement
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-0.141<sup>***</sup>
+0.237<sup>***</sup>
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-0.141<sup>***</sup>
+0.238<sup>***</sup>
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-0.141<sup>***</sup>
+0.236<sup>***</sup>
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-0.141<sup>***</sup>
+0.238<sup>***</sup>
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-0.193<sup>***</sup>
+0.338<sup>***</sup>
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-0.141<sup>***</sup>
+0.236<sup>***</sup>
 </td>
 </tr>
 <tr>
@@ -1415,22 +1399,22 @@ Technological displacement
 &nbsp;
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-(0.013)
+(0.024)
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-(0.013)
+(0.024)
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-(0.013)
+(0.024)
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-(0.013)
+(0.024)
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-(0.018)
+(0.032)
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-(0.013)
+(0.024)
 </td>
 </tr>
 <tr>
@@ -1438,22 +1422,22 @@ Technological displacement
 Deservingness of others
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
--0.099<sup>***</sup>
+-0.176<sup>***</sup>
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
--0.099<sup>***</sup>
+-0.177<sup>***</sup>
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
--0.099<sup>***</sup>
+-0.177<sup>***</sup>
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
--0.099<sup>***</sup>
+-0.177<sup>***</sup>
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
--0.100<sup>***</sup>
+-0.178<sup>***</sup>
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
--0.071<sup>***</sup>
+-0.122<sup>***</sup>
 </td>
 </tr>
 <tr>
@@ -1461,22 +1445,22 @@ Deservingness of others
 &nbsp;
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-(0.007)
+(0.014)
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-(0.007)
+(0.014)
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-(0.007)
+(0.014)
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-(0.007)
+(0.014)
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-(0.007)
+(0.014)
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-(0.013)
+(0.024)
 </td>
 </tr>
 <tr>
@@ -1484,22 +1468,22 @@ Deservingness of others
 Social-democratic
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-0.142
+0.394
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-0.160
+0.447
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-0.183
+0.461
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-0.257
+0.533
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-0.377<sup>*</sup>
+0.843<sup>**</sup>
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-0.351
+0.638<sup>*</sup>
 </td>
 </tr>
 <tr>
@@ -1507,22 +1491,22 @@ Social-democratic
 &nbsp;
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-(0.164)
+(0.267)
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-(0.164)
+(0.270)
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-(0.163)
+(0.268)
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-(0.175)
+(0.290)
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-(0.173)
+(0.286)
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-(0.184)
+(0.309)
 </td>
 </tr>
 <tr>
@@ -1530,22 +1514,22 @@ Social-democratic
 Conservative
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
--0.058
+-0.128
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
--0.053
+-0.117
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
--0.049
+-0.110
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-0.100
+0.201
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-0.094
+0.171
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-0.087
+0.217
 </td>
 </tr>
 <tr>
@@ -1553,22 +1537,22 @@ Conservative
 &nbsp;
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-(0.111)
+(0.190)
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-(0.112)
+(0.192)
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-(0.111)
+(0.191)
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-(0.121)
+(0.209)
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-(0.119)
+(0.206)
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-(0.128)
+(0.223)
 </td>
 </tr>
 <tr>
@@ -1576,7 +1560,7 @@ Conservative
 Self-employed X Platform worker
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
--0.156<sup>*</sup>
+-0.413<sup>***</sup>
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
 &nbsp;
@@ -1599,7 +1583,7 @@ Self-employed X Platform worker
 &nbsp;
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-(0.065)
+(0.116)
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
 &nbsp;
@@ -1625,7 +1609,7 @@ Self-employed X Social-democratic
 &nbsp;
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
--0.158<sup>*</sup>
+-0.400<sup>**</sup>
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
 &nbsp;
@@ -1648,7 +1632,7 @@ Self-employed X Social-democratic
 &nbsp;
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-(0.077)
+(0.128)
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
 &nbsp;
@@ -1671,7 +1655,7 @@ Self-employed X Conservative
 &nbsp;
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
--0.027
+-0.047
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
 &nbsp;
@@ -1694,7 +1678,7 @@ Self-employed X Conservative
 &nbsp;
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-(0.049)
+(0.087)
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
 &nbsp;
@@ -1720,7 +1704,7 @@ Platform worker X Social-democratic
 &nbsp;
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
--0.355<sup>***</sup>
+-0.607<sup>***</sup>
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
 &nbsp;
@@ -1743,7 +1727,7 @@ Platform worker X Social-democratic
 &nbsp;
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-(0.076)
+(0.135)
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
 &nbsp;
@@ -1766,7 +1750,7 @@ Platform worker X Conservative
 &nbsp;
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
--0.063
+-0.137
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
 &nbsp;
@@ -1789,7 +1773,7 @@ Platform worker X Conservative
 &nbsp;
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-(0.060)
+(0.109)
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
 &nbsp;
@@ -1815,7 +1799,7 @@ Job and income loss X Social-democratic
 &nbsp;
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
--0.042
+-0.047
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
 &nbsp;
@@ -1838,7 +1822,7 @@ Job and income loss X Social-democratic
 &nbsp;
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-(0.025)
+(0.044)
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
 &nbsp;
@@ -1861,7 +1845,7 @@ Job and income loss X Conservative
 &nbsp;
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
--0.057<sup>**</sup>
+-0.120<sup>***</sup>
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
 &nbsp;
@@ -1884,7 +1868,7 @@ Job and income loss X Conservative
 &nbsp;
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-(0.018)
+(0.032)
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
 &nbsp;
@@ -1910,7 +1894,7 @@ Technological displacement X Social-democratic
 &nbsp;
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
--0.111<sup>***</sup>
+-0.214<sup>***</sup>
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
 &nbsp;
@@ -1933,7 +1917,7 @@ Technological displacement X Social-democratic
 &nbsp;
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-(0.028)
+(0.049)
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
 &nbsp;
@@ -1956,7 +1940,7 @@ Technological displacement X Conservative
 &nbsp;
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
--0.070<sup>***</sup>
+-0.138<sup>***</sup>
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
 &nbsp;
@@ -1979,7 +1963,7 @@ Technological displacement X Conservative
 &nbsp;
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-(0.020)
+(0.037)
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
 &nbsp;
@@ -2005,7 +1989,7 @@ Deservingness X Social-democratic
 &nbsp;
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
--0.056<sup>*</sup>
+-0.065
 </td>
 </tr>
 <tr>
@@ -2028,7 +2012,7 @@ Deservingness X Social-democratic
 &nbsp;
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-(0.023)
+(0.041)
 </td>
 </tr>
 <tr>
@@ -2051,7 +2035,7 @@ Deservingness X Conservative
 &nbsp;
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
--0.038<sup>*</sup>
+-0.090<sup>**</sup>
 </td>
 </tr>
 <tr>
@@ -2074,7 +2058,7 @@ Deservingness X Conservative
 &nbsp;
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-(0.016)
+(0.031)
 </td>
 </tr>
 <tr style="border-top: 1px solid #000000;">
@@ -2082,22 +2066,22 @@ Deservingness X Conservative
 BIC
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-57610.512
+48613.219
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-57625.860
+48625.127
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-57607.415
+48615.167
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-57623.904
+48621.208
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-57613.881
+48612.196
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-57626.895
+48626.846
 </td>
 </tr>
 <tr>
@@ -2105,99 +2089,75 @@ BIC
 Numb. obs.
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-19169
+16872
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-19169
+16872
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-19169
+16872
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-19169
+16872
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-19169
+16872
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-19169
-</td>
-</tr>
-<tr>
-<td style="padding-left: 5px;padding-right: 5px;">
-Num. groups: Country
-</td>
-<td style="padding-left: 5px;padding-right: 5px;">
-27
-</td>
-<td style="padding-left: 5px;padding-right: 5px;">
-27
-</td>
-<td style="padding-left: 5px;padding-right: 5px;">
-27
-</td>
-<td style="padding-left: 5px;padding-right: 5px;">
-27
-</td>
-<td style="padding-left: 5px;padding-right: 5px;">
-27
-</td>
-<td style="padding-left: 5px;padding-right: 5px;">
-27
+16872
 </td>
 </tr>
 <tr>
 <td style="padding-left: 5px;padding-right: 5px;">
-Var: Country (Intercept)
+Groups (Country)
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-0.066
+27
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-0.066
+27
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-0.066
+27
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-0.066
+27
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-0.066
+27
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-0.067
+27
 </td>
 </tr>
 <tr style="border-bottom: 2px solid #000000;">
 <td style="padding-left: 5px;padding-right: 5px;">
-Var: Residual
+Variance: Country: (Intercept)
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-1.156
+0.193
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-1.156
+0.196
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-1.155
+0.193
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-1.156
+0.193
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-1.155
+0.192
 </td>
 <td style="padding-left: 5px;padding-right: 5px;">
-1.156
+0.194
 </td>
 </tr>
 </tbody>
 <tfoot>
 <tr>
 <td style="font-size: 0.8em;" colspan="7">
-<p>Note: Cells contain regression coefficients with standard errors in parentheses. <sup>***</sup>p &lt; 0.001; <sup>**</sup>p &lt; 0.01; <sup>*</sup>p &lt; 0.05.</p>
-All models are controlled by sex, age and income with significant effects and education with no significant effect
+Note: Cells contain regression coefficients with standard errors in parentheses. <sup>***</sup>p &lt; 0.001; <sup>**</sup>p &lt; 0.01; <sup>*</sup>p &lt; 0.05. All models are controlled by sex, age and income with significant effects and education with no significant effect
 </td>
 </tr>
 </tfoot>
@@ -2205,6 +2165,25 @@ All models are controlled by sex, age and income with significant effects and ed
 </div>
 </figure>
 </div>
+<p><a href="#tbl-interact" class="quarto-xref">Table&nbsp;3</a> takes the fully adjusted specification and introduces one interaction at a time: self-employed × platform (Model 7), followed by the cross-level products of welfare regime with self-employment (Model 8), platform work (Model 9), economic insecurity (Model 10), technological displacement (Model 11) and deservingness (Model 12). The BIC is narrow across these models (48,612.2–48,626.8) and the country variance stable (≈ 0.19). The four regime moderations are displayed in <a href="#fig-interact" class="quarto-xref">Figure&nbsp;3</a>; because emmeans R package <span class="citation" data-cites="lenth_emmeans_2017">(<a href="#ref-lenth_emmeans_2017" role="doc-biblioref">Lenth and Piaskowski, 2017</a>)</span> evaluates the fitted model on the latent scale, the panels show predicted latent propensity rather than category-specific probabilities, which is why each moderation reduces to a single linear panel.</p>
+<p>The individual-level interaction is negative —self-employed × platform = −0.413 (p &lt; 0.001)— so the platform effect is weaker among workers who are simultaneously self-employed. The cross-level terms then reveal that the null regime main effects in <a href="#tbl-modelos" class="quarto-xref">Table&nbsp;2</a> mask substantial moderation. Self-employment matters only in social-democratic regimes (× social-democratic = −0.400, p &lt; 0.01; × conservative n.s.), shown in the top-left panel as the steep social-democratic decline against flat liberal and conservative lines. Platform work is positive across all regimes (top right), but its slope is much shallower under social-democratic arrangements (× social-democratic = −0.607, p &lt; 0.001), where respondents begin from a higher baseline.</p>
+<p>The same dampening governs the remaining predictors. Technological displacement is positive in every regime (bottom left) but significantly attenuated relative to liberal regimes (× social-democratic = −0.214; × conservative = −0.138; both p &lt; 0.001). Deservingness is negative throughout (bottom right), with the steepest slope in conservative regimes (× conservative = −0.090, p &lt; 0.01) and a non-significant social-democratic interaction. Economic insecurity interacts significantly only with the conservative contrast (−0.120, p &lt; 0.001). Once these interactions are specified, the social-democratic main effect becomes significant in the displacement and deservingness models (0.843, p &lt; 0.01; 0.638, p &lt; 0.05), where it was null in <a href="#tbl-modelos" class="quarto-xref">Table&nbsp;2</a>.</p>
+<p>A consistent pattern emerges: across all four panels the social-democratic line is the flattest, and every regime interaction with an individual-level predictor is negative. Substantively, perceptions of redistributive justice in social-democratic regimes appear less responsive to individual labour-market position and technological perceptions than under liberal arrangements, consistent with the view that encompassing welfare institutions decouple distributive attitudes from individual exposure.</p>
+<div class="cell fig-cap-location-top">
+<div class="cell-output-display">
+<div id="fig-interact" class="quarto-float quarto-figure quarto-figure-center anchored" data-cap-location="top" data-fig-pos="H">
+<figure class="quarto-float quarto-float-fig figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-interact-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3: Estimated latent propensity for perceived redistributive justice, by selected predictors across welfare regimes
+</figcaption>
+<div aria-describedby="fig-interact-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="paper_files/figure-html/fig-interact-1.png" class="img-fluid figure-img" style="width:85.0%" data-fig-pos="H">
+</div>
+</figure>
+</div>
+</div>
+</div>
+<p>emmip no estima probabilidades predicha, estima un factor latente entre los cuatro interceptos para estimar propensión latente hacia las categorías altas de perceción de justicia redistributiva</p>
 </section>
 </section>
 <section id="conclusion" class="level1" data-number="4">
@@ -2308,6 +2287,9 @@ Gimpelson, V., Treisman, D., 2018. Misperceiving inequality. Economics &amp; Pol
 <div id="ref-gutierrezcrocco_effects_2022" class="csl-entry" role="listitem">
 Gutiérrez Crocco, F., Atzeni, M., 2022. The effects of the pandemic on gig economy couriers in <span>Argentina</span> and <span>Chile</span>: <span>Precarity</span>, algorithmic control and mobilization. International Labour Review 161, 441–461. <a href="https://doi.org/10.1111/ilr.12376">https://doi.org/10.1111/ilr.12376</a>
 </div>
+<div id="ref-haubo_cumulative_2018" class="csl-entry" role="listitem">
+Haubo, R., Christensen, B., 2018. Cumulative link models for ordinal regression with the <span>R</span> package ordinal.
+</div>
 <div id="ref-howcroft_digitalisation_2025" class="csl-entry" role="listitem">
 Howcroft, D., Banister, E., Jarvis-King, L., Rubery, J., Távora, I., 2025. Digitalisation and the <span>Remaking</span> of the <span>Ideal Worker</span>. Work, Employment and Society 39, 703–726. <a href="https://doi.org/10.1177/09500170241301015">https://doi.org/10.1177/09500170241301015</a>
 </div>
@@ -2340,6 +2322,9 @@ Laenen, T., 2020. Welfare deservingness and welfare policy: Popular deservingnes
 </div>
 <div id="ref-larsen_institutional_2008" class="csl-entry" role="listitem">
 Larsen, C.A., 2008. The <span>Institutional Logic</span> of <span>Welfare Attitudes</span>: <span>How Welfare Regimes Influence Public Support</span>. Comparative Political Studies 41, 145–168. <a href="https://doi.org/10.1177/0010414006295234">https://doi.org/10.1177/0010414006295234</a>
+</div>
+<div id="ref-lenth_emmeans_2017" class="csl-entry" role="listitem">
+Lenth, R.V., Piaskowski, J., 2017. Emmeans: <span>Estimated Marginal Means</span>, aka <span>Least-Squares Means</span>. <a href="https://doi.org/10.32614/CRAN.package.emmeans">https://doi.org/10.32614/CRAN.package.emmeans</a>
 </div>
 <div id="ref-lindh_class_2020" class="csl-entry" role="listitem">
 Lindh, A., McCall, L., 2020. Class <span>Position</span> and <span>Political Opinion</span> in <span>Rich Democracies</span>. Annual Review of Sociology 46, 419–441. <a href="https://doi.org/10.1146/annurev-soc-121919-054609">https://doi.org/10.1146/annurev-soc-121919-054609</a>

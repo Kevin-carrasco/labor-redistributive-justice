@@ -29,3 +29,5 @@ interactions
 cowplot
 ggpubr
 knitr
+ordinal
+emmeans

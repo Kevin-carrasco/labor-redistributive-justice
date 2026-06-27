@@ -151,6 +151,19 @@ Regarding the independent variables, the main correlation effects are between th
 
 ## Multilevel ordinal logistic regression models
 
+```{r}
+# DV como factor
+sum(is.na(data$distributive))
+table(data$distributive, useNA = "ifany")
+
+# Conversión numérica: ¿mismos NA?
+sum(is.na(as.numeric(data$distributive)))
+table(as.numeric(data$distributive), useNA = "ifany")
+
+# Peso: ¿NA o ceros?
+sum(is.na(data$weight)); sum(data$weight == 0, na.rm = TRUE)
+summary(data$weight)
+```
 
 ```{r}
 #| echo: false
@@ -167,7 +180,8 @@ data$distributive <- as_factor(data$distributive)
 
 m0 <- clmm(distributive ~ 1 + (1 | ctrcode), 
                 data = data, weights=weight)
-
+m1 <- lmer(as.numeric(distributive) ~ 1 + (1 | ctrcode), 
+                data = data, weights=weight)
 performance::icc(m0, by_group = T)
 
 
@@ -227,9 +241,11 @@ knitreg(list(reg1, reg2, reg3, reg4, reg5, reg6),
 )
 ```
 
-Cumulative-link mixed models (clmm, proportional-odds specification) were fitted for perceived redistributive justice, with a random intercept for country (16,872 respondents nested in 27 countries). Coefficients are cumulative log-odds: a positive value indicates greater odds of reporting a higher category of perceived redistributive justice, and exp(b) yields the corresponding proportional-odds ratio. Table 1 follows a block-building logic — employment status (Model 1), economic insecurity (Model 2), the technological-perception battery (Model 3), deservingness of others (Model 4) and welfare regime (Model 5) — with sociodemographic controls (sex, age, income and education) entered only in Model 6. Across the sequence the country-level variance declines from 0.235 to 0.193 and the BIC from 50,264.9 to 48,616.2, indicating improved fit as substantive predictors are added.
+Cumulative-link mixed models were fitted for perceived redistributive justice, with a random intercept for country. Note that ordinal package reports the number of observations as the sum of the sampling weights rather than the count of cases [@haubo_cumulative_2018]; the models were therefore estimated on 19,169 respondents nested in 27 countries (weighted N = 16,872). Coefficients are cumulative log-odds: a positive value indicates greater odds of reporting a higher category of perceived redistributive justice. 
 
-Platform work is the strongest and most stable predictor. In Model 1 its coefficient is 1.174 (p < 0.001; OR ≈ 3.2); it attenuates as the technological and deservingness blocks enter but remains large in the fully adjusted Model 6 (0.780, p < 0.001; OR ≈ 2.2), so platform workers have roughly twice the odds of expressing higher perceived redistributive justice. Self-employment is non-significant throughout (≈ −0.06). Economic insecurity — concern about job and income loss — is negative and strengthens once technological perceptions are held constant, moving from −0.054 in Model 2 to −0.166 in Model 6 (p < 0.001).
+@tbl-modelos follows a block-building logic — employment status (Model 1), economic insecurity (Model 2), the technological-perception battery (Model 3), deservingness of others (Model 4) and welfare regime (Model 5) — with sociodemographic controls (sex, age, income and education) entered only in Model 6. Across the sequence the country-level variance declines from 0.235 to 0.193 and the BIC from 50,264.9 to 48,616.2, indicating improved fit as substantive predictors are added.
+
+Platform work is the strongest and most stable predictor. In Model 1 its coefficient is 1.174 (p < 0.001; OR ≈ 3.2); it attenuates as the technological and deservingness blocks enter but remains large in the fully adjusted Model 6 (0.780, p < 0.001; OR ≈ 2.2), so platform workers have roughly twice the odds of expressing higher perceived redistributive justice. Self-employment is non-significant throughout (≈ −0.06). Concern about job and income loss is negative and strengthens once technological perceptions are held constant, moving from −0.054 in Model 2 to −0.166 in Model 6 (p < 0.001).
 
 The technological-perception battery (from Model 3) is uniformly positive. Perceived technological benefit carries the largest effect (≈ 0.43–0.46, p < 0.001), followed by technological displacement (≈ 0.24–0.27, p < 0.001) and skill-obsolescence risk (≈ 0.12, p < 0.001). The positive sign on technological displacement runs counter to the hypothesised direction, a point developed further in the discussion. Deservingness of others (Model 4) is negative and stable (≈ −0.18, p < 0.001). Welfare regime, entered as a main effect in Model 5, is not significant: relative to liberal regimes, neither the social-democratic (≈ 0.40) nor the conservative (≈ −0.13) contrast reaches conventional thresholds. The addition of controls in Model 6 leaves this individual-level structure essentially unchanged.
 
@@ -263,7 +279,7 @@ ccoef2 <- list(
   )
 
 knitreg(list(reg7, reg8, reg9, reg10, reg11, reg12),
-        custom.model.names = c(paste0("Model ", seq(1:6))),caption.above = T,
+        custom.model.names = c(paste0("Model ", seq(7:12))),caption.above = T,
         caption = NULL,
         stars = c(0.05, 0.01, 0.001),
         omit.coef = omit2,
@@ -283,11 +299,11 @@ knitreg(list(reg7, reg8, reg9, reg10, reg11, reg12),
 )
 ```
 
-Table 2 takes the fully adjusted specification and introduces one interaction at a time: self-employed × platform (Model 1), followed by the cross-level products of welfare regime with self-employment (Model 2), platform work (Model 3), economic insecurity (Model 4), technological displacement (Model 5) and deservingness (Model 6). The BIC is narrow across these models (48,612.2–48,626.8) and the country variance stable (≈ 0.19). The four regime moderations are displayed in Figure 2; because emmip evaluates the fitted model on the latent scale, the panels show predicted latent propensity rather than category-specific probabilities, which is why each moderation reduces to a single linear panel.
+@tbl-interact takes the fully adjusted specification and introduces one interaction at a time: self-employed × platform (Model 7), followed by the cross-level products of welfare regime with self-employment (Model 8), platform work (Model 9), economic insecurity (Model 10), technological displacement (Model 11) and deservingness (Model 12). The BIC is narrow across these models (48,612.2–48,626.8) and the country variance stable (≈ 0.19). The four regime moderations are displayed in @fig-interact; because emmeans R package [@lenth_emmeans_2017] evaluates the fitted model on the latent scale, the panels show predicted latent propensity rather than category-specific probabilities, which is why each moderation reduces to a single linear panel.
 
-The individual-level interaction is negative — self-employed × platform = −0.413 (p < 0.001) — so the platform effect is weaker among workers who are simultaneously self-employed. The cross-level terms then reveal that the null regime main effects in Table 1 mask substantial moderation. Self-employment matters only in social-democratic regimes (× social-democratic = −0.400, p < 0.01; × conservative n.s.), shown in the top-left panel as the steep social-democratic decline against flat liberal and conservative lines. Platform work is positive across all regimes (top right), but its slope is much shallower under social-democratic arrangements (× social-democratic = −0.607, p < 0.001), where respondents begin from a higher baseline.
+The individual-level interaction is negative —self-employed × platform = −0.413 (p < 0.001)— so the platform effect is weaker among workers who are simultaneously self-employed. The cross-level terms then reveal that the null regime main effects in @tbl-modelos mask substantial moderation. Self-employment matters only in social-democratic regimes (× social-democratic = −0.400, p < 0.01; × conservative n.s.), shown in the top-left panel as the steep social-democratic decline against flat liberal and conservative lines. Platform work is positive across all regimes (top right), but its slope is much shallower under social-democratic arrangements (× social-democratic = −0.607, p < 0.001), where respondents begin from a higher baseline.
 
-The same dampening governs the remaining predictors. Technological displacement is positive in every regime (bottom left) but significantly attenuated relative to liberal regimes (× social-democratic = −0.214; × conservative = −0.138; both p < 0.001). Deservingness is negative throughout (bottom right), with the steepest slope in conservative regimes (× conservative = −0.090, p < 0.01) and a non-significant social-democratic interaction. Economic insecurity interacts significantly only with the conservative contrast (−0.120, p < 0.001). Once these interactions are specified, the social-democratic main effect becomes significant in the displacement and deservingness models (0.843, p < 0.01; 0.638, p < 0.05), where it was null in Table 1.
+The same dampening governs the remaining predictors. Technological displacement is positive in every regime (bottom left) but significantly attenuated relative to liberal regimes (× social-democratic = −0.214; × conservative = −0.138; both p < 0.001). Deservingness is negative throughout (bottom right), with the steepest slope in conservative regimes (× conservative = −0.090, p < 0.01) and a non-significant social-democratic interaction. Economic insecurity interacts significantly only with the conservative contrast (−0.120, p < 0.001). Once these interactions are specified, the social-democratic main effect becomes significant in the displacement and deservingness models (0.843, p < 0.01; 0.638, p < 0.05), where it was null in @tbl-modelos.
 
 A consistent pattern emerges: across all four panels the social-democratic line is the flattest, and every regime interaction with an individual-level predictor is negative. Substantively, perceptions of redistributive justice in social-democratic regimes appear less responsive to individual labour-market position and technological perceptions than under liberal arrangements, consistent with the view that encompassing welfare institutions decouple distributive attitudes from individual exposure.
 
@@ -301,7 +317,7 @@ int1 <- ggplot(df1, aes(x = selfemploy, y = yvar,
   geom_line() +
   geom_point(size = 2.8) +
   scale_shape_manual(values = c(16, 17, 15)) +
-  scale_x_discrete(name = "Self-employed workers", labels = c("No", "Sí")) +
+  scale_x_discrete(name = "Self-employed workers", labels = c("No", "Yes")) +
   scale_y_continuous(name = "Perceived redistributive justice (latent scale)",
                     limits = c(-0.7, 0.8), breaks = c(-0.6, -0.3, 0, 0.3, 0.6))+
   labs(color = "Welfare regime", shape = "Welfare regime") +
@@ -319,7 +335,7 @@ int2 <- ggplot(df2, aes(x = platform, y = yvar,
   geom_line() +
   geom_point(size = 2.8) +
   scale_shape_manual(values = c(16, 17, 15)) +
-  scale_x_discrete(name = "Platforms workers", labels = c("No", "Sí")) +
+  scale_x_discrete(name = "Platforms workers", labels = c("No", "Yes")) +
   scale_y_continuous(name = "Perceived redistributive justice (latent scale)",
                     limits = c(-0.7, 0.8), breaks = c(-0.6, -0.3, 0, 0.3, 0.6))+
   labs(color = "Welfare regime", shape = "Welfare regime") +
@@ -371,11 +387,13 @@ int4 <- ggplot(df4_line, aes(x = deservingness, y = yvar,
 
 
 ```{r echo=FALSE}
+#| label: fig-interact
+#| fig-cap: "Estimated latent propensity for perceived redistributive justice, by selected predictors across welfare regimes"
+#| fig-cap-location: top
+#| fig-subcap: "Source: own elaboration with data from the OECD, Risks That Matter survey 2024."
+
 ggarrange(int1, int2, int3, int4,
           ncol=2,
           nrow=2,
           common.legend = TRUE)
 ```
-
-emmip no estima probabilidades predicha, estima un factor latente entre los cuatro interceptos para estimar
-propensión latente hacia las categorías altas de perceción de justicia redistributiva
