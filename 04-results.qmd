@@ -152,20 +152,6 @@ Regarding the independent variables, the main correlation effects are between th
 ## Multilevel ordinal logistic regression models
 
 ```{r}
-# DV como factor
-sum(is.na(data$distributive))
-table(data$distributive, useNA = "ifany")
-
-# Conversión numérica: ¿mismos NA?
-sum(is.na(as.numeric(data$distributive)))
-table(as.numeric(data$distributive), useNA = "ifany")
-
-# Peso: ¿NA o ceros?
-sum(is.na(data$weight)); sum(data$weight == 0, na.rm = TRUE)
-summary(data$weight)
-```
-
-```{r}
 #| echo: false
 #| include: false 
 
@@ -179,8 +165,6 @@ data$platform <- set_labels(data$platform,
 data$distributive <- as_factor(data$distributive)
 
 m0 <- clmm(distributive ~ 1 + (1 | ctrcode), 
-                data = data, weights=weight)
-m1 <- lmer(as.numeric(distributive) ~ 1 + (1 | ctrcode), 
                 data = data, weights=weight)
 performance::icc(m0, by_group = T)
 

@@ -82,6 +82,10 @@ fig-width: 7.5
 
 {{< include 04-results.qmd >}}
 
+# Discussion
+
+{{< include 05-discussion.qmd >}}
+
 # Conclusion
 
 {{< include 06-conclusion.qmd >}}
