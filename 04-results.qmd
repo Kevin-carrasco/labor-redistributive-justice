@@ -205,7 +205,7 @@ ccoef <- list(
   "welfare_regimeConservative" = "Conservative"
   )
 
-knitreg(list(reg1, reg2, reg3, reg4, reg5, reg6),
+texreg(list(reg1, reg2, reg3, reg4, reg5, reg6),
         custom.model.names = c(paste0("Model ", seq(1:6))),caption.above = T,
         caption = NULL,
         stars = c(0.05, 0.01, 0.001),
@@ -262,7 +262,7 @@ ccoef2 <- list(
   "deservingness:welfare_regimeConservative" = "Deservingness X Conservative"
   )
 
-knitreg(list(reg7, reg8, reg9, reg10, reg11, reg12),
+texreg(list(reg7, reg8, reg9, reg10, reg11, reg12),
         custom.model.names = c(paste0("Model ", seq(7:12))),caption.above = T,
         caption = NULL,
         stars = c(0.05, 0.01, 0.001),
