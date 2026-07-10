@@ -48,7 +48,7 @@ pacman::p_load(tidyverse,
                ggpubr)
 load(file=here::here("input/proc/data.RData"))
 
-data <- data %>% select(ctrcode,country, distributive, sex, age, educ, income, selfemploy, unnemployment, platform, tecnoestres, pos_tecnoestres, skills, deservingness, gdp_2024, welfare_regime)
+data <- data %>% select(ctrcode,country, distributive, sex, age, educ, income, selfemploy, unnemployment, platform, tecnoestres, pos_tecnoestres, skills, deservingness, welfare_regime)
 
 data <- na.omit(data)
 
@@ -60,7 +60,7 @@ data$unnemployment  <- set_label(x = data$unnemployment, label = "Lose job")
 
 data$deservingness <- as.numeric(as_factor(data$deservingness))
 data$deservingness  <- set_label(x = data$deservingness, label = "Deservingness of others")
-data$gdp_2024  <- set_label(x = data$gdp_2024, label = "GDP per-capita")
+#data$gdp_2024  <- set_label(x = data$gdp_2024, label = "GDP per-capita")
 
 data$selfemploy  <- set_label(x = data$selfemploy, label = "Self-empleoyment worker")
 data$platform  <- set_label(x = data$platform, label = "Platform worker")
@@ -69,7 +69,7 @@ data$sex  <- set_label(x = data$sex, label = "Sex")
 data$age  <- set_label(x = data$age, label = "Age group")
 data$educ  <- set_label(x = data$educ, label = "Educational level")
 
-descriptive <- data %>% select(distributive, sex, age, educ, income, selfemploy, platform, unnemployment, tecnoestres, pos_tecnoestres, skills, deservingness, gdp_2024, welfare_regime)
+descriptive <- data %>% select(distributive, sex, age, educ, income, selfemploy, platform, unnemployment, tecnoestres, pos_tecnoestres, skills, deservingness, welfare_regime)
 
 descriptive$distributive <- factor(descriptive$distributive,
             levels = c(1, 2, 3, 4, 5),
@@ -128,7 +128,7 @@ descriptive$skills  <- set_label(x = descriptive$skills, label = "Lose job due s
 descriptive$unnemployment  <- set_label(x = descriptive$unnemployment, label = "Lose job")
 
 descriptive$deservingness  <- set_label(x = descriptive$deservingness, label = "Deservingness of others")
-descriptive$gdp_2024  <- set_label(x = descriptive$gdp_2024, label = "GDP per-capita")
+#descriptive$gdp_2024  <- set_label(x = descriptive$gdp_2024, label = "GDP per-capita")
 
 descriptive$selfemploy  <- set_label(x = descriptive$selfemploy, label = "Self-empleoyment worker")
 descriptive$platform  <- set_label(x = descriptive$platform, label = "Platform worker")

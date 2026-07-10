@@ -23,7 +23,7 @@ format:
 editor: source
 bibliography: "input/bib/redistributive-work.bib"
 # csl: "input/bib/apa6.csl"
-csl: "input/bib/harvard.csl"
+csl: "input/bib/sage-harvard.csl"
 author:
   - name: Kevin Carrasco
     orcid: 0000-0002-9348-8361
