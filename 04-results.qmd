@@ -73,22 +73,22 @@ data <- data %>% select(ctrcode,country, distributive, sex, age, educ, income, s
 
 data <- na.omit(data)
 
-data$distributive  <- set_label(x = data$distributive, label = "Redistributive justice")
-data$tecnoestres  <- set_label(x = data$tecnoestres, label = "Technological displacement	")
-data$pos_tecnoestres  <- set_label(x = data$pos_tecnoestres, label = "Perceived technological benefit")
-data$skills  <- set_label(x = data$skills, label = "Lose job due skills")
-data$unnemployment  <- set_label(x = data$unnemployment, label = "Lose job")
+data$distributive  <- sjlabelled::set_label(x = data$distributive, label = "Redistributive justice")
+data$tecnoestres  <- sjlabelled::set_label(x = data$tecnoestres, label = "Technological displacement")
+data$pos_tecnoestres  <- sjlabelled::set_label(x = data$pos_tecnoestres, label = "Perceived technological benefit")
+data$skills  <- sjlabelled::set_label(x = data$skills, label = "Lose job due skills")
+data$unnemployment  <- sjlabelled::set_label(x = data$unnemployment, label = "Lose job")
 
 data$deservingness <- as.numeric(as_factor(data$deservingness))
-data$deservingness  <- set_label(x = data$deservingness, label = "Deservingness of others")
-#data$gdp_2024  <- set_label(x = data$gdp_2024, label = "GDP per-capita")
+data$deservingness  <- sjlabelled::set_label(x = data$deservingness, label = "Deservingness of others")
+#data$gdp_2024  <- sjlabelled::set_label(x = data$gdp_2024, label = "GDP per-capita")
 
-data$selfemploy  <- set_label(x = data$selfemploy, label = "Self-empleoyment worker")
-data$platform  <- set_label(x = data$platform, label = "Platform worker")
+data$selfemploy  <- sjlabelled::set_label(x = data$selfemploy, label = "Self-employment worker")
+data$platform  <- sjlabelled::set_label(x = data$platform, label = "Platform worker")
 
-data$sex  <- set_label(x = data$sex, label = "Sex")
-data$age  <- set_label(x = data$age, label = "Age group")
-data$educ  <- set_label(x = data$educ, label = "Educational level")
+data$sex  <- sjlabelled::set_label(x = data$sex, label = "Sex")
+data$age  <- sjlabelled::set_label(x = data$age, label = "Age group")
+data$educ  <- sjlabelled::set_label(x = data$educ, label = "Educational level")
 
 ```
 
@@ -130,16 +130,16 @@ corrplot::corrplot(cor_full,
   bg = "white",
   na.label = "-")
 # Agregar caption
-grid::grid.text("Source: own elaboration with data from OECD risk that matter survey 2024", x = 0.99, y = 0.1, just = "right", gp = grid::gpar(fontsize = 14, col = "black"))
+grid::grid.text("Source: own elaboration with data from the OECD, Risks That Matter survey 2024", x = 0.99, y = 0.1, just = "right", gp = grid::gpar(fontsize = 14, col = "black"))
 dev.off()
 ```
 
 
-@fig-correlation presents a correlation matrix of the main variables analyzed. In this matrix, the correlations vary between low and moderate negative and positive values. The main correlation effects are between perceived redistributive justice and being a platform worker (r=0,32, p<0.001), the perceived technological displacement (r=0,24, p<0,001), the skill obsolescence risk (r=0,26, p<0,001), and the perceived technological benefit (r=0,21, p<0,001) which are positive and moderated effects. In other sence, the deservingess of others has a negative and moderated effect (r=0,16, p<0,01).
+@fig-correlation presents the correlation matrix of the main variables, with coefficients ranging from low to moderate. The strongest associations of perceived redistributive justice are with being a platform worker (r = 0.32, p < 0.001), technological displacement (r = 0.24, p < 0.001), skill obsolescence risk (r = 0.26, p < 0.001) and perceived technological benefit (r = 0.21, p < 0.001), all of them positive and moderate. Deservingness of others, in contrast, shows a negative association (r = −0.16, p < 0.01).
 
-Regarding the independent variables, the main correlation effects are between the corcern about job and income loss and being a platform worker (r=0,15, p<0,001), and with the perceived of technological change variables. Between this this three last variables, the correlations effects are positive and significant, contrary to the initial intuitions.
+Among the independent variables, concern about job and income loss correlates with being a platform worker (r = 0.15, p < 0.001) and with the technological perception variables (r = 0.18; r = 0.3). The correlations among these three technological variables are themselves positive and significant (r = 0.42; r = 0.49), and the strongest of them, between technological displacement and perceived benefit (r = 0.72), runs contrary to the initial intuition that risk and benefit perceptions would be negatively related.
 
-```{r echo=FALSE, fig.align='center'}
+```{r echo=FALSE}
 #| label: fig-correlation
 #| fig-cap: "Correlation matrix of the main variables"
 #| fig-cap-location: top
@@ -154,11 +154,12 @@ Regarding the independent variables, the main correlation effects are between th
 ```{r}
 #| echo: false
 #| include: false 
+#| cache: true
 
-data$selfemploy <- set_labels(data$selfemploy,
+data$selfemploy <- sjlabelled::set_labels(data$selfemploy,
             labels=c( "No"=1,
                       "Yes"=2))
-data$platform <- set_labels(data$platform,
+data$platform <- sjlabelled::set_labels(data$platform,
             labels=c( "No"=1,
                       "Yes"=2))
 
@@ -188,13 +189,13 @@ reg12 <- clmm(distributive ~ sex + age + educ + income + selfemploy + platform +
 
 ```{r echo=FALSE}
 #| label: tbl-modelos
-#| tbl-cap: "Multilevel models for retributive preferences"
+#| tbl-cap: "Multilevel models for perceived redistributive justice"
 #| tbl-cap-location: top
 
 omit <- "(1|2)|(2|3)|(3|4)|(4|5)|(sex)|(age)|(educ)|(income)"
 
 ccoef <- list(
-  "selfemploy2" = "self-employed worker (ref. No)",
+  "selfemploy2" = "Self-employed worker (ref. No)",
   "platform2" = "Platform worker (ref. No)",
   "unnemployment" = "Concern about job and income loss",
   "tecnoestres" = "Technological displacement",
@@ -237,7 +238,7 @@ ft1 <- flextable::flextable(df1) %>%
   flextable::align(j = 2:7, align = "center", part = "all") %>%
   flextable::padding(padding.top = 0, padding.bottom = 0, part = "body") %>%
   flextable::fontsize(size = 8, part = "all") %>%
-  flextable::add_footer_lines("Note: Cells contain regression coefficients with standard errors in parentheses. * p < 0.05; ** p < 0.01; *** p < 0.001. Model 6 is controlled by sex, age and income with significant effects and education with no significant effect.") %>%
+  flextable::add_footer_lines("Note: Cells contain regression coefficients with standard errors in parentheses. * p < 0.05; ** p < 0.01; *** p < 0.001. Model 6 controls for sex, age, education and income; sex, age and income show significant effects, education does not.") %>%
   flextable::fontsize(size = 7, part = "footer") %>%
   flextable::set_table_properties(layout = "fixed") %>%
   flextable::width(j = 1, width = 4.6, unit = "cm") %>%
@@ -246,9 +247,9 @@ ft1 <- flextable::flextable(df1) %>%
 ft1
 ```
 
-Cumulative-link mixed models were fitted for perceived redistributive justice, with a random intercept for country. Note that ordinal package reports the number of observations as the sum of the sampling weights rather than the count of cases [@haubo_cumulative_2018]; the models were therefore estimated on 19,169 respondents nested in 27 countries (weighted N = 16,872). Coefficients are cumulative log-odds: a positive value indicates greater odds of reporting a higher category of perceived redistributive justice. 
+Cumulative-link mixed models were fitted for perceived redistributive justice, with a random intercept for country. Note that the ordinal package reports the number of observations as the sum of the sampling weights rather than the count of cases [@haubo_cumulative_2018]; the models were therefore estimated on 19,169 respondents nested in 27 countries (weighted N = 16,872). Coefficients are cumulative log-odds: a positive value indicates greater odds of reporting a higher category of perceived redistributive justice. 
 
-@tbl-modelos follows a block-building logic — employment status (Model 1), economic insecurity (Model 2), the technological-perception battery (Model 3), deservingness of others (Model 4) and welfare regime (Model 5) — with sociodemographic controls (sex, age, income and education) entered only in Model 6. Across the sequence the country-level variance declines from 0.235 to 0.193 and the BIC from 50,264.9 to 48,616.2, indicating improved fit as substantive predictors are added.
+@tbl-modelos follows a block-building logic — type of employment (Model 1), concern about job and income loss (Model 2), the technological-perception battery (Model 3), deservingness of others (Model 4) and welfare regime (Model 5) — with sociodemographic controls (sex, age, income and education) entered only in Model 6. Between the first and the final model the country-level variance declines from 0.235 to 0.193 and the BIC from 50,264.9 to 48,616.2.
 
 Platform work is the strongest and most stable predictor. In Model 1 its coefficient is 1.174 (p < 0.001; OR ≈ 3.2); it attenuates as the technological and deservingness blocks enter but remains large in the fully adjusted Model 6 (0.780, p < 0.001; OR ≈ 2.2), so platform workers have roughly twice the odds of expressing higher perceived redistributive justice. Self-employment is non-significant throughout (≈ −0.06). Concern about job and income loss is negative and strengthens once technological perceptions are held constant, moving from −0.054 in Model 2 to −0.166 in Model 6 (p < 0.001).
 
@@ -256,7 +257,7 @@ The technological-perception battery (from Model 3) is uniformly positive. Perce
 
 ```{r echo=FALSE}
 #| label: tbl-interact
-#| tbl-cap: "Interaction multilevel models for retributive preferences"
+#| tbl-cap: "Multilevel interaction models for perceived redistributive justice"
 #| tbl-cap-location: top
 
 omit2 <- "(1|2)|(2|3)|(3|4)|(4|5)|(sex)|(age)|(educ)|(income)|(skills)|(pos_tecnoestres)"
@@ -305,7 +306,7 @@ ft2 <- flextable::flextable(df2) %>%
   flextable::align(j = 2:7, align = "center", part = "all") %>%
   flextable::padding(padding.top = 0, padding.bottom = 0, part = "body") %>%
   flextable::fontsize(size = 8, part = "all") %>%
-  flextable::add_footer_lines("Note: Cells contain regression coefficients with standard errors in parentheses. * p < 0.05; ** p < 0.01; *** p < 0.001. All models are controlled by sex, age and income with significant effects and education with no significant effect.") %>%
+  flextable::add_footer_lines("Note: Cells contain regression coefficients with standard errors in parentheses. * p < 0.05; ** p < 0.01; *** p < 0.001. All models control for sex, age, education and income; sex, age and income show significant effects, education does not.") %>%
   flextable::fontsize(size = 7, part = "footer") %>%
   flextable::set_table_properties(layout = "fixed") %>%
   flextable::width(j = 1, width = 5.2, unit = "cm") %>%
@@ -314,13 +315,13 @@ ft2 <- flextable::flextable(df2) %>%
 ft2
 ```
 
-@tbl-interact takes the fully adjusted specification and introduces one interaction at a time: self-employed × platform (Model 7), followed by the cross-level products of welfare regime with self-employment (Model 8), platform work (Model 9), economic insecurity (Model 10), technological displacement (Model 11) and deservingness (Model 12). The BIC is narrow across these models (48,612.2–48,626.8) and the country variance stable (≈ 0.19). The four regime moderations are displayed in @fig-interact; because emmeans R package [@lenth_emmeans_2017] evaluates the fitted model on the latent scale, the panels show predicted latent propensity rather than category-specific probabilities, which is why each moderation reduces to a single linear panel.
+@tbl-interact takes the fully adjusted specification and introduces one interaction at a time: self-employed × platform (Model 7), followed by the cross-level products of welfare regime with self-employment (Model 8), platform work (Model 9), concern about job and income loss (Model 10), technological displacement (Model 11) and deservingness (Model 12). The BIC varies little across these models (48,612.2–48,626.8) and the country variance is stable (≈ 0.19). The four regime moderations are displayed in @fig-interact; because the emmeans package [@lenth_emmeans_2017] evaluates the fitted model on the latent scale, the panels show predicted latent propensity rather than category-specific probabilities, which is why each moderation reduces to a single linear panel.
 
 The individual-level interaction is negative —self-employed × platform = −0.413 (p < 0.001)— so the platform effect is weaker among workers who are simultaneously self-employed. The cross-level terms then reveal that the null regime main effects in @tbl-modelos mask substantial moderation. Self-employment matters only in social-democratic regimes (× social-democratic = −0.400, p < 0.01; × conservative n.s.), shown in the top-left panel as the steep social-democratic decline against flat liberal and conservative lines. Platform work is positive across all regimes (top right), but its slope is much shallower under social-democratic arrangements (× social-democratic = −0.607, p < 0.001), where respondents begin from a higher baseline.
 
-The same dampening governs the remaining predictors. Technological displacement is positive in every regime (bottom left) but significantly attenuated relative to liberal regimes (× social-democratic = −0.214; × conservative = −0.138; both p < 0.001). Deservingness is negative throughout (bottom right), with the steepest slope in conservative regimes (× conservative = −0.090, p < 0.01) and a non-significant social-democratic interaction. Economic insecurity interacts significantly only with the conservative contrast (−0.120, p < 0.001). Once these interactions are specified, the social-democratic main effect becomes significant in the displacement and deservingness models (0.843, p < 0.01; 0.638, p < 0.05), where it was null in @tbl-modelos.
+The remaining interaction terms are also negative. Technological displacement is positive in every regime (bottom left) but significantly attenuated relative to liberal regimes (× social-democratic = −0.214; × conservative = −0.138; both p < 0.001). Deservingness is negative throughout (bottom right), and here the negative interaction implies amplification rather than attenuation: the slope is steepest in conservative regimes (× conservative = −0.090, p < 0.01), with a non-significant social-democratic term. Concern about job and income loss interacts significantly only with the conservative contrast (−0.120, p < 0.001). Once these interactions are specified, the social-democratic main effect becomes significant in the displacement and deservingness models (0.843, p < 0.01; 0.638, p < 0.05), where it was null in @tbl-modelos.
 
-A consistent pattern emerges: across all four panels the social-democratic line is the flattest, and every regime interaction with an individual-level predictor is negative. Substantively, perceptions of redistributive justice in social-democratic regimes appear less responsive to individual labour-market position and technological perceptions than under liberal arrangements, consistent with the view that encompassing welfare institutions decouple distributive attitudes from individual exposure.
+A consistent pattern emerges: every regime interaction with an individual-level predictor is negative, so each association is weaker —or more adverse— than under liberal arrangements. For platform work and technological displacement this translates into visibly flatter slopes in social-democratic regimes, consistent with the view that encompassing welfare institutions partially decouple distributive attitudes from individual technological exposure. The exceptions to this dampening logic are self-employment, which becomes consequential —and negative— only under social-democratic arrangements, and deservingness, whose negative gradient is steepest in conservative regimes.
 
 ```{r echo=FALSE}
 df1 <- emmip(reg8, welfare_regime ~ selfemploy,
@@ -350,7 +351,7 @@ int2 <- ggplot(df2, aes(x = platform, y = yvar,
   geom_line() +
   geom_point(size = 2.8) +
   scale_shape_manual(values = c(16, 17, 15)) +
-  scale_x_discrete(name = "Platforms workers", labels = c("No", "Yes")) +
+  scale_x_discrete(name = "Platform workers", labels = c("No", "Yes")) +
   scale_y_continuous(name = "Perceived redistributive justice (latent scale)",
                     limits = c(-0.7, 0.8), breaks = c(-0.6, -0.3, 0, 0.3, 0.6))+
   labs(color = "Welfare regime", shape = "Welfare regime") +

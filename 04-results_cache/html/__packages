@@ -31,3 +31,5 @@ cowplot
 ggpubr
 ordinal
 emmeans
+huxtable
+flextable

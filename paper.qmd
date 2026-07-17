@@ -35,9 +35,9 @@ affiliations:
     name: Nucleo Milenio sobre Evolución del Trabajo (M-new)
 citeproc: true
 abstract: | 
-  This study 
+  Digital technologies are transforming the standard employment relationship around which social protection was built, yet far less is known about how workers' labour-market position and their anticipation of technological change shape the perceived justice of their exchange with the welfare state. Drawing on the 2024 wave of the OECD Risks That Matter survey (19,169 respondents in 27 countries), this article examines whether perceived redistributive justice, the judgement that one receives a fair share given what one contributes, is anchored in type of employment, job insecurity, technological perceptions and the perceived deservingness of others, and whether welfare regimes condition these relationships. Preregistered hypotheses are tested with multilevel cumulative-link models with random country intercepts. Three individual-level expectations hold: concern about losing one's job or income and the perception that others receive undeserved benefits depress perceived justice, while perceiving technology as enabling raises it. Two do not: platform workers judge their exchange as more just rather than less, and perceived technological displacement risk increases rather than erodes perceived justice. Welfare regimes do not differ on average, but the moderation analyses reveal a consistent institutional patterning: every regime interaction is negative, the platform and displacement associations are steepest under liberal arrangements and flattest under social-democratic ones, self-employment becomes consequential only in social-democratic regimes, and deservingness judgements weigh most heavily in conservative regimes. The findings underline the analytical distinction between redistributive preferences and justice perceptions, and recast the regime effect as one of decoupling: universalist institutions weaken the translation of platform work and technological perception into judgements of justice, whereas residual arrangements bind them together. These results bear on the European agenda on access to social protection for non-standard and platform workers: extending coverage raises what is at stake in the exchange, and its legitimacy returns will depend on entitlements being proportionate and legible.
   \newline
-  **Keywords**: Redistributive preferences, Labor market position, Welfare State
+  **Keywords**: Redistributive justice, Labor market position, Welfare regimes, platform work, technological change
 link-citations: true
 linestretch: 1.15       
 mainfont: Times New Roman
@@ -48,7 +48,7 @@ fig-width: 7.5
 ---
 
 ```{r setup, include=FALSE}
- knitr::opts_chunk$set(echo=FALSE, warning = FALSE,message = FALSE, cache = TRUE,out.width = '85%',fig.pos= "H"
+ knitr::opts_chunk$set(echo=FALSE, warning = FALSE,message = FALSE, cache = FALSE,out.width = '85%'#,fig.pos= "H"
                        # , fig.align = 'center'
                        )
  # knitr::opts_knit$set(base.url = "../") #relative path for .html output file
@@ -58,7 +58,7 @@ fig-width: 7.5
  rm(list=ls())
  options(knitr.kable.NA = '')
  options(knitr.graphics.error = FALSE)
- Sys.setlocale("LC_ALL", "ES_ES.UTF-8")
+ #Sys.jksetlocale("LC_ALL", "ES_ES.UTF-8")
 ```
 
 ```{r}
@@ -94,3 +94,7 @@ fig-width: 7.5
 
 ::: {#refs}
 :::
+
+# Appendix
+
+{{< include 07-appendix.qmd >}}

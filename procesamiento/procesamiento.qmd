@@ -151,7 +151,7 @@ data <- data %>% rowwise() %>%
 data <- merge(data, gdp_2024, by="ctrcode")
 
 # ============================================================
-# Clasificación de regímenes de bienestar — versión revisada
+# Clasificación de regímenes de bienestar
 # Fuentes principales:
 #   Esping-Andersen (1990) Three Worlds of Welfare Capitalism
 #   Ferrera (1996) Southern European regime
@@ -227,7 +227,7 @@ data <- data %>% dplyr::select(id, country, ctrcode, year, ctryear, weight, sex,
 save(data, file=here::here("input/proc/data.RData"))
 ```
 
-```{r}
+```{r eval=FALSE}
 distributive <- data %>% select(distributive, country, ctrcode, welfare_regime, gdp_2024)
 
 

@@ -142,6 +142,33 @@
  
 
 
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{wrapfig}
+\usepackage{float}
+\usepackage{colortbl}
+\usepackage{pdflscape}
+\usepackage{tabu}
+\usepackage{threeparttable}
+\usepackage{threeparttablex}
+\usepackage[normalem]{ulem}
+\usepackage{makecell}
+\usepackage{xcolor}
+\usepackage{caption}
+\usepackage{graphicx}
+\usepackage{siunitx}
+\usepackage{hhline}
+\usepackage{calc}
+\usepackage{tabularx}
+\usepackage{adjustbox}
+\usepackage{hyperref}
+\usepackage{fontspec}
+\usepackage{multicol}
+\usepackage{hhline}
+\newlength\Oldarrayrulewidth
+\newlength\Oldtabcolsep
 \usepackage[noblocks]{authblk}
 \renewcommand*{\Authsep}{, }
 \renewcommand*{\Authand}{, }
@@ -232,8 +259,41 @@ the Welfare State in 27 OECD Countries}
 \begin{document}
 \maketitle
 \begin{abstract}
-This study \newline \textbf{Keywords}: Redistributive preferences, Labor
-market position, Welfare State
+Digital technologies are transforming the standard employment
+relationship around which social protection was built, yet far less is
+known about how workers' labour-market position and their anticipation
+of technological change shape the perceived justice of their exchange
+with the welfare state. Drawing on the 2024 wave of the OECD Risks That
+Matter survey (19,169 respondents in 27 countries), this article
+examines whether perceived redistributive justice, the judgement that
+one receives a fair share given what one contributes, is anchored in
+type of employment, job insecurity, technological perceptions and the
+perceived deservingness of others, and whether welfare regimes condition
+these relationships. Preregistered hypotheses are tested with multilevel
+cumulative-link models with random country intercepts. Three
+individual-level expectations hold: concern about losing one's job or
+income and the perception that others receive undeserved benefits
+depress perceived justice, while perceiving technology as enabling
+raises it. Two do not: platform workers judge their exchange as more
+just rather than less, and perceived technological displacement risk
+increases rather than erodes perceived justice. Welfare regimes do not
+differ on average, but the moderation analyses reveal a consistent
+institutional patterning: every regime interaction is negative, the
+platform and displacement associations are steepest under liberal
+arrangements and flattest under social-democratic ones, self-employment
+becomes consequential only in social-democratic regimes, and
+deservingness judgements weigh most heavily in conservative regimes. The
+findings underline the analytical distinction between redistributive
+preferences and justice perceptions, and recast the regime effect as one
+of decoupling: universalist institutions weaken the translation of
+platform work and technological perception into judgements of justice,
+whereas residual arrangements bind them together. These results bear on
+the European agenda on access to social protection for non-standard and
+platform workers: extending coverage raises what is at stake in the
+exchange, and its legitimacy returns will depend on entitlements being
+proportionate and legible. \newline \textbf{Keywords}: Redistributive
+justice, Labor market position, Welfare regimes, platform work,
+technological change
 \end{abstract}
 
 
@@ -283,23 +343,23 @@ compensation for the taxes and contributions they pay
 This study addresses whether perceiving the functioning of the state as
 just is related to labour market position and the perception of
 technological risk. Drawing on data from the Risks That Matter survey of
-the OECD (2024), which covers more than 40,000 people in 27 countries,
-most of them European, this research places European welfare states in
-comparative perspective and simultaneously introduces three
-little-explored elements. First, it distinguishes labour market position
-according to type of employment ---formal employees, self-employed
-workers and platform workers---, forms that maintain unequal links with
-the social protection system and that have rarely been examined together
-in relation to perceived redistributive justice. Second, it incorporates
-the perception of technological risk as a source of redistributive
-dissatisfaction distinct from type of employment and from conventional
-job insecurity, distinguishing its threatening dimension ---the
-likelihood of being displaced by technology--- from its enabling
-dimension ---the perception that technology can improve working
-conditions---. Third, it incorporates the perceived deservingness of
-others ---the judgement of whether others receive benefits from the
-state that they do not deserve--- as a predictor of the assessment that
-each individual makes of their own relationship with the system
+the OECD (2024), which covers more than 27,000 people in 27 countries,
+this research places European welfare states in comparative perspective
+and simultaneously introduces three little-explored elements. First, it
+distinguishes labour market position according to type of employment
+---formal employees, self-employed workers and platform workers---,
+forms that maintain unequal links with the social protection system and
+that have rarely been examined together in relation to perceived
+redistributive justice. Second, it incorporates the perception of
+technological risk as a source of redistributive dissatisfaction
+distinct from type of employment and from conventional job insecurity,
+distinguishing its threatening dimension ---the likelihood of being
+displaced by technology--- from its enabling dimension ---the perception
+that technology can improve working conditions---. Third, it
+incorporates the perceived deservingness of others ---the judgement of
+whether others receive benefits from the state that they do not
+deserve--- as a predictor of the assessment that each individual makes
+of their own relationship with the system
 (\citeproc{ref-oorschot_who_2000}{Van Oorschot, 2000},
 \citeproc{ref-vanoorschot_making_2006}{2006}).
 
@@ -365,7 +425,8 @@ feel that their contributions yield adequate returns, institutional
 trust is sustained; when the reciprocal logic is perceived to be broken
 (disproportionate contributions, insufficient benefits or a system that
 favours some over others), legitimacy is eroded
-(\citeproc{ref-cavaille_fair_2025}{Cavaillé, 2025}).
+(\citeproc{ref-cavaille_fair_2025}{Cavaillé, 2025}), and social cohesion
+is affected.
 
 In recent decades, the study of redistributive attitudes has shown that,
 despite the sustained rise in inequality in most advanced democracies,
@@ -393,7 +454,7 @@ across countries (\citeproc{ref-blekesaune_public_2003}{Blekesaune,
 redistributive justice in 27 countries and shows considerable
 heterogeneity, independently of welfare regime type.
 
-\begin{figure}[H]
+\begin{figure}
 
 \caption{\label{fig-cleveland}Mean of perceived redistributive justice
 by OECD country}
@@ -478,11 +539,12 @@ leaves them outside social security
 Atzeni, 2022}). The European directive on platform work responds to this
 situation by introducing a legal presumption of employment and rules on
 algorithmic management
-(\citeproc{ref-europeanunion_directive_2024}{\textbf{europeanunion\_directive\_2024?}}).
-This structural position exposes these workers to a lack of protection
-that leads one to expect a comparatively lower perception of the justice
-of their relationship with the welfare state. These considerations give
-rise to the first hypothesis:
+(\citeproc{ref-europeanparliamentandcounciloftheeuropeanunion_directive_2024}{European
+Parliament and Council of the European Union, 2024}). This structural
+position exposes these workers to a lack of protection that leads one to
+expect a comparatively lower perception of the justice of their
+relationship with the welfare state. These considerations give rise to
+the first hypothesis:
 
 \begin{tcolorbox}[enhanced jigsaw, arc=.35mm, bottomrule=.15mm, breakable, colback=white, colframe=quarto-callout-color-frame, left=2mm, leftrule=.75mm, opacityback=0, rightrule=.15mm, toprule=.15mm]
 
@@ -496,7 +558,7 @@ workers in formal waged employment.
 
 Beyond type of employment, the level of job insecurity experienced by
 workers constitutes a distinct dimension of vulnerability. Job
-insecurity is defined as the subjective assessment of the likelihood of
+insecurity is defined as the subjective assessment of the concern of
 losing one's own job or self-employment income in the short term, with
 the chronic uncertainty and anticipatory anxiety this entails
 (\citeproc{ref-dewitte_job_2005}{De Witte, 2005};
@@ -541,8 +603,8 @@ occupations (\citeproc{ref-arntz_risk_2016}{Arntz et al., 2016};
 \citeproc{ref-autor_why_2015}{Autor, 2015};
 \citeproc{ref-bustelo_automation_2020}{Bustelo et al., 2020};
 \citeproc{ref-frey_future_2017}{Frey and Osborne, 2017}). What matters
-for welfare attitudes is not the objective magnitude of that process,
-but the way in which workers anticipate its effects on their own job
+for welfare attitudes is the objective magnitude of that process, and
+also the way in which workers anticipate its effects on their own job
 (\citeproc{ref-gallego_automation_2022}{Gallego and Kurer, 2022}). That
 anticipation comprises both the perception of a displacement risk (the
 probability of losing the job to technology) and the perception of a
@@ -620,10 +682,10 @@ others}\label{perceived-deservingness-of-others}
 Perceptions of redistributive justice do not depend solely on structural
 position, but also on the normative frameworks through which individuals
 assess who and what deserves to receive from the state. Deservingness
-theory holds that people direct their solidarity towards the groups they
-consider deserving and withdraw it from those they judge undeserving, on
-the basis of criteria such as control over one's own situation,
-attitude, reciprocity, identity and need
+literature holds that people direct their solidarity towards the groups
+they consider deserving and withdraw it from those they judge
+undeserving, on the basis of criteria such as control over one's own
+situation, attitude, reciprocity, identity and need
 (\citeproc{ref-petersen_social_2012}{Petersen, 2012};
 \citeproc{ref-oorschot_who_2000}{Van Oorschot, 2000}). In strongly
 commodified contexts, meritocratic and market-justice beliefs reinforce
@@ -710,11 +772,11 @@ regimes.
 
 \end{tcolorbox}
 
-The institutional context not only shifts the average level of
-perceptions, but may moderate the effect of individual predictors. The
-institutional distance between workers in non-formal employment and the
-protection system is greater in liberal and conservative regimes than in
-social democratic ones, which are universalist in character
+The institutional context shifts the average level of perceptions, and
+may moderate the effect of individual predictors. The institutional
+distance between workers in non-formal employment and the protection
+system is greater in liberal and conservative regimes than in social
+democratic ones, which are universalist in character
 (\citeproc{ref-ferrera_southern_1996}{Ferrera, 1996};
 \citeproc{ref-schwander_who_2013}{Schwander and Häusermann, 2013}). It
 can therefore be expected that the negative effect of labour market
@@ -732,7 +794,7 @@ moderated by the welfare regime.
 An analogous expectation can be formulated for the perception of
 technological risk. In universalist regimes, protection against the
 risks associated with digitalisation is more robust and less dependent
-on the individual employment trajectory, which could cushion the effect
+on the individual employment trajectory, which could moderate the effect
 of perceived displacement risk on the assessment of the fiscal exchange
 (\citeproc{ref-busemeyer_social_2022}{Busemeyer and Sahm, 2022};
 \citeproc{ref-fan_how_2024}{Fan et al., 2024};
@@ -769,22 +831,19 @@ regime.
 
 \subsection{Data}\label{data}
 
-This study uses data from the Risks That Matter (RTM) survey of the
-OECD, a cross-national public opinion survey applied in 27 member
-countries of the Organisation for Economic Co-operation and Development.
-The most recent wave (2024) is used, which includes more than 40,000
-people across 27 OECD countries: Australia, Austria, Belgium, Canada,
-Chile, Colombia, Costa Rica, the Czech Republic, Denmark, Estonia,
-Finland, France, Germany, Greece, Hungary, Ireland, Israel, Italy,
-Japan, Korea, Lithuania, Mexico, the Netherlands, New Zealand, Poland,
-Portugal and the United States. The survey collects nationally
-representative data on adults aged between 18 and 64, using stratified
-sampling with post-stratification weights calibrated by age, sex, region
-and educational level. The 2024 wave is especially relevant for this
-study because it captures attitudes in the period following the COVID-19
-pandemic, an episode that dramatically accelerated the digitalisation of
-work, expanded platform employment and exposed the cracks in the social
-insurance systems of the OECD countries.
+This study uses data from the most recent wave (2024) of the Risks That
+Matter (RTM) survey of the OECD, a cross-national public opinion survey
+that includes 27,229 people aged 18 to 64 in 27 member countries:
+Austria, Belgium, Canada, Chile, Denmark, Estonia, Finland, France,
+Germany, Greece, Ireland, Israel, Italy, Korea, Latvia, Lithuania,
+Mexico, the Netherlands, Norway, Poland, Portugal, Slovenia, Spain,
+Switzerland, Türkiye, the United Kingdom and the United States. The
+survey collects nationally representative data using stratified sampling
+with post-stratification weights calibrated by age, sex, region and
+educational level. The 2024 wave is especially relevant for this study
+because it captures attitudes in the period following the COVID-19
+pandemic, which accelerated the digitalisation of work and expanded
+platform employment.
 
 \subsection{Variables}\label{variables}
 
@@ -792,90 +851,82 @@ The dependent variable is the perception of redistributive justice,
 measured by the item: ``I feel that I receive a fair share of public
 benefits, given the taxes and social contributions that I pay and/or
 have paid in the past'', answered on a five-point Likert scale ranging
-from strongly disagree to strongly agree. This item captures the
-person's evaluative judgement of the justice of the exchange with the
-state and is treated as an ordinal variable in all the analyses.
+from strongly disagree to strongly agree, and is treated as an ordinal
+variable in all the analyses.
 
 Three sets of independent variables constitute the core of the analysis.
 The first concerns labour market position and job insecurity. Type of
 employment is operationalised as a three-category variable
 distinguishing formal waged employment (permanent or long-term dependent
 employment), platform work (work mediated by digital platforms) and
-self-employment. Job insecurity is measured by the item: ``How likely do
-you think it is that you could lose your job or your self-employment
-income in the next 12 months?'', with response categories ranging from
-very unlikely to very likely. This item captures the subjective,
-anticipatory dimension of precarity: workers' sense of how exposed they
-are to income loss in the short term.
+self-employment. Job insecurity is measured by the item ``Losing a job
+or self-employment income'', asked within the battery ``Thinking about
+the next year or two, how concerned are you about each of the
+following?'', with response categories ranging from not at all concerned
+to very concerned.
 
 The second set of variables captures the perception of technological
 change with respect to one's own job. These variables are measured
 through a battery that asks: ``How likely do you think it is that the
 following will happen in your job (or job opportunities) in the next
 five years?'', with items rated on a four-point probability scale. The
-battery includes four displacement items ---the likelihood that the job
-will be replaced by a robot, that it will be replaced by an artificial
-intelligence tool such as ChatGPT, and that it will be replaced by a
+battery includes four displacement items ---replacement of the job by a
+robot, by an artificial intelligence tool such as ChatGPT, or by a
 person offering a similar service through an internet platform, and the
-likelihood of losing the job through not being sufficiently
-technologically skilled--- and three benefit items ---that technology
-will make working hours more compatible with private life, that it will
-make work less dangerous or physically demanding, and that it will make
-it less boring, repetitive, stressful or mentally demanding. However,
-the exploratory factor analysis carried out on these seven items yields
-a three-factor structure: the three displacement items load on a first
-factor; the three benefit items load on a second factor; and the skill
-obsolescence item separates from both, so that it is retained as a
-single indicator, capturing an internal element of risk perception,
-distinct from the other two factors, which are considered external
-elements. Following the usual practice in constructing composite indices
-from attitudinal batteries, two scales are built ---Technological
-Displacement Risk (the average of the three displacement items) and
-Perceived Technological Benefit (the average of the three benefit
-items)--- and Perceived Skill Obsolescence is used as a single item. In
-all cases, higher values indicate a greater perception of the
-corresponding risk or benefit.
+loss of the job through not being sufficiently technologically
+skilled--- and three benefit items ---that technology will make working
+hours more compatible with private life, make work less dangerous or
+physically demanding, and make it less boring, repetitive, stressful or
+mentally demanding. However, the exploratory factor analysis carried out
+on these seven items yields a three-factor structure: the three
+displacement items load on a first factor, the three benefit items on a
+second, and the skill obsolescence item separates from both, capturing
+an internal element of risk perception distinct from the two external
+ones. Two scales are therefore built ---Technological Displacement Risk
+(the average of the three displacement items) and Perceived
+Technological Benefit (the average of the three benefit items)--- and
+Perceived Skill Obsolescence is retained as a single item. In all cases,
+higher values indicate a greater perception of the corresponding risk or
+benefit.
 
 The third set of independent variables concerns the perceived
 deservingness of others, operationalised through the item that measures
-the degree of agreement with the statement «Many people receive public
-benefits without deserving them», rated on a five-point scale (1 =
+the degree of agreement with the statement ``Many people receive public
+benefits without deserving them'', rated on a five-point scale (1 =
 strongly disagree to 5 = strongly agree). Unlike the dependent variable,
-which captures the individual's judgement of the justice of their own
-relationship with the system, this item captures their judgement of the
-deservingness of other beneficiaries, a central distinction in the
-literature on deservingness (\citeproc{ref-oorschot_who_2000}{Van
-Oorschot, 2000}, \citeproc{ref-vanoorschot_making_2006}{2006}). Higher
-values indicate a more widespread perception of undue deservingness on
-the part of third parties.
+this item captures the judgement of the deservingness of other
+beneficiaries rather than of one's own exchange with the system, a
+central distinction in the deservingness literature
+(\citeproc{ref-oorschot_who_2000}{Van Oorschot, 2000},
+\citeproc{ref-vanoorschot_making_2006}{2006}). Higher values indicate a
+stronger perception that others receive benefits without deserving them.
 
 The welfare regime is operationalised as a three-category variable
-(social democratic, liberal, conservative-corporatist) following Bambra
-(\citeproc{ref-bambra_sifting_2007}{2007}) and Fenger
-(\citeproc{ref-Fenger2006WelfareRI}{2006}). To classify the countries of
-southern Europe and of central and eastern Europe present in the sample,
-the extensions of Ferrera (\citeproc{ref-ferrera_southern_1996}{1996}),
-Fenger (\citeproc{ref-Fenger2006WelfareRI}{2006}) and Aidukaite
-(\citeproc{ref-aidukaite_welfare_2011}{2011}) are followed, which
-document both the initial specificity of the post-socialist regimes and
-their progressive convergence towards the continental types after two
-decades of transition. On that basis, and given the small number of
-countries per category, the study adopts a three-regime classification
----social democratic, liberal and conservative-corporatist---, in which
-the countries of southern Europe and of central and eastern Europe are
-integrated into the conservative category, while the Baltic states,
-characterised by a more liberal orientation of their post-socialist
-reforms, are incorporated into the liberal regime
-(\citeproc{ref-aidukaite_welfare_2011}{Aidukaite, 2011}).
+---social democratic, liberal and conservative-corporatist--- following
+Esping-Andersen (\citeproc{ref-esping-andersen_three_1993}{1993}) and
+Bambra (\citeproc{ref-bambra_sifting_2007}{2007}). The countries of
+southern Europe and of central and eastern Europe are integrated into
+the conservative category, given the initial specificity of the
+post-socialist regimes and their progressive convergence towards the
+continental types (\citeproc{ref-Fenger2006WelfareRI}{Fenger, 2006};
+\citeproc{ref-ferrera_southern_1996}{Ferrera, 1996}), while the Baltic
+states, characterised by a more liberal orientation of their
+post-socialist reforms, are incorporated into the liberal regime
+(\citeproc{ref-aidukaite_welfare_2011}{Aidukaite, 2011}). Among the
+non-European countries, Chile and Mexico are classified as liberal,
+following the characterisation of their welfare regimes as
+market-centred (\citeproc{ref-franzoni_welfare_2008}{Martínez Franzoni,
+2008}), while Israel, Korea and Türkiye are assigned to the conservative
+category. The full classification by country, with its sources, is
+reported in the appendix.
 
-All the models include a set of control variables that have been shown
-to be associated with attitudes towards the welfare state and perceived
-redistributive justice: sex, age, educational level (operationalised as
-the highest level of studies completed) and income decile (self-reported
-position in the national income distribution).
+All the models include control variables associated with welfare
+attitudes and perceived redistributive justice: sex, age, educational
+level (highest level of studies completed) and income decile
+(self-reported position in the national income distribution).
 
 A summary of these variables and their main descriptive statistics is
-available in Table~\ref{tbl-summary}
+available in Table~\ref{tbl-summary}.
 
 \begin{longtable}[]{@{}
   >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.3925}}
@@ -928,9 +979,12 @@ Redistributive justice & \begin{minipage}[t]{\linewidth}\raggedright
 Sex & \begin{minipage}[t]{\linewidth}\raggedright
 1. Man\\
 2. Woman\strut
-\end{minipage} & All NA's & \begin{minipage}[t]{\linewidth}\raggedright
-0\\
-(0.0\%)\strut
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+10293 (53.7\%)\\
+8876 (46.3\%)\strut
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+19169\\
+(100.0\%)\strut
 \end{minipage} \\
 Age group & \begin{minipage}[t]{\linewidth}\raggedright
 1. 18-24\\
@@ -938,17 +992,27 @@ Age group & \begin{minipage}[t]{\linewidth}\raggedright
 3. 35-44\\
 4. 45-54\\
 5. 55-64\strut
-\end{minipage} & All NA's & \begin{minipage}[t]{\linewidth}\raggedright
-0\\
-(0.0\%)\strut
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+2076 (10.8\%)\\
+4522 (23.6\%)\\
+4726 (24.7\%)\\
+4486 (23.4\%)\\
+3359 (17.5\%)\strut
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+19169\\
+(100.0\%)\strut
 \end{minipage} \\
 Educational level & \begin{minipage}[t]{\linewidth}\raggedright
 1. Low\\
 2. Medium\\
 3. High\strut
-\end{minipage} & All NA's & \begin{minipage}[t]{\linewidth}\raggedright
-0\\
-(0.0\%)\strut
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+1494 ( 7.8\%)\\
+7913 (41.3\%)\\
+9762 (50.9\%)\strut
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+19169\\
+(100.0\%)\strut
 \end{minipage} \\
 Equivalised disposable household income decile (2023) &
 \begin{minipage}[t]{\linewidth}\raggedright
@@ -971,19 +1035,25 @@ IQR (CV) : 5 (0.6)\strut
 19169\\
 (100.0\%)\strut
 \end{minipage} \\
-Self-empleoyment worker & \begin{minipage}[t]{\linewidth}\raggedright
+Self-employment worker & \begin{minipage}[t]{\linewidth}\raggedright
 1. No\\
 2. Yes\strut
-\end{minipage} & All NA's & \begin{minipage}[t]{\linewidth}\raggedright
-0\\
-(0.0\%)\strut
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+16459 (85.9\%)\\
+2710 (14.1\%)\strut
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+19169\\
+(100.0\%)\strut
 \end{minipage} \\
 Platform worker & \begin{minipage}[t]{\linewidth}\raggedright
 1. No\\
 2. Yes\strut
-\end{minipage} & All NA's & \begin{minipage}[t]{\linewidth}\raggedright
-0\\
-(0.0\%)\strut
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+17361 (90.6\%)\\
+1808 ( 9.4\%)\strut
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+19169\\
+(100.0\%)\strut
 \end{minipage} \\
 Lose job & \begin{minipage}[t]{\linewidth}\raggedright
 1. Not at all concerned\\
@@ -1066,54 +1136,55 @@ Welfare regime & \begin{minipage}[t]{\linewidth}\raggedright
 
 \subsection{Methods}\label{methods}
 
+The hypotheses were pre-registered on the Open Science Framework
+(anonymised view-only
+\href{https://osf.io/bw26x/overview?view_only=13afa066aea3483f8e970a6a65c1f07a}{link}).
+Statistical analyses were conducted in R version 4.3.2.
+
 Multilevel ordinal logistic regression models with individuals nested in
 countries are used to examine the relationship between labour market
 position, the perception of technological risk or benefit, the
-deservingness of others and the perception of redistributive justice
-across different national contexts. This approach makes it possible to
-account for the hierarchical structure of the comparative data and to
-decompose the variance of the outcome between individual factors and
+deservingness of others and perceived redistributive justice. This
+approach accounts for the hierarchical structure of the comparative data
+and decomposes the variance of the outcome between individual and
 country characteristics (\citeproc{ref-hox_multilevel_2017}{Hox et al.,
 2017}; \citeproc{ref-snijders_multilevel_2012}{Snijders and Bosker,
-2012}). Random intercepts are estimated for each country to control
-heterogeneity at the macro level. The models are estimated sequentially:
-a model including if the workers are self-employed or platform-worker
-(Model 1), a second model adding job insecurity (Model 2), a third model
-incorporating the perception of technological risk and benefit (Model
-3), a fourth model adding the perception of the deservingness of others
-(Model 4), a fifth model incorporating the type of welfare regime (Model
-5), and a sixt model adding the control variables (Model 6).
+2012}), with random intercepts estimated for each country. The models
+are estimated sequentially: type of employment (Model 1), adding job
+insecurity (Model 2), the perceptions of technological risk and benefit
+(Model 3), the perceived deservingness of others (Model 4), the type of
+welfare regime (Model 5) and the control variables (Model 6).
 
-In a seven model, interaction terms between the labour market predictors
-are introduced (Model 7). In the next models, the type of welfare regime
-are introduced to test the rest of moderation hypotheses (Models 8 to
-models 12). All the analyses use the individual survey weights provided
-by the OECD, and standard errors are clustered by country. The models
-are estimated with the clmm function of the ordinal package in R.
+Model 7 introduces interaction terms between the labour market
+predictors, and Models 8 to 12 add interactions with the type of welfare
+regime to test the moderation hypotheses. All the analyses use the
+individual survey weights provided by the OECD. The models are estimated
+with the clmm function of the ordinal package in R.
 
 \section{Analysis}\label{analysis}
 
 
 
-Figure~\ref{fig-correlation} presents a correlation matrix of the main
-variables analyzed. In this matrix, the correlations vary between low
-and moderate negative and positive values. The main correlation effects
-are between perceived redistributive justice and being a platform worker
-(r=0,32, p\textless0.001), the perceived technological displacement
-(r=0,24, p\textless0,001), the skill obsolescence risk (r=0,26,
-p\textless0,001), and the perceived technological benefit (r=0,21,
-p\textless0,001) which are positive and moderated effects. In other
-sence, the deservingess of others has a negative and moderated effect
-(r=0,16, p\textless0,01).
+Figure~\ref{fig-correlation} presents the correlation matrix of the main
+variables, with coefficients ranging from low to moderate. The strongest
+associations of perceived redistributive justice are with being a
+platform worker (r = 0.32, p \textless{} 0.001), technological
+displacement (r = 0.24, p \textless{} 0.001), skill obsolescence risk (r
+= 0.26, p \textless{} 0.001) and perceived technological benefit (r =
+0.21, p \textless{} 0.001), all of them positive and moderate.
+Deservingness of others, in contrast, shows a negative association (r =
+−0.16, p \textless{} 0.01).
 
-Regarding the independent variables, the main correlation effects are
-between the corcern about job and income loss and being a platform
-worker (r=0,15, p\textless0,001), and with the perceived of
-technological change variables. Between this this three last variables,
-the correlations effects are positive and significant, contrary to the
-initial intuitions.
+Among the independent variables, concern about job and income loss
+correlates with being a platform worker (r = 0.15, p \textless{} 0.001)
+and with the technological perception variables (r = 0.18; r = 0.3). The
+correlations among these three technological variables are themselves
+positive and significant (r = 0.42; r = 0.49), and the strongest of
+them, between technological displacement and perceived benefit (r =
+0.72), runs contrary to the initial intuition that risk and benefit
+perceptions would be negatively related.
 
-\begin{figure}[H]
+\begin{figure}
 
 \caption{\label{fig-correlation}Correlation matrix of the main
 variables}
@@ -1129,75 +1200,209 @@ variables}
 \subsection{Multilevel ordinal logistic regression
 models}\label{multilevel-ordinal-logistic-regression-models}
 
-\begin{table}
+\global\setlength{\Oldarrayrulewidth}{\arrayrulewidth}
 
-\caption{\label{tbl-modelos}Multilevel models for retributive
-preferences}
+\global\setlength{\Oldtabcolsep}{\tabcolsep}
 
-\centering{
+\setlength{\tabcolsep}{2pt}
 
-\caption{}
-\begin{center}
-\scalebox{0.8}{
-\begin{tabular}{l c c c c c c}
-\hline
- & Model 1 & Model 2 & Model 3 & Model 4 & Model 5 & Model 6 \\
-\hline
-self-employed worker (ref. No)    & $-0.059$      & $-0.057$       & $-0.057$       & $-0.068$       & $-0.068$       & $-0.069$       \\
-                                  & $(0.039)$     & $(0.039)$      & $(0.039)$      & $(0.039)$      & $(0.039)$      & $(0.039)$      \\
-Platform worker (ref. No)         & $1.174^{***}$ & $1.189^{***}$  & $0.828^{***}$  & $0.844^{***}$  & $0.843^{***}$  & $0.780^{***}$  \\
-                                  & $(0.050)$     & $(0.050)$      & $(0.051)$      & $(0.051)$      & $(0.051)$      & $(0.051)$      \\
-Concern about job and income loss &               & $-0.054^{***}$ & $-0.180^{***}$ & $-0.175^{***}$ & $-0.176^{***}$ & $-0.166^{***}$ \\
-                                  &               & $(0.014)$      & $(0.015)$      & $(0.015)$      & $(0.015)$      & $(0.015)$      \\
-Technological displacement        &               &                & $0.265^{***}$  & $0.261^{***}$  & $0.261^{***}$  & $0.237^{***}$  \\
-                                  &               &                & $(0.023)$      & $(0.023)$      & $(0.023)$      & $(0.024)$      \\
-Skill obsolescence risk           &               &                & $0.126^{***}$  & $0.123^{***}$  & $0.123^{***}$  & $0.126^{***}$  \\
-                                  &               &                & $(0.020)$      & $(0.020)$      & $(0.020)$      & $(0.020)$      \\
-Perceived technological benefit   &               &                & $0.453^{***}$  & $0.456^{***}$  & $0.456^{***}$  & $0.431^{***}$  \\
-                                  &               &                & $(0.021)$      & $(0.021)$      & $(0.021)$      & $(0.022)$      \\
-Deservingness of others           &               &                &                & $-0.181^{***}$ & $-0.181^{***}$ & $-0.177^{***}$ \\
-                                  &               &                &                & $(0.014)$      & $(0.014)$      & $(0.014)$      \\
-Welfare regime (Ref.= Liberal)    &               &                &                &                &                &                \\
-                                  &               &                &                &                &                &                \\
-\quad Social-democratic           &               &                &                &                & $0.408$        & $0.395$        \\
-                                  &               &                &                &                & $(0.267)$      & $(0.267)$      \\
-\quad Conservative                &               &                &                &                & $-0.138$       & $-0.126$       \\
-                                  &               &                &                &                & $(0.190)$      & $(0.190)$      \\
-\hline
-BIC                               & $50264.921$   & $50260.479$    & $48843.271$    & $48682.213$    & $48697.344$    & $48616.180$    \\
-Numb. obs.                        & $16872$       & $16872$        & $16872$        & $16872$        & $16872$        & $16872$        \\
-Groups (Country)                  & $27$          & $27$           & $27$           & $27$           & $27$           & $27$           \\
-Variance: Country: (Intercept)    & $0.235$       & $0.227$        & $0.244$        & $0.227$        & $0.192$        & $0.193$        \\
-\hline
-\multicolumn{7}{l}{\scriptsize{Note: Cells contain regression coefficients with standard errors in parentheses. $^{***}p<0.001$; $^{**}p<0.01$; $^{*}p<0.05$.
-Model 6 is controlled by sex, age and income with significant effects and education with no significant effect}}
-\end{tabular}
-}
-\label{table:coefficients}
-\end{center}
+\renewcommand*{\arraystretch}{1.5}
 
-}
 
-\end{table}%
+
+\providecommand{\ascline}[3]{\noalign{\global\arrayrulewidth #1}\arrayrulecolor[HTML]{#2}\cline{#3}}
+
+\begin{longtable}[c]{|p{1.81in}|p{0.71in}|p{0.71in}|p{0.71in}|p{0.71in}|p{0.71in}|p{0.71in}}
+
+\caption{\label{tbl-modelos}Multilevel models for perceived
+redistributive justice}
+
+\tabularnewline
+
+\ascline{1.5pt}{666666}{1-7}
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 1.81in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{\textbf{}}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{\textbf{Model\ 1}}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{\textbf{Model\ 2}}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{\textbf{Model\ 3}}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{\textbf{Model\ 4}}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{\textbf{Model\ 5}}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{\textbf{Model\ 6}}}} \\
+
+\ascline{1.5pt}{666666}{1-7}\endfirsthead 
+
+\ascline{1.5pt}{666666}{1-7}
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 1.81in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{\textbf{}}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{\textbf{Model\ 1}}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{\textbf{Model\ 2}}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{\textbf{Model\ 3}}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{\textbf{Model\ 4}}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{\textbf{Model\ 5}}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{\textbf{Model\ 6}}}} \\
+
+\ascline{1.5pt}{666666}{1-7}\endhead
+
+
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 1.81in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{Self-employed\ worker\ (ref.\ No)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{-0.059}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{-0.057}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{-0.057}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{-0.068}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{-0.068}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{-0.069}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 1.81in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.039)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.039)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.039)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.039)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.039)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.039)}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 1.81in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{Platform\ worker\ (ref.\ No)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{1.174\ ***}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{1.189\ ***}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{0.828\ ***}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{0.844\ ***}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{0.843\ ***}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{0.780\ ***}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 1.81in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.050)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.050)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.051)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.051)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.051)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.051)}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 1.81in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{Concern\ about\ job\ and\ income\ loss}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{-0.054\ ***}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{-0.180\ ***}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{-0.175\ ***}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{-0.176\ ***}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{-0.166\ ***}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 1.81in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.014)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.015)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.015)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.015)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.015)}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 1.81in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{Technological\ displacement}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{0.265\ ***}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{0.261\ ***}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{0.261\ ***}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{0.237\ ***}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 1.81in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.023)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.023)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.023)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.024)}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 1.81in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{Skill\ obsolescence\ risk}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{0.126\ ***}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{0.123\ ***}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{0.123\ ***}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{0.126\ ***}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 1.81in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.020)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.020)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.020)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.020)}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 1.81in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{Perceived\ technological\ benefit}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{0.453\ ***}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{0.456\ ***}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{0.456\ ***}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{0.431\ ***}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 1.81in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.021)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.021)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.021)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.022)}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 1.81in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{Deservingness\ of\ others}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{-0.181\ ***}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{-0.181\ ***}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{-0.177\ ***}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 1.81in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.014)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.014)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.014)}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 1.81in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{\textit{Welfare\ regime\ (Ref.=\ Liberal)}}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 1.81in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{Social-democratic}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{0.408}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{0.395}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 1.81in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.267)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.267)}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 1.81in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{Conservative}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{-0.138}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{-0.126}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 1.81in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.190)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.190)}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 1.81in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{BIC}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{50264.921}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{50260.479}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{48843.271}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{48682.213}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{48697.344}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{48616.180}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 1.81in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{Numb.\ obs.}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{16872}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{16872}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{16872}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{16872}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{16872}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{16872}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 1.81in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{Groups\ (Country)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{27}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{27}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{27}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{27}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{27}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{27}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 1.81in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{Variance:\ Country:\ (Intercept)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{0.235}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{0.227}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{0.244}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{0.227}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{0.192}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{0.193}}} \\
+
+\ascline{1.5pt}{666666}{1-7}
+
+
+
+\multicolumn{7}{>{\raggedright}m{\dimexpr 6.06in+12\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{7}{7}\selectfont{Note:\ Cells\ contain\ regression\ coefficients\ with\ standard\ errors\ in\ parentheses.\ *\ p\ <\ 0.05;\ **\ p\ <\ 0.01;\ ***\ p\ <\ 0.001.\ Model\ 6\ controls\ for\ sex,\ age,\ education\ and\ income;\ sex,\ age\ and\ income\ show\ significant\ effects,\ education\ does\ not.}}} \\
+
+
+
+
+\end{longtable}
+
+\arrayrulecolor[HTML]{000000}
+
+\global\setlength{\arrayrulewidth}{\Oldarrayrulewidth}
+
+\global\setlength{\tabcolsep}{\Oldtabcolsep}
+
+\renewcommand*{\arraystretch}{1}
 
 Cumulative-link mixed models were fitted for perceived redistributive
-justice, with a random intercept for country. Note that ordinal package
-reports the number of observations as the sum of the sampling weights
-rather than the count of cases
+justice, with a random intercept for country. Note that the ordinal
+package reports the number of observations as the sum of the sampling
+weights rather than the count of cases
 (\citeproc{ref-haubo_cumulative_2018}{Haubo and Christensen, 2018}); the
 models were therefore estimated on 19,169 respondents nested in 27
 countries (weighted N = 16,872). Coefficients are cumulative log-odds: a
 positive value indicates greater odds of reporting a higher category of
 perceived redistributive justice.
 
-Table~\ref{tbl-modelos} follows a block-building logic --- employment
-status (Model 1), economic insecurity (Model 2), the
+Table~\ref{tbl-modelos} follows a block-building logic --- type of
+employment (Model 1), concern about job and income loss (Model 2), the
 technological-perception battery (Model 3), deservingness of others
 (Model 4) and welfare regime (Model 5) --- with sociodemographic
 controls (sex, age, income and education) entered only in Model 6.
-Across the sequence the country-level variance declines from 0.235 to
-0.193 and the BIC from 50,264.9 to 48,616.2, indicating improved fit as
-substantive predictors are added.
+Between the first and the final model the country-level variance
+declines from 0.235 to 0.193 and the BIC from 50,264.9 to 48,616.2.
 
 Platform work is the strongest and most stable predictor. In Model 1 its
 coefficient is 1.174 (p \textless{} 0.001; OR ≈ 3.2); it attenuates as
@@ -1222,85 +1427,307 @@ social-democratic (≈ 0.40) nor the conservative (≈ −0.13) contrast
 reaches conventional thresholds. The addition of controls in Model 6
 leaves this individual-level structure essentially unchanged.
 
-\begin{table}
+\global\setlength{\Oldarrayrulewidth}{\arrayrulewidth}
 
-\caption{\label{tbl-interact}Interaction multilevel models for
-retributive preferences}
+\global\setlength{\Oldtabcolsep}{\tabcolsep}
 
-\centering{
+\setlength{\tabcolsep}{2pt}
 
-\caption{}
-\begin{center}
-\scalebox{0.8}{
-\begin{tabular}{l c c c c c c}
-\hline
- & Model 1 & Model 2 & Model 3 & Model 4 & Model 5 & Model 6 \\
-\hline
-Self-employed worker (ref. No)                 & $-0.018$       & $0.009$        & $-0.071$       & $-0.068$       & $-0.071$       & $-0.071$       \\
-                                               & $(0.042)$      & $(0.069)$      & $(0.039)$      & $(0.039)$      & $(0.039)$      & $(0.039)$      \\
-Platform worker (ref. No)                      & $0.877^{***}$  & $0.781^{***}$  & $0.953^{***}$  & $0.775^{***}$  & $0.777^{***}$  & $0.779^{***}$  \\
-                                               & $(0.058)$      & $(0.051)$      & $(0.079)$      & $(0.051)$      & $(0.051)$      & $(0.051)$      \\
-Concern about job and income loss              & $-0.167^{***}$ & $-0.166^{***}$ & $-0.165^{***}$ & $-0.098^{***}$ & $-0.165^{***}$ & $-0.165^{***}$ \\
-                                               & $(0.015)$      & $(0.015)$      & $(0.015)$      & $(0.025)$      & $(0.015)$      & $(0.015)$      \\
-Technological displacement                     & $0.237^{***}$  & $0.238^{***}$  & $0.236^{***}$  & $0.238^{***}$  & $0.338^{***}$  & $0.236^{***}$  \\
-                                               & $(0.024)$      & $(0.024)$      & $(0.024)$      & $(0.024)$      & $(0.032)$      & $(0.024)$      \\
-Deservingness of others                        & $-0.176^{***}$ & $-0.177^{***}$ & $-0.177^{***}$ & $-0.177^{***}$ & $-0.178^{***}$ & $-0.122^{***}$ \\
-                                               & $(0.014)$      & $(0.014)$      & $(0.014)$      & $(0.014)$      & $(0.014)$      & $(0.024)$      \\
-Social-democratic                              & $0.394$        & $0.447$        & $0.461$        & $0.533$        & $0.843^{**}$   & $0.638^{*}$    \\
-                                               & $(0.267)$      & $(0.270)$      & $(0.268)$      & $(0.290)$      & $(0.286)$      & $(0.309)$      \\
-Conservative                                   & $-0.128$       & $-0.117$       & $-0.110$       & $0.201$        & $0.171$        & $0.217$        \\
-                                               & $(0.190)$      & $(0.192)$      & $(0.191)$      & $(0.209)$      & $(0.206)$      & $(0.223)$      \\
-Self-employed X Platform worker                & $-0.413^{***}$ &                &                &                &                &                \\
-                                               & $(0.116)$      &                &                &                &                &                \\
-Self-employed X Social-democratic              &                & $-0.400^{**}$  &                &                &                &                \\
-                                               &                & $(0.128)$      &                &                &                &                \\
-Self-employed X Conservative                   &                & $-0.047$       &                &                &                &                \\
-                                               &                & $(0.087)$      &                &                &                &                \\
-Platform worker X Social-democratic            &                &                & $-0.607^{***}$ &                &                &                \\
-                                               &                &                & $(0.135)$      &                &                &                \\
-Platform worker X Conservative                 &                &                & $-0.137$       &                &                &                \\
-                                               &                &                & $(0.109)$      &                &                &                \\
-Job and income loss X Social-democratic        &                &                &                & $-0.047$       &                &                \\
-                                               &                &                &                & $(0.044)$      &                &                \\
-Job and income loss X Conservative             &                &                &                & $-0.120^{***}$ &                &                \\
-                                               &                &                &                & $(0.032)$      &                &                \\
-Technological displacement X Social-democratic &                &                &                &                & $-0.214^{***}$ &                \\
-                                               &                &                &                &                & $(0.049)$      &                \\
-Technological displacement X Conservative      &                &                &                &                & $-0.138^{***}$ &                \\
-                                               &                &                &                &                & $(0.037)$      &                \\
-Deservingness X Social-democratic              &                &                &                &                &                & $-0.065$       \\
-                                               &                &                &                &                &                & $(0.041)$      \\
-Deservingness X Conservative                   &                &                &                &                &                & $-0.090^{**}$  \\
-                                               &                &                &                &                &                & $(0.031)$      \\
-\hline
-BIC                                            & $48613.219$    & $48625.127$    & $48615.167$    & $48621.208$    & $48612.196$    & $48626.846$    \\
-Numb. obs.                                     & $16872$        & $16872$        & $16872$        & $16872$        & $16872$        & $16872$        \\
-Groups (Country)                               & $27$           & $27$           & $27$           & $27$           & $27$           & $27$           \\
-Variance: Country: (Intercept)                 & $0.193$        & $0.196$        & $0.193$        & $0.193$        & $0.192$        & $0.194$        \\
-\hline
-\multicolumn{7}{l}{\scriptsize{Note: Cells contain regression coefficients with standard errors in parentheses. $^{***}p<0.001$; $^{**}p<0.01$; $^{*}p<0.05$.
-All models are controlled by sex, age and income with significant effects and education with no significant effect}}
-\end{tabular}
-}
-\label{table:coefficients}
-\end{center}
+\renewcommand*{\arraystretch}{1.5}
 
-}
 
-\end{table}%
+
+\providecommand{\ascline}[3]{\noalign{\global\arrayrulewidth #1}\arrayrulecolor[HTML]{#2}\cline{#3}}
+
+\begin{longtable}[c]{|p{2.05in}|p{0.69in}|p{0.69in}|p{0.69in}|p{0.69in}|p{0.69in}|p{0.69in}}
+
+\caption{\label{tbl-interact}Multilevel interaction models for perceived
+redistributive justice}
+
+\tabularnewline
+
+\ascline{1.5pt}{666666}{1-7}
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 2.05in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{\textbf{}}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{\textbf{Model\ 7}}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{\textbf{Model\ 8}}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{\textbf{Model\ 9}}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{\textbf{Model\ 10}}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{\textbf{Model\ 11}}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{\textbf{Model\ 12}}}} \\
+
+\ascline{1.5pt}{666666}{1-7}\endfirsthead 
+
+\ascline{1.5pt}{666666}{1-7}
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 2.05in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{\textbf{}}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{\textbf{Model\ 7}}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{\textbf{Model\ 8}}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{\textbf{Model\ 9}}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{\textbf{Model\ 10}}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{\textbf{Model\ 11}}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{\textbf{Model\ 12}}}} \\
+
+\ascline{1.5pt}{666666}{1-7}\endhead
+
+
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 2.05in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{Self-employed\ worker\ (ref.\ No)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{-0.018}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{0.009}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{-0.071}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{-0.068}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{-0.071}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{-0.071}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 2.05in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.042)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.069)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.039)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.039)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.039)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.039)}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 2.05in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{Platform\ worker\ (ref.\ No)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{0.877\ ***}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{0.781\ ***}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{0.953\ ***}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{0.775\ ***}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{0.777\ ***}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{0.779\ ***}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 2.05in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.058)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.051)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.079)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.051)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.051)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.051)}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 2.05in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{Concern\ about\ job\ and\ income\ loss}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{-0.167\ ***}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{-0.166\ ***}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{-0.165\ ***}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{-0.098\ ***}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{-0.165\ ***}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{-0.165\ ***}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 2.05in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.015)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.015)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.015)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.025)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.015)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.015)}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 2.05in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{Technological\ displacement}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{0.237\ ***}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{0.238\ ***}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{0.236\ ***}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{0.238\ ***}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{0.338\ ***}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{0.236\ ***}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 2.05in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.024)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.024)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.024)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.024)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.032)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.024)}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 2.05in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{Deservingness\ of\ others}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{-0.176\ ***}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{-0.177\ ***}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{-0.177\ ***}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{-0.177\ ***}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{-0.178\ ***}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{-0.122\ ***}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 2.05in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.014)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.014)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.014)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.014)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.014)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.024)}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 2.05in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{Social-democratic}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{0.394}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{0.447}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{0.461}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{0.533}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{0.843\ **}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{0.638\ *}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 2.05in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.267)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.270)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.268)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.290)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.286)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.309)}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 2.05in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{Conservative}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{-0.128}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{-0.117}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{-0.110}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{0.201}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{0.171}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{0.217}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 2.05in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.190)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.192)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.191)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.209)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.206)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.223)}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 2.05in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{Self-employed\ X\ Platform\ worker}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{-0.413\ ***}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 2.05in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.116)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 2.05in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{Self-employed\ X\ Social-democratic}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{-0.400\ **}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 2.05in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.128)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 2.05in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{Self-employed\ X\ Conservative}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{-0.047}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 2.05in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.087)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 2.05in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{Platform\ worker\ X\ Social-democratic}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{-0.607\ ***}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 2.05in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.135)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 2.05in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{Platform\ worker\ X\ Conservative}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{-0.137}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 2.05in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.109)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 2.05in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{Job\ and\ income\ loss\ X\ Social-democratic}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{-0.047}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 2.05in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.044)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 2.05in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{Job\ and\ income\ loss\ X\ Conservative}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{-0.120\ ***}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 2.05in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.032)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 2.05in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{Technological\ displacement\ X\ Social-democratic}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{-0.214\ ***}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 2.05in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.049)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 2.05in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{Technological\ displacement\ X\ Conservative}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{-0.138\ ***}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 2.05in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.037)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 2.05in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{Deservingness\ X\ Social-democratic}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{-0.065}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 2.05in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.041)}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 2.05in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{Deservingness\ X\ Conservative}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{-0.090\ **}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 2.05in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.031)}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 2.05in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{BIC}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{48613.219}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{48625.127}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{48615.167}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{48621.208}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{48612.196}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{48626.846}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 2.05in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{Numb.\ obs.}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{16872}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{16872}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{16872}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{16872}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{16872}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{16872}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 2.05in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{Groups\ (Country)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{27}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{27}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{27}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{27}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{27}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{27}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 2.05in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{Variance:\ Country:\ (Intercept)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{0.193}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{0.196}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{0.193}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{0.193}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{0.192}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{0.194}}} \\
+
+\ascline{1.5pt}{666666}{1-7}
+
+
+
+\multicolumn{7}{>{\raggedright}m{\dimexpr 6.18in+12\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{7}{7}\selectfont{Note:\ Cells\ contain\ regression\ coefficients\ with\ standard\ errors\ in\ parentheses.\ *\ p\ <\ 0.05;\ **\ p\ <\ 0.01;\ ***\ p\ <\ 0.001.\ All\ models\ control\ for\ sex,\ age,\ education\ and\ income;\ sex,\ age\ and\ income\ show\ significant\ effects,\ education\ does\ not.}}} \\
+
+
+
+
+\end{longtable}
+
+\arrayrulecolor[HTML]{000000}
+
+\global\setlength{\arrayrulewidth}{\Oldarrayrulewidth}
+
+\global\setlength{\tabcolsep}{\Oldtabcolsep}
+
+\renewcommand*{\arraystretch}{1}
 
 Table~\ref{tbl-interact} takes the fully adjusted specification and
 introduces one interaction at a time: self-employed × platform (Model
 7), followed by the cross-level products of welfare regime with
-self-employment (Model 8), platform work (Model 9), economic insecurity
-(Model 10), technological displacement (Model 11) and deservingness
-(Model 12). The BIC is narrow across these models (48,612.2--48,626.8)
-and the country variance stable (≈ 0.19). The four regime moderations
-are displayed in Figure~\ref{fig-interact}; because emmeans R package
-(\citeproc{ref-lenth_emmeans_2017}{Lenth and Piaskowski, 2017})
-evaluates the fitted model on the latent scale, the panels show
-predicted latent propensity rather than category-specific probabilities,
-which is why each moderation reduces to a single linear panel.
+self-employment (Model 8), platform work (Model 9), concern about job
+and income loss (Model 10), technological displacement (Model 11) and
+deservingness (Model 12). The BIC varies little across these models
+(48,612.2--48,626.8) and the country variance is stable (≈ 0.19). The
+four regime moderations are displayed in Figure~\ref{fig-interact};
+because the emmeans package (\citeproc{ref-lenth_emmeans_2017}{Lenth and
+Piaskowski, 2017}) evaluates the fitted model on the latent scale, the
+panels show predicted latent propensity rather than category-specific
+probabilities, which is why each moderation reduces to a single linear
+panel.
 
 The individual-level interaction is negative ---self-employed × platform
 = −0.413 (p \textless{} 0.001)--- so the platform effect is weaker among
@@ -1315,29 +1742,33 @@ is much shallower under social-democratic arrangements (×
 social-democratic = −0.607, p \textless{} 0.001), where respondents
 begin from a higher baseline.
 
-The same dampening governs the remaining predictors. Technological
+The remaining interaction terms are also negative. Technological
 displacement is positive in every regime (bottom left) but significantly
 attenuated relative to liberal regimes (× social-democratic = −0.214; ×
 conservative = −0.138; both p \textless{} 0.001). Deservingness is
-negative throughout (bottom right), with the steepest slope in
-conservative regimes (× conservative = −0.090, p \textless{} 0.01) and a
-non-significant social-democratic interaction. Economic insecurity
-interacts significantly only with the conservative contrast (−0.120, p
-\textless{} 0.001). Once these interactions are specified, the
-social-democratic main effect becomes significant in the displacement
-and deservingness models (0.843, p \textless{} 0.01; 0.638, p
-\textless{} 0.05), where it was null in Table~\ref{tbl-modelos}.
+negative throughout (bottom right), and here the negative interaction
+implies amplification rather than attenuation: the slope is steepest in
+conservative regimes (× conservative = −0.090, p \textless{} 0.01), with
+a non-significant social-democratic term. Concern about job and income
+loss interacts significantly only with the conservative contrast
+(−0.120, p \textless{} 0.001). Once these interactions are specified,
+the social-democratic main effect becomes significant in the
+displacement and deservingness models (0.843, p \textless{} 0.01; 0.638,
+p \textless{} 0.05), where it was null in Table~\ref{tbl-modelos}.
 
-A consistent pattern emerges: across all four panels the
-social-democratic line is the flattest, and every regime interaction
-with an individual-level predictor is negative. Substantively,
-perceptions of redistributive justice in social-democratic regimes
-appear less responsive to individual labour-market position and
-technological perceptions than under liberal arrangements, consistent
-with the view that encompassing welfare institutions decouple
-distributive attitudes from individual exposure.
+A consistent pattern emerges: every regime interaction with an
+individual-level predictor is negative, so each association is weaker
+---or more adverse--- than under liberal arrangements. For platform work
+and technological displacement this translates into visibly flatter
+slopes in social-democratic regimes, consistent with the view that
+encompassing welfare institutions partially decouple distributive
+attitudes from individual technological exposure. The exceptions to this
+dampening logic are self-employment, which becomes consequential ---and
+negative--- only under social-democratic arrangements, and
+deservingness, whose negative gradient is steepest in conservative
+regimes.
 
-\begin{figure}[H]
+\begin{figure}
 
 \caption{\label{fig-interact}Estimated latent propensity for perceived
 redistributive justice, by selected predictors across welfare regimes}
@@ -1371,24 +1802,25 @@ risk-and-redistribution tradition from which the hypotheses were drawn.
 Three individual-level expectations held: perceived job insecurity and
 the perception that others receive undeserved benefits both depressed
 perceived redistributive justice (H2, H5), while perceiving technology
-as enabling raised it (H4) and was the strongest individual predictor.
-Two did not: non-standard employment was not associated with lower
-perceived redistributive justice, and platform workers reported it more
-strongly (H1); and perceived technological displacement risk, expected
-to erode justice, instead increased it (H3). The moderation analyses,
-finally, disclosed an institutional patterning that the null average
-differences between regimes had obscured.
+as enabling raised it (H4), the largest effect among the technological
+perceptions. Two did not: non-standard employment was not associated
+with lower perceived redistributive justice, and platform workers
+reported it more strongly (H1); and perceived technological displacement
+risk, expected to erode justice, instead increased it (H3). The
+moderation analyses, finally, disclosed an institutional patterning that
+the null average differences between regimes had obscured.
 
 The confirmed hypotheses support the moral-economy reading on which the
-study rests. Workers who anticipate losing their job or income within
-the year judge the exchange as less just (H2), and those who perceive
-others as drawing unearned benefits extend that judgement to their own
-relationship with the system (H5), consistent with the view that lateral
-deservingness assessments and self-referential justice belong to a
-single moral economy of welfare (\citeproc{ref-mau_moral_2014}{Mau,
-2014}; \citeproc{ref-vanoorschot_making_2006}{Van Oorschot, 2006}). That
-the enabling dimension of technology carries the largest effect (H4) is
-a reminder that workers' orientation towards technology is not solely
+study rests. Workers concerned about losing their job or income over the
+coming year or two judge the exchange as less just (H2), and those who
+perceive others as drawing unearned benefits extend that judgement to
+their own relationship with the system (H5), consistent with the view
+that lateral deservingness assessments and self-referential justice
+belong to a single moral economy of welfare
+(\citeproc{ref-mau_moral_2014}{Mau, 2014};
+\citeproc{ref-vanoorschot_making_2006}{Van Oorschot, 2006}). That the
+enabling dimension of technology carries the largest effect (H4) is a
+reminder that workers' orientation towards technology is not solely
 defensive, and that its optimistic pole, long neglected relative to its
 threatening counterpart, matters for welfare attitudes
 (\citeproc{ref-autor_why_2015}{Autor, 2015};
@@ -1399,7 +1831,7 @@ throughout, which is unsurprising given a category ranging from
 established professionals to precarious own-account workers whose
 contrasting ties to the protection system plausibly offset one another.
 The reversal for platform work --- roughly twice the odds of higher
-perceived justce (OR ≈ 2.2) --- admits two readings. Compositionally,
+perceived justice (OR ≈ 2.2) --- admits two readings. Compositionally,
 self-reported platform work in OECD samples is heterogeneous, capturing
 supplementary and intermittent earners alongside the platform-dependent
 (\citeproc{ref-schor_gig_2020}{Schor, 2020};
@@ -1445,42 +1877,51 @@ regimes and significantly attenuated in social-democratic and
 conservative ones (H8). A temporal contrast reinforces the point: the
 displacement battery is prospective and abstract, asking about a
 five-year horizon, whereas the job-insecurity item that behaves as
-predicted (H2) concerns concrete income loss within twelve months.
+predicted (H2) concerns concrete income loss over the next year or two.
 Near-term, tangible insecurity erodes justice; distant technological
 prognostication does not, and may instead index a reflective engagement
 with the future of work bound up with other favourable dispositions
 (\citeproc{ref-dekker_fear_2017}{Dekker et al., 2017};
 \citeproc{ref-kurer_declining_2020}{Kurer, 2020}). A measurement caveat
 sharpens rather than dissolves this: displacement and benefit are
-positively correlated with each other and with the outcome, and although
-the factor analysis separates them, the shared sign suggests a common
-component of engagement with the technological frame, which future
-instrumentation should separate from valence.
+positively correlated with each other (r = 0.72) and with the outcome,
+and although the factor analysis separates them, the shared sign
+suggests a common component of engagement with the technological frame,
+which future instrumentation should separate from valence.
 
 The comparative results recast the regime argument. Regime type did not
 order perceived redistributive justice as a main effect (H6), consistent
 with the heterogeneity already visible in Figure~\ref{fig-cleveland} and
 at odds with the classic regime hypothesis
 (\citeproc{ref-jaeger_welfare_2006}{Jæger, 2006};
-\citeproc{ref-svallfors_worlds_1997}{Svallfors, 1997}). Across all four
-moderation panels the social-democratic slope is the flattest and every
-regime interaction is negative: the employment effect is confined to
-social-democratic regimes (H7), the displacement effect is dampened in
-both non-liberal regimes (H8), and the deservingness effect is steepest
-in conservative regimes and indistinguishable between liberal and
-social-democratic ones (H9), only partly matching the
-universalist--residual expectation. The unifying reading is that
-universalist institutions decouple perceived redistributive justice from
-individual labour-market exposure, whereas residual, market-tied
-arrangements bind the two together
+\citeproc{ref-svallfors_worlds_1997}{Svallfors, 1997}). Every regime
+interaction is negative, though the pattern only partly matches the
+universalist--residual expectation: the positive association of platform
+work is steepest under liberal arrangements and flattest under
+social-democratic ones, whereas the self-employment effect, predicted to
+be strongest in residual regimes, emerges only under social-democratic
+arrangements (H7); the displacement effect is dampened in both
+non-liberal regimes (H8); and the deservingness effect is steepest in
+conservative regimes and indistinguishable between liberal and
+social-democratic ones (H9). For platform work and the technological
+perceptions, the reading is that universalist institutions decouple
+perceived redistributive justice from individual labour-market exposure,
+whereas residual, market-tied arrangements bind the two together
 (\citeproc{ref-larsen_institutional_2008}{Larsen, 2008};
-\citeproc{ref-rothstein_just_1998}{Rothstein, 1998}). This refines the
-institutional-logic tradition: regimes act less by raising the level of
-satisfaction than by governing how far it fragments along individual
-lines, a dynamic especially salient in highly commodified contexts such
-as the Chilean one (\citeproc{ref-emmenegger_age_2012}{Emmenegger et
-al., 2012}; \citeproc{ref-perez-ahumada_conditioning_2026}{Pérez-Ahumada
-et al., 2026}).
+\citeproc{ref-rothstein_just_1998}{Rothstein, 1998}). The
+self-employment exception is consistent with the same reciprocity logic
+once institutional distance is understood in relative terms: where
+dependent employment is most generously covered, own-account workers
+stand furthest from the prevailing standard of protection, and their
+exchange with the state reads as comparatively less just
+(\citeproc{ref-schwander_who_2013}{Schwander and Häusermann, 2013}).
+This refines the institutional-logic tradition: regimes act less by
+raising the level of satisfaction than by governing how far it fragments
+along individual lines, a dynamic especially salient in highly
+commodified contexts such as the Chilean one
+(\citeproc{ref-emmenegger_age_2012}{Emmenegger et al., 2012};
+\citeproc{ref-perez-ahumada_conditioning_2026}{Pérez-Ahumada et al.,
+2026}).
 
 \section{Conclusion}\label{conclusion}
 
@@ -1495,12 +1936,13 @@ non-standard employment does not depress justice (platform workers
 report it more strongly) and perceived technological displacement risk
 raises rather than lowers it. Above all, universalist welfare
 institutions appear to decouple perceived redistributive justice from
-individual labour-market position and technological perception, while
-residual arrangements tie them tightly together.
+platform work and technological perception, while residual arrangements
+tie them tightly together; self-employment, by contrast, becomes
+consequential precisely under universalist arrangements.
 
-Two implications for the sociology of welfare attitudes follow. First,
-perceptions and preferences must be kept analytically apart: the same
-exposure that raises the demand for redistribution may leave the
+Two implications for the comparative study of welfare attitudes follow.
+First, perceptions and preferences must be kept analytically apart: the
+same exposure that raises the demand for redistribution may leave the
 evaluation of one's own exchange unchanged or even more favourable, so
 findings established for one attitudinal object cannot be transposed to
 the other (\citeproc{ref-roosma_just_2016}{Roosma et al., 2016}). The
@@ -1511,6 +1953,25 @@ translate into judgements of justice. Reframing the regime effect as one
 of decoupling rather than elevation offers a more accurate account of
 why, in some institutional settings but not others, the legitimacy of
 the welfare state fragments along the contours of the labour market.
+
+The findings also bear on the European policy agenda on access to social
+protection
+(\citeproc{ref-counciloftheeuropeanunion_council_2019}{Council of the
+European Union, 2019};
+\citeproc{ref-europeanparliamentandcounciloftheeuropeanunion_directive_2024}{European
+Parliament and Council of the European Union, 2024}). That platform
+workers judge their exchange with the state as comparatively just should
+not be read as the absence of a problem: on the proportionality reading
+advanced here, it reflects how little they contribute to and expect from
+the contributory system. Extending coverage, the aim of the Council
+Recommendation and, for platform work, of the recent directive, will
+draw these workers into a fuller exchange in which more is contributed
+and more is owed, and the legitimacy returns of that extension will
+depend on whether the ensuing entitlements are proportionate and
+legible. The self-employment finding adds a caution for the most
+encompassing systems: formal inclusion that leaves own-account workers
+at a visible distance from the employee standard may depress, rather
+than enhance, their sense of a just exchange.
 
 These conclusions are bounded by the design. The data are
 cross-sectional, so the analysis identifies associations rather than
@@ -1526,10 +1987,11 @@ items signals that the battery does not fully separate the valence of a
 perception from engagement with technological change as a frame. At the
 macro level, 27 countries afford limited power for cross-level
 interactions and place a heavy burden on the regime classification,
-whose treatment of the post-socialist and southern European cases, while
-defensible, remains contestable
+whose treatment of the post-socialist, southern European and
+non-European cases, while defensible, remains contestable
 (\citeproc{ref-aidukaite_welfare_2011}{Aidukaite, 2011};
-\citeproc{ref-ferrera_southern_1996}{Ferrera, 1996}).
+\citeproc{ref-ferrera_southern_1996}{Ferrera, 1996};
+\citeproc{ref-franzoni_welfare_2008}{Martínez Franzoni, 2008}).
 
 These limitations mark out an agenda. Panel data would allow the
 temporal ordering of technological perception and perceived
@@ -1539,7 +2001,7 @@ prospective technological risk, and the valence of a perception from the
 salience of technological change, would clarify the mechanisms behind
 the displacement anomaly; qualitative inquiry into how platform and
 own-account workers construct the reference points against which they
-believe that justice would do the same for the platform result.
+judge their exchange would do the same for the platform result.
 Comparative leverage would be improved by replacing categorical regimes
 with continuous indicators of decommodification and of active
 labour-market and social-investment provision, which would also permit a
@@ -1562,8 +2024,8 @@ digitalisation continues to remake the standard employment relationship
 around which social protection was built
 (\citeproc{ref-howcroft_digitalisation_2025}{Howcroft et al., 2025}),
 how perceived justice is distributed across the workforce, not only how
-much redistribution citizens wan, is likely to become a central question
-for the comparative study of welfare legitimacy.
+much redistribution citizens want, is likely to become a central
+question for the comparative study of welfare legitimacy.
 
 \section{References}\label{references}
 

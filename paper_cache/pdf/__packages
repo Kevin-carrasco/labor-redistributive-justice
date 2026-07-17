@@ -28,6 +28,8 @@ summarytools
 interactions
 cowplot
 ggpubr
-knitr
 ordinal
 emmeans
+huxtable
+flextable
+knitr
