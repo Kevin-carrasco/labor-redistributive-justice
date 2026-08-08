@@ -59,7 +59,8 @@ pacman::p_load(dplyr,       # Manipulacion de datos
                sjmisc,
                sjPlot,
                ggrepel,
-               ggpubr
+               ggpubr,
+               WDI
                )
 
 load(file=here::here("input/proc/data.RData"))
@@ -107,9 +108,11 @@ ggplot(country_data,
 
 ```
 
-```{r}
-data <- data %>% select(ctrcode,country, distributive, sex, age, educ, income, selfemploy, unnemployment, platform, tecnoestres, pos_tecnoestres, skills, deservingness, gdp_2024, welfare_regime)
 
+
+```{r}
+data <- data %>% select(ctrcode,country, distributive, sex, age, educ, income, selfemploy, unnemployment, platform, tecnoestres, pos_tecnoestres, skills, deservingness, welfare_regime, gini_z, gdp_pc_log_z, unemp_z, socx_z, weight)
+data_original <- data
 data <- na.omit(data)
 
 data$distributive  <- set_label(x = data$distributive, label = "Retributive justice")
@@ -134,7 +137,16 @@ reg1 <- lmer(distributive ~ sex + age + educ + income + selfemploy + platform + 
 reg2 <- lmer(distributive ~ sex + age + educ + income + selfemploy + platform + tecnoestres + pos_tecnoestres + skills + unnemployment + (1|ctrcode), data=data)
 reg3 <- lmer(distributive ~ sex + age + educ + income + selfemploy + platform + tecnoestres + pos_tecnoestres + skills + unnemployment + deservingness + (1|ctrcode), data=data)
 
-reg4 <- lmer(distributive ~ sex + age + educ + income + selfemploy + platform + tecnoestres + pos_tecnoestres + skills + unnemployment + deservingness + gdp_2024 + (1|ctrcode), data=data)
+reg4 <- ordinal::clmm(distributive ~ sex + age + educ + income + selfemploy + platform + tecnoestres + pos_tecnoestres + skills + unnemployment + deservingness + gdp_pc_log_z + (1|ctrcode), data=data)
+reg5 <- ordinal::clmm(distributive ~ sex + age + educ + income + selfemploy + platform + tecnoestres + pos_tecnoestres + skills + unnemployment + deservingness + gini_z + (1|ctrcode), data=data)
+reg6 <- ordinal::clmm(distributive ~ sex + age + educ + income + selfemploy + platform + tecnoestres + pos_tecnoestres + skills + unnemployment + deservingness + unemp_z + (1|ctrcode), data=data)
+reg7 <- ordinal::clmm(distributive ~ sex + age + educ + income + selfemploy + platform + tecnoestres + pos_tecnoestres + skills + unnemployment + deservingness + socx_z + (1|ctrcode), data=data)
+
+texreg::knitreg(list(reg4, reg5, reg6, reg7))
+
+
+
+
 reg5 <-lmer(distributive ~ sex + age + educ + income + selfemploy + platform + tecnoestres + pos_tecnoestres + skills + unnemployment + deservingness + gdp_2024 + welfare_regime+ (1|ctrcode), data=data)
 
 reg6 <- lmer(distributive ~ sex + age + educ + income + selfemploy + platform + tecnoestres*platform + pos_tecnoestres + skills + unnemployment + deservingness + gdp_2024 + welfare_regime + (1|ctrcode), data=data)

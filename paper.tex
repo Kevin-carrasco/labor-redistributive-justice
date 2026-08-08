@@ -67,6 +67,46 @@
 \fi
 \makeatother
 
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{241,243,245}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.40,0.45,0.13}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\BuiltInTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\ExtensionTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.28,0.35,0.67}{#1}}
+\newcommand{\ImportTok}[1]{\textcolor[rgb]{0.00,0.46,0.62}{#1}}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.07,0.07,0.07}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
 
 \usepackage{longtable,booktabs,array}
 \newcounter{none} % for unnumbered tables
@@ -741,7 +781,7 @@ solidarity sustained by universalist institutions
 regimes (mainly Anglo-Saxon countries and, for example, Chile as a case
 of a commodified welfare state in Latin America), protection is residual
 and targeted, is organised around market participation and is
-politically more contested Pérez-Ahuamda
+politically more contested Pérez-Ahumada
 (\citeproc{ref-perez_building_2023}{2023}). In conservative-corporatist
 regimes (continental Europe), rights are strongly tied to employment
 status, which preserves status differences and links protection to the
@@ -878,16 +918,16 @@ skilled--- and three benefit items ---that technology will make working
 hours more compatible with private life, make work less dangerous or
 physically demanding, and make it less boring, repetitive, stressful or
 mentally demanding. However, the exploratory factor analysis carried out
-on these seven items yields a three-factor structure: the three
-displacement items load on a first factor, the three benefit items on a
-second, and the skill obsolescence item separates from both, capturing
-an internal element of risk perception distinct from the two external
-ones. Two scales are therefore built ---Technological Displacement Risk
-(the average of the three displacement items) and Perceived
-Technological Benefit (the average of the three benefit items)--- and
-Perceived Skill Obsolescence is retained as a single item. In all cases,
-higher values indicate a greater perception of the corresponding risk or
-benefit.
+on these seven items yields a two-factor structure: three displacement
+items load on a first factor, three benefit items on a second, and the
+replacement by AI doesn't load well, capturing an internal element of
+risk perception distinct from the two external ones. Two scales are
+therefore built ---Technological Displacement Risk (the average of the
+three displacement items) and Perceived Technological Benefit (the
+average of the three benefit items)---. In all cases, higher values
+indicate a greater perception of the corresponding risk or benefit. The
+full exploratory factor analysis is reported in the appendix at
+Table~\ref{tbl-efa}.
 
 The third set of independent variables concerns the perceived
 deservingness of others, operationalised through the item that measures
@@ -918,7 +958,7 @@ following the characterisation of their welfare regimes as
 market-centred (\citeproc{ref-franzoni_welfare_2008}{Martínez Franzoni,
 2008}), while Israel, Korea and Türkiye are assigned to the conservative
 category. The full classification by country, with its sources, is
-reported in the appendix.
+reported in the appendix at Table~\ref{tbl-classification}.
 
 All the models include control variables associated with welfare
 attitudes and perceived redistributive justice: sex, age, educational
@@ -967,23 +1007,23 @@ Redistributive justice & \begin{minipage}[t]{\linewidth}\raggedright
 4. Agree\\
 5. Strongly agree\strut
 \end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
-3506 (18.3\%)\\
-4651 (24.3\%)\\
-5466 (28.5\%)\\
-4162 (21.7\%)\\
-1384 ( 7.2\%)\strut
+3513 (18.3\%)\\
+4662 (24.3\%)\\
+5477 (28.5\%)\\
+4167 (21.7\%)\\
+1385 ( 7.2\%)\strut
 \end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
-19169\\
+19204\\
 (100.0\%)\strut
 \end{minipage} \\
 Sex & \begin{minipage}[t]{\linewidth}\raggedright
 1. Man\\
 2. Woman\strut
 \end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
-10293 (53.7\%)\\
-8876 (46.3\%)\strut
+10307 (53.7\%)\\
+8897 (46.3\%)\strut
 \end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
-19169\\
+19204\\
 (100.0\%)\strut
 \end{minipage} \\
 Age group & \begin{minipage}[t]{\linewidth}\raggedright
@@ -993,13 +1033,13 @@ Age group & \begin{minipage}[t]{\linewidth}\raggedright
 4. 45-54\\
 5. 55-64\strut
 \end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
-2076 (10.8\%)\\
-4522 (23.6\%)\\
-4726 (24.7\%)\\
-4486 (23.4\%)\\
-3359 (17.5\%)\strut
+2081 (10.8\%)\\
+4531 (23.6\%)\\
+4733 (24.6\%)\\
+4495 (23.4\%)\\
+3364 (17.5\%)\strut
 \end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
-19169\\
+19204\\
 (100.0\%)\strut
 \end{minipage} \\
 Educational level & \begin{minipage}[t]{\linewidth}\raggedright
@@ -1007,11 +1047,11 @@ Educational level & \begin{minipage}[t]{\linewidth}\raggedright
 2. Medium\\
 3. High\strut
 \end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
-1494 ( 7.8\%)\\
-7913 (41.3\%)\\
-9762 (50.9\%)\strut
+1496 ( 7.8\%)\\
+7934 (41.3\%)\\
+9774 (50.9\%)\strut
 \end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
-19169\\
+19204\\
 (100.0\%)\strut
 \end{minipage} \\
 Equivalised disposable household income decile (2023) &
@@ -1021,38 +1061,38 @@ min \textless{} med \textless{} max:\\
 1 \textless{} 5 \textless{} 10\\
 IQR (CV) : 5 (0.6)\strut
 \end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
-1 : 3288 (17.2\%)\\
-2 : 1797 ( 9.4\%)\\
-3 : 1723 ( 9.0\%)\\
-4 : 2587 (13.5\%)\\
-5 : 2273 (11.9\%)\\
-6 : 1777 ( 9.3\%)\\
-7 : 1447 ( 7.5\%)\\
-8 : 1401 ( 7.3\%)\\
-9 : 1272 ( 6.6\%)\\
-10 : 1604 ( 8.4\%)\strut
+1 : 3293 (17.1\%)\\
+2 : 1799 ( 9.4\%)\\
+3 : 1727 ( 9.0\%)\\
+4 : 2592 (13.5\%)\\
+5 : 2275 (11.8\%)\\
+6 : 1779 ( 9.3\%)\\
+7 : 1452 ( 7.6\%)\\
+8 : 1404 ( 7.3\%)\\
+9 : 1276 ( 6.6\%)\\
+10 : 1607 ( 8.4\%)\strut
 \end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
-19169\\
+19204\\
 (100.0\%)\strut
 \end{minipage} \\
 Self-employment worker & \begin{minipage}[t]{\linewidth}\raggedright
 1. No\\
 2. Yes\strut
 \end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
-16459 (85.9\%)\\
-2710 (14.1\%)\strut
+16484 (85.8\%)\\
+2720 (14.2\%)\strut
 \end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
-19169\\
+19204\\
 (100.0\%)\strut
 \end{minipage} \\
 Platform worker & \begin{minipage}[t]{\linewidth}\raggedright
 1. No\\
 2. Yes\strut
 \end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
-17361 (90.6\%)\\
+17396 (90.6\%)\\
 1808 ( 9.4\%)\strut
 \end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
-19169\\
+19204\\
 (100.0\%)\strut
 \end{minipage} \\
 Lose job & \begin{minipage}[t]{\linewidth}\raggedright
@@ -1061,22 +1101,22 @@ Lose job & \begin{minipage}[t]{\linewidth}\raggedright
 3. Somewhat concerned\\
 4. Very concerned\strut
 \end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
-2867 (15.0\%)\\
-5351 (27.9\%)\\
-5920 (30.9\%)\\
-5031 (26.2\%)\strut
+2872 (15.0\%)\\
+5357 (27.9\%)\\
+5936 (30.9\%)\\
+5039 (26.2\%)\strut
 \end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
-19169\\
+19204\\
 (100.0\%)\strut
 \end{minipage} \\
 Technological displacement & \begin{minipage}[t]{\linewidth}\raggedright
 Mean (sd) : 2.1 (0.9)\\
 min \textless{} med \textless{} max:\\
 1 \textless{} 2 \textless{} 4\\
-IQR (CV) : 1.7 (0.4)\strut
+IQR (CV) : 1.3 (0.4)\strut
 \end{minipage} & 13 distinct values &
 \begin{minipage}[t]{\linewidth}\raggedright
-19169\\
+19204\\
 (100.0\%)\strut
 \end{minipage} \\
 Perceived technological benefit &
@@ -1087,7 +1127,7 @@ min \textless{} med \textless{} max:\\
 IQR (CV) : 1 (0.3)\strut
 \end{minipage} & 13 distinct values &
 \begin{minipage}[t]{\linewidth}\raggedright
-19169\\
+19204\\
 (100.0\%)\strut
 \end{minipage} \\
 Lose job due skills & \begin{minipage}[t]{\linewidth}\raggedright
@@ -1096,12 +1136,12 @@ Lose job due skills & \begin{minipage}[t]{\linewidth}\raggedright
 3. Likely\\
 4. Very likely\strut
 \end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
-6218 (32.4\%)\\
-6595 (34.4\%)\\
-4546 (23.7\%)\\
-1810 ( 9.4\%)\strut
+6222 (32.4\%)\\
+6611 (34.4\%)\\
+4555 (23.7\%)\\
+1816 ( 9.5\%)\strut
 \end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
-19169\\
+19204\\
 (100.0\%)\strut
 \end{minipage} \\
 Deservingness of others & \begin{minipage}[t]{\linewidth}\raggedright
@@ -1111,13 +1151,13 @@ Deservingness of others & \begin{minipage}[t]{\linewidth}\raggedright
 4. Agree\\
 5. Strongly agree\strut
 \end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
-611 ( 3.2\%)\\
-1683 ( 8.8\%)\\
-4299 (22.4\%)\\
-6504 (33.9\%)\\
-6072 (31.7\%)\strut
+612 ( 3.2\%)\\
+1685 ( 8.8\%)\\
+4308 (22.4\%)\\
+6516 (33.9\%)\\
+6083 (31.7\%)\strut
 \end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
-19169\\
+19204\\
 (100.0\%)\strut
 \end{minipage} \\
 Welfare regime & \begin{minipage}[t]{\linewidth}\raggedright
@@ -1125,11 +1165,11 @@ Welfare regime & \begin{minipage}[t]{\linewidth}\raggedright
 2. Social-democratic\\
 3. Conservative\strut
 \end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
-6397 (33.4\%)\\
-2888 (15.1\%)\\
-9884 (51.6\%)\strut
+6413 (33.4\%)\\
+2894 (15.1\%)\\
+9897 (51.5\%)\strut
 \end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
-19169\\
+19204\\
 (100.0\%)\strut
 \end{minipage} \\
 \end{longtable}
@@ -1212,166 +1252,202 @@ models}\label{multilevel-ordinal-logistic-regression-models}
 
 \providecommand{\ascline}[3]{\noalign{\global\arrayrulewidth #1}\arrayrulecolor[HTML]{#2}\cline{#3}}
 
-\begin{longtable}[c]{|p{1.81in}|p{0.71in}|p{0.71in}|p{0.71in}|p{0.71in}|p{0.71in}|p{0.71in}}
+\begin{longtable}[c]{|p{1.81in}|p{0.71in}|p{0.71in}|p{0.71in}|p{0.71in}|p{0.71in}|p{0.71in}|p{0.75in}|p{0.75in}}
 
 \caption{\label{tbl-modelos}Multilevel models for perceived
 redistributive justice}
 
 \tabularnewline
 
-\ascline{1.5pt}{666666}{1-7}
+\ascline{1.5pt}{666666}{1-9}
 
-\multicolumn{1}{>{\raggedright}m{\dimexpr 1.81in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{\textbf{}}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{\textbf{Model\ 1}}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{\textbf{Model\ 2}}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{\textbf{Model\ 3}}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{\textbf{Model\ 4}}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{\textbf{Model\ 5}}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{\textbf{Model\ 6}}}} \\
+\multicolumn{1}{>{\raggedright}m{\dimexpr 1.81in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{\textbf{}}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{\textbf{Model\ 1}}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{\textbf{Model\ 2}}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{\textbf{Model\ 3}}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{\textbf{Model\ 4}}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{\textbf{Model\ 5}}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{\textbf{Model\ 6}}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{\textbf{Model\ 7}}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{\textbf{Model\ 8}}}} \\
 
-\ascline{1.5pt}{666666}{1-7}\endfirsthead 
+\ascline{1.5pt}{666666}{1-9}\endfirsthead 
 
-\ascline{1.5pt}{666666}{1-7}
+\ascline{1.5pt}{666666}{1-9}
 
-\multicolumn{1}{>{\raggedright}m{\dimexpr 1.81in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{\textbf{}}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{\textbf{Model\ 1}}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{\textbf{Model\ 2}}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{\textbf{Model\ 3}}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{\textbf{Model\ 4}}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{\textbf{Model\ 5}}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{\textbf{Model\ 6}}}} \\
+\multicolumn{1}{>{\raggedright}m{\dimexpr 1.81in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{\textbf{}}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{\textbf{Model\ 1}}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{\textbf{Model\ 2}}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{\textbf{Model\ 3}}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{\textbf{Model\ 4}}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{\textbf{Model\ 5}}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{\textbf{Model\ 6}}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{\textbf{Model\ 7}}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{\textbf{Model\ 8}}}} \\
 
-\ascline{1.5pt}{666666}{1-7}\endhead
+\ascline{1.5pt}{666666}{1-9}\endhead
 
 
 
-\multicolumn{1}{>{\raggedright}m{\dimexpr 1.81in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{Self-employed\ worker\ (ref.\ No)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{-0.059}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{-0.057}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{-0.057}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{-0.068}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{-0.068}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{-0.069}}} \\
+\multicolumn{1}{>{\raggedright}m{\dimexpr 1.81in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{Self-employed\ worker\ (ref.\ No)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{-0.059}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{-0.056}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{-0.055}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{-0.066}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{-0.067}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{-0.064}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{-0.064}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{-0.063}}} \\
 
 
 
 
 
-\multicolumn{1}{>{\raggedright}m{\dimexpr 1.81in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.039)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.039)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.039)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.039)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.039)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.039)}}} \\
+\multicolumn{1}{>{\raggedright}m{\dimexpr 1.81in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.038)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.038)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.039)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.039)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.039)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.039)}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.039)}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.039)}}} \\
 
 
 
 
 
-\multicolumn{1}{>{\raggedright}m{\dimexpr 1.81in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{Platform\ worker\ (ref.\ No)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{1.174\ ***}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{1.189\ ***}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{0.828\ ***}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{0.844\ ***}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{0.843\ ***}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{0.780\ ***}}} \\
+\multicolumn{1}{>{\raggedright}m{\dimexpr 1.81in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{Platform\ worker\ (ref.\ No)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{1.177\ ***}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{1.193\ ***}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{0.838\ ***}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{0.854\ ***}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{0.788\ ***}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{0.788\ ***}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{0.788\ ***}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{0.787\ ***}}} \\
 
 
 
 
 
-\multicolumn{1}{>{\raggedright}m{\dimexpr 1.81in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.050)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.050)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.051)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.051)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.051)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.051)}}} \\
+\multicolumn{1}{>{\raggedright}m{\dimexpr 1.81in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.049)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.049)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.050)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.050)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.051)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.051)}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.051)}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.051)}}} \\
 
 
 
 
 
-\multicolumn{1}{>{\raggedright}m{\dimexpr 1.81in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{Concern\ about\ job\ and\ income\ loss}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{-0.054\ ***}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{-0.180\ ***}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{-0.175\ ***}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{-0.176\ ***}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{-0.166\ ***}}} \\
+\multicolumn{1}{>{\raggedright}m{\dimexpr 1.81in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{Concern\ about\ job\ and\ income\ loss}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{-0.058\ ***}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{-0.180\ ***}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{-0.175\ ***}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{-0.164\ ***}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{-0.163\ ***}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{-0.163\ ***}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{-0.163\ ***}}} \\
 
 
 
 
 
-\multicolumn{1}{>{\raggedright}m{\dimexpr 1.81in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.014)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.015)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.015)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.015)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.015)}}} \\
+\multicolumn{1}{>{\raggedright}m{\dimexpr 1.81in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.014)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.015)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.015)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.015)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.015)}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.015)}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.015)}}} \\
 
 
 
 
 
-\multicolumn{1}{>{\raggedright}m{\dimexpr 1.81in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{Technological\ displacement}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{0.265\ ***}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{0.261\ ***}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{0.261\ ***}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{0.237\ ***}}} \\
+\multicolumn{1}{>{\raggedright}m{\dimexpr 1.81in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{Technological\ displacement}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{0.372\ ***}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{0.366\ ***}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{0.347\ ***}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{0.348\ ***}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{0.348\ ***}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{0.348\ ***}}} \\
 
 
 
 
 
-\multicolumn{1}{>{\raggedright}m{\dimexpr 1.81in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.023)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.023)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.023)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.024)}}} \\
+\multicolumn{1}{>{\raggedright}m{\dimexpr 1.81in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.020)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.020)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.020)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.020)}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.020)}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.020)}}} \\
 
 
 
 
 
-\multicolumn{1}{>{\raggedright}m{\dimexpr 1.81in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{Skill\ obsolescence\ risk}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{0.126\ ***}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{0.123\ ***}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{0.123\ ***}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{0.126\ ***}}} \\
+\multicolumn{1}{>{\raggedright}m{\dimexpr 1.81in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{Perceived\ technological\ benefit}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{0.463\ ***}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{0.465\ ***}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{0.438\ ***}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{0.438\ ***}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{0.438\ ***}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{0.439\ ***}}} \\
 
 
 
 
 
-\multicolumn{1}{>{\raggedright}m{\dimexpr 1.81in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.020)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.020)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.020)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.020)}}} \\
+\multicolumn{1}{>{\raggedright}m{\dimexpr 1.81in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.021)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.021)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.021)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.021)}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.021)}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.021)}}} \\
 
 
 
 
 
-\multicolumn{1}{>{\raggedright}m{\dimexpr 1.81in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{Perceived\ technological\ benefit}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{0.453\ ***}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{0.456\ ***}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{0.456\ ***}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{0.431\ ***}}} \\
+\multicolumn{1}{>{\raggedright}m{\dimexpr 1.81in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{Deservingness\ of\ others}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{-0.183\ ***}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{-0.179\ ***}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{-0.179\ ***}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{-0.179\ ***}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{-0.178\ ***}}} \\
 
 
 
 
 
-\multicolumn{1}{>{\raggedright}m{\dimexpr 1.81in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.021)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.021)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.021)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.022)}}} \\
+\multicolumn{1}{>{\raggedright}m{\dimexpr 1.81in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.014)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.014)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.014)}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.014)}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.014)}}} \\
 
 
 
 
 
-\multicolumn{1}{>{\raggedright}m{\dimexpr 1.81in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{Deservingness\ of\ others}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{-0.181\ ***}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{-0.181\ ***}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{-0.177\ ***}}} \\
+\multicolumn{1}{>{\raggedright}m{\dimexpr 1.81in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{Gini\ coefficient\ (standardized)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{-0.135}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{-0.095}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{-0.086}}} \\
 
 
 
 
 
-\multicolumn{1}{>{\raggedright}m{\dimexpr 1.81in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.014)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.014)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.014)}}} \\
+\multicolumn{1}{>{\raggedright}m{\dimexpr 1.81in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.087)}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.101)}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.097)}}} \\
 
 
 
 
 
-\multicolumn{1}{>{\raggedright}m{\dimexpr 1.81in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{\textit{Welfare\ regime\ (Ref.=\ Liberal)}}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} \\
+\multicolumn{1}{>{\raggedright}m{\dimexpr 1.81in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{GDP\ per-capita\ (standardized)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{0.217\ *}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{0.206\ *}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{0.191\ *}}} \\
 
 
 
 
 
-\multicolumn{1}{>{\raggedright}m{\dimexpr 1.81in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{Social-democratic}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{0.408}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{0.395}}} \\
+\multicolumn{1}{>{\raggedright}m{\dimexpr 1.81in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.087)}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.090)}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.084)}}} \\
 
 
 
 
 
-\multicolumn{1}{>{\raggedright}m{\dimexpr 1.81in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.267)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.267)}}} \\
+\multicolumn{1}{>{\raggedright}m{\dimexpr 1.81in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{Unemployment\ rate\ (standardized)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{-0.032}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{-0.047}}} \\
 
 
 
 
 
-\multicolumn{1}{>{\raggedright}m{\dimexpr 1.81in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{Conservative}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{-0.138}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{-0.126}}} \\
+\multicolumn{1}{>{\raggedright}m{\dimexpr 1.81in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.081)}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.075)}}} \\
 
 
 
 
 
-\multicolumn{1}{>{\raggedright}m{\dimexpr 1.81in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.190)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.190)}}} \\
+\multicolumn{1}{>{\raggedright}m{\dimexpr 1.81in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{Social\ expenditure\ (standardized)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{0.071}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{0.150}}} \\
 
 
 
 
 
-\multicolumn{1}{>{\raggedright}m{\dimexpr 1.81in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{BIC}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{50264.921}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{50260.479}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{48843.271}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{48682.213}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{48697.344}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{48616.180}}} \\
+\multicolumn{1}{>{\raggedright}m{\dimexpr 1.81in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.093)}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.093)}}} \\
 
 
 
 
 
-\multicolumn{1}{>{\raggedright}m{\dimexpr 1.81in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{Numb.\ obs.}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{16872}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{16872}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{16872}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{16872}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{16872}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{16872}}} \\
+\multicolumn{1}{>{\raggedright}m{\dimexpr 1.81in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{\textit{Welfare\ regime\ (Ref.=\ Liberal)}}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} \\
 
 
 
 
 
-\multicolumn{1}{>{\raggedright}m{\dimexpr 1.81in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{Groups\ (Country)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{27}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{27}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{27}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{27}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{27}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{27}}} \\
+\multicolumn{1}{>{\raggedright}m{\dimexpr 1.81in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{Social-democratic}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{-0.154}}} \\
 
 
 
 
 
-\multicolumn{1}{>{\raggedright}m{\dimexpr 1.81in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{Variance:\ Country:\ (Intercept)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{0.235}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{0.227}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{0.244}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{0.227}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{0.192}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{0.193}}} \\
+\multicolumn{1}{>{\raggedright}m{\dimexpr 1.81in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.246)}}} \\
 
-\ascline{1.5pt}{666666}{1-7}
 
 
 
-\multicolumn{7}{>{\raggedright}m{\dimexpr 6.06in+12\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{7}{7}\selectfont{Note:\ Cells\ contain\ regression\ coefficients\ with\ standard\ errors\ in\ parentheses.\ *\ p\ <\ 0.05;\ **\ p\ <\ 0.01;\ ***\ p\ <\ 0.001.\ Model\ 6\ controls\ for\ sex,\ age,\ education\ and\ income;\ sex,\ age\ and\ income\ show\ significant\ effects,\ education\ does\ not.}}} \\
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 1.81in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{Conservative}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{-0.350\ *}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 1.81in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.165)}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 1.81in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{BIC}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{51477.596}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{51470.595}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{50025.832}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{49857.231}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{49766.775}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{49772.518}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{49791.434}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{49806.534}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 1.81in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{Numb.\ obs.}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{17296}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{17296}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{17296}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{17296}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{17296}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{17296}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{17296}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{17296}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 1.81in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{Groups\ (Country)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{27}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{27}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{27}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{27}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{27}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{27}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{27}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{27}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 1.81in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{Variance:\ Country:\ (Intercept)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{0.238}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{0.229}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{0.246}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{0.229}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{0.227}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.71in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{0.135}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{0.132}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 0.75in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{0.111}}} \\
+
+\ascline{1.5pt}{666666}{1-9}
+
+
+
+\multicolumn{9}{>{\raggedright}m{\dimexpr 7.56in+16\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{7}{7}\selectfont{Note:\ Cells\ contain\ regression\ coefficients\ with\ standard\ errors\ in\ parentheses.\ *\ p\ <\ 0.05;\ **\ p\ <\ 0.01;\ ***\ p\ <\ 0.001.\ Model\ 5\ to\ 8\ controls\ for\ sex,\ age,\ education\ and\ income;\ sex,\ age\ and\ income\ show\ significant\ effects,\ education\ does\ not.}}} \\
 
 
 
@@ -1448,43 +1524,43 @@ redistributive justice}
 
 \ascline{1.5pt}{666666}{1-7}
 
-\multicolumn{1}{>{\raggedright}m{\dimexpr 2.05in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{\textbf{}}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{\textbf{Model\ 7}}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{\textbf{Model\ 8}}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{\textbf{Model\ 9}}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{\textbf{Model\ 10}}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{\textbf{Model\ 11}}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{\textbf{Model\ 12}}}} \\
+\multicolumn{1}{>{\raggedright}m{\dimexpr 2.05in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{\textbf{}}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{\textbf{Model\ 9}}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{\textbf{Model\ 10}}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{\textbf{Model\ 11}}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{\textbf{Model\ 12}}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{\textbf{Model\ 13}}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{\textbf{Model\ 14}}}} \\
 
 \ascline{1.5pt}{666666}{1-7}\endfirsthead 
 
 \ascline{1.5pt}{666666}{1-7}
 
-\multicolumn{1}{>{\raggedright}m{\dimexpr 2.05in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{\textbf{}}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{\textbf{Model\ 7}}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{\textbf{Model\ 8}}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{\textbf{Model\ 9}}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{\textbf{Model\ 10}}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{\textbf{Model\ 11}}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{\textbf{Model\ 12}}}} \\
+\multicolumn{1}{>{\raggedright}m{\dimexpr 2.05in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{\textbf{}}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{\textbf{Model\ 9}}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{\textbf{Model\ 10}}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{\textbf{Model\ 11}}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{\textbf{Model\ 12}}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{\textbf{Model\ 13}}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{\textbf{Model\ 14}}}} \\
 
 \ascline{1.5pt}{666666}{1-7}\endhead
 
 
 
-\multicolumn{1}{>{\raggedright}m{\dimexpr 2.05in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{Self-employed\ worker\ (ref.\ No)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{-0.018}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{0.009}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{-0.071}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{-0.068}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{-0.071}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{-0.071}}} \\
+\multicolumn{1}{>{\raggedright}m{\dimexpr 2.05in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{Self-employed\ worker\ (ref.\ No)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{-0.018}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{0.013}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{-0.065}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{-0.062}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{-0.064}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{-0.065}}} \\
 
 
 
 
 
-\multicolumn{1}{>{\raggedright}m{\dimexpr 2.05in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.042)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.069)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.039)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.039)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.039)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.039)}}} \\
+\multicolumn{1}{>{\raggedright}m{\dimexpr 2.05in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.041)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.068)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.039)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.039)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.039)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.039)}}} \\
 
 
 
 
 
-\multicolumn{1}{>{\raggedright}m{\dimexpr 2.05in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{Platform\ worker\ (ref.\ No)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{0.877\ ***}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{0.781\ ***}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{0.953\ ***}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{0.775\ ***}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{0.777\ ***}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{0.779\ ***}}} \\
+\multicolumn{1}{>{\raggedright}m{\dimexpr 2.05in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{Platform\ worker\ (ref.\ No)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{0.873\ ***}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{0.788\ ***}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{0.957\ ***}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{0.783\ ***}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{0.786\ ***}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{0.786\ ***}}} \\
 
 
 
 
 
-\multicolumn{1}{>{\raggedright}m{\dimexpr 2.05in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.058)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.051)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.079)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.051)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.051)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.051)}}} \\
+\multicolumn{1}{>{\raggedright}m{\dimexpr 2.05in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.057)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.051)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.078)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.051)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.051)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.051)}}} \\
 
 
 
 
 
-\multicolumn{1}{>{\raggedright}m{\dimexpr 2.05in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{Concern\ about\ job\ and\ income\ loss}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{-0.167\ ***}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{-0.166\ ***}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{-0.165\ ***}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{-0.098\ ***}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{-0.165\ ***}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{-0.165\ ***}}} \\
+\multicolumn{1}{>{\raggedright}m{\dimexpr 2.05in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{Concern\ about\ job\ and\ income\ loss}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{-0.164\ ***}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{-0.163\ ***}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{-0.163\ ***}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{-0.096\ ***}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{-0.162\ ***}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{-0.163\ ***}}} \\
 
 
 
@@ -1496,115 +1572,115 @@ redistributive justice}
 
 
 
-\multicolumn{1}{>{\raggedright}m{\dimexpr 2.05in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{Technological\ displacement}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{0.237\ ***}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{0.238\ ***}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{0.236\ ***}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{0.238\ ***}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{0.338\ ***}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{0.236\ ***}}} \\
+\multicolumn{1}{>{\raggedright}m{\dimexpr 2.05in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{Technological\ displacement}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{0.349\ ***}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{0.350\ ***}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{0.349\ ***}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{0.349\ ***}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{0.455\ ***}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{0.346\ ***}}} \\
 
 
 
 
 
-\multicolumn{1}{>{\raggedright}m{\dimexpr 2.05in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.024)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.024)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.024)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.024)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.032)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.024)}}} \\
+\multicolumn{1}{>{\raggedright}m{\dimexpr 2.05in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.020)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.020)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.020)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.020)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.030)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.020)}}} \\
 
 
 
 
 
-\multicolumn{1}{>{\raggedright}m{\dimexpr 2.05in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{Deservingness\ of\ others}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{-0.176\ ***}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{-0.177\ ***}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{-0.177\ ***}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{-0.177\ ***}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{-0.178\ ***}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{-0.122\ ***}}} \\
+\multicolumn{1}{>{\raggedright}m{\dimexpr 2.05in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{Deservingness\ of\ others}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{-0.178\ ***}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{-0.179\ ***}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{-0.179\ ***}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{-0.178\ ***}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{-0.180\ ***}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{-0.129\ ***}}} \\
 
 
 
 
 
-\multicolumn{1}{>{\raggedright}m{\dimexpr 2.05in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.014)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.014)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.014)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.014)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.014)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.024)}}} \\
+\multicolumn{1}{>{\raggedright}m{\dimexpr 2.05in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.014)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.014)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.014)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.014)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.014)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.023)}}} \\
 
 
 
 
 
-\multicolumn{1}{>{\raggedright}m{\dimexpr 2.05in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{Social-democratic}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{0.394}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{0.447}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{0.461}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{0.533}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{0.843\ **}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{0.638\ *}}} \\
+\multicolumn{1}{>{\raggedright}m{\dimexpr 2.05in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{Social-democratic}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{-0.157}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{-0.108}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{-0.092}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{0.012}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{0.381}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{0.057}}} \\
 
 
 
 
 
-\multicolumn{1}{>{\raggedright}m{\dimexpr 2.05in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.267)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.270)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.268)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.290)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.286)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.309)}}} \\
+\multicolumn{1}{>{\raggedright}m{\dimexpr 2.05in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.246)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.247)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.245)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.268)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.266)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.287)}}} \\
 
 
 
 
 
-\multicolumn{1}{>{\raggedright}m{\dimexpr 2.05in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{Conservative}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{-0.128}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{-0.117}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{-0.110}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{0.201}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{0.171}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{0.217}}} \\
+\multicolumn{1}{>{\raggedright}m{\dimexpr 2.05in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{Conservative}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{-0.353\ *}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{-0.345\ *}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{-0.334\ *}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{-0.034}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{-0.054}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{-0.044}}} \\
 
 
 
 
 
-\multicolumn{1}{>{\raggedright}m{\dimexpr 2.05in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.190)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.192)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.191)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.209)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.206)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.223)}}} \\
+\multicolumn{1}{>{\raggedright}m{\dimexpr 2.05in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.165)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.166)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.165)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.186)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.184)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.200)}}} \\
 
 
 
 
 
-\multicolumn{1}{>{\raggedright}m{\dimexpr 2.05in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{Self-employed\ X\ Platform\ worker}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{-0.413\ ***}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} \\
+\multicolumn{1}{>{\raggedright}m{\dimexpr 2.05in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{Self-employed\ X\ Platform\ worker}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{-0.368\ **}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} \\
 
 
 
 
 
-\multicolumn{1}{>{\raggedright}m{\dimexpr 2.05in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.116)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} \\
+\multicolumn{1}{>{\raggedright}m{\dimexpr 2.05in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.115)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} \\
 
 
 
 
 
-\multicolumn{1}{>{\raggedright}m{\dimexpr 2.05in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{Self-employed\ X\ Social-democratic}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{-0.400\ **}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} \\
+\multicolumn{1}{>{\raggedright}m{\dimexpr 2.05in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{Self-employed\ X\ Social-democratic}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{-0.418\ ***}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} \\
 
 
 
 
 
-\multicolumn{1}{>{\raggedright}m{\dimexpr 2.05in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.128)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} \\
+\multicolumn{1}{>{\raggedright}m{\dimexpr 2.05in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.126)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} \\
 
 
 
 
 
-\multicolumn{1}{>{\raggedright}m{\dimexpr 2.05in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{Self-employed\ X\ Conservative}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{-0.047}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} \\
+\multicolumn{1}{>{\raggedright}m{\dimexpr 2.05in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{Self-employed\ X\ Conservative}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{-0.039}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} \\
 
 
 
 
 
-\multicolumn{1}{>{\raggedright}m{\dimexpr 2.05in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.087)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} \\
+\multicolumn{1}{>{\raggedright}m{\dimexpr 2.05in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.086)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} \\
 
 
 
 
 
-\multicolumn{1}{>{\raggedright}m{\dimexpr 2.05in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{Platform\ worker\ X\ Social-democratic}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{-0.607\ ***}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} \\
+\multicolumn{1}{>{\raggedright}m{\dimexpr 2.05in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{Platform\ worker\ X\ Social-democratic}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{-0.596\ ***}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} \\
 
 
 
 
 
-\multicolumn{1}{>{\raggedright}m{\dimexpr 2.05in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.135)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} \\
+\multicolumn{1}{>{\raggedright}m{\dimexpr 2.05in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.134)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} \\
 
 
 
 
 
-\multicolumn{1}{>{\raggedright}m{\dimexpr 2.05in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{Platform\ worker\ X\ Conservative}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{-0.137}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} \\
+\multicolumn{1}{>{\raggedright}m{\dimexpr 2.05in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{Platform\ worker\ X\ Conservative}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{-0.136}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} \\
 
 
 
 
 
-\multicolumn{1}{>{\raggedright}m{\dimexpr 2.05in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.109)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} \\
+\multicolumn{1}{>{\raggedright}m{\dimexpr 2.05in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.108)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} \\
 
 
 
 
 
-\multicolumn{1}{>{\raggedright}m{\dimexpr 2.05in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{Job\ and\ income\ loss\ X\ Social-democratic}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{-0.047}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} \\
+\multicolumn{1}{>{\raggedright}m{\dimexpr 2.05in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{Job\ and\ income\ loss\ X\ Social-democratic}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{-0.060}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} \\
 
 
 
@@ -1616,7 +1692,7 @@ redistributive justice}
 
 
 
-\multicolumn{1}{>{\raggedright}m{\dimexpr 2.05in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{Job\ and\ income\ loss\ X\ Conservative}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{-0.120\ ***}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} \\
+\multicolumn{1}{>{\raggedright}m{\dimexpr 2.05in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{Job\ and\ income\ loss\ X\ Conservative}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{-0.115\ ***}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} \\
 
 
 
@@ -1628,31 +1704,31 @@ redistributive justice}
 
 
 
-\multicolumn{1}{>{\raggedright}m{\dimexpr 2.05in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{Technological\ displacement\ X\ Social-democratic}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{-0.214\ ***}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} \\
+\multicolumn{1}{>{\raggedright}m{\dimexpr 2.05in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{Technological\ displacement\ X\ Social-democratic}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{-0.258\ ***}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} \\
 
 
 
 
 
-\multicolumn{1}{>{\raggedright}m{\dimexpr 2.05in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.049)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} \\
+\multicolumn{1}{>{\raggedright}m{\dimexpr 2.05in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.050)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} \\
 
 
 
 
 
-\multicolumn{1}{>{\raggedright}m{\dimexpr 2.05in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{Technological\ displacement\ X\ Conservative}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{-0.138\ ***}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} \\
+\multicolumn{1}{>{\raggedright}m{\dimexpr 2.05in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{Technological\ displacement\ X\ Conservative}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{-0.136\ ***}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} \\
 
 
 
 
 
-\multicolumn{1}{>{\raggedright}m{\dimexpr 2.05in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.037)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} \\
+\multicolumn{1}{>{\raggedright}m{\dimexpr 2.05in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.038)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} \\
 
 
 
 
 
-\multicolumn{1}{>{\raggedright}m{\dimexpr 2.05in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{Deservingness\ X\ Social-democratic}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{-0.065}}} \\
+\multicolumn{1}{>{\raggedright}m{\dimexpr 2.05in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{Deservingness\ X\ Social-democratic}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{-0.058}}} \\
 
 
 
@@ -1664,25 +1740,25 @@ redistributive justice}
 
 
 
-\multicolumn{1}{>{\raggedright}m{\dimexpr 2.05in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{Deservingness\ X\ Conservative}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{-0.090\ **}}} \\
+\multicolumn{1}{>{\raggedright}m{\dimexpr 2.05in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{Deservingness\ X\ Conservative}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{-0.081\ **}}} \\
 
 
 
 
 
-\multicolumn{1}{>{\raggedright}m{\dimexpr 2.05in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.031)}}} \\
+\multicolumn{1}{>{\raggedright}m{\dimexpr 2.05in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{(0.030)}}} \\
 
 
 
 
 
-\multicolumn{1}{>{\raggedright}m{\dimexpr 2.05in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{BIC}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{48613.219}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{48625.127}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{48615.167}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{48621.208}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{48612.196}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{48626.846}}} \\
+\multicolumn{1}{>{\raggedright}m{\dimexpr 2.05in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{BIC}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{49806.029}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{49813.878}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{49805.971}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{49812.848}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{49797.261}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{49818.774}}} \\
 
 
 
 
 
-\multicolumn{1}{>{\raggedright}m{\dimexpr 2.05in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{Numb.\ obs.}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{16872}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{16872}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{16872}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{16872}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{16872}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{16872}}} \\
+\multicolumn{1}{>{\raggedright}m{\dimexpr 2.05in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{Numb.\ obs.}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{17296}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{17296}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{17296}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{17296}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{17296}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{17296}}} \\
 
 
 
@@ -1694,7 +1770,7 @@ redistributive justice}
 
 
 
-\multicolumn{1}{>{\raggedright}m{\dimexpr 2.05in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{Variance:\ Country:\ (Intercept)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{0.193}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{0.196}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{0.193}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{0.193}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{0.192}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{0.194}}} \\
+\multicolumn{1}{>{\raggedright}m{\dimexpr 2.05in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{Variance:\ Country:\ (Intercept)}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{0.110}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{0.111}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{0.110}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{0.109}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{0.110}}} & \multicolumn{1}{>{\centering}m{\dimexpr 0.69in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{0.111}}} \\
 
 \ascline{1.5pt}{666666}{1-7}
 
@@ -2355,7 +2431,7 @@ States} in {Comparative Perspective}}. \emph{American Sociological
 Review} 71(3): 450--473.
 
 \bibitem[\citeproctext]{ref-perez_building_2023}
-Pérez-Ahuamda P (2023) \emph{Building Power to Shape Labor Policy:
+Pérez-Ahumada P (2023) \emph{Building Power to Shape Labor Policy:
 Unions, Employer Associations, and Reform in Neoliberal {Chile}}. Pitt
 {Latin American} series. Pittsburgh (Pa.): University of Pittsburgh
 Press.
@@ -2488,6 +2564,283 @@ Wood AJ, Graham M, Lehdonvirta V, et al. (2019)
 \emph{Work, Employment and Society} 33(1): 56--75.
 
 \end{CSLReferences}
+
+\section{Appendix}\label{appendix}
+
+
+
+\subsection{Dimensions of Perceived technological
+change}\label{dimensions-of-perceived-technological-change}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{load}\NormalTok{(}\AttributeTok{file=}\NormalTok{here}\SpecialCharTok{::}\FunctionTok{here}\NormalTok{(}\StringTok{"input/proc/digitalization.RData"}\NormalTok{))}
+
+\NormalTok{digitalization }\OtherTok{\textless{}{-}}\NormalTok{ digitalization }\SpecialCharTok{\%\textgreater{}\%}
+\NormalTok{  dplyr}\SpecialCharTok{::}\FunctionTok{select}\NormalTok{(}\SpecialCharTok{{-}}\NormalTok{tecnoestres\_2, }\SpecialCharTok{{-}}\NormalTok{tecnoestres\_4)}
+
+
+\NormalTok{sjPlot}\SpecialCharTok{::}\FunctionTok{tab\_fa}\NormalTok{(digitalization)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+Parallel analysis suggests that the number of factors =  3  and the number of components =  NA 
+\end{verbatim}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}@{}}
+
+\caption{\label{tbl-efa}Exploratory factor analysis of Perceived
+technological change items}
+
+\tabularnewline
+
+\caption{Factor Analysis}\tabularnewline
+\toprule\noalign{}
+\endfirsthead
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+~ & Factor 1 & Factor 2 & Factor 3 \\
+Replaced by robot & 0.76 & -0.03 & 0.10 \\
+Replaced by AI & 0.30 & 0.02 & 0.76 \\
+\begin{minipage}[t]{\linewidth}\raggedright
+Job replaced by person on internet\\
+platform\strut
+\end{minipage} & 0.77 & 0.04 & 0.00 \\
+Lose job due to skills & 0.78 & -0.01 & -0.04 \\
+Tech will improve work-life balance & -0.08 & 0.77 & 0.04 \\
+Tech will make work safer & 0.18 & 0.61 & -0.04 \\
+\begin{minipage}[t]{\linewidth}\raggedright
+Tech will make work less\\
+boring/stressful/demandin\strut
+\end{minipage} & -0.03 & 0.78 & -0.00 \\
+Cronbach\textquotesingle s α & 0.83 & 0.78 & \\
+
+\end{longtable}
+
+\subsection{Country clasification and N
+samples}\label{country-clasification-and-n-samples}
+
+\global\setlength{\Oldarrayrulewidth}{\arrayrulewidth}
+
+\global\setlength{\Oldtabcolsep}{\tabcolsep}
+
+\setlength{\tabcolsep}{2pt}
+
+\renewcommand*{\arraystretch}{1.5}
+
+
+
+\providecommand{\ascline}[3]{\noalign{\global\arrayrulewidth #1}\arrayrulecolor[HTML]{#2}\cline{#3}}
+
+\begin{longtable}[c]{cccc}
+
+\caption{\label{tbl-classification}Welfare regime classification and
+sample sizes by country}
+
+\tabularnewline
+
+\ascline{1.5pt}{666666}{1-4}
+
+\multicolumn{1}{>{}l}{\textcolor[HTML]{000000}{\fontsize{9}{9}\selectfont{Welfare\ regime}}} & \multicolumn{1}{>{}l}{\textcolor[HTML]{000000}{\fontsize{9}{9}\selectfont{Country}}} & \multicolumn{1}{>{}r}{\textcolor[HTML]{000000}{\fontsize{9}{9}\selectfont{Original\ N}}} & \multicolumn{1}{>{}r}{\textcolor[HTML]{000000}{\fontsize{9}{9}\selectfont{Final\ N}}} \\
+
+\ascline{1.5pt}{666666}{1-4}\endfirsthead 
+
+\ascline{1.5pt}{666666}{1-4}
+
+\multicolumn{1}{>{}l}{\textcolor[HTML]{000000}{\fontsize{9}{9}\selectfont{Welfare\ regime}}} & \multicolumn{1}{>{}l}{\textcolor[HTML]{000000}{\fontsize{9}{9}\selectfont{Country}}} & \multicolumn{1}{>{}r}{\textcolor[HTML]{000000}{\fontsize{9}{9}\selectfont{Original\ N}}} & \multicolumn{1}{>{}r}{\textcolor[HTML]{000000}{\fontsize{9}{9}\selectfont{Final\ N}}} \\
+
+\ascline{1.5pt}{666666}{1-4}\endhead
+
+
+
+\multicolumn{1}{>{}l}{} & \multicolumn{1}{>{}l}{\textcolor[HTML]{000000}{\fontsize{9}{9}\selectfont{Canada}}} & \multicolumn{1}{>{}r}{\textcolor[HTML]{000000}{\fontsize{9}{9}\selectfont{1,009}}} & \multicolumn{1}{>{}r}{\textcolor[HTML]{000000}{\fontsize{9}{9}\selectfont{777}}} \\
+
+
+
+
+
+\multicolumn{1}{>{}l}{} & \multicolumn{1}{>{}l}{\textcolor[HTML]{000000}{\fontsize{9}{9}\selectfont{Chile}}} & \multicolumn{1}{>{}r}{\textcolor[HTML]{000000}{\fontsize{9}{9}\selectfont{1,002}}} & \multicolumn{1}{>{}r}{\textcolor[HTML]{000000}{\fontsize{9}{9}\selectfont{652}}} \\
+
+
+
+
+
+\multicolumn{1}{>{}l}{} & \multicolumn{1}{>{}l}{\textcolor[HTML]{000000}{\fontsize{9}{9}\selectfont{Estonia}}} & \multicolumn{1}{>{}r}{\textcolor[HTML]{000000}{\fontsize{9}{9}\selectfont{1,001}}} & \multicolumn{1}{>{}r}{\textcolor[HTML]{000000}{\fontsize{9}{9}\selectfont{738}}} \\
+
+
+
+
+
+\multicolumn{1}{>{}l}{} & \multicolumn{1}{>{}l}{\textcolor[HTML]{000000}{\fontsize{9}{9}\selectfont{Ireland}}} & \multicolumn{1}{>{}r}{\textcolor[HTML]{000000}{\fontsize{9}{9}\selectfont{1,004}}} & \multicolumn{1}{>{}r}{\textcolor[HTML]{000000}{\fontsize{9}{9}\selectfont{793}}} \\
+
+
+
+
+
+\multicolumn{1}{>{}l}{} & \multicolumn{1}{>{}l}{\textcolor[HTML]{000000}{\fontsize{9}{9}\selectfont{Latvia}}} & \multicolumn{1}{>{}r}{\textcolor[HTML]{000000}{\fontsize{9}{9}\selectfont{1,010}}} & \multicolumn{1}{>{}r}{\textcolor[HTML]{000000}{\fontsize{9}{9}\selectfont{683}}} \\
+
+
+
+
+
+\multicolumn{1}{>{}l}{} & \multicolumn{1}{>{}l}{\textcolor[HTML]{000000}{\fontsize{9}{9}\selectfont{Lithuania}}} & \multicolumn{1}{>{}r}{\textcolor[HTML]{000000}{\fontsize{9}{9}\selectfont{1,006}}} & \multicolumn{1}{>{}r}{\textcolor[HTML]{000000}{\fontsize{9}{9}\selectfont{718}}} \\
+
+
+
+
+
+\multicolumn{1}{>{}l}{} & \multicolumn{1}{>{}l}{\textcolor[HTML]{000000}{\fontsize{9}{9}\selectfont{Mexico}}} & \multicolumn{1}{>{}r}{\textcolor[HTML]{000000}{\fontsize{9}{9}\selectfont{1,011}}} & \multicolumn{1}{>{}r}{\textcolor[HTML]{000000}{\fontsize{9}{9}\selectfont{636}}} \\
+
+
+
+
+
+\multicolumn{1}{>{}l}{} & \multicolumn{1}{>{}l}{\textcolor[HTML]{000000}{\fontsize{9}{9}\selectfont{United\ Kingdom}}} & \multicolumn{1}{>{}r}{\textcolor[HTML]{000000}{\fontsize{9}{9}\selectfont{1,010}}} & \multicolumn{1}{>{}r}{\textcolor[HTML]{000000}{\fontsize{9}{9}\selectfont{742}}} \\
+
+
+
+
+
+\multicolumn{1}{>{}l}{\multirow[t]{-9}{*}{\parbox{0.75in}{\raggedright \textcolor[HTML]{000000}{\fontsize{9}{9}\selectfont{Liberal}}}}} & \multicolumn{1}{>{}l}{\textcolor[HTML]{000000}{\fontsize{9}{9}\selectfont{United\ States}}} & \multicolumn{1}{>{}r}{\textcolor[HTML]{000000}{\fontsize{9}{9}\selectfont{1,005}}} & \multicolumn{1}{>{}r}{\textcolor[HTML]{000000}{\fontsize{9}{9}\selectfont{674}}} \\
+
+
+
+
+
+\multicolumn{1}{>{}l}{} & \multicolumn{1}{>{}l}{\textcolor[HTML]{000000}{\fontsize{9}{9}\selectfont{Denmark}}} & \multicolumn{1}{>{}r}{\textcolor[HTML]{000000}{\fontsize{9}{9}\selectfont{1,006}}} & \multicolumn{1}{>{}r}{\textcolor[HTML]{000000}{\fontsize{9}{9}\selectfont{684}}} \\
+
+
+
+
+
+\multicolumn{1}{>{}l}{} & \multicolumn{1}{>{}l}{\textcolor[HTML]{000000}{\fontsize{9}{9}\selectfont{Finland}}} & \multicolumn{1}{>{}r}{\textcolor[HTML]{000000}{\fontsize{9}{9}\selectfont{1,009}}} & \multicolumn{1}{>{}r}{\textcolor[HTML]{000000}{\fontsize{9}{9}\selectfont{676}}} \\
+
+
+
+
+
+\multicolumn{1}{>{}l}{} & \multicolumn{1}{>{}l}{\textcolor[HTML]{000000}{\fontsize{9}{9}\selectfont{Netherlands}}} & \multicolumn{1}{>{}r}{\textcolor[HTML]{000000}{\fontsize{9}{9}\selectfont{1,001}}} & \multicolumn{1}{>{}r}{\textcolor[HTML]{000000}{\fontsize{9}{9}\selectfont{768}}} \\
+
+
+
+
+
+\multicolumn{1}{>{}l}{\multirow[t]{-4}{*}{\parbox{0.75in}{\raggedright \textcolor[HTML]{000000}{\fontsize{9}{9}\selectfont{Social-democratic}}}}} & \multicolumn{1}{>{}l}{\textcolor[HTML]{000000}{\fontsize{9}{9}\selectfont{Norway}}} & \multicolumn{1}{>{}r}{\textcolor[HTML]{000000}{\fontsize{9}{9}\selectfont{1,013}}} & \multicolumn{1}{>{}r}{\textcolor[HTML]{000000}{\fontsize{9}{9}\selectfont{766}}} \\
+
+
+
+
+
+\multicolumn{1}{>{}l}{} & \multicolumn{1}{>{}l}{\textcolor[HTML]{000000}{\fontsize{9}{9}\selectfont{Austria}}} & \multicolumn{1}{>{}r}{\textcolor[HTML]{000000}{\fontsize{9}{9}\selectfont{1,006}}} & \multicolumn{1}{>{}r}{\textcolor[HTML]{000000}{\fontsize{9}{9}\selectfont{786}}} \\
+
+
+
+
+
+\multicolumn{1}{>{}l}{} & \multicolumn{1}{>{}l}{\textcolor[HTML]{000000}{\fontsize{9}{9}\selectfont{Belgium}}} & \multicolumn{1}{>{}r}{\textcolor[HTML]{000000}{\fontsize{9}{9}\selectfont{1,012}}} & \multicolumn{1}{>{}r}{\textcolor[HTML]{000000}{\fontsize{9}{9}\selectfont{662}}} \\
+
+
+
+
+
+\multicolumn{1}{>{}l}{} & \multicolumn{1}{>{}l}{\textcolor[HTML]{000000}{\fontsize{9}{9}\selectfont{France}}} & \multicolumn{1}{>{}r}{\textcolor[HTML]{000000}{\fontsize{9}{9}\selectfont{1,004}}} & \multicolumn{1}{>{}r}{\textcolor[HTML]{000000}{\fontsize{9}{9}\selectfont{714}}} \\
+
+
+
+
+
+\multicolumn{1}{>{}l}{} & \multicolumn{1}{>{}l}{\textcolor[HTML]{000000}{\fontsize{9}{9}\selectfont{Germany}}} & \multicolumn{1}{>{}r}{\textcolor[HTML]{000000}{\fontsize{9}{9}\selectfont{1,047}}} & \multicolumn{1}{>{}r}{\textcolor[HTML]{000000}{\fontsize{9}{9}\selectfont{776}}} \\
+
+
+
+
+
+\multicolumn{1}{>{}l}{} & \multicolumn{1}{>{}l}{\textcolor[HTML]{000000}{\fontsize{9}{9}\selectfont{Greece}}} & \multicolumn{1}{>{}r}{\textcolor[HTML]{000000}{\fontsize{9}{9}\selectfont{1,003}}} & \multicolumn{1}{>{}r}{\textcolor[HTML]{000000}{\fontsize{9}{9}\selectfont{697}}} \\
+
+
+
+
+
+\multicolumn{1}{>{}l}{} & \multicolumn{1}{>{}l}{\textcolor[HTML]{000000}{\fontsize{9}{9}\selectfont{Israel}}} & \multicolumn{1}{>{}r}{\textcolor[HTML]{000000}{\fontsize{9}{9}\selectfont{1,005}}} & \multicolumn{1}{>{}r}{\textcolor[HTML]{000000}{\fontsize{9}{9}\selectfont{745}}} \\
+
+
+
+
+
+\multicolumn{1}{>{}l}{} & \multicolumn{1}{>{}l}{\textcolor[HTML]{000000}{\fontsize{9}{9}\selectfont{Italy}}} & \multicolumn{1}{>{}r}{\textcolor[HTML]{000000}{\fontsize{9}{9}\selectfont{1,011}}} & \multicolumn{1}{>{}r}{\textcolor[HTML]{000000}{\fontsize{9}{9}\selectfont{683}}} \\
+
+
+
+
+
+\multicolumn{1}{>{}l}{} & \multicolumn{1}{>{}l}{\textcolor[HTML]{000000}{\fontsize{9}{9}\selectfont{Korea}}} & \multicolumn{1}{>{}r}{\textcolor[HTML]{000000}{\fontsize{9}{9}\selectfont{1,010}}} & \multicolumn{1}{>{}r}{\textcolor[HTML]{000000}{\fontsize{9}{9}\selectfont{724}}} \\
+
+
+
+
+
+\multicolumn{1}{>{}l}{} & \multicolumn{1}{>{}l}{\textcolor[HTML]{000000}{\fontsize{9}{9}\selectfont{Poland}}} & \multicolumn{1}{>{}r}{\textcolor[HTML]{000000}{\fontsize{9}{9}\selectfont{1,005}}} & \multicolumn{1}{>{}r}{\textcolor[HTML]{000000}{\fontsize{9}{9}\selectfont{768}}} \\
+
+
+
+
+
+\multicolumn{1}{>{}l}{} & \multicolumn{1}{>{}l}{\textcolor[HTML]{000000}{\fontsize{9}{9}\selectfont{Portugal}}} & \multicolumn{1}{>{}r}{\textcolor[HTML]{000000}{\fontsize{9}{9}\selectfont{1,016}}} & \multicolumn{1}{>{}r}{\textcolor[HTML]{000000}{\fontsize{9}{9}\selectfont{671}}} \\
+
+
+
+
+
+\multicolumn{1}{>{}l}{} & \multicolumn{1}{>{}l}{\textcolor[HTML]{000000}{\fontsize{9}{9}\selectfont{Slovenia}}} & \multicolumn{1}{>{}r}{\textcolor[HTML]{000000}{\fontsize{9}{9}\selectfont{1,001}}} & \multicolumn{1}{>{}r}{\textcolor[HTML]{000000}{\fontsize{9}{9}\selectfont{732}}} \\
+
+
+
+
+
+\multicolumn{1}{>{}l}{} & \multicolumn{1}{>{}l}{\textcolor[HTML]{000000}{\fontsize{9}{9}\selectfont{Spain}}} & \multicolumn{1}{>{}r}{\textcolor[HTML]{000000}{\fontsize{9}{9}\selectfont{1,004}}} & \multicolumn{1}{>{}r}{\textcolor[HTML]{000000}{\fontsize{9}{9}\selectfont{665}}} \\
+
+
+
+
+
+\multicolumn{1}{>{}l}{} & \multicolumn{1}{>{}l}{\textcolor[HTML]{000000}{\fontsize{9}{9}\selectfont{Switzerland}}} & \multicolumn{1}{>{}r}{\textcolor[HTML]{000000}{\fontsize{9}{9}\selectfont{1,009}}} & \multicolumn{1}{>{}r}{\textcolor[HTML]{000000}{\fontsize{9}{9}\selectfont{717}}} \\
+
+
+
+
+
+\multicolumn{1}{>{}l}{\multirow[t]{-14}{*}{\parbox{0.75in}{\raggedright \textcolor[HTML]{000000}{\fontsize{9}{9}\selectfont{Conservative}}}}} & \multicolumn{1}{>{}l}{\textcolor[HTML]{000000}{\fontsize{9}{9}\selectfont{Türkiye}}} & \multicolumn{1}{>{}r}{\textcolor[HTML]{000000}{\fontsize{9}{9}\selectfont{1,009}}} & \multicolumn{1}{>{}r}{\textcolor[HTML]{000000}{\fontsize{9}{9}\selectfont{557}}} \\
+
+\ascline{1pt}{666666}{1-4}
+
+
+
+\multicolumn{1}{>{}l}{\textcolor[HTML]{000000}{\fontsize{9}{9}\selectfont{\textbf{Total}}}} & \multicolumn{1}{>{}l}{\textcolor[HTML]{000000}{\fontsize{9}{9}\selectfont{\textbf{27\ countries}}}} & \multicolumn{1}{>{}r}{\textcolor[HTML]{000000}{\fontsize{9}{9}\selectfont{\textbf{27,229}}}} & \multicolumn{1}{>{}r}{\textcolor[HTML]{000000}{\fontsize{9}{9}\selectfont{\textbf{19,204}}}} \\
+
+\ascline{1.5pt}{666666}{1-4}
+
+
+
+\multicolumn{4}{>{}l}{\textcolor[HTML]{000000}{\fontsize{9}{9}\selectfont{Note:\ Original\ N\ refers\ to\ all\ respondents\ in\ the\ 2024\ wave\ of\ the\ Risks\ That\ Matter\ survey;\ Final\ N\ to\ the\ analytical\ sample\ after\ listwise\ deletion\ of\ missing\ values.\ Sources\ of\ the\ classification:\ Esping-Andersen\ (1993);\ Ferrera\ (1996);\ Fenger\ (2007);\ Aidukaite\ (2011);\ Martínez\ Franzoni\ (2008).}}} \\
+
+
+
+
+\end{longtable}
+
+\arrayrulecolor[HTML]{000000}
+
+\global\setlength{\arrayrulewidth}{\Oldarrayrulewidth}
+
+\global\setlength{\tabcolsep}{\Oldtabcolsep}
+
+\renewcommand*{\arraystretch}{1}
 
 
 

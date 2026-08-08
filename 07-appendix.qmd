@@ -1,5 +1,20 @@
 ﻿
 
+## Dimensions of Perceived technological change
+
+```{r}
+#| label: tbl-efa
+#| tbl-cap: "Exploratory factor analysis of Perceived technological change items"
+
+load(file=here::here("input/proc/digitalization.RData"))
+
+digitalization <- digitalization %>%
+  dplyr::select(-tecnoestres_2, -tecnoestres_4)
+
+
+sjPlot::tab_fa(digitalization)
+```
+
 ## Country clasification and N samples
 
 ```{r}
@@ -90,7 +105,7 @@ tabla_paises <- regime_map %>%
 stopifnot(nrow(tabla_paises) == 27,
           !anyNA(tabla_paises$n_original),
           !anyNA(tabla_paises$n_final))
-setdiff(unique(as.numeric(as.character(data$country))), regime_map$code) # debe ser numeric(0)
+#setdiff(unique(as.numeric(as.character(data$country))), regime_map$code) # debe ser numeric(0)
 
 tabla_paises %>%
   dplyr::mutate(regime = as.character(regime)) %>%

@@ -2,13 +2,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.33">
+<meta name="generator" content="quarto-1.9.38">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
 <title>Preparación</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -65,10 +68,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="procesamiento_files/libs/quarto-html/tippy.umd.min.js"></script>
 <script src="procesamiento_files/libs/quarto-html/anchor.min.js"></script>
 <link href="procesamiento_files/libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="procesamiento_files/libs/quarto-html/quarto-syntax-highlighting-ea385d0e468b0dd5ea5bf0780b1290d9.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="procesamiento_files/libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="procesamiento_files/libs/bootstrap/bootstrap.min.js"></script>
 <link href="procesamiento_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="procesamiento_files/libs/bootstrap/bootstrap-ae322cb751d72e23fd97c1919b88fbb2.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="procesamiento_files/libs/bootstrap/bootstrap-94f929285e5da54739d3d3e9b2c606eb.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 
 
 </head>
@@ -76,8 +79,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <body class="quarto-light">
 
 <div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
-<div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-  
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+  <nav id="TOC" role="doc-toc" class="toc-active" data-toc-expanded="2">
+    <h2 id="toc-title">Contents</h2>
+   
+  <ul>
+  <li><a href="#macro-vars" id="toc-macro-vars" class="nav-link active" data-scroll-target="#macro-vars"><span class="header-section-number">1</span> Macro vars</a></li>
+  </ul>
+</nav>
 </div>
 <main class="content" id="quarto-document-content">
 
@@ -104,9 +113,33 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell-output cell-output-stderr">
 <pre><code>Loading required package: pacman</code></pre>
 </div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "ctrcode"         "id"              "country"         "year"           
+ [5] "ctryear"         "weight"          "sex"             "age"            
+ [9] "educ"            "income"          "employment"      "selfemploy"     
+[13] "platform"        "distributive"    "unnemployment"   "tecnoestres_1"  
+[17] "tecnoestres_2"   "tecnoestres_3"   "tecnoestres_4"   "tecnoestres_5"  
+[21] "tecnoestres_6"   "tecnoestres_7"   "tecnoestres_8"   "tecnoestres_9"  
+[25] "deservingness"   "tecnoestres"     "pos_tecnoestres" "skills"         
+[29] "gdp_2024"        "welfare_regime" </code></pre>
+</div>
+</div>
+<section id="macro-vars" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="macro-vars"><span class="header-section-number">1</span> Macro vars</h2>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 × 4
+  Indicator                                           Source        Series Years
+  &lt;chr&gt;                                               &lt;chr&gt;         &lt;chr&gt;  &lt;chr&gt;
+1 Gini coefficient (disposable income)                World Bank, … SI.PO… 2021…
+2 GDP per capita (PPP, constant 2021 international $) World Bank, … NY.GD… 2024…
+3 Unemployment rate (% of labour force, ILO estimate) World Bank, … SL.UE… 2024…
+4 Public social expenditure (% of GDP)                OECD Social … DF_SO… 2022…</code></pre>
+</div>
 </div>
 <!-- -->
 
+</section>
 
 </main>
 <!-- /main column -->
@@ -161,13 +194,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy
@@ -560,260 +594,365 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     }
   });
   </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Ejecutar el código</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="sourceCode" id="cb2" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Preparación"</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span><span class="co">  </span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co">    code-copy: true</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co">    code-tools: true</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: true</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co">    toc-location: right</span></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co">    toc-depth: 4</span></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co">    toc-expand: 2</span></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="co">    toc-title: Contents</span></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="co">    number-sections: true</span></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="co">    number-depth: 4 </span></span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="co">    fig-width: 10  </span></span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="co">    fig-height: 7</span></span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="an">editor_options:</span><span class="co"> </span></span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="co">  chunk_output_type: console</span></span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="an">editor:</span><span class="co"> source</span></span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="an">lang:</span><span class="co"> es</span></span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="an">fontsize:</span><span class="co"> 12pt</span></span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: set</span></span>
-<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
-<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a><span class="co">#| messedad: false</span></span>
-<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
-<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr)</span>
-<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">FALSE</span>, <span class="at">include =</span> <span class="cn">TRUE</span>, <span class="at">warning =</span> <span class="cn">FALSE</span>, <span class="at">messedad =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>table_format <span class="ot">&lt;-</span> <span class="cf">if</span>(<span class="fu">is_html_output</span>()) {</span>
-<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>  <span class="st">"html"</span></span>
-<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> <span class="cf">if</span>(<span class="fu">is_latex_output</span>()) {</span>
-<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>  <span class="st">"latex"</span></span>
-<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>table_format2 <span class="ot">&lt;-</span> <span class="cf">if</span>(<span class="fu">is_html_output</span>()) {</span>
-<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>  T</span>
-<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> <span class="cf">if</span>(<span class="fu">is_latex_output</span>()) {</span>
-<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a>  F</span>
-<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">kableExtra.html.bsTable =</span> T)</span>
-<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">knitr.kable.NA =</span> <span class="st">""</span>)</span>
-<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">require</span>(<span class="st">"pacman"</span>)) <span class="fu">install.packedads</span>(<span class="st">"pacman"</span>) <span class="co"># instalar pacman</span></span>
-<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a>                            <span class="co"># cargar librerias</span></span>
-<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(dplyr,       <span class="co"># Manipulacion de datos</span></span>
-<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a>               knitr,</span>
-<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a>               kableExtra,</span>
-<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a>               summarytools,</span>
-<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a>               ggplot2,</span>
-<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a>               ggeffects,</span>
-<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a>               haven,</span>
-<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a>               sjlabelled,</span>
-<span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a>               lme4,</span>
-<span id="cb2-63"><a href="#cb2-63" aria-hidden="true" tabindex="-1"></a>               sjmisc,</span>
-<span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a>               sjPlot,</span>
-<span id="cb2-65"><a href="#cb2-65" aria-hidden="true" tabindex="-1"></a>               ggrepel,</span>
-<span id="cb2-66"><a href="#cb2-66" aria-hidden="true" tabindex="-1"></a>               ggpubr</span>
-<span id="cb2-67"><a href="#cb2-67" aria-hidden="true" tabindex="-1"></a>               )</span>
-<span id="cb2-68"><a href="#cb2-68" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-69"><a href="#cb2-69" aria-hidden="true" tabindex="-1"></a>data_original<span class="ot">&lt;-</span> haven<span class="sc">::</span><span class="fu">read_dta</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"input/original/OECD_RTM_2024.dta"</span>))</span>
-<span id="cb2-70"><a href="#cb2-70" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-71"><a href="#cb2-71" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> data_original <span class="sc">%&gt;%</span></span>
-<span id="cb2-72"><a href="#cb2-72" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(id,</span>
-<span id="cb2-73"><a href="#cb2-73" aria-hidden="true" tabindex="-1"></a>              country,</span>
-<span id="cb2-74"><a href="#cb2-74" aria-hidden="true" tabindex="-1"></a>              ctrcode, </span>
-<span id="cb2-75"><a href="#cb2-75" aria-hidden="true" tabindex="-1"></a>              year, </span>
-<span id="cb2-76"><a href="#cb2-76" aria-hidden="true" tabindex="-1"></a>              ctryear, </span>
-<span id="cb2-77"><a href="#cb2-77" aria-hidden="true" tabindex="-1"></a>              weight, </span>
-<span id="cb2-78"><a href="#cb2-78" aria-hidden="true" tabindex="-1"></a>              <span class="at">sex=</span>s2,</span>
-<span id="cb2-79"><a href="#cb2-79" aria-hidden="true" tabindex="-1"></a>              <span class="at">age=</span>s3_agegroup,</span>
-<span id="cb2-80"><a href="#cb2-80" aria-hidden="true" tabindex="-1"></a>              <span class="at">educ=</span>s7_cat3,</span>
-<span id="cb2-81"><a href="#cb2-81" aria-hidden="true" tabindex="-1"></a>              <span class="at">income=</span>s9_dec,</span>
-<span id="cb2-82"><a href="#cb2-82" aria-hidden="true" tabindex="-1"></a>              <span class="at">employment=</span>s25,</span>
-<span id="cb2-83"><a href="#cb2-83" aria-hidden="true" tabindex="-1"></a>              <span class="at">selfemploy=</span>s11,</span>
-<span id="cb2-84"><a href="#cb2-84" aria-hidden="true" tabindex="-1"></a>              <span class="at">platform=</span>s29,</span>
-<span id="cb2-85"><a href="#cb2-85" aria-hidden="true" tabindex="-1"></a>              <span class="at">distributive=</span>q16,</span>
-<span id="cb2-86"><a href="#cb2-86" aria-hidden="true" tabindex="-1"></a>              <span class="at">unnemployment=</span>q2b,</span>
-<span id="cb2-87"><a href="#cb2-87" aria-hidden="true" tabindex="-1"></a>              <span class="at">tecnoestres_1=</span>q25a,</span>
-<span id="cb2-88"><a href="#cb2-88" aria-hidden="true" tabindex="-1"></a>              <span class="at">tecnoestres_2=</span>q25b,</span>
-<span id="cb2-89"><a href="#cb2-89" aria-hidden="true" tabindex="-1"></a>              <span class="at">tecnoestres_3=</span>q25c,</span>
-<span id="cb2-90"><a href="#cb2-90" aria-hidden="true" tabindex="-1"></a>              <span class="at">tecnoestres_4=</span>q25d,</span>
-<span id="cb2-91"><a href="#cb2-91" aria-hidden="true" tabindex="-1"></a>              <span class="at">tecnoestres_5=</span>q25e,</span>
-<span id="cb2-92"><a href="#cb2-92" aria-hidden="true" tabindex="-1"></a>              <span class="at">tecnoestres_6=</span>q25f,</span>
-<span id="cb2-93"><a href="#cb2-93" aria-hidden="true" tabindex="-1"></a>              <span class="at">tecnoestres_7=</span>q25g,</span>
-<span id="cb2-94"><a href="#cb2-94" aria-hidden="true" tabindex="-1"></a>              <span class="at">tecnoestres_8=</span>q25h,</span>
-<span id="cb2-95"><a href="#cb2-95" aria-hidden="true" tabindex="-1"></a>              <span class="at">tecnoestres_9=</span>q25i,</span>
-<span id="cb2-96"><a href="#cb2-96" aria-hidden="true" tabindex="-1"></a>              <span class="at">deservingness=</span>q17              </span>
-<span id="cb2-97"><a href="#cb2-97" aria-hidden="true" tabindex="-1"></a>              )</span>
-<span id="cb2-98"><a href="#cb2-98" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-99"><a href="#cb2-99" aria-hidden="true" tabindex="-1"></a>gdp_2024 <span class="ot">&lt;-</span> tibble<span class="sc">::</span><span class="fu">tribble</span>(</span>
-<span id="cb2-100"><a href="#cb2-100" aria-hidden="true" tabindex="-1"></a>  <span class="sc">~</span>ctrcode, <span class="sc">~</span>gdp_2024,</span>
-<span id="cb2-101"><a href="#cb2-101" aria-hidden="true" tabindex="-1"></a>  <span class="st">"AUT"</span>,  <span class="dv">58373</span>,</span>
-<span id="cb2-102"><a href="#cb2-102" aria-hidden="true" tabindex="-1"></a>  <span class="st">"BEL"</span>,  <span class="dv">56796</span>,</span>
-<span id="cb2-103"><a href="#cb2-103" aria-hidden="true" tabindex="-1"></a>  <span class="st">"CAN"</span>,  <span class="dv">54283</span>,</span>
-<span id="cb2-104"><a href="#cb2-104" aria-hidden="true" tabindex="-1"></a>  <span class="st">"CHE"</span>, <span class="dv">108256</span>,</span>
-<span id="cb2-105"><a href="#cb2-105" aria-hidden="true" tabindex="-1"></a>  <span class="st">"CHL"</span>,  <span class="dv">17203</span>,</span>
-<span id="cb2-106"><a href="#cb2-106" aria-hidden="true" tabindex="-1"></a>  <span class="st">"DEU"</span>,  <span class="dv">56087</span>,</span>
-<span id="cb2-107"><a href="#cb2-107" aria-hidden="true" tabindex="-1"></a>  <span class="st">"DNK"</span>,  <span class="dv">71214</span>,</span>
-<span id="cb2-108"><a href="#cb2-108" aria-hidden="true" tabindex="-1"></a>  <span class="st">"ESP"</span>,  <span class="dv">36076</span>,</span>
-<span id="cb2-109"><a href="#cb2-109" aria-hidden="true" tabindex="-1"></a>  <span class="st">"EST"</span>,  <span class="dv">31419</span>,</span>
-<span id="cb2-110"><a href="#cb2-110" aria-hidden="true" tabindex="-1"></a>  <span class="st">"FIN"</span>,  <span class="dv">53189</span>,</span>
-<span id="cb2-111"><a href="#cb2-111" aria-hidden="true" tabindex="-1"></a>  <span class="st">"FRA"</span>,  <span class="dv">46150</span>,</span>
-<span id="cb2-112"><a href="#cb2-112" aria-hidden="true" tabindex="-1"></a>  <span class="st">"GBR"</span>,  <span class="dv">52637</span>,</span>
-<span id="cb2-113"><a href="#cb2-113" aria-hidden="true" tabindex="-1"></a>  <span class="st">"GRC"</span>,  <span class="dv">24716</span>,</span>
-<span id="cb2-114"><a href="#cb2-114" aria-hidden="true" tabindex="-1"></a>  <span class="st">"IRL"</span>, <span class="dv">112356</span>,</span>
-<span id="cb2-115"><a href="#cb2-115" aria-hidden="true" tabindex="-1"></a>  <span class="st">"ISR"</span>,  <span class="dv">54177</span>,</span>
-<span id="cb2-116"><a href="#cb2-116" aria-hidden="true" tabindex="-1"></a>  <span class="st">"ITA"</span>,  <span class="dv">40226</span>,</span>
-<span id="cb2-117"><a href="#cb2-117" aria-hidden="true" tabindex="-1"></a>  <span class="st">"KOR"</span>,  <span class="dv">36500</span>,</span>
-<span id="cb2-118"><a href="#cb2-118" aria-hidden="true" tabindex="-1"></a>  <span class="st">"LTU"</span>,  <span class="dv">29379</span>,</span>
-<span id="cb2-119"><a href="#cb2-119" aria-hidden="true" tabindex="-1"></a>  <span class="st">"LVA"</span>,  <span class="dv">23243</span>,</span>
-<span id="cb2-120"><a href="#cb2-120" aria-hidden="true" tabindex="-1"></a>  <span class="st">"MEX"</span>,  <span class="dv">13826</span>,</span>
-<span id="cb2-121"><a href="#cb2-121" aria-hidden="true" tabindex="-1"></a>  <span class="st">"NLD"</span>,  <span class="dv">67690</span>,</span>
-<span id="cb2-122"><a href="#cb2-122" aria-hidden="true" tabindex="-1"></a>  <span class="st">"NOR"</span>,  <span class="dv">89684</span>,</span>
-<span id="cb2-123"><a href="#cb2-123" aria-hidden="true" tabindex="-1"></a>  <span class="st">"POL"</span>,  <span class="dv">24973</span>,</span>
-<span id="cb2-124"><a href="#cb2-124" aria-hidden="true" tabindex="-1"></a>  <span class="st">"PRT"</span>,  <span class="dv">27832</span>,</span>
-<span id="cb2-125"><a href="#cb2-125" aria-hidden="true" tabindex="-1"></a>  <span class="st">"SVN"</span>,  <span class="dv">34103</span>,</span>
-<span id="cb2-126"><a href="#cb2-126" aria-hidden="true" tabindex="-1"></a>  <span class="st">"TUR"</span>,  <span class="dv">15463</span>,</span>
-<span id="cb2-127"><a href="#cb2-127" aria-hidden="true" tabindex="-1"></a>  <span class="st">"USA"</span>,  <span class="dv">86173</span></span>
-<span id="cb2-128"><a href="#cb2-128" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb2-129"><a href="#cb2-129" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-130"><a href="#cb2-130" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span> <span class="fu">set_na</span>(.,<span class="at">na=</span><span class="fu">c</span>(<span class="dv">98</span>,<span class="dv">99</span>))</span>
-<span id="cb2-131"><a href="#cb2-131" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-132"><a href="#cb2-132" aria-hidden="true" tabindex="-1"></a><span class="co"># generate analytical sample</span></span>
-<span id="cb2-133"><a href="#cb2-133" aria-hidden="true" tabindex="-1"></a>digitalization <span class="ot">&lt;-</span></span>
-<span id="cb2-134"><a href="#cb2-134" aria-hidden="true" tabindex="-1"></a>  data <span class="sc">%&gt;%</span> <span class="co">#filter(ctrcode=="CHL") %&gt;% </span></span>
-<span id="cb2-135"><a href="#cb2-135" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(tecnoestres_1, tecnoestres_2, tecnoestres_3, tecnoestres_4, tecnoestres_5, </span>
-<span id="cb2-136"><a href="#cb2-136" aria-hidden="true" tabindex="-1"></a>          tecnoestres_6, tecnoestres_7, tecnoestres_8, tecnoestres_9 <span class="co">#tecnoestres</span></span>
-<span id="cb2-137"><a href="#cb2-137" aria-hidden="true" tabindex="-1"></a>         )</span>
-<span id="cb2-138"><a href="#cb2-138" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-139"><a href="#cb2-139" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-140"><a href="#cb2-140" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-141"><a href="#cb2-141" aria-hidden="true" tabindex="-1"></a>vars <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"tecnoestres_"</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">9</span>)</span>
-<span id="cb2-142"><a href="#cb2-142" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-143"><a href="#cb2-143" aria-hidden="true" tabindex="-1"></a>labelled<span class="sc">::</span><span class="fu">var_label</span>(digitalization)[vars] <span class="ot">&lt;-</span> labelled<span class="sc">::</span><span class="fu">var_label</span>(digitalization)[vars] <span class="sc">%&gt;%</span></span>
-<span id="cb2-144"><a href="#cb2-144" aria-hidden="true" tabindex="-1"></a>  stringr<span class="sc">::</span><span class="fu">str_remove</span>(<span class="st">"^q25[a-z]:</span><span class="sc">\\</span><span class="st">s*Digitaln</span><span class="sc">\\</span><span class="st">. and your job:</span><span class="sc">\\</span><span class="st">s*"</span>)</span>
-<span id="cb2-145"><a href="#cb2-145" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-146"><a href="#cb2-146" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-147"><a href="#cb2-147" aria-hidden="true" tabindex="-1"></a><span class="fu">save</span>(digitalization, <span class="at">file=</span>here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"input/proc/digitalization.RData"</span>))</span>
-<span id="cb2-148"><a href="#cb2-148" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-149"><a href="#cb2-149" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-150"><a href="#cb2-150" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span> <span class="fu">rowwise</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb2-151"><a href="#cb2-151" aria-hidden="true" tabindex="-1"></a>        <span class="fu">mutate</span>(<span class="at">tecnoestres =</span> <span class="fu">mean</span>(<span class="fu">c</span>(tecnoestres_1, tecnoestres_3, tecnoestres_5), <span class="at">na.rm=</span><span class="cn">TRUE</span>),</span>
-<span id="cb2-152"><a href="#cb2-152" aria-hidden="true" tabindex="-1"></a>               <span class="at">pos_tecnoestres =</span> <span class="fu">mean</span>(<span class="fu">c</span>(tecnoestres_7, tecnoestres_8, tecnoestres_9), <span class="at">na.rm=</span><span class="cn">TRUE</span>),</span>
-<span id="cb2-153"><a href="#cb2-153" aria-hidden="true" tabindex="-1"></a>               <span class="at">skills =</span> tecnoestres_6</span>
-<span id="cb2-154"><a href="#cb2-154" aria-hidden="true" tabindex="-1"></a>               )</span>
-<span id="cb2-155"><a href="#cb2-155" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">merge</span>(data, gdp_2024, <span class="at">by=</span><span class="st">"ctrcode"</span>)</span>
-<span id="cb2-156"><a href="#cb2-156" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-157"><a href="#cb2-157" aria-hidden="true" tabindex="-1"></a><span class="co"># ============================================================</span></span>
-<span id="cb2-158"><a href="#cb2-158" aria-hidden="true" tabindex="-1"></a><span class="co"># Clasificación de regímenes de bienestar — versión revisada</span></span>
-<span id="cb2-159"><a href="#cb2-159" aria-hidden="true" tabindex="-1"></a><span class="co"># Fuentes principales:</span></span>
-<span id="cb2-160"><a href="#cb2-160" aria-hidden="true" tabindex="-1"></a><span class="co">#   Esping-Andersen (1990) Three Worlds of Welfare Capitalism</span></span>
-<span id="cb2-161"><a href="#cb2-161" aria-hidden="true" tabindex="-1"></a><span class="co">#   Ferrera (1996) Southern European regime</span></span>
-<span id="cb2-162"><a href="#cb2-162" aria-hidden="true" tabindex="-1"></a><span class="co">#   Aidukaite (2011) Post-communist welfare reforms</span></span>
-<span id="cb2-163"><a href="#cb2-163" aria-hidden="true" tabindex="-1"></a><span class="co">#   Fenger (2007) CEE typology</span></span>
-<span id="cb2-164"><a href="#cb2-164" aria-hidden="true" tabindex="-1"></a><span class="co"># ============================================================</span></span>
-<span id="cb2-165"><a href="#cb2-165" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-166"><a href="#cb2-166" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span></span>
-<span id="cb2-167"><a href="#cb2-167" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb2-168"><a href="#cb2-168" aria-hidden="true" tabindex="-1"></a>    <span class="at">welfare_regime =</span> <span class="fu">case_when</span>(</span>
-<span id="cb2-169"><a href="#cb2-169" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-170"><a href="#cb2-170" aria-hidden="true" tabindex="-1"></a>      <span class="co"># 1. SOCIALDEMÓCRATA</span></span>
-<span id="cb2-171"><a href="#cb2-171" aria-hidden="true" tabindex="-1"></a>      <span class="co"># Esping-Andersen (1990): universalismo, alta desmercantilización</span></span>
-<span id="cb2-172"><a href="#cb2-172" aria-hidden="true" tabindex="-1"></a>      country <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">5</span>,   <span class="co"># Denmark</span></span>
-<span id="cb2-173"><a href="#cb2-173" aria-hidden="true" tabindex="-1"></a>                     <span class="dv">7</span>,   <span class="co"># Finland</span></span>
-<span id="cb2-174"><a href="#cb2-174" aria-hidden="true" tabindex="-1"></a>                     <span class="dv">19</span>,  <span class="co"># Norway</span></span>
-<span id="cb2-175"><a href="#cb2-175" aria-hidden="true" tabindex="-1"></a>                     <span class="dv">18</span>   <span class="co"># Netherlands</span></span>
-<span id="cb2-176"><a href="#cb2-176" aria-hidden="true" tabindex="-1"></a>                     ) <span class="sc">~</span> <span class="st">"Social-democratic"</span>,</span>
-<span id="cb2-177"><a href="#cb2-177" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-178"><a href="#cb2-178" aria-hidden="true" tabindex="-1"></a>      <span class="co"># 2. LIBERAL</span></span>
-<span id="cb2-179"><a href="#cb2-179" aria-hidden="true" tabindex="-1"></a>      <span class="co"># Esping-Andersen (1990): residual, focalizado, mercado</span></span>
-<span id="cb2-180"><a href="#cb2-180" aria-hidden="true" tabindex="-1"></a>      <span class="co"># Martínez Franzoni (2008): Chile y México — liberal latinoamericano</span></span>
-<span id="cb2-181"><a href="#cb2-181" aria-hidden="true" tabindex="-1"></a>      <span class="co"># Aidukaite (2011): bálticos con orientación liberal post-soviética</span></span>
-<span id="cb2-182"><a href="#cb2-182" aria-hidden="true" tabindex="-1"></a>      country <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">3</span>,   <span class="co"># Canada</span></span>
-<span id="cb2-183"><a href="#cb2-183" aria-hidden="true" tabindex="-1"></a>                     <span class="dv">11</span>,  <span class="co"># Ireland</span></span>
-<span id="cb2-184"><a href="#cb2-184" aria-hidden="true" tabindex="-1"></a>                     <span class="dv">26</span>,  <span class="co"># United Kingdom</span></span>
-<span id="cb2-185"><a href="#cb2-185" aria-hidden="true" tabindex="-1"></a>                     <span class="dv">27</span>,  <span class="co"># United States</span></span>
-<span id="cb2-186"><a href="#cb2-186" aria-hidden="true" tabindex="-1"></a>                     <span class="dv">4</span>,   <span class="co"># Chile</span></span>
-<span id="cb2-187"><a href="#cb2-187" aria-hidden="true" tabindex="-1"></a>                     <span class="dv">17</span>,  <span class="co"># Mexico</span></span>
-<span id="cb2-188"><a href="#cb2-188" aria-hidden="true" tabindex="-1"></a>                     <span class="dv">6</span>,   <span class="co"># Estonia</span></span>
-<span id="cb2-189"><a href="#cb2-189" aria-hidden="true" tabindex="-1"></a>                     <span class="dv">15</span>,  <span class="co"># Latvia</span></span>
-<span id="cb2-190"><a href="#cb2-190" aria-hidden="true" tabindex="-1"></a>                     <span class="dv">16</span>   <span class="co"># Lithuania</span></span>
-<span id="cb2-191"><a href="#cb2-191" aria-hidden="true" tabindex="-1"></a>                     ) <span class="sc">~</span> <span class="st">"Liberal"</span>,</span>
-<span id="cb2-192"><a href="#cb2-192" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-193"><a href="#cb2-193" aria-hidden="true" tabindex="-1"></a>      <span class="co"># 3. CONSERVADOR-CORPORATIVISTA + SUR DE EUROPA</span></span>
-<span id="cb2-194"><a href="#cb2-194" aria-hidden="true" tabindex="-1"></a>      <span class="co"># Esping-Andersen (1990) + Ferrera (1996)</span></span>
-<span id="cb2-195"><a href="#cb2-195" aria-hidden="true" tabindex="-1"></a>      country <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">1</span>,   <span class="co"># Austria</span></span>
-<span id="cb2-196"><a href="#cb2-196" aria-hidden="true" tabindex="-1"></a>                     <span class="dv">2</span>,   <span class="co"># Belgium</span></span>
-<span id="cb2-197"><a href="#cb2-197" aria-hidden="true" tabindex="-1"></a>                     <span class="dv">8</span>,   <span class="co"># France</span></span>
-<span id="cb2-198"><a href="#cb2-198" aria-hidden="true" tabindex="-1"></a>                     <span class="dv">9</span>,   <span class="co"># Germany</span></span>
-<span id="cb2-199"><a href="#cb2-199" aria-hidden="true" tabindex="-1"></a>                     <span class="dv">24</span>,  <span class="co"># Switzerland</span></span>
-<span id="cb2-200"><a href="#cb2-200" aria-hidden="true" tabindex="-1"></a>                     <span class="dv">10</span>,  <span class="co"># Greece</span></span>
-<span id="cb2-201"><a href="#cb2-201" aria-hidden="true" tabindex="-1"></a>                     <span class="dv">13</span>,  <span class="co"># Italy</span></span>
-<span id="cb2-202"><a href="#cb2-202" aria-hidden="true" tabindex="-1"></a>                     <span class="dv">21</span>,  <span class="co"># Portugal</span></span>
-<span id="cb2-203"><a href="#cb2-203" aria-hidden="true" tabindex="-1"></a>                     <span class="dv">23</span>,  <span class="co"># Spain</span></span>
-<span id="cb2-204"><a href="#cb2-204" aria-hidden="true" tabindex="-1"></a>                     <span class="dv">12</span>,  <span class="co"># Israel</span></span>
-<span id="cb2-205"><a href="#cb2-205" aria-hidden="true" tabindex="-1"></a>                     <span class="dv">14</span>,  <span class="co"># Korea</span></span>
-<span id="cb2-206"><a href="#cb2-206" aria-hidden="true" tabindex="-1"></a>                     <span class="dv">25</span>,   <span class="co"># Türkiye</span></span>
-<span id="cb2-207"><a href="#cb2-207" aria-hidden="true" tabindex="-1"></a>                     <span class="dv">20</span>,  <span class="co"># Poland</span></span>
-<span id="cb2-208"><a href="#cb2-208" aria-hidden="true" tabindex="-1"></a>                     <span class="dv">22</span>   <span class="co"># Slovenia</span></span>
-<span id="cb2-209"><a href="#cb2-209" aria-hidden="true" tabindex="-1"></a>                     ) <span class="sc">~</span> <span class="st">"Conservative"</span>,</span>
-<span id="cb2-210"><a href="#cb2-210" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-211"><a href="#cb2-211" aria-hidden="true" tabindex="-1"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> <span class="cn">NA_character_</span></span>
-<span id="cb2-212"><a href="#cb2-212" aria-hidden="true" tabindex="-1"></a>    ),</span>
-<span id="cb2-213"><a href="#cb2-213" aria-hidden="true" tabindex="-1"></a>    <span class="at">welfare_regime =</span> <span class="fu">factor</span>(welfare_regime,</span>
-<span id="cb2-214"><a href="#cb2-214" aria-hidden="true" tabindex="-1"></a>                            <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Liberal"</span>,</span>
-<span id="cb2-215"><a href="#cb2-215" aria-hidden="true" tabindex="-1"></a>                                       <span class="st">"Social-democratic"</span>,</span>
-<span id="cb2-216"><a href="#cb2-216" aria-hidden="true" tabindex="-1"></a>                                       <span class="st">"Conservative"</span>))</span>
-<span id="cb2-217"><a href="#cb2-217" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb2-218"><a href="#cb2-218" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-219"><a href="#cb2-219" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-220"><a href="#cb2-220" aria-hidden="true" tabindex="-1"></a>data<span class="sc">$</span>sex <span class="ot">&lt;-</span> <span class="fu">as_factor</span>(data<span class="sc">$</span>sex)</span>
-<span id="cb2-221"><a href="#cb2-221" aria-hidden="true" tabindex="-1"></a>data<span class="sc">$</span>age <span class="ot">&lt;-</span> <span class="fu">as_factor</span>(data<span class="sc">$</span>age)</span>
-<span id="cb2-222"><a href="#cb2-222" aria-hidden="true" tabindex="-1"></a>data<span class="sc">$</span>educ <span class="ot">&lt;-</span> <span class="fu">as_factor</span>(data<span class="sc">$</span>educ)</span>
-<span id="cb2-223"><a href="#cb2-223" aria-hidden="true" tabindex="-1"></a>data<span class="sc">$</span>selfemploy <span class="ot">&lt;-</span> <span class="fu">as_factor</span>(data<span class="sc">$</span>selfemploy)</span>
-<span id="cb2-224"><a href="#cb2-224" aria-hidden="true" tabindex="-1"></a>data<span class="sc">$</span>platform <span class="ot">&lt;-</span> <span class="fu">as_factor</span>(data<span class="sc">$</span>platform)</span>
-<span id="cb2-225"><a href="#cb2-225" aria-hidden="true" tabindex="-1"></a>data<span class="sc">$</span>platform <span class="ot">&lt;-</span> car<span class="sc">::</span><span class="fu">recode</span>(data<span class="sc">$</span>platform, <span class="st">"2=1;1=2;3=2"</span>)</span>
-<span id="cb2-226"><a href="#cb2-226" aria-hidden="true" tabindex="-1"></a>data<span class="sc">$</span>selfemploy <span class="ot">&lt;-</span> car<span class="sc">::</span><span class="fu">recode</span>(data<span class="sc">$</span>selfemploy, <span class="st">"1=1;2=2;3=2"</span>)</span>
-<span id="cb2-227"><a href="#cb2-227" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-228"><a href="#cb2-228" aria-hidden="true" tabindex="-1"></a>data<span class="sc">$</span>distributive  <span class="ot">&lt;-</span> <span class="fu">set_label</span>(<span class="at">x =</span> data<span class="sc">$</span>distributive, <span class="at">label =</span> <span class="st">"Retributive justice"</span>)</span>
-<span id="cb2-229"><a href="#cb2-229" aria-hidden="true" tabindex="-1"></a>data<span class="sc">$</span>tecnoestres  <span class="ot">&lt;-</span> <span class="fu">set_label</span>(<span class="at">x =</span> data<span class="sc">$</span>tecnoestres, <span class="at">label =</span> <span class="st">"Tecnoestres"</span>)</span>
-<span id="cb2-230"><a href="#cb2-230" aria-hidden="true" tabindex="-1"></a>data<span class="sc">$</span>pos_tecnoestres  <span class="ot">&lt;-</span> <span class="fu">set_label</span>(<span class="at">x =</span> data<span class="sc">$</span>pos_tecnoestres, <span class="at">label =</span> <span class="st">"Positive tecnoestres"</span>)</span>
-<span id="cb2-231"><a href="#cb2-231" aria-hidden="true" tabindex="-1"></a>data<span class="sc">$</span>skills  <span class="ot">&lt;-</span> <span class="fu">set_label</span>(<span class="at">x =</span> data<span class="sc">$</span>skills, <span class="at">label =</span> <span class="st">"Lose job due skills"</span>)</span>
-<span id="cb2-232"><a href="#cb2-232" aria-hidden="true" tabindex="-1"></a>data<span class="sc">$</span>unnemployment  <span class="ot">&lt;-</span> <span class="fu">set_label</span>(<span class="at">x =</span> data<span class="sc">$</span>unnemployment, <span class="at">label =</span> <span class="st">"Lose job"</span>)</span>
-<span id="cb2-233"><a href="#cb2-233" aria-hidden="true" tabindex="-1"></a>data<span class="sc">$</span>deservingness  <span class="ot">&lt;-</span> <span class="fu">set_label</span>(<span class="at">x =</span> data<span class="sc">$</span>deservingness, <span class="at">label =</span> <span class="st">"Deservingness of others"</span>)</span>
-<span id="cb2-234"><a href="#cb2-234" aria-hidden="true" tabindex="-1"></a>data<span class="sc">$</span>gdp_2024  <span class="ot">&lt;-</span> <span class="fu">set_label</span>(<span class="at">x =</span> data<span class="sc">$</span>gdp_2024, <span class="at">label =</span> <span class="st">"GDP per-capita"</span>)</span>
-<span id="cb2-235"><a href="#cb2-235" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-236"><a href="#cb2-236" aria-hidden="true" tabindex="-1"></a>data<span class="sc">$</span>selfemploy <span class="ot">&lt;-</span> <span class="fu">set_labels</span>(data<span class="sc">$</span>selfemploy,</span>
-<span id="cb2-237"><a href="#cb2-237" aria-hidden="true" tabindex="-1"></a>            <span class="at">labels=</span><span class="fu">c</span>( <span class="st">"No"</span><span class="ot">=</span><span class="dv">1</span>,</span>
-<span id="cb2-238"><a href="#cb2-238" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"Yes"</span><span class="ot">=</span><span class="dv">2</span>))</span>
-<span id="cb2-239"><a href="#cb2-239" aria-hidden="true" tabindex="-1"></a>data<span class="sc">$</span>platform <span class="ot">&lt;-</span> <span class="fu">set_labels</span>(data<span class="sc">$</span>platform,</span>
-<span id="cb2-240"><a href="#cb2-240" aria-hidden="true" tabindex="-1"></a>            <span class="at">labels=</span><span class="fu">c</span>( <span class="st">"No"</span><span class="ot">=</span><span class="dv">1</span>,</span>
-<span id="cb2-241"><a href="#cb2-241" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"Yes"</span><span class="ot">=</span><span class="dv">2</span>))</span>
-<span id="cb2-242"><a href="#cb2-242" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-243"><a href="#cb2-243" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-244"><a href="#cb2-244" aria-hidden="true" tabindex="-1"></a><span class="fu">save</span>(data, <span class="at">file=</span>here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"input/proc/data.RData"</span>))</span>
-<span id="cb2-245"><a href="#cb2-245" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb2-246"><a href="#cb2-246" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-249"><a href="#cb2-249" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb2-250"><a href="#cb2-250" aria-hidden="true" tabindex="-1"></a>distributive <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span> <span class="fu">select</span>(distributive, country, ctrcode, welfare_regime, gdp_2024)</span>
-<span id="cb2-251"><a href="#cb2-251" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-252"><a href="#cb2-252" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-253"><a href="#cb2-253" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-254"><a href="#cb2-254" aria-hidden="true" tabindex="-1"></a>country_data <span class="ot">&lt;-</span> distributive <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(ctrcode) <span class="sc">%&gt;%</span></span>
-<span id="cb2-255"><a href="#cb2-255" aria-hidden="true" tabindex="-1"></a>                      <span class="fu">summarise</span>(<span class="at">distributive =</span> <span class="fu">mean</span>(distributive, <span class="at">na.rm=</span><span class="cn">TRUE</span>),</span>
-<span id="cb2-256"><a href="#cb2-256" aria-hidden="true" tabindex="-1"></a>                                <span class="at">gdp_2024 =</span> <span class="fu">mean</span>(gdp_2024, <span class="at">na.rm=</span><span class="cn">TRUE</span>))</span>
-<span id="cb2-257"><a href="#cb2-257" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-258"><a href="#cb2-258" aria-hidden="true" tabindex="-1"></a><span class="fu">save</span>(country_data, <span class="at">file=</span>here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"input/proc/country_data.RData"</span>))</span>
-<span id="cb2-259"><a href="#cb2-259" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-</code><button title="Copiar al portapapeles" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Preparación"</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span><span class="co">  </span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co">    code-copy: true</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co">    code-tools: true</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: true</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co">    toc-location: right</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="co">    toc-depth: 4</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="co">    toc-expand: 2</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="co">    toc-title: Contents</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="co">    number-sections: true</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="co">    number-depth: 4 </span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="co">    fig-width: 10  </span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="co">    fig-height: 7</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="an">editor_options:</span><span class="co"> </span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="co">  chunk_output_type: console</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="an">editor:</span><span class="co"> source</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="an">lang:</span><span class="co"> es</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a><span class="an">fontsize:</span><span class="co"> 12pt</span></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: set</span></span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a><span class="co">#| messedad: false</span></span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr)</span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">FALSE</span>, <span class="at">include =</span> <span class="cn">TRUE</span>, <span class="at">warning =</span> <span class="cn">FALSE</span>, <span class="at">messedad =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a>table_format <span class="ot">&lt;-</span> <span class="cf">if</span>(<span class="fu">is_html_output</span>()) {</span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a>  <span class="st">"html"</span></span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> <span class="cf">if</span>(<span class="fu">is_latex_output</span>()) {</span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a>  <span class="st">"latex"</span></span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a>table_format2 <span class="ot">&lt;-</span> <span class="cf">if</span>(<span class="fu">is_html_output</span>()) {</span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a>  T</span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> <span class="cf">if</span>(<span class="fu">is_latex_output</span>()) {</span>
+<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a>  F</span>
+<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">kableExtra.html.bsTable =</span> T)</span>
+<span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">knitr.kable.NA =</span> <span class="st">""</span>)</span>
+<span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb4-48"><a href="#cb4-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-51"><a href="#cb4-51" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb4-52"><a href="#cb4-52" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">require</span>(<span class="st">"pacman"</span>)) <span class="fu">install.packedads</span>(<span class="st">"pacman"</span>) <span class="co"># instalar pacman</span></span>
+<span id="cb4-53"><a href="#cb4-53" aria-hidden="true" tabindex="-1"></a>                            <span class="co"># cargar librerias</span></span>
+<span id="cb4-54"><a href="#cb4-54" aria-hidden="true" tabindex="-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(dplyr,       <span class="co"># Manipulacion de datos</span></span>
+<span id="cb4-55"><a href="#cb4-55" aria-hidden="true" tabindex="-1"></a>               knitr,</span>
+<span id="cb4-56"><a href="#cb4-56" aria-hidden="true" tabindex="-1"></a>               kableExtra,</span>
+<span id="cb4-57"><a href="#cb4-57" aria-hidden="true" tabindex="-1"></a>               summarytools,</span>
+<span id="cb4-58"><a href="#cb4-58" aria-hidden="true" tabindex="-1"></a>               ggplot2,</span>
+<span id="cb4-59"><a href="#cb4-59" aria-hidden="true" tabindex="-1"></a>               ggeffects,</span>
+<span id="cb4-60"><a href="#cb4-60" aria-hidden="true" tabindex="-1"></a>               haven,</span>
+<span id="cb4-61"><a href="#cb4-61" aria-hidden="true" tabindex="-1"></a>               sjlabelled,</span>
+<span id="cb4-62"><a href="#cb4-62" aria-hidden="true" tabindex="-1"></a>               lme4,</span>
+<span id="cb4-63"><a href="#cb4-63" aria-hidden="true" tabindex="-1"></a>               sjmisc,</span>
+<span id="cb4-64"><a href="#cb4-64" aria-hidden="true" tabindex="-1"></a>               sjPlot,</span>
+<span id="cb4-65"><a href="#cb4-65" aria-hidden="true" tabindex="-1"></a>               ggrepel,</span>
+<span id="cb4-66"><a href="#cb4-66" aria-hidden="true" tabindex="-1"></a>               ggpubr</span>
+<span id="cb4-67"><a href="#cb4-67" aria-hidden="true" tabindex="-1"></a>               )</span>
+<span id="cb4-68"><a href="#cb4-68" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-69"><a href="#cb4-69" aria-hidden="true" tabindex="-1"></a>data_original<span class="ot">&lt;-</span> haven<span class="sc">::</span><span class="fu">read_dta</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"input/original/OECD_RTM_2024.dta"</span>))</span>
+<span id="cb4-70"><a href="#cb4-70" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-71"><a href="#cb4-71" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> data_original <span class="sc">%&gt;%</span></span>
+<span id="cb4-72"><a href="#cb4-72" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(id,</span>
+<span id="cb4-73"><a href="#cb4-73" aria-hidden="true" tabindex="-1"></a>              country,</span>
+<span id="cb4-74"><a href="#cb4-74" aria-hidden="true" tabindex="-1"></a>              ctrcode, </span>
+<span id="cb4-75"><a href="#cb4-75" aria-hidden="true" tabindex="-1"></a>              year, </span>
+<span id="cb4-76"><a href="#cb4-76" aria-hidden="true" tabindex="-1"></a>              ctryear, </span>
+<span id="cb4-77"><a href="#cb4-77" aria-hidden="true" tabindex="-1"></a>              weight, </span>
+<span id="cb4-78"><a href="#cb4-78" aria-hidden="true" tabindex="-1"></a>              <span class="at">sex=</span>s2,</span>
+<span id="cb4-79"><a href="#cb4-79" aria-hidden="true" tabindex="-1"></a>              <span class="at">age=</span>s3_agegroup,</span>
+<span id="cb4-80"><a href="#cb4-80" aria-hidden="true" tabindex="-1"></a>              <span class="at">educ=</span>s7_cat3,</span>
+<span id="cb4-81"><a href="#cb4-81" aria-hidden="true" tabindex="-1"></a>              <span class="at">income=</span>s9_dec,</span>
+<span id="cb4-82"><a href="#cb4-82" aria-hidden="true" tabindex="-1"></a>              <span class="at">employment=</span>s25,</span>
+<span id="cb4-83"><a href="#cb4-83" aria-hidden="true" tabindex="-1"></a>              <span class="at">selfemploy=</span>s11,</span>
+<span id="cb4-84"><a href="#cb4-84" aria-hidden="true" tabindex="-1"></a>              <span class="at">platform=</span>s29,</span>
+<span id="cb4-85"><a href="#cb4-85" aria-hidden="true" tabindex="-1"></a>              <span class="at">distributive=</span>q16,</span>
+<span id="cb4-86"><a href="#cb4-86" aria-hidden="true" tabindex="-1"></a>              <span class="at">unnemployment=</span>q2b,</span>
+<span id="cb4-87"><a href="#cb4-87" aria-hidden="true" tabindex="-1"></a>              <span class="at">tecnoestres_1=</span>q25a,</span>
+<span id="cb4-88"><a href="#cb4-88" aria-hidden="true" tabindex="-1"></a>              <span class="at">tecnoestres_2=</span>q25b,</span>
+<span id="cb4-89"><a href="#cb4-89" aria-hidden="true" tabindex="-1"></a>              <span class="at">tecnoestres_3=</span>q25c,</span>
+<span id="cb4-90"><a href="#cb4-90" aria-hidden="true" tabindex="-1"></a>              <span class="at">tecnoestres_4=</span>q25d,</span>
+<span id="cb4-91"><a href="#cb4-91" aria-hidden="true" tabindex="-1"></a>              <span class="at">tecnoestres_5=</span>q25e,</span>
+<span id="cb4-92"><a href="#cb4-92" aria-hidden="true" tabindex="-1"></a>              <span class="at">tecnoestres_6=</span>q25f,</span>
+<span id="cb4-93"><a href="#cb4-93" aria-hidden="true" tabindex="-1"></a>              <span class="at">tecnoestres_7=</span>q25g,</span>
+<span id="cb4-94"><a href="#cb4-94" aria-hidden="true" tabindex="-1"></a>              <span class="at">tecnoestres_8=</span>q25h,</span>
+<span id="cb4-95"><a href="#cb4-95" aria-hidden="true" tabindex="-1"></a>              <span class="at">tecnoestres_9=</span>q25i,</span>
+<span id="cb4-96"><a href="#cb4-96" aria-hidden="true" tabindex="-1"></a>              <span class="at">deservingness=</span>q17              </span>
+<span id="cb4-97"><a href="#cb4-97" aria-hidden="true" tabindex="-1"></a>              )</span>
+<span id="cb4-98"><a href="#cb4-98" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-99"><a href="#cb4-99" aria-hidden="true" tabindex="-1"></a>gdp_2024 <span class="ot">&lt;-</span> tibble<span class="sc">::</span><span class="fu">tribble</span>(</span>
+<span id="cb4-100"><a href="#cb4-100" aria-hidden="true" tabindex="-1"></a>  <span class="sc">~</span>ctrcode, <span class="sc">~</span>gdp_2024,</span>
+<span id="cb4-101"><a href="#cb4-101" aria-hidden="true" tabindex="-1"></a>  <span class="st">"AUT"</span>,  <span class="dv">58373</span>,</span>
+<span id="cb4-102"><a href="#cb4-102" aria-hidden="true" tabindex="-1"></a>  <span class="st">"BEL"</span>,  <span class="dv">56796</span>,</span>
+<span id="cb4-103"><a href="#cb4-103" aria-hidden="true" tabindex="-1"></a>  <span class="st">"CAN"</span>,  <span class="dv">54283</span>,</span>
+<span id="cb4-104"><a href="#cb4-104" aria-hidden="true" tabindex="-1"></a>  <span class="st">"CHE"</span>, <span class="dv">108256</span>,</span>
+<span id="cb4-105"><a href="#cb4-105" aria-hidden="true" tabindex="-1"></a>  <span class="st">"CHL"</span>,  <span class="dv">17203</span>,</span>
+<span id="cb4-106"><a href="#cb4-106" aria-hidden="true" tabindex="-1"></a>  <span class="st">"DEU"</span>,  <span class="dv">56087</span>,</span>
+<span id="cb4-107"><a href="#cb4-107" aria-hidden="true" tabindex="-1"></a>  <span class="st">"DNK"</span>,  <span class="dv">71214</span>,</span>
+<span id="cb4-108"><a href="#cb4-108" aria-hidden="true" tabindex="-1"></a>  <span class="st">"ESP"</span>,  <span class="dv">36076</span>,</span>
+<span id="cb4-109"><a href="#cb4-109" aria-hidden="true" tabindex="-1"></a>  <span class="st">"EST"</span>,  <span class="dv">31419</span>,</span>
+<span id="cb4-110"><a href="#cb4-110" aria-hidden="true" tabindex="-1"></a>  <span class="st">"FIN"</span>,  <span class="dv">53189</span>,</span>
+<span id="cb4-111"><a href="#cb4-111" aria-hidden="true" tabindex="-1"></a>  <span class="st">"FRA"</span>,  <span class="dv">46150</span>,</span>
+<span id="cb4-112"><a href="#cb4-112" aria-hidden="true" tabindex="-1"></a>  <span class="st">"GBR"</span>,  <span class="dv">52637</span>,</span>
+<span id="cb4-113"><a href="#cb4-113" aria-hidden="true" tabindex="-1"></a>  <span class="st">"GRC"</span>,  <span class="dv">24716</span>,</span>
+<span id="cb4-114"><a href="#cb4-114" aria-hidden="true" tabindex="-1"></a>  <span class="st">"IRL"</span>, <span class="dv">112356</span>,</span>
+<span id="cb4-115"><a href="#cb4-115" aria-hidden="true" tabindex="-1"></a>  <span class="st">"ISR"</span>,  <span class="dv">54177</span>,</span>
+<span id="cb4-116"><a href="#cb4-116" aria-hidden="true" tabindex="-1"></a>  <span class="st">"ITA"</span>,  <span class="dv">40226</span>,</span>
+<span id="cb4-117"><a href="#cb4-117" aria-hidden="true" tabindex="-1"></a>  <span class="st">"KOR"</span>,  <span class="dv">36500</span>,</span>
+<span id="cb4-118"><a href="#cb4-118" aria-hidden="true" tabindex="-1"></a>  <span class="st">"LTU"</span>,  <span class="dv">29379</span>,</span>
+<span id="cb4-119"><a href="#cb4-119" aria-hidden="true" tabindex="-1"></a>  <span class="st">"LVA"</span>,  <span class="dv">23243</span>,</span>
+<span id="cb4-120"><a href="#cb4-120" aria-hidden="true" tabindex="-1"></a>  <span class="st">"MEX"</span>,  <span class="dv">13826</span>,</span>
+<span id="cb4-121"><a href="#cb4-121" aria-hidden="true" tabindex="-1"></a>  <span class="st">"NLD"</span>,  <span class="dv">67690</span>,</span>
+<span id="cb4-122"><a href="#cb4-122" aria-hidden="true" tabindex="-1"></a>  <span class="st">"NOR"</span>,  <span class="dv">89684</span>,</span>
+<span id="cb4-123"><a href="#cb4-123" aria-hidden="true" tabindex="-1"></a>  <span class="st">"POL"</span>,  <span class="dv">24973</span>,</span>
+<span id="cb4-124"><a href="#cb4-124" aria-hidden="true" tabindex="-1"></a>  <span class="st">"PRT"</span>,  <span class="dv">27832</span>,</span>
+<span id="cb4-125"><a href="#cb4-125" aria-hidden="true" tabindex="-1"></a>  <span class="st">"SVN"</span>,  <span class="dv">34103</span>,</span>
+<span id="cb4-126"><a href="#cb4-126" aria-hidden="true" tabindex="-1"></a>  <span class="st">"TUR"</span>,  <span class="dv">15463</span>,</span>
+<span id="cb4-127"><a href="#cb4-127" aria-hidden="true" tabindex="-1"></a>  <span class="st">"USA"</span>,  <span class="dv">86173</span></span>
+<span id="cb4-128"><a href="#cb4-128" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb4-129"><a href="#cb4-129" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-130"><a href="#cb4-130" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span> <span class="fu">set_na</span>(.,<span class="at">na=</span><span class="fu">c</span>(<span class="dv">98</span>,<span class="dv">99</span>))</span>
+<span id="cb4-131"><a href="#cb4-131" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-132"><a href="#cb4-132" aria-hidden="true" tabindex="-1"></a><span class="co"># generate analytical sample</span></span>
+<span id="cb4-133"><a href="#cb4-133" aria-hidden="true" tabindex="-1"></a>digitalization <span class="ot">&lt;-</span></span>
+<span id="cb4-134"><a href="#cb4-134" aria-hidden="true" tabindex="-1"></a>  data <span class="sc">%&gt;%</span> <span class="co">#filter(ctrcode=="CHL") %&gt;% </span></span>
+<span id="cb4-135"><a href="#cb4-135" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(tecnoestres_1, tecnoestres_2, tecnoestres_3, tecnoestres_4, tecnoestres_5, </span>
+<span id="cb4-136"><a href="#cb4-136" aria-hidden="true" tabindex="-1"></a>          tecnoestres_6, tecnoestres_7, tecnoestres_8, tecnoestres_9 <span class="co">#tecnoestres</span></span>
+<span id="cb4-137"><a href="#cb4-137" aria-hidden="true" tabindex="-1"></a>         )</span>
+<span id="cb4-138"><a href="#cb4-138" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-139"><a href="#cb4-139" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-140"><a href="#cb4-140" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-141"><a href="#cb4-141" aria-hidden="true" tabindex="-1"></a>vars <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"tecnoestres_"</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">9</span>)</span>
+<span id="cb4-142"><a href="#cb4-142" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-143"><a href="#cb4-143" aria-hidden="true" tabindex="-1"></a>labelled<span class="sc">::</span><span class="fu">var_label</span>(digitalization)[vars] <span class="ot">&lt;-</span> labelled<span class="sc">::</span><span class="fu">var_label</span>(digitalization)[vars] <span class="sc">%&gt;%</span></span>
+<span id="cb4-144"><a href="#cb4-144" aria-hidden="true" tabindex="-1"></a>  stringr<span class="sc">::</span><span class="fu">str_remove</span>(<span class="st">"^q25[a-z]:</span><span class="sc">\\</span><span class="st">s*Digitaln</span><span class="sc">\\</span><span class="st">. and your job:</span><span class="sc">\\</span><span class="st">s*"</span>)</span>
+<span id="cb4-145"><a href="#cb4-145" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-146"><a href="#cb4-146" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-147"><a href="#cb4-147" aria-hidden="true" tabindex="-1"></a><span class="fu">save</span>(digitalization, <span class="at">file=</span>here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"input/proc/digitalization.RData"</span>))</span>
+<span id="cb4-148"><a href="#cb4-148" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-149"><a href="#cb4-149" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-150"><a href="#cb4-150" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span> <span class="fu">rowwise</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb4-151"><a href="#cb4-151" aria-hidden="true" tabindex="-1"></a>        <span class="fu">mutate</span>(<span class="at">tecnoestres =</span> <span class="fu">mean</span>(<span class="fu">c</span>(tecnoestres_1, tecnoestres_5, tecnoestres_6), <span class="at">na.rm=</span><span class="cn">TRUE</span>),</span>
+<span id="cb4-152"><a href="#cb4-152" aria-hidden="true" tabindex="-1"></a>               <span class="at">pos_tecnoestres =</span> <span class="fu">mean</span>(<span class="fu">c</span>(tecnoestres_7, tecnoestres_8, tecnoestres_9), <span class="at">na.rm=</span><span class="cn">TRUE</span>),</span>
+<span id="cb4-153"><a href="#cb4-153" aria-hidden="true" tabindex="-1"></a>               <span class="at">skills =</span> tecnoestres_6</span>
+<span id="cb4-154"><a href="#cb4-154" aria-hidden="true" tabindex="-1"></a>               )</span>
+<span id="cb4-155"><a href="#cb4-155" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">merge</span>(data, gdp_2024, <span class="at">by=</span><span class="st">"ctrcode"</span>)</span>
+<span id="cb4-156"><a href="#cb4-156" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-157"><a href="#cb4-157" aria-hidden="true" tabindex="-1"></a><span class="co"># ============================================================</span></span>
+<span id="cb4-158"><a href="#cb4-158" aria-hidden="true" tabindex="-1"></a><span class="co"># Clasificación de regímenes de bienestar</span></span>
+<span id="cb4-159"><a href="#cb4-159" aria-hidden="true" tabindex="-1"></a><span class="co"># Fuentes principales:</span></span>
+<span id="cb4-160"><a href="#cb4-160" aria-hidden="true" tabindex="-1"></a><span class="co">#   Esping-Andersen (1990) Three Worlds of Welfare Capitalism</span></span>
+<span id="cb4-161"><a href="#cb4-161" aria-hidden="true" tabindex="-1"></a><span class="co">#   Ferrera (1996) Southern European regime</span></span>
+<span id="cb4-162"><a href="#cb4-162" aria-hidden="true" tabindex="-1"></a><span class="co">#   Aidukaite (2011) Post-communist welfare reforms</span></span>
+<span id="cb4-163"><a href="#cb4-163" aria-hidden="true" tabindex="-1"></a><span class="co">#   Fenger (2007) CEE typology</span></span>
+<span id="cb4-164"><a href="#cb4-164" aria-hidden="true" tabindex="-1"></a><span class="co"># ============================================================</span></span>
+<span id="cb4-165"><a href="#cb4-165" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-166"><a href="#cb4-166" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span></span>
+<span id="cb4-167"><a href="#cb4-167" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb4-168"><a href="#cb4-168" aria-hidden="true" tabindex="-1"></a>    <span class="at">welfare_regime =</span> <span class="fu">case_when</span>(</span>
+<span id="cb4-169"><a href="#cb4-169" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-170"><a href="#cb4-170" aria-hidden="true" tabindex="-1"></a>      <span class="co"># 1. SOCIALDEMÓCRATA</span></span>
+<span id="cb4-171"><a href="#cb4-171" aria-hidden="true" tabindex="-1"></a>      <span class="co"># Esping-Andersen (1990): universalismo, alta desmercantilización</span></span>
+<span id="cb4-172"><a href="#cb4-172" aria-hidden="true" tabindex="-1"></a>      country <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">5</span>,   <span class="co"># Denmark</span></span>
+<span id="cb4-173"><a href="#cb4-173" aria-hidden="true" tabindex="-1"></a>                     <span class="dv">7</span>,   <span class="co"># Finland</span></span>
+<span id="cb4-174"><a href="#cb4-174" aria-hidden="true" tabindex="-1"></a>                     <span class="dv">19</span>,  <span class="co"># Norway</span></span>
+<span id="cb4-175"><a href="#cb4-175" aria-hidden="true" tabindex="-1"></a>                     <span class="dv">18</span>   <span class="co"># Netherlands</span></span>
+<span id="cb4-176"><a href="#cb4-176" aria-hidden="true" tabindex="-1"></a>                     ) <span class="sc">~</span> <span class="st">"Social-democratic"</span>,</span>
+<span id="cb4-177"><a href="#cb4-177" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-178"><a href="#cb4-178" aria-hidden="true" tabindex="-1"></a>      <span class="co"># 2. LIBERAL</span></span>
+<span id="cb4-179"><a href="#cb4-179" aria-hidden="true" tabindex="-1"></a>      <span class="co"># Esping-Andersen (1990): residual, focalizado, mercado</span></span>
+<span id="cb4-180"><a href="#cb4-180" aria-hidden="true" tabindex="-1"></a>      <span class="co"># Martínez Franzoni (2008): Chile y México — liberal latinoamericano</span></span>
+<span id="cb4-181"><a href="#cb4-181" aria-hidden="true" tabindex="-1"></a>      <span class="co"># Aidukaite (2011): bálticos con orientación liberal post-soviética</span></span>
+<span id="cb4-182"><a href="#cb4-182" aria-hidden="true" tabindex="-1"></a>      country <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">3</span>,   <span class="co"># Canada</span></span>
+<span id="cb4-183"><a href="#cb4-183" aria-hidden="true" tabindex="-1"></a>                     <span class="dv">11</span>,  <span class="co"># Ireland</span></span>
+<span id="cb4-184"><a href="#cb4-184" aria-hidden="true" tabindex="-1"></a>                     <span class="dv">26</span>,  <span class="co"># United Kingdom</span></span>
+<span id="cb4-185"><a href="#cb4-185" aria-hidden="true" tabindex="-1"></a>                     <span class="dv">27</span>,  <span class="co"># United States</span></span>
+<span id="cb4-186"><a href="#cb4-186" aria-hidden="true" tabindex="-1"></a>                     <span class="dv">4</span>,   <span class="co"># Chile</span></span>
+<span id="cb4-187"><a href="#cb4-187" aria-hidden="true" tabindex="-1"></a>                     <span class="dv">17</span>,  <span class="co"># Mexico</span></span>
+<span id="cb4-188"><a href="#cb4-188" aria-hidden="true" tabindex="-1"></a>                     <span class="dv">6</span>,   <span class="co"># Estonia</span></span>
+<span id="cb4-189"><a href="#cb4-189" aria-hidden="true" tabindex="-1"></a>                     <span class="dv">15</span>,  <span class="co"># Latvia</span></span>
+<span id="cb4-190"><a href="#cb4-190" aria-hidden="true" tabindex="-1"></a>                     <span class="dv">16</span>   <span class="co"># Lithuania</span></span>
+<span id="cb4-191"><a href="#cb4-191" aria-hidden="true" tabindex="-1"></a>                     ) <span class="sc">~</span> <span class="st">"Liberal"</span>,</span>
+<span id="cb4-192"><a href="#cb4-192" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-193"><a href="#cb4-193" aria-hidden="true" tabindex="-1"></a>      <span class="co"># 3. CONSERVADOR-CORPORATIVISTA + SUR DE EUROPA</span></span>
+<span id="cb4-194"><a href="#cb4-194" aria-hidden="true" tabindex="-1"></a>      <span class="co"># Esping-Andersen (1990) + Ferrera (1996)</span></span>
+<span id="cb4-195"><a href="#cb4-195" aria-hidden="true" tabindex="-1"></a>      country <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">1</span>,   <span class="co"># Austria</span></span>
+<span id="cb4-196"><a href="#cb4-196" aria-hidden="true" tabindex="-1"></a>                     <span class="dv">2</span>,   <span class="co"># Belgium</span></span>
+<span id="cb4-197"><a href="#cb4-197" aria-hidden="true" tabindex="-1"></a>                     <span class="dv">8</span>,   <span class="co"># France</span></span>
+<span id="cb4-198"><a href="#cb4-198" aria-hidden="true" tabindex="-1"></a>                     <span class="dv">9</span>,   <span class="co"># Germany</span></span>
+<span id="cb4-199"><a href="#cb4-199" aria-hidden="true" tabindex="-1"></a>                     <span class="dv">24</span>,  <span class="co"># Switzerland</span></span>
+<span id="cb4-200"><a href="#cb4-200" aria-hidden="true" tabindex="-1"></a>                     <span class="dv">10</span>,  <span class="co"># Greece</span></span>
+<span id="cb4-201"><a href="#cb4-201" aria-hidden="true" tabindex="-1"></a>                     <span class="dv">13</span>,  <span class="co"># Italy</span></span>
+<span id="cb4-202"><a href="#cb4-202" aria-hidden="true" tabindex="-1"></a>                     <span class="dv">21</span>,  <span class="co"># Portugal</span></span>
+<span id="cb4-203"><a href="#cb4-203" aria-hidden="true" tabindex="-1"></a>                     <span class="dv">23</span>,  <span class="co"># Spain</span></span>
+<span id="cb4-204"><a href="#cb4-204" aria-hidden="true" tabindex="-1"></a>                     <span class="dv">12</span>,  <span class="co"># Israel</span></span>
+<span id="cb4-205"><a href="#cb4-205" aria-hidden="true" tabindex="-1"></a>                     <span class="dv">14</span>,  <span class="co"># Korea</span></span>
+<span id="cb4-206"><a href="#cb4-206" aria-hidden="true" tabindex="-1"></a>                     <span class="dv">25</span>,   <span class="co"># Türkiye</span></span>
+<span id="cb4-207"><a href="#cb4-207" aria-hidden="true" tabindex="-1"></a>                     <span class="dv">20</span>,  <span class="co"># Poland</span></span>
+<span id="cb4-208"><a href="#cb4-208" aria-hidden="true" tabindex="-1"></a>                     <span class="dv">22</span>   <span class="co"># Slovenia</span></span>
+<span id="cb4-209"><a href="#cb4-209" aria-hidden="true" tabindex="-1"></a>                     ) <span class="sc">~</span> <span class="st">"Conservative"</span>,</span>
+<span id="cb4-210"><a href="#cb4-210" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-211"><a href="#cb4-211" aria-hidden="true" tabindex="-1"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> <span class="cn">NA_character_</span></span>
+<span id="cb4-212"><a href="#cb4-212" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb4-213"><a href="#cb4-213" aria-hidden="true" tabindex="-1"></a>    <span class="at">welfare_regime =</span> <span class="fu">factor</span>(welfare_regime,</span>
+<span id="cb4-214"><a href="#cb4-214" aria-hidden="true" tabindex="-1"></a>                            <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Liberal"</span>,</span>
+<span id="cb4-215"><a href="#cb4-215" aria-hidden="true" tabindex="-1"></a>                                       <span class="st">"Social-democratic"</span>,</span>
+<span id="cb4-216"><a href="#cb4-216" aria-hidden="true" tabindex="-1"></a>                                       <span class="st">"Conservative"</span>))</span>
+<span id="cb4-217"><a href="#cb4-217" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb4-218"><a href="#cb4-218" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-219"><a href="#cb4-219" aria-hidden="true" tabindex="-1"></a>data<span class="sc">$</span>sex <span class="ot">&lt;-</span> <span class="fu">as_factor</span>(data<span class="sc">$</span>sex)</span>
+<span id="cb4-220"><a href="#cb4-220" aria-hidden="true" tabindex="-1"></a>data<span class="sc">$</span>age <span class="ot">&lt;-</span> <span class="fu">as_factor</span>(data<span class="sc">$</span>age)</span>
+<span id="cb4-221"><a href="#cb4-221" aria-hidden="true" tabindex="-1"></a>data<span class="sc">$</span>educ <span class="ot">&lt;-</span> <span class="fu">as_factor</span>(data<span class="sc">$</span>educ)</span>
+<span id="cb4-222"><a href="#cb4-222" aria-hidden="true" tabindex="-1"></a>data<span class="sc">$</span>selfemploy <span class="ot">&lt;-</span> <span class="fu">as_factor</span>(data<span class="sc">$</span>selfemploy)</span>
+<span id="cb4-223"><a href="#cb4-223" aria-hidden="true" tabindex="-1"></a>data<span class="sc">$</span>platform <span class="ot">&lt;-</span> <span class="fu">as_factor</span>(data<span class="sc">$</span>platform)</span>
+<span id="cb4-224"><a href="#cb4-224" aria-hidden="true" tabindex="-1"></a>data<span class="sc">$</span>platform <span class="ot">&lt;-</span> car<span class="sc">::</span><span class="fu">recode</span>(data<span class="sc">$</span>platform, <span class="st">"2=1;1=2;3=2"</span>)</span>
+<span id="cb4-225"><a href="#cb4-225" aria-hidden="true" tabindex="-1"></a>data<span class="sc">$</span>selfemploy <span class="ot">&lt;-</span> car<span class="sc">::</span><span class="fu">recode</span>(data<span class="sc">$</span>selfemploy, <span class="st">"1=1;2=2;3=2"</span>)</span>
+<span id="cb4-226"><a href="#cb4-226" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-227"><a href="#cb4-227" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(data)</span>
+<span id="cb4-228"><a href="#cb4-228" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">select</span>(id, country, ctrcode, year, ctryear, weight, sex, age, educ, income, selfemploy, unnemployment, platform, distributive, tecnoestres, pos_tecnoestres, skills, deservingness, welfare_regime)</span>
+<span id="cb4-229"><a href="#cb4-229" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-230"><a href="#cb4-230" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-231"><a href="#cb4-231" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb4-232"><a href="#cb4-232" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-233"><a href="#cb4-233" aria-hidden="true" tabindex="-1"></a><span class="fu">## Macro vars</span></span>
+<span id="cb4-234"><a href="#cb4-234" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-237"><a href="#cb4-237" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb4-238"><a href="#cb4-238" aria-hidden="true" tabindex="-1"></a><span class="co"># ============================================================</span></span>
+<span id="cb4-239"><a href="#cb4-239" aria-hidden="true" tabindex="-1"></a><span class="co"># Indicadores macro para los 27 países del estudio</span></span>
+<span id="cb4-240"><a href="#cb4-240" aria-hidden="true" tabindex="-1"></a><span class="co"># Criterio temporal: dato más reciente disponible en 2015-2024,</span></span>
+<span id="cb4-241"><a href="#cb4-241" aria-hidden="true" tabindex="-1"></a><span class="co"># registrando el año efectivamente usado por país e indicador.</span></span>
+<span id="cb4-242"><a href="#cb4-242" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb4-243"><a href="#cb4-243" aria-hidden="true" tabindex="-1"></a><span class="co"># Fuentes:</span></span>
+<span id="cb4-244"><a href="#cb4-244" aria-hidden="true" tabindex="-1"></a><span class="co">#   - Gini (ingreso disponible):  World Bank, WDI, SI.POV.GINI</span></span>
+<span id="cb4-245"><a href="#cb4-245" aria-hidden="true" tabindex="-1"></a><span class="co">#   - PIB per cápita (PPP, US$ internacionales constantes 2021):</span></span>
+<span id="cb4-246"><a href="#cb4-246" aria-hidden="true" tabindex="-1"></a><span class="co">#                                 World Bank, WDI, NY.GDP.PCAP.PP.KD</span></span>
+<span id="cb4-247"><a href="#cb4-247" aria-hidden="true" tabindex="-1"></a><span class="co">#   - Tasa de desempleo (% fuerza laboral, estimación OIT):</span></span>
+<span id="cb4-248"><a href="#cb4-248" aria-hidden="true" tabindex="-1"></a><span class="co">#                                 World Bank, WDI, SL.UEM.TOTL.ZS</span></span>
+<span id="cb4-249"><a href="#cb4-249" aria-hidden="true" tabindex="-1"></a><span class="co">#   - Gasto social público (% del PIB):</span></span>
+<span id="cb4-250"><a href="#cb4-250" aria-hidden="true" tabindex="-1"></a><span class="co">#                                 OECD SOCX (DSD_SOCX_AGG@DF_SOCX_AGG)</span></span>
+<span id="cb4-251"><a href="#cb4-251" aria-hidden="true" tabindex="-1"></a><span class="co"># ============================================================</span></span>
+<span id="cb4-252"><a href="#cb4-252" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-253"><a href="#cb4-253" aria-hidden="true" tabindex="-1"></a>iso_map <span class="ot">&lt;-</span> tibble<span class="sc">::</span><span class="fu">tribble</span>(</span>
+<span id="cb4-254"><a href="#cb4-254" aria-hidden="true" tabindex="-1"></a>  <span class="sc">~</span>code, <span class="sc">~</span>country,         <span class="sc">~</span>iso2c, <span class="sc">~</span>iso3c,</span>
+<span id="cb4-255"><a href="#cb4-255" aria-hidden="true" tabindex="-1"></a>   <span class="dv">1</span>, <span class="st">"Austria"</span>,         <span class="st">"AT"</span>, <span class="st">"AUT"</span>,</span>
+<span id="cb4-256"><a href="#cb4-256" aria-hidden="true" tabindex="-1"></a>   <span class="dv">2</span>, <span class="st">"Belgium"</span>,         <span class="st">"BE"</span>, <span class="st">"BEL"</span>,</span>
+<span id="cb4-257"><a href="#cb4-257" aria-hidden="true" tabindex="-1"></a>   <span class="dv">3</span>, <span class="st">"Canada"</span>,          <span class="st">"CA"</span>, <span class="st">"CAN"</span>,</span>
+<span id="cb4-258"><a href="#cb4-258" aria-hidden="true" tabindex="-1"></a>   <span class="dv">4</span>, <span class="st">"Chile"</span>,           <span class="st">"CL"</span>, <span class="st">"CHL"</span>,</span>
+<span id="cb4-259"><a href="#cb4-259" aria-hidden="true" tabindex="-1"></a>   <span class="dv">5</span>, <span class="st">"Denmark"</span>,         <span class="st">"DK"</span>, <span class="st">"DNK"</span>,</span>
+<span id="cb4-260"><a href="#cb4-260" aria-hidden="true" tabindex="-1"></a>   <span class="dv">6</span>, <span class="st">"Estonia"</span>,         <span class="st">"EE"</span>, <span class="st">"EST"</span>,</span>
+<span id="cb4-261"><a href="#cb4-261" aria-hidden="true" tabindex="-1"></a>   <span class="dv">7</span>, <span class="st">"Finland"</span>,         <span class="st">"FI"</span>, <span class="st">"FIN"</span>,</span>
+<span id="cb4-262"><a href="#cb4-262" aria-hidden="true" tabindex="-1"></a>   <span class="dv">8</span>, <span class="st">"France"</span>,          <span class="st">"FR"</span>, <span class="st">"FRA"</span>,</span>
+<span id="cb4-263"><a href="#cb4-263" aria-hidden="true" tabindex="-1"></a>   <span class="dv">9</span>, <span class="st">"Germany"</span>,         <span class="st">"DE"</span>, <span class="st">"DEU"</span>,</span>
+<span id="cb4-264"><a href="#cb4-264" aria-hidden="true" tabindex="-1"></a>  <span class="dv">10</span>, <span class="st">"Greece"</span>,          <span class="st">"GR"</span>, <span class="st">"GRC"</span>,</span>
+<span id="cb4-265"><a href="#cb4-265" aria-hidden="true" tabindex="-1"></a>  <span class="dv">11</span>, <span class="st">"Ireland"</span>,         <span class="st">"IE"</span>, <span class="st">"IRL"</span>,</span>
+<span id="cb4-266"><a href="#cb4-266" aria-hidden="true" tabindex="-1"></a>  <span class="dv">12</span>, <span class="st">"Israel"</span>,          <span class="st">"IL"</span>, <span class="st">"ISR"</span>,</span>
+<span id="cb4-267"><a href="#cb4-267" aria-hidden="true" tabindex="-1"></a>  <span class="dv">13</span>, <span class="st">"Italy"</span>,           <span class="st">"IT"</span>, <span class="st">"ITA"</span>,</span>
+<span id="cb4-268"><a href="#cb4-268" aria-hidden="true" tabindex="-1"></a>  <span class="dv">14</span>, <span class="st">"Korea"</span>,           <span class="st">"KR"</span>, <span class="st">"KOR"</span>,</span>
+<span id="cb4-269"><a href="#cb4-269" aria-hidden="true" tabindex="-1"></a>  <span class="dv">15</span>, <span class="st">"Latvia"</span>,          <span class="st">"LV"</span>, <span class="st">"LVA"</span>,</span>
+<span id="cb4-270"><a href="#cb4-270" aria-hidden="true" tabindex="-1"></a>  <span class="dv">16</span>, <span class="st">"Lithuania"</span>,       <span class="st">"LT"</span>, <span class="st">"LTU"</span>,</span>
+<span id="cb4-271"><a href="#cb4-271" aria-hidden="true" tabindex="-1"></a>  <span class="dv">17</span>, <span class="st">"Mexico"</span>,          <span class="st">"MX"</span>, <span class="st">"MEX"</span>,</span>
+<span id="cb4-272"><a href="#cb4-272" aria-hidden="true" tabindex="-1"></a>  <span class="dv">18</span>, <span class="st">"Netherlands"</span>,     <span class="st">"NL"</span>, <span class="st">"NLD"</span>,</span>
+<span id="cb4-273"><a href="#cb4-273" aria-hidden="true" tabindex="-1"></a>  <span class="dv">19</span>, <span class="st">"Norway"</span>,          <span class="st">"NO"</span>, <span class="st">"NOR"</span>,</span>
+<span id="cb4-274"><a href="#cb4-274" aria-hidden="true" tabindex="-1"></a>  <span class="dv">20</span>, <span class="st">"Poland"</span>,          <span class="st">"PL"</span>, <span class="st">"POL"</span>,</span>
+<span id="cb4-275"><a href="#cb4-275" aria-hidden="true" tabindex="-1"></a>  <span class="dv">21</span>, <span class="st">"Portugal"</span>,        <span class="st">"PT"</span>, <span class="st">"PRT"</span>,</span>
+<span id="cb4-276"><a href="#cb4-276" aria-hidden="true" tabindex="-1"></a>  <span class="dv">22</span>, <span class="st">"Slovenia"</span>,        <span class="st">"SI"</span>, <span class="st">"SVN"</span>,</span>
+<span id="cb4-277"><a href="#cb4-277" aria-hidden="true" tabindex="-1"></a>  <span class="dv">23</span>, <span class="st">"Spain"</span>,           <span class="st">"ES"</span>, <span class="st">"ESP"</span>,</span>
+<span id="cb4-278"><a href="#cb4-278" aria-hidden="true" tabindex="-1"></a>  <span class="dv">24</span>, <span class="st">"Switzerland"</span>,     <span class="st">"CH"</span>, <span class="st">"CHE"</span>,</span>
+<span id="cb4-279"><a href="#cb4-279" aria-hidden="true" tabindex="-1"></a>  <span class="dv">25</span>, <span class="st">"Türkiye"</span>,         <span class="st">"TR"</span>, <span class="st">"TUR"</span>,</span>
+<span id="cb4-280"><a href="#cb4-280" aria-hidden="true" tabindex="-1"></a>  <span class="dv">26</span>, <span class="st">"United Kingdom"</span>,  <span class="st">"GB"</span>, <span class="st">"GBR"</span>,</span>
+<span id="cb4-281"><a href="#cb4-281" aria-hidden="true" tabindex="-1"></a>  <span class="dv">27</span>, <span class="st">"United States"</span>,   <span class="st">"US"</span>, <span class="st">"USA"</span></span>
+<span id="cb4-282"><a href="#cb4-282" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb4-283"><a href="#cb4-283" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-284"><a href="#cb4-284" aria-hidden="true" tabindex="-1"></a><span class="co"># ---- 1. Banco Mundial (WDI): Gini, PIB pc PPP, desempleo -------------------</span></span>
+<span id="cb4-285"><a href="#cb4-285" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-286"><a href="#cb4-286" aria-hidden="true" tabindex="-1"></a>wdi_raw <span class="ot">&lt;-</span> WDI<span class="sc">::</span><span class="fu">WDI</span>(</span>
+<span id="cb4-287"><a href="#cb4-287" aria-hidden="true" tabindex="-1"></a>  <span class="at">country   =</span> iso_map<span class="sc">$</span>iso2c,</span>
+<span id="cb4-288"><a href="#cb4-288" aria-hidden="true" tabindex="-1"></a>  <span class="at">indicator =</span> <span class="fu">c</span>(<span class="at">gini   =</span> <span class="st">"SI.POV.GINI"</span>,</span>
+<span id="cb4-289"><a href="#cb4-289" aria-hidden="true" tabindex="-1"></a>                <span class="at">gdp_pc =</span> <span class="st">"NY.GDP.PCAP.PP.KD"</span>,</span>
+<span id="cb4-290"><a href="#cb4-290" aria-hidden="true" tabindex="-1"></a>                <span class="at">unemp  =</span> <span class="st">"SL.UEM.TOTL.ZS"</span>),</span>
+<span id="cb4-291"><a href="#cb4-291" aria-hidden="true" tabindex="-1"></a>  <span class="at">start =</span> <span class="dv">2015</span>, <span class="at">end =</span> <span class="dv">2024</span></span>
+<span id="cb4-292"><a href="#cb4-292" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb4-293"><a href="#cb4-293" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-294"><a href="#cb4-294" aria-hidden="true" tabindex="-1"></a><span class="co"># Dato más reciente no perdido por país e indicador, con su año</span></span>
+<span id="cb4-295"><a href="#cb4-295" aria-hidden="true" tabindex="-1"></a>wdi_latest <span class="ot">&lt;-</span> wdi_raw <span class="sc">%&gt;%</span></span>
+<span id="cb4-296"><a href="#cb4-296" aria-hidden="true" tabindex="-1"></a>  tidyr<span class="sc">::</span><span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">c</span>(gini, gdp_pc, unemp),</span>
+<span id="cb4-297"><a href="#cb4-297" aria-hidden="true" tabindex="-1"></a>                      <span class="at">names_to =</span> <span class="st">"indicator"</span>, <span class="at">values_to =</span> <span class="st">"value"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb4-298"><a href="#cb4-298" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(value)) <span class="sc">%&gt;%</span></span>
+<span id="cb4-299"><a href="#cb4-299" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">group_by</span>(iso2c, indicator) <span class="sc">%&gt;%</span></span>
+<span id="cb4-300"><a href="#cb4-300" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">slice_max</span>(year, <span class="at">n =</span> <span class="dv">1</span>, <span class="at">with_ties =</span> <span class="cn">FALSE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb4-301"><a href="#cb4-301" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">ungroup</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb4-302"><a href="#cb4-302" aria-hidden="true" tabindex="-1"></a>  tidyr<span class="sc">::</span><span class="fu">pivot_wider</span>(<span class="at">id_cols =</span> iso2c,</span>
+<span id="cb4-303"><a href="#cb4-303" aria-hidden="true" tabindex="-1"></a>                     <span class="at">names_from  =</span> indicator,</span>
+<span id="cb4-304"><a href="#cb4-304" aria-hidden="true" tabindex="-1"></a>                     <span class="at">values_from =</span> <span class="fu">c</span>(value, year),</span>
+<span id="cb4-305"><a href="#cb4-305" aria-hidden="true" tabindex="-1"></a>                     <span class="at">names_glue  =</span> <span class="st">"{indicator}_{.value}"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb4-306"><a href="#cb4-306" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">rename</span>(<span class="at">gini =</span> gini_value, <span class="at">gdp_pc =</span> gdp_pc_value, <span class="at">unemp =</span> unemp_value)</span>
+<span id="cb4-307"><a href="#cb4-307" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-308"><a href="#cb4-308" aria-hidden="true" tabindex="-1"></a><span class="co"># ---- 2. OCDE SOCX: gasto social público, % del PIB -------------------------</span></span>
+<span id="cb4-309"><a href="#cb4-309" aria-hidden="true" tabindex="-1"></a><span class="co"># API SDMX del OECD Data Explorer; si el llamado falla (la OCDE ajusta el API</span></span>
+<span id="cb4-310"><a href="#cb4-310" aria-hidden="true" tabindex="-1"></a><span class="co"># ocasionalmente), descargar el CSV desde "Social</span></span>
+<span id="cb4-311"><a href="#cb4-311" aria-hidden="true" tabindex="-1"></a><span class="co"># expenditure aggregates: Public, % of GDP, todos los programas)</span></span>
+<span id="cb4-312"><a href="#cb4-312" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-313"><a href="#cb4-313" aria-hidden="true" tabindex="-1"></a>socx_latest <span class="ot">&lt;-</span> <span class="fu">tryCatch</span>({</span>
+<span id="cb4-314"><a href="#cb4-314" aria-hidden="true" tabindex="-1"></a>  socx_url <span class="ot">&lt;-</span> <span class="fu">paste0</span>(</span>
+<span id="cb4-315"><a href="#cb4-315" aria-hidden="true" tabindex="-1"></a>    <span class="st">"https://sdmx.oecd.org/public/rest/data/OECD.ELS.SPD,DSD_SOCX_AGG@DF_SOCX_AGG,/"</span>,</span>
+<span id="cb4-316"><a href="#cb4-316" aria-hidden="true" tabindex="-1"></a>    <span class="fu">paste</span>(iso_map<span class="sc">$</span>iso3c, <span class="at">collapse =</span> <span class="st">"+"</span>),</span>
+<span id="cb4-317"><a href="#cb4-317" aria-hidden="true" tabindex="-1"></a>    <span class="st">".A..PT_B1GQ.ES10._T._T.?startPeriod=2019&amp;format=csvfilewithlabels"</span></span>
+<span id="cb4-318"><a href="#cb4-318" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb4-319"><a href="#cb4-319" aria-hidden="true" tabindex="-1"></a>  socx_raw <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(socx_url, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb4-320"><a href="#cb4-320" aria-hidden="true" tabindex="-1"></a>  socx_raw <span class="sc">%&gt;%</span></span>
+<span id="cb4-321"><a href="#cb4-321" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="at">iso3c =</span> REF_AREA, <span class="at">socx_year =</span> TIME_PERIOD, <span class="at">socx =</span> OBS_VALUE) <span class="sc">%&gt;%</span></span>
+<span id="cb4-322"><a href="#cb4-322" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">group_by</span>(iso3c) <span class="sc">%&gt;%</span></span>
+<span id="cb4-323"><a href="#cb4-323" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">slice_max</span>(socx_year, <span class="at">n =</span> <span class="dv">1</span>, <span class="at">with_ties =</span> <span class="cn">FALSE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb4-324"><a href="#cb4-324" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">ungroup</span>()</span>
+<span id="cb4-325"><a href="#cb4-325" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb4-326"><a href="#cb4-326" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-327"><a href="#cb4-327" aria-hidden="true" tabindex="-1"></a><span class="co"># ---- 3. Consolidar, estandarizar y fusionar --------------------------------</span></span>
+<span id="cb4-328"><a href="#cb4-328" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-329"><a href="#cb4-329" aria-hidden="true" tabindex="-1"></a>macro <span class="ot">&lt;-</span> iso_map <span class="sc">%&gt;%</span></span>
+<span id="cb4-330"><a href="#cb4-330" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">left_join</span>(wdi_latest,  <span class="at">by =</span> <span class="st">"iso2c"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb4-331"><a href="#cb4-331" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">left_join</span>(socx_latest, <span class="at">by =</span> <span class="st">"iso3c"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb4-332"><a href="#cb4-332" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(</span>
+<span id="cb4-333"><a href="#cb4-333" aria-hidden="true" tabindex="-1"></a>    <span class="at">gdp_pc_log =</span> <span class="fu">log</span>(gdp_pc),</span>
+<span id="cb4-334"><a href="#cb4-334" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">across</span>(<span class="fu">c</span>(gini, gdp_pc_log, unemp, socx),</span>
+<span id="cb4-335"><a href="#cb4-335" aria-hidden="true" tabindex="-1"></a>                  <span class="sc">~</span> <span class="fu">as.numeric</span>(<span class="fu">scale</span>(.x)), <span class="at">.names =</span> <span class="st">"{.col}_z"</span>)</span>
+<span id="cb4-336"><a href="#cb4-336" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb4-337"><a href="#cb4-337" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-338"><a href="#cb4-338" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">left_join</span>(data, dplyr<span class="sc">::</span><span class="fu">select</span>(macro, <span class="sc">-</span>country, <span class="sc">-</span>iso2c, <span class="sc">-</span>iso3c), <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"country"</span> <span class="ot">=</span> <span class="st">"code"</span>))</span>
+<span id="cb4-339"><a href="#cb4-339" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-340"><a href="#cb4-340" aria-hidden="true" tabindex="-1"></a><span class="co"># ---- 4. Tabla de fuentes para el apéndice ----------------------------------</span></span>
+<span id="cb4-341"><a href="#cb4-341" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-342"><a href="#cb4-342" aria-hidden="true" tabindex="-1"></a>tabla_fuentes <span class="ot">&lt;-</span> tibble<span class="sc">::</span><span class="fu">tribble</span>(</span>
+<span id="cb4-343"><a href="#cb4-343" aria-hidden="true" tabindex="-1"></a>  <span class="sc">~</span>Indicator,                          <span class="sc">~</span>Source,                                            <span class="sc">~</span>Series,             <span class="sc">~</span>Years,</span>
+<span id="cb4-344"><a href="#cb4-344" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Gini coefficient (disposable income)"</span>, <span class="st">"World Bank, World Development Indicators"</span>,      <span class="st">"SI.POV.GINI"</span>,       <span class="fu">paste</span>(<span class="fu">range</span>(macro<span class="sc">$</span>gini_year,   <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">collapse =</span> <span class="st">"-"</span>),</span>
+<span id="cb4-345"><a href="#cb4-345" aria-hidden="true" tabindex="-1"></a>  <span class="st">"GDP per capita (PPP, constant 2021 international $)"</span>, <span class="st">"World Bank, World Development Indicators"</span>, <span class="st">"NY.GDP.PCAP.PP.KD"</span>, <span class="fu">paste</span>(<span class="fu">range</span>(macro<span class="sc">$</span>gdp_pc_year, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">collapse =</span> <span class="st">"-"</span>),</span>
+<span id="cb4-346"><a href="#cb4-346" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Unemployment rate (% of labour force, ILO estimate)"</span>, <span class="st">"World Bank, World Development Indicators"</span>, <span class="st">"SL.UEM.TOTL.ZS"</span>,    <span class="fu">paste</span>(<span class="fu">range</span>(macro<span class="sc">$</span>unemp_year,  <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">collapse =</span> <span class="st">"-"</span>),</span>
+<span id="cb4-347"><a href="#cb4-347" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Public social expenditure (% of GDP)"</span>, <span class="st">"OECD Social Expenditure Database (SOCX)"</span>,       <span class="st">"DF_SOCX_AGG"</span>,       <span class="fu">paste</span>(<span class="fu">range</span>(macro<span class="sc">$</span>socx_year,   <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">collapse =</span> <span class="st">"-"</span>)</span>
+<span id="cb4-348"><a href="#cb4-348" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb4-349"><a href="#cb4-349" aria-hidden="true" tabindex="-1"></a>tabla_fuentes</span>
+<span id="cb4-350"><a href="#cb4-350" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-351"><a href="#cb4-351" aria-hidden="true" tabindex="-1"></a><span class="fu">save</span>(data, <span class="at">file=</span>here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"input/proc/data.RData"</span>))</span>
+<span id="cb4-352"><a href="#cb4-352" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb4-353"><a href="#cb4-353" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-354"><a href="#cb4-354" aria-hidden="true" tabindex="-1"></a><span class="in">```{r eval=FALSE}</span></span>
+<span id="cb4-355"><a href="#cb4-355" aria-hidden="true" tabindex="-1"></a>distributive <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span> <span class="fu">select</span>(distributive, country, ctrcode, welfare_regime, gdp_2024)</span>
+<span id="cb4-356"><a href="#cb4-356" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-357"><a href="#cb4-357" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-358"><a href="#cb4-358" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-359"><a href="#cb4-359" aria-hidden="true" tabindex="-1"></a>country_data <span class="ot">&lt;-</span> distributive <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(ctrcode) <span class="sc">%&gt;%</span></span>
+<span id="cb4-360"><a href="#cb4-360" aria-hidden="true" tabindex="-1"></a>                      <span class="fu">summarise</span>(<span class="at">distributive =</span> <span class="fu">mean</span>(distributive, <span class="at">na.rm=</span><span class="cn">TRUE</span>),</span>
+<span id="cb4-361"><a href="#cb4-361" aria-hidden="true" tabindex="-1"></a>                                <span class="at">gdp_2024 =</span> <span class="fu">mean</span>(gdp_2024, <span class="at">na.rm=</span><span class="cn">TRUE</span>))</span>
+<span id="cb4-362"><a href="#cb4-362" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-363"><a href="#cb4-363" aria-hidden="true" tabindex="-1"></a><span class="fu">save</span>(country_data, <span class="at">file=</span>here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"input/proc/country_data.RData"</span>))</span>
+<span id="cb4-364"><a href="#cb4-364" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+</code></pre></div><button title="Copiar al portapapeles" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 

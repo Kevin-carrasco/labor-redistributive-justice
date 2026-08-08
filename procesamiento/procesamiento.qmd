@@ -144,7 +144,7 @@ save(digitalization, file=here::here("input/proc/digitalization.RData"))
 
 
 data <- data %>% rowwise() %>%
-        mutate(tecnoestres = mean(c(tecnoestres_1, tecnoestres_3, tecnoestres_5), na.rm=TRUE),
+        mutate(tecnoestres = mean(c(tecnoestres_1, tecnoestres_5, tecnoestres_6), na.rm=TRUE),
                pos_tecnoestres = mean(c(tecnoestres_7, tecnoestres_8, tecnoestres_9), na.rm=TRUE),
                skills = tecnoestres_6
                )
@@ -223,6 +223,124 @@ data$selfemploy <- car::recode(data$selfemploy, "1=1;2=2;3=2")
 names(data)
 data <- data %>% dplyr::select(id, country, ctrcode, year, ctryear, weight, sex, age, educ, income, selfemploy, unnemployment, platform, distributive, tecnoestres, pos_tecnoestres, skills, deservingness, welfare_regime)
 
+
+```
+
+## Macro vars
+
+```{r}
+# ============================================================
+# Indicadores macro para los 27 países del estudio
+# Criterio temporal: dato más reciente disponible en 2015-2024,
+# registrando el año efectivamente usado por país e indicador.
+#
+# Fuentes:
+#   - Gini (ingreso disponible):  World Bank, WDI, SI.POV.GINI
+#   - PIB per cápita (PPP, US$ internacionales constantes 2021):
+#                                 World Bank, WDI, NY.GDP.PCAP.PP.KD
+#   - Tasa de desempleo (% fuerza laboral, estimación OIT):
+#                                 World Bank, WDI, SL.UEM.TOTL.ZS
+#   - Gasto social público (% del PIB):
+#                                 OECD SOCX (DSD_SOCX_AGG@DF_SOCX_AGG)
+# ============================================================
+
+iso_map <- tibble::tribble(
+  ~code, ~country,         ~iso2c, ~iso3c,
+   1, "Austria",         "AT", "AUT",
+   2, "Belgium",         "BE", "BEL",
+   3, "Canada",          "CA", "CAN",
+   4, "Chile",           "CL", "CHL",
+   5, "Denmark",         "DK", "DNK",
+   6, "Estonia",         "EE", "EST",
+   7, "Finland",         "FI", "FIN",
+   8, "France",          "FR", "FRA",
+   9, "Germany",         "DE", "DEU",
+  10, "Greece",          "GR", "GRC",
+  11, "Ireland",         "IE", "IRL",
+  12, "Israel",          "IL", "ISR",
+  13, "Italy",           "IT", "ITA",
+  14, "Korea",           "KR", "KOR",
+  15, "Latvia",          "LV", "LVA",
+  16, "Lithuania",       "LT", "LTU",
+  17, "Mexico",          "MX", "MEX",
+  18, "Netherlands",     "NL", "NLD",
+  19, "Norway",          "NO", "NOR",
+  20, "Poland",          "PL", "POL",
+  21, "Portugal",        "PT", "PRT",
+  22, "Slovenia",        "SI", "SVN",
+  23, "Spain",           "ES", "ESP",
+  24, "Switzerland",     "CH", "CHE",
+  25, "Türkiye",         "TR", "TUR",
+  26, "United Kingdom",  "GB", "GBR",
+  27, "United States",   "US", "USA"
+)
+
+# ---- 1. Banco Mundial (WDI): Gini, PIB pc PPP, desempleo -------------------
+
+wdi_raw <- WDI::WDI(
+  country   = iso_map$iso2c,
+  indicator = c(gini   = "SI.POV.GINI",
+                gdp_pc = "NY.GDP.PCAP.PP.KD",
+                unemp  = "SL.UEM.TOTL.ZS"),
+  start = 2015, end = 2024
+)
+
+# Dato más reciente no perdido por país e indicador, con su año
+wdi_latest <- wdi_raw %>%
+  tidyr::pivot_longer(cols = c(gini, gdp_pc, unemp),
+                      names_to = "indicator", values_to = "value") %>%
+  dplyr::filter(!is.na(value)) %>%
+  dplyr::group_by(iso2c, indicator) %>%
+  dplyr::slice_max(year, n = 1, with_ties = FALSE) %>%
+  dplyr::ungroup() %>%
+  tidyr::pivot_wider(id_cols = iso2c,
+                     names_from  = indicator,
+                     values_from = c(value, year),
+                     names_glue  = "{indicator}_{.value}") %>%
+  dplyr::rename(gini = gini_value, gdp_pc = gdp_pc_value, unemp = unemp_value)
+
+# ---- 2. OCDE SOCX: gasto social público, % del PIB -------------------------
+# API SDMX del OECD Data Explorer; si el llamado falla (la OCDE ajusta el API
+# ocasionalmente), descargar el CSV desde "Social
+# expenditure aggregates: Public, % of GDP, todos los programas)
+
+socx_latest <- tryCatch({
+  socx_url <- paste0(
+    "https://sdmx.oecd.org/public/rest/data/OECD.ELS.SPD,DSD_SOCX_AGG@DF_SOCX_AGG,/",
+    paste(iso_map$iso3c, collapse = "+"),
+    ".A..PT_B1GQ.ES10._T._T.?startPeriod=2019&format=csvfilewithlabels"
+  )
+  socx_raw <- readr::read_csv(socx_url, show_col_types = FALSE)
+  socx_raw %>%
+    dplyr::select(iso3c = REF_AREA, socx_year = TIME_PERIOD, socx = OBS_VALUE) %>%
+    dplyr::group_by(iso3c) %>%
+    dplyr::slice_max(socx_year, n = 1, with_ties = FALSE) %>%
+    dplyr::ungroup()
+})
+
+# ---- 3. Consolidar, estandarizar y fusionar --------------------------------
+
+macro <- iso_map %>%
+  dplyr::left_join(wdi_latest,  by = "iso2c") %>%
+  dplyr::left_join(socx_latest, by = "iso3c") %>%
+  dplyr::mutate(
+    gdp_pc_log = log(gdp_pc),
+    dplyr::across(c(gini, gdp_pc_log, unemp, socx),
+                  ~ as.numeric(scale(.x)), .names = "{.col}_z")
+  )
+
+data <- dplyr::left_join(data, dplyr::select(macro, -country, -iso2c, -iso3c), by = c("country" = "code"))
+
+# ---- 4. Tabla de fuentes para el apéndice ----------------------------------
+
+tabla_fuentes <- tibble::tribble(
+  ~Indicator,                          ~Source,                                            ~Series,             ~Years,
+  "Gini coefficient (disposable income)", "World Bank, World Development Indicators",      "SI.POV.GINI",       paste(range(macro$gini_year,   na.rm = TRUE), collapse = "-"),
+  "GDP per capita (PPP, constant 2021 international $)", "World Bank, World Development Indicators", "NY.GDP.PCAP.PP.KD", paste(range(macro$gdp_pc_year, na.rm = TRUE), collapse = "-"),
+  "Unemployment rate (% of labour force, ILO estimate)", "World Bank, World Development Indicators", "SL.UEM.TOTL.ZS",    paste(range(macro$unemp_year,  na.rm = TRUE), collapse = "-"),
+  "Public social expenditure (% of GDP)", "OECD Social Expenditure Database (SOCX)",       "DF_SOCX_AGG",       paste(range(macro$socx_year,   na.rm = TRUE), collapse = "-")
+)
+tabla_fuentes
 
 save(data, file=here::here("input/proc/data.RData"))
 ```

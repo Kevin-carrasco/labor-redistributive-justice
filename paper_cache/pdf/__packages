@@ -32,4 +32,8 @@ ordinal
 emmeans
 huxtable
 flextable
+WDI
 knitr
+ggeffects
+haven
+ggrepel

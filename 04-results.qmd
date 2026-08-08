@@ -69,14 +69,14 @@ load(file=here::here("input/proc/digitalization.RData"))
 load(file=here::here("input/proc/country_data.RData"))
 
 # Generate analytical sample
-data <- data %>% select(ctrcode,country, distributive, sex, age, educ, income, selfemploy, unnemployment, platform, tecnoestres, pos_tecnoestres, skills, deservingness, welfare_regime, weight)
+data <- data %>% select(ctrcode,country, distributive, sex, age, educ, income, selfemploy, unnemployment, platform, tecnoestres, pos_tecnoestres, deservingness, welfare_regime, weight, gini_z, gdp_pc_log_z, unemp_z, socx_z)
 
 data <- na.omit(data)
 
 data$distributive  <- sjlabelled::set_label(x = data$distributive, label = "Redistributive justice")
 data$tecnoestres  <- sjlabelled::set_label(x = data$tecnoestres, label = "Technological displacement")
 data$pos_tecnoestres  <- sjlabelled::set_label(x = data$pos_tecnoestres, label = "Perceived technological benefit")
-data$skills  <- sjlabelled::set_label(x = data$skills, label = "Lose job due skills")
+#data$skills  <- sjlabelled::set_label(x = data$skills, label = "Lose job due skills")
 data$unnemployment  <- sjlabelled::set_label(x = data$unnemployment, label = "Lose job")
 
 data$deservingness <- as.numeric(as_factor(data$deservingness))
@@ -101,7 +101,7 @@ data$educ  <- sjlabelled::set_label(x = data$educ, label = "Educational level")
 
 mat_full<- 
 data %>%
-  select(distributive, selfemploy, platform, unnemployment, tecnoestres, pos_tecnoestres, skills, deservingness
+  select(distributive, selfemploy, platform, unnemployment, tecnoestres, pos_tecnoestres, deservingness
          ) %>% 
   mutate_all(as.numeric) %>% 
   psych::mixedCor()
@@ -114,11 +114,10 @@ rownames(cor_full) <- c("A. Perceived redistributive justice",
                         "C. Platform worker",
                         "D. Concern about job and income loss",
                      "E. Technological displacement",
-                     "F. Skill obsolescence risk",
-                     "G. Perceived technological benefit",
-                     "H. Deservingness of others")
+                     "F. Perceived technological benefit",
+                     "G. Deservingness of others")
 #set Column names of the matrix
-colnames(cor_full) <-c("(A)", "(B)","(C)","(D)", "(E)", "(F)", "(G)", "(H)")
+colnames(cor_full) <-c("(A)", "(B)","(C)","(D)", "(E)", "(F)", "(G)")
 #Plot the matrix using corrplot
 png("output/figures/corrplot.png",width=1000,height=1000, pointsize = 12)
 corrplot::corrplot(cor_full,
@@ -169,21 +168,44 @@ m0 <- clmm(distributive ~ 1 + (1 | ctrcode),
                 data = data, weights=weight)
 performance::icc(m0, by_group = T)
 
-
+# level 1
 reg1 <- clmm(distributive ~ selfemploy + platform + (1|ctrcode), data=data, weights=weight)
 reg2 <- clmm(distributive ~ selfemploy + platform + unnemployment + (1|ctrcode), data=data, weights=weight)
-reg3 <- clmm(distributive ~ selfemploy + platform + unnemployment + tecnoestres + skills + pos_tecnoestres + (1|ctrcode), data=data, weights=weight)
-reg4 <- clmm(distributive ~ selfemploy + platform + unnemployment + tecnoestres + skills + pos_tecnoestres + deservingness + (1|ctrcode), data=data, weights=weight)
+reg3 <- clmm(distributive ~ selfemploy + platform + unnemployment + tecnoestres + pos_tecnoestres + (1|ctrcode), data=data, weights=weight)
+reg4 <- clmm(distributive ~ selfemploy + platform + unnemployment + tecnoestres + pos_tecnoestres + deservingness + (1|ctrcode), data=data, weights=weight)
 
-reg5 <- clmm(distributive ~ selfemploy + platform + unnemployment + tecnoestres + skills + pos_tecnoestres + deservingness + welfare_regime+ (1|ctrcode), data=data, weights=weight)
-reg6 <- clmm(distributive ~ sex + age + educ + income + selfemploy + platform + unnemployment + tecnoestres + skills + pos_tecnoestres + deservingness + welfare_regime+ (1|ctrcode), data=data, weights=weight)
+# controls
+#reg5 <- clmm(distributive ~ selfemploy + platform + unnemployment + tecnoestres + pos_tecnoestres + deservingness + welfare_regime+ (1|ctrcode), data=data, weights=weight)
+reg5 <- clmm(distributive ~ sex + age + educ + income + selfemploy + platform + unnemployment + tecnoestres + pos_tecnoestres + deservingness + (1|ctrcode), data=data, weights=weight)
 
-reg7 <- clmm(distributive ~ sex + age + educ + income + selfemploy + platform*selfemploy + unnemployment + tecnoestres + skills + pos_tecnoestres + deservingness + welfare_regime+ (1|ctrcode), data=data, weights=weight)
-reg8 <- clmm(distributive ~ sex + age + educ + income + selfemploy*welfare_regime + platform + unnemployment + tecnoestres + skills + pos_tecnoestres + deservingness + welfare_regime+ (1|ctrcode), data=data, weights=weight)
-reg9 <- clmm(distributive ~ sex + age + educ + income + selfemploy + platform*welfare_regime + unnemployment + tecnoestres + skills + pos_tecnoestres + deservingness + welfare_regime+ (1|ctrcode), data=data, weights=weight)
-reg10 <- clmm(distributive ~ sex + age + educ + income + selfemploy + platform + unnemployment*welfare_regime + tecnoestres + skills + pos_tecnoestres + deservingness + welfare_regime+ (1|ctrcode), data=data, weights=weight)
-reg11 <- clmm(distributive ~ sex + age + educ + income + selfemploy + platform + unnemployment + tecnoestres*welfare_regime + skills + pos_tecnoestres + deservingness + welfare_regime+ (1|ctrcode), data=data, weights=weight)
-reg12 <- clmm(distributive ~ sex + age + educ + income + selfemploy + platform + unnemployment + tecnoestres + skills + pos_tecnoestres + deservingness*welfare_regime + welfare_regime + (1|ctrcode), data=data, weights=weight)
+# level 2
+#reg6 <- clmm(distributive ~ sex + age + educ + income + selfemploy + platform + unnemployment + tecnoestres + pos_tecnoestres + deservingness + gini_z + (1|ctrcode), data=data, weights=weight)
+reg6 <- clmm(distributive ~ sex + age + educ + income + selfemploy + platform + unnemployment + tecnoestres + pos_tecnoestres + deservingness + gini_z + gdp_pc_log_z + (1|ctrcode), data=data, weights=weight)
+#reg8 <- clmm(distributive ~ sex + age + educ + income + selfemploy + platform + unnemployment + tecnoestres + pos_tecnoestres + deservingness + gini_z + gdp_pc_log_z + unemp_z + (1|ctrcode), data=data, weights=weight)
+reg7 <- clmm(distributive ~ sex + age + educ + income + selfemploy + platform + unnemployment + tecnoestres + pos_tecnoestres + deservingness + gini_z + gdp_pc_log_z + unemp_z + socx_z + (1|ctrcode), data=data, weights=weight)
+reg8 <- clmm(distributive ~ sex + age + educ + income + selfemploy + platform + unnemployment + tecnoestres + pos_tecnoestres + deservingness + gini_z + gdp_pc_log_z + unemp_z + socx_z + welfare_regime + (1|ctrcode), data=data, weights=weight)
+
+
+# Interactions
+## platform x selfemploy
+reg9 <- clmm(distributive ~ sex + age + educ + income + selfemploy + platform*selfemploy + unnemployment + tecnoestres + pos_tecnoestres + deservingness + gini_z + gdp_pc_log_z + unemp_z + socx_z + welfare_regime + (1|ctrcode), data=data, weights=weight)
+
+## selfemploy x lvl2
+reg10 <- clmm(distributive ~ sex + age + educ + income + selfemploy*welfare_regime + platform + unnemployment + tecnoestres + pos_tecnoestres + deservingness + gini_z + gdp_pc_log_z + unemp_z + socx_z + welfare_regime + (1|ctrcode), data=data, weights=weight)
+
+## platform x lvl2
+reg11 <- clmm(distributive ~ sex + age + educ + income + selfemploy + platform*welfare_regime + unnemployment + tecnoestres + pos_tecnoestres + deservingness + gini_z + gdp_pc_log_z + unemp_z + socx_z + welfare_regime + (1|ctrcode), data=data, weights=weight)
+
+
+reg12 <- clmm(distributive ~ sex + age + educ + income + selfemploy + platform + unnemployment*welfare_regime + tecnoestres + pos_tecnoestres + deservingness + gini_z + gdp_pc_log_z + unemp_z + socx_z + welfare_regime + (1|ctrcode), data=data, weights=weight)
+reg13 <- clmm(distributive ~ sex + age + educ + income + selfemploy + platform + unnemployment + tecnoestres*welfare_regime + pos_tecnoestres + deservingness + gini_z + gdp_pc_log_z + unemp_z + socx_z + welfare_regime + (1|ctrcode), data=data, weights=weight)
+reg14 <- clmm(distributive ~ sex + age + educ + income + selfemploy + platform + unnemployment + tecnoestres + pos_tecnoestres + deservingness*welfare_regime + gini_z + gdp_pc_log_z + unemp_z + socx_z + welfare_regime + (1|ctrcode), data=data, weights=weight)
+
+
+texreg::knitreg(list(reg1, reg2, reg3, reg4, reg5, reg6, reg7, reg8))
+texreg::knitreg(list(reg9, reg10, reg11, reg12, reg13, reg14))
+
+
 ```
 
 
@@ -199,15 +221,19 @@ ccoef <- list(
   "platform2" = "Platform worker (ref. No)",
   "unnemployment" = "Concern about job and income loss",
   "tecnoestres" = "Technological displacement",
-  "skills" = "Skill obsolescence risk",
+ # "skills" = "Skill obsolescence risk",
   "pos_tecnoestres" = "Perceived technological benefit",
   deservingness = "Deservingness of others",
+  gini_z = "Gini coefficient (standardized)",
+  gdp_pc_log_z = "GDP per-capita (standardized)",
+  unemp_z = "Unemployment rate (standardized)",
+  socx_z = "Social expenditure (standardized)",
   "welfare_regimeSocial-democratic" = "Social-democratic",
   "welfare_regimeConservative" = "Conservative"
   )
 
-mat1 <- matrixreg(list(reg1, reg2, reg3, reg4, reg5, reg6),
-        custom.model.names = paste0("Model ", 1:6),
+mat1 <- matrixreg(list(reg1, reg2, reg3, reg4, reg5, reg6, reg7, reg8),
+        custom.model.names = paste0("Model ", 1:8),
         stars = c(0.05, 0.01, 0.001),
         omit.coef = omit,
         custom.coef.map = ccoef,
@@ -238,7 +264,7 @@ ft1 <- flextable::flextable(df1) %>%
   flextable::align(j = 2:7, align = "center", part = "all") %>%
   flextable::padding(padding.top = 0, padding.bottom = 0, part = "body") %>%
   flextable::fontsize(size = 8, part = "all") %>%
-  flextable::add_footer_lines("Note: Cells contain regression coefficients with standard errors in parentheses. * p < 0.05; ** p < 0.01; *** p < 0.001. Model 6 controls for sex, age, education and income; sex, age and income show significant effects, education does not.") %>%
+  flextable::add_footer_lines("Note: Cells contain regression coefficients with standard errors in parentheses. * p < 0.05; ** p < 0.01; *** p < 0.001. Model 5 to 8 controls for sex, age, education and income; sex, age and income show significant effects, education does not.") %>%
   flextable::fontsize(size = 7, part = "footer") %>%
   flextable::set_table_properties(layout = "fixed") %>%
   flextable::width(j = 1, width = 4.6, unit = "cm") %>%
@@ -260,7 +286,7 @@ The technological-perception battery (from Model 3) is uniformly positive. Perce
 #| tbl-cap: "Multilevel interaction models for perceived redistributive justice"
 #| tbl-cap-location: top
 
-omit2 <- "(1|2)|(2|3)|(3|4)|(4|5)|(sex)|(age)|(educ)|(income)|(skills)|(pos_tecnoestres)"
+omit2 <- "(1|2)|(2|3)|(3|4)|(4|5)|(sex)|(age)|(educ)|(income)|(pos_tecnoestres)|(gini_z)|(gdp_pc_log_z)|(unemp_z)|(socx_z)"
 
 ccoef2 <- list(
   "selfemploy2" = "Self-employed worker (ref. No)",
@@ -283,8 +309,8 @@ ccoef2 <- list(
   "deservingness:welfare_regimeConservative" = "Deservingness X Conservative"
   )
 
-mat2 <- matrixreg(list(reg7, reg8, reg9, reg10, reg11, reg12),
-        custom.model.names = paste0("Model ", 7:12),
+mat2 <- matrixreg(list(reg9, reg10, reg11, reg12, reg13, reg14),
+        custom.model.names = paste0("Model ", 9:14),
         stars = c(0.05, 0.01, 0.001),
         omit.coef = omit2,
         custom.coef.map = ccoef2,
@@ -324,7 +350,7 @@ The remaining interaction terms are also negative. Technological displacement is
 A consistent pattern emerges: every regime interaction with an individual-level predictor is negative, so each association is weaker —or more adverse— than under liberal arrangements. For platform work and technological displacement this translates into visibly flatter slopes in social-democratic regimes, consistent with the view that encompassing welfare institutions partially decouple distributive attitudes from individual technological exposure. The exceptions to this dampening logic are self-employment, which becomes consequential —and negative— only under social-democratic arrangements, and deservingness, whose negative gradient is steepest in conservative regimes.
 
 ```{r echo=FALSE}
-df1 <- emmip(reg8, welfare_regime ~ selfemploy,
+df1 <- emmip(reg10, welfare_regime ~ selfemploy,
              mode = "latent", CIs = FALSE, plotit = FALSE)
 
 int1 <- ggplot(df1, aes(x = selfemploy, y = yvar,
@@ -342,7 +368,7 @@ int1 <- ggplot(df1, aes(x = selfemploy, y = yvar,
 
 
 ```{r echo=FALSE}
-df2 <- emmip(reg9, welfare_regime ~ platform,
+df2 <- emmip(reg13, welfare_regime ~ platform,
              mode = "latent", CIs = FALSE, plotit = FALSE)
 
 int2 <- ggplot(df2, aes(x = platform, y = yvar,
@@ -361,10 +387,10 @@ int2 <- ggplot(df2, aes(x = platform, y = yvar,
 ```{r echo=FALSE}
 nui <- c("sex", "age", "educ", "income", "platform")
 
-df3_line <- emmip(reg11, welfare_regime ~ tecnoestres,
+df3_line <- emmip(reg13, welfare_regime ~ tecnoestres,
                   at = list(tecnoestres = seq(1, 4, length.out = 50)),
                   nuisance = nui, mode = "latent", CIs = FALSE, plotit = FALSE)
-df3_pts  <- emmip(reg11, welfare_regime ~ tecnoestres,
+df3_pts  <- emmip(reg13, welfare_regime ~ tecnoestres,
                   at = list(tecnoestres = seq(1, 4, length.out = 4)),
                   nuisance = nui, mode = "latent", CIs = FALSE, plotit = FALSE)
 
@@ -381,10 +407,10 @@ int3 <- ggplot(df3_line, aes(x = tecnoestres, y = yvar,
 ```
 
 ```{r echo=FALSE}
-df4_line <- emmip(reg12, welfare_regime ~ deservingness,
+df4_line <- emmip(reg14, welfare_regime ~ deservingness,
                   at = list(deservingness = seq(1, 5, length.out = 50)),
                   nuisance = nui, mode = "latent", CIs = FALSE, plotit = FALSE)
-df4_pts  <- emmip(reg12, welfare_regime ~ deservingness,
+df4_pts  <- emmip(reg14, welfare_regime ~ deservingness,
                   at = list(deservingness = seq(1, 5, length.out = 5)),
                   nuisance = nui, mode = "latent", CIs = FALSE, plotit = FALSE)
 
