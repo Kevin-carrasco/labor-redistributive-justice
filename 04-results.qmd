@@ -69,7 +69,7 @@ load(file=here::here("input/proc/digitalization.RData"))
 load(file=here::here("input/proc/country_data.RData"))
 
 # Generate analytical sample
-data <- data %>% select(ctrcode,country, distributive, sex, age, educ, income, selfemploy, unnemployment, platform, tecnoestres, pos_tecnoestres, tecnoestres_3, deservingness, welfare_regime, weight, gini_z, gdp_pc_log_z, unemp_z, socx_z)
+data <- data %>% select(ctrcode,country, distributive, sex, age, educ, income, selfemploy, unnemployment, platform, tecnoestres, pos_tecnoestres, deservingness, welfare_regime, weight, gini_z, gdp_pc_log_z, unemp_z, socx_z)
 
 data <- na.omit(data)
 
@@ -181,8 +181,7 @@ reg5 <- clmm(distributive ~ sex + age + educ + income + selfemploy + platform + 
 reg6 <- clmm(distributive ~ sex + age + educ + income + selfemploy + platform + unnemployment + tecnoestres + pos_tecnoestres + deservingness + gini_z + gdp_pc_log_z + (1|ctrcode), data=data, weights=weight)
 #reg8 <- clmm(distributive ~ sex + age + educ + income + selfemploy + platform + unnemployment + tecnoestres + pos_tecnoestres + deservingness + gini_z + gdp_pc_log_z + unemp_z + (1|ctrcode), data=data, weights=weight)
 reg7 <- clmm(distributive ~ sex + age + educ + income + selfemploy + platform + unnemployment + tecnoestres + pos_tecnoestres + deservingness + gini_z + gdp_pc_log_z + unemp_z + socx_z + (1|ctrcode), data=data, weights=weight)
-reg8 <- clmm(distributive ~ sex + age + educ + income + selfemploy + platform + unnemployment + tecnoestres + pos_tecnoestres + tecnoestres_3 + deservingness + gini_z + gdp_pc_log_z + unemp_z + socx_z + welfare_regime + (1|ctrcode), data=data, weights=weight)
-texreg::knitreg(reg8)
+reg8 <- clmm(distributive ~ sex + age + educ + income + selfemploy + platform + unnemployment + tecnoestres + pos_tecnoestres + deservingness + gini_z + gdp_pc_log_z + unemp_z + socx_z + welfare_regime + (1|ctrcode), data=data, weights=weight)
 
 # Interactions
 ## platform x selfemploy
@@ -259,21 +258,22 @@ ft1 <- flextable::flextable(df1) %>%
   flextable::set_header_labels(term = "") %>%
   flextable::bold(part = "header") %>%
   flextable::italic(i = pos, j = 1, part = "body") %>%
-  flextable::align(j = 2:7, align = "center", part = "all") %>%
-  flextable::padding(padding.top = 0, padding.bottom = 0, part = "body") %>%
+  flextable::align(j = 2:9, align = "center", part = "all") %>%
+  flextable::padding(padding.top = 0, padding.bottom = 0,
+                     padding.left = 2, padding.right = 2, part = "body") %>%
   flextable::fontsize(size = 8, part = "all") %>%
   flextable::add_footer_lines("Note: Cells contain regression coefficients with standard errors in parentheses. * p < 0.05; ** p < 0.01; *** p < 0.001. Models 5 to 8 control for sex, age, education and income; sex, age and income show significant effects, education does not.") %>%
   flextable::fontsize(size = 7, part = "footer") %>%
   flextable::set_table_properties(layout = "fixed") %>%
-  flextable::width(j = 1, width = 4.6, unit = "cm") %>%
-  flextable::width(j = 2:7, width = 1.8, unit = "cm")
+  flextable::width(j = 1, width = 4.0, unit = "cm") %>%
+  flextable::width(j = 2:9, width = 1.6, unit = "cm")
 
 ft1
 ```
 
 Cumulative-link mixed models were fitted for perceived redistributive justice, with a random intercept for country. Note that the ordinal package reports the number of observations as the sum of the sampling weights rather than the count of cases [@haubo_cumulative_2018]; the models were therefore estimated on `r format(nrow(data), big.mark = ",")` respondents nested in 27 countries (weighted N = 17,296). Coefficients are cumulative log-odds, where a positive value indicates greater odds of reporting a higher category of perceived redistributive justice.
 
-@tbl-modelos follows a block-building logic at the individual level — type of employment (Model 1), concern about job and income loss (Model 2), the technological perceptions (Model 3), deservingness of others (Model 4) and sociodemographic controls (Model 5). Besides, country level variables where added in the next models. Gini coefficient and GDP per capita (Model 6), unemployment rate and social expenditure (Model 7) and welfare regime (Model 8), with all macro indicators standardised. Between the first and the final model the country-level variance declines from 0.238 to 0.111, with the sharpest drop when the macroeconomic indicators enter (0.227 to 0.135 in Model 6). The BIC reaches its minimum in Model 5 (49,766.8) and rises slightly across the macro blocks, indicating that the country-level indicators absorb between-country variance without improving overall fit.
+@tbl-modelos follows a block-building logic at the individual level — type of employment (Model 1), concern about job and income loss (Model 2), the technological perceptions (Model 3), deservingness of others (Model 4) and sociodemographic controls (Model 5). Besides, country level variables was added in the next models. Gini coefficient and GDP per capita (Model 6), unemployment rate and social expenditure (Model 7) and welfare regime (Model 8), with all macro indicators standardised. Between the first and the final model the country-level variance declines from 0.238 to 0.111, with the sharpest drop when the macroeconomic indicators enter (0.227 to 0.135 in Model 6). The BIC reaches its minimum in Model 5 (49,766.8) and rises slightly across the macro blocks, indicating that the country-level indicators absorb between-country variance without improving overall fit.
 
 Platform work is the strongest and most stable predictor. In Model 1 its coefficient is 1.177 (p < 0.001); it attenuates as the technological and deservingness variables enter but remains large in the fully adjusted Model 8 (0.787, p < 0.001), so platform workers have roughly twice the odds of expressing higher perceived redistributive justice. Self-employment is non-significant throughout (≈ −0.06). Concern about job and income loss is negative and strengthens once technological perceptions are held constant, moving from −0.058 in Model 2 to −0.163 in Model 8 (p < 0.001).
 

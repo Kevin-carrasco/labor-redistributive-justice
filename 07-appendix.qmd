@@ -14,11 +14,22 @@ load(file=here::here("input/proc/digitalization.RData"))
 digitalization <- digitalization %>%
   dplyr::select(-tecnoestres_2, -tecnoestres_4)
 
+# Reparar la etiqueta truncada en origen (límite de 80 caracteres de Stata)
+lbl <- sjlabelled::get_label(digitalization)
+lbl[grepl("demandin$", lbl)] <- "Tech will make work less boring/stressful/demanding"
+digitalization <- sjlabelled::set_label(digitalization, label = lbl)
 
-sjPlot::tab_fa(digitalization)
+# capture.output() evita que la línea de consola del análisis paralelo
+# ("Parallel analysis suggests...") se imprima en el documento;
+# title = "" evita el título interno duplicado con el tbl-cap de Quarto;
+# wrap.labels controla el ancho de la primera columna
+invisible(capture.output(
+  tt <- sjPlot::tab_fa(digitalization, title = "", wrap.labels = 28)
+))
+tt
 ```
 
-## Country clasification and N samples
+## Country classification and N samples
 
 ```{r}
 #| label: tbl-classification
@@ -27,7 +38,7 @@ sjPlot::tab_fa(digitalization)
 #| warning: false
 #| message: false
 
-if (!require("pacman")) install.packedads("pacman") # instalar pacman
+if (!require("pacman")) install.packages("pacman") # instalar pacman
                             # cargar librerias
 pacman::p_load(dplyr,       # Manipulacion de datos
                knitr,
@@ -130,7 +141,11 @@ tabla_paises %>%
   flextable::align(j = c("n_original", "n_final"), align = "right", part = "all") %>%
   flextable::hline(i = 27, part = "body") %>%
   flextable::bold(i = 28, part = "body") %>%
-  flextable::add_footer_lines("Note: Original N refers to all respondents in the 2024 wave of the Risks That Matter survey; Final N to the analytical sample after listwise deletion of missing values. Sources of the classification: Esping-Andersen (1993); Ferrera (1996); Fenger (2007); Aidukaite (2011); Martínez Franzoni (2008).") %>%
+  flextable::add_footer_lines("Note: Original N refers to all respondents in the 2024 wave of the Risks That Matter survey; Final N to the analytical sample after listwise deletion of missing values. The classification follows Esping-Andersen (1990); southern Europe and central and eastern Europe are assigned following Ferrera (1996) and Fenger (2006), the Baltic states following Aidukaite (2011), and Chile and Mexico following Martínez Franzoni (2008).") %>%
   flextable::fontsize(size = 9, part = "all") %>%
-  flextable::set_table_properties(layout = "autofit")
+  flextable::fontsize(size = 8, part = "footer") %>%
+  flextable::set_table_properties(layout = "fixed") %>%
+  flextable::width(j = 1, width = 3.8, unit = "cm") %>%
+  flextable::width(j = 2, width = 3.4, unit = "cm") %>%
+  flextable::width(j = c(3, 4), width = 2.2, unit = "cm")
 ```

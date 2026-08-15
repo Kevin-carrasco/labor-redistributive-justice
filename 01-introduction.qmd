@@ -164,7 +164,7 @@ On the one hand, technological change refers to the perception of technological 
 
 ::: callout
 
-H3: Workers who perceive a higher probability of being displaced by automation, platform competition or the obsolescence of their skills will report a lower perception of distributive justice.
+H3: Workers who perceive a higher probability of being displaced by automation, platform competition or the obsolescence of their skills will report a lower perception of redistributive justice.
 
 :::
 
