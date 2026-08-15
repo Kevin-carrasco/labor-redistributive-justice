@@ -221,7 +221,7 @@ data$platform <- car::recode(data$platform, "2=1;1=2;3=2")
 data$selfemploy <- car::recode(data$selfemploy, "1=1;2=2;3=2")
 
 names(data)
-data <- data %>% dplyr::select(id, country, ctrcode, year, ctryear, weight, sex, age, educ, income, selfemploy, unnemployment, platform, distributive, tecnoestres, pos_tecnoestres, skills, deservingness, welfare_regime)
+data <- data %>% dplyr::select(id, country, ctrcode, year, ctryear, weight, sex, age, educ, income, selfemploy, unnemployment, platform, distributive, tecnoestres, pos_tecnoestres, tecnoestres_3, deservingness, welfare_regime)
 
 
 ```

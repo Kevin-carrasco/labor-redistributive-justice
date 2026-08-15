@@ -5,6 +5,9 @@
 ```{r}
 #| label: tbl-efa
 #| tbl-cap: "Exploratory factor analysis of Perceived technological change items"
+#| echo: false
+#| warning: false
+#| message: false
 
 load(file=here::here("input/proc/digitalization.RData"))
 
@@ -44,7 +47,7 @@ pacman::p_load(dplyr,       # Manipulacion de datos
 data_original<- haven::read_dta(here::here("input/original/OECD_RTM_2024.dta"))
 load(file=here::here("input/proc/data.RData"))
 
-data <- data %>% select(ctrcode,country, distributive, sex, age, educ, income, selfemploy, unnemployment, platform, tecnoestres, pos_tecnoestres, skills, deservingness, welfare_regime)
+data <- data %>% select(ctrcode,country, distributive, sex, age, educ, income, selfemploy, unnemployment, platform, tecnoestres, pos_tecnoestres, deservingness, welfare_regime)
 
 data <- na.omit(data)
 

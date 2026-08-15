@@ -61,7 +61,7 @@ rm(list = ls())
 load(file=here::here("input/proc/data.RData"))
 
 data <- data %>% select(ctrcode,country, distributive, sex, age, educ, income, selfemploy, unnemployment, platform, tecnoestres, pos_tecnoestres, deservingness, welfare_regime, gini, gdp_pc, unemp, socx)
-
+colSums(is.na(data))
 data <- na.omit(data)
 
 data$distributive  <- sjlabelled::set_label(x = data$distributive, label = "Redistributive justice")
