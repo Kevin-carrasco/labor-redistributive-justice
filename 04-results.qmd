@@ -260,7 +260,8 @@ ft1 <- flextable::flextable(df1) %>%
   flextable::italic(i = pos, j = 1, part = "body") %>%
   flextable::align(j = 2:9, align = "center", part = "all") %>%
   flextable::padding(padding.top = 0, padding.bottom = 0,
-                     padding.left = 2, padding.right = 2, part = "body") %>%
+                     padding.left = 2, padding.right = 2, part = "all") %>%
+  flextable::line_spacing(space = 0.9, part = "all") %>%
   flextable::fontsize(size = 8, part = "all") %>%
   flextable::add_footer_lines("Note: Cells contain regression coefficients with standard errors in parentheses. * p < 0.05; ** p < 0.01; *** p < 0.001. Models 5 to 8 control for sex, age, education and income; sex, age and income show significant effects, education does not.") %>%
   flextable::fontsize(size = 7, part = "footer") %>%
@@ -271,9 +272,9 @@ ft1 <- flextable::flextable(df1) %>%
 ft1
 ```
 
-Cumulative-link mixed models were fitted for perceived redistributive justice, with a random intercept for country. Note that the ordinal package reports the number of observations as the sum of the sampling weights rather than the count of cases [@haubo_cumulative_2018]; the models were therefore estimated on `r format(nrow(data), big.mark = ",")` respondents nested in 27 countries (weighted N = 17,296). Coefficients are cumulative log-odds, where a positive value indicates greater odds of reporting a higher category of perceived redistributive justice.
+Cumulative-link mixed models were fitted for perceived redistributive justice, with a random intercept for country. Note that the ordinal package reports the number of observations as the sum of the sampling weights rather than the count of cases [@haubo_cumulative_2018]; the models were therefore estimated on `r format(nrow(data), big.mark = ",")` respondents nested in 27 countries (weighted N = 17,296). Coefficients are cumulative log-odds, where a positive value indicates greater odds of reporting a higher category of perceived redistributive justice. The intra-class correlation of the null model places 6.8% of the variance of perceived redistributive justice at the country level.
 
-@tbl-modelos follows a block-building logic at the individual level — type of employment (Model 1), concern about job and income loss (Model 2), the technological perceptions (Model 3), deservingness of others (Model 4) and sociodemographic controls (Model 5). Besides, country level variables was added in the next models. Gini coefficient and GDP per capita (Model 6), unemployment rate and social expenditure (Model 7) and welfare regime (Model 8), with all macro indicators standardised. Between the first and the final model the country-level variance declines from 0.238 to 0.111, with the sharpest drop when the macroeconomic indicators enter (0.227 to 0.135 in Model 6). The BIC reaches its minimum in Model 5 (49,766.8) and rises slightly across the macro blocks, indicating that the country-level indicators absorb between-country variance without improving overall fit.
+@tbl-modelos follows a block-building logic at the individual level — type of employment (Model 1), concern about job and income loss (Model 2), the technological perceptions (Model 3), deservingness of others (Model 4) and sociodemographic controls (Model 5). Country-level variables enter in the following models, with the Gini coefficient and GDP per capita in Model 6, the unemployment rate and social expenditure in Model 7 and the welfare regime in Model 8, all macro indicators standardised. Between the first and the final model the country-level variance declines from 0.238 to 0.111, with the sharpest drop when the macroeconomic indicators enter (0.227 to 0.135 in Model 6). The BIC reaches its minimum in Model 5 (49,766.8) and rises slightly across the macro blocks, indicating that the country-level indicators absorb between-country variance without improving overall fit.
 
 Platform work is the strongest and most stable predictor. In Model 1 its coefficient is 1.177 (p < 0.001); it attenuates as the technological and deservingness variables enter but remains large in the fully adjusted Model 8 (0.787, p < 0.001), so platform workers have roughly twice the odds of expressing higher perceived redistributive justice. Self-employment is non-significant throughout (≈ −0.06). Concern about job and income loss is negative and strengthens once technological perceptions are held constant, moving from −0.058 in Model 2 to −0.163 in Model 8 (p < 0.001).
 
@@ -330,7 +331,8 @@ ft2 <- flextable::flextable(df2) %>%
   flextable::set_header_labels(term = "") %>%
   flextable::bold(part = "header") %>%
   flextable::align(j = 2:7, align = "center", part = "all") %>%
-  flextable::padding(padding.top = 0, padding.bottom = 0, part = "body") %>%
+  flextable::padding(padding.top = 0, padding.bottom = 0, part = "all") %>%
+  flextable::line_spacing(space = 0.9, part = "all") %>%
   flextable::fontsize(size = 8, part = "all") %>%
   flextable::add_footer_lines("Note: Cells contain regression coefficients with standard errors in parentheses. * p < 0.05; ** p < 0.01; *** p < 0.001. All models control for sex, age, education and income; sex, age and income show significant effects, education does not.") %>%
   flextable::fontsize(size = 7, part = "footer") %>%
@@ -347,7 +349,7 @@ The individual-level interaction is negative (self-employed × platform = −0.3
 
 The remaining interaction terms are also negative. Technological displacement is positive in every regime (bottom left) but significantly attenuated relative to liberal regimes (× social-democratic = −0.258; × conservative = −0.136; both p < 0.001). Deservingness is negative throughout (bottom right), and here the negative interaction implies amplification rather than attenuation, where the slope is steepest in conservative regimes (× conservative = −0.081, p < 0.01), with a non-significant social-democratic term. Concern about job and income loss interacts significantly only with the conservative contrast (−0.115, p < 0.001). The conservative main effect, significant in Models 9 to 11 (≈ −0.33 to −0.35, p < 0.05), loses significance in Models 12 to 14, where it refers to the contrast at the zero point of the interacted predictor rather than to an average difference.
 
-A consistent pattern emerges throught the models, where every regime interaction with an individual-level predictor is negative, so each association is weaker (or more adverse) than under liberal arrangements. For platform work and technological displacement this translates into visibly flatter slopes in social-democratic regimes, consistent with the view that encompassing welfare institutions partially decouple distributive attitudes from individual technological exposure. The exceptions to this dampening logic are self-employment, which becomes consequential (and negative) only under social-democratic arrangements, and deservingness, whose negative gradient is steepest in conservative regimes.
+A consistent pattern emerges throughout the models, where every regime interaction with an individual-level predictor is negative, so each association is weaker (or more adverse) than under liberal arrangements. For platform work and technological displacement this translates into visibly flatter slopes in social-democratic regimes, consistent with the view that encompassing welfare institutions partially decouple distributive attitudes from individual technological exposure. The exceptions to this dampening logic are self-employment, which becomes consequential (and negative) only under social-democratic arrangements, and deservingness, whose negative gradient is steepest in conservative regimes.
 
 ```{r echo=FALSE}
 df1 <- emmip(reg10, welfare_regime ~ selfemploy,

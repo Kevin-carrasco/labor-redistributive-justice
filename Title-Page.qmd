@@ -1,0 +1,67 @@
+---
+title: "A Fair Share? Labour Market Position, Perceived Technological Risk and Redistributive Justice across Welfare Regimes in 27 OECD Countries"
+linestretch: '1.5'
+format:
+  pdf:
+    toc: false
+    number-sections: false
+    keep-tex: true
+geometry: margin=0.78in
+include-in-header:
+  text: |
+    \usepackage{times}
+    \usepackage{caption}
+    \captionsetup[figure, table]{labelfont={bf},labelformat={default},labelsep=period}
+    \usepackage{graphicx}
+    \usepackage{float}
+    \usepackage{booktabs}
+    \usepackage{longtable}
+    \usepackage{array}
+    \usepackage{multirow}
+    \usepackage{colortbl}
+    \usepackage{pdflscape}
+fontsize: 12pt
+---
+
+## Authors Identification
+
+Kevin Carrasco, Millennium Nucleus on The Evolution of Work (MNEW), Santiago, Chile[^*].  
+ORCID: 0000-0002-9348-8361
+
+## Corresponding Author
+
+Kevin Carrasco  
+Millennium Nucleus on The Evolution of Work (MNEW) 
+Vicuña Mackenna 1207, Santiago, Chile  
+Phone: +56 9 5937 1343  
+Email: kevin.carrasco@uchile.cl
+
+## Exclusive Submission Statement
+
+The author confirms that this article has been submitted exclusively to this journal and that it has not been published previously nor is it under consideration elsewhere.
+
+## Acknowledgments
+
+The author thanks the Millennium Nucleus on the Evolution of Work (M-NEW) for its support.
+
+## Conflict of Interest
+
+The author declares no conflict of interest.
+
+## Funding
+
+This research was supported by the Millennium Nucleus on the Evolution of Work (M-NEW), ANID Millennium Science Initiative, grant NCS2024_021.
+
+## Ethical Approval and Informed Consent
+
+This study involves secondary analysis of anonymised, publicly documented survey data collected by the OECD, and therefore did not require ethical approval or informed consent procedures by the author. Informed consent was obtained by the survey provider at the time of data collection.
+
+## Data Availability Statement
+
+The analysis uses the 2024 wave of the OECD Risks That Matter (RTM) survey. The data are available from the OECD upon request [https://oe.cd/rtm](https://oe.cd/rtm).
+
+## Use of Artificial Intelligence
+
+The author used an AI assistant (Claude, Anthropic) to support proofreading to improve English-language clarity for non-native speakers. All content was reviewed, verified and edited by the author, who takes full responsibility for the integrity, accuracy and originality of the work. No AI tool is listed as an author, and no AI tool was used to generate or analyse the data.
+
+[^*]: Corresponding author (kevin.carrasco@uchile.cl -- Vicuña Mackenna 1207, Santiago, Chile).

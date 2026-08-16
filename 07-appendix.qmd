@@ -139,9 +139,12 @@ tabla_paises %>%
   flextable::valign(j = "regime", valign = "top") %>%
   flextable::colformat_num(j = c("n_original", "n_final"), big.mark = ",") %>%
   flextable::align(j = c("n_original", "n_final"), align = "right", part = "all") %>%
-  flextable::hline(i = 27, part = "body") %>%
+  # Línea horizontal al cierre de cada bloque de régimen (filas 9, 13 y 27)
+  flextable::hline(i = cumsum(as.integer(table(tabla_paises$regime))), part = "body") %>%
   flextable::bold(i = 28, part = "body") %>%
   flextable::add_footer_lines("Note: Original N refers to all respondents in the 2024 wave of the Risks That Matter survey; Final N to the analytical sample after listwise deletion of missing values. The classification follows Esping-Andersen (1990); southern Europe and central and eastern Europe are assigned following Ferrera (1996) and Fenger (2006), the Baltic states following Aidukaite (2011), and Chile and Mexico following Martínez Franzoni (2008).") %>%
+  flextable::padding(padding.top = 0, padding.bottom = 0, part = "all") %>%
+  flextable::line_spacing(space = 0.9, part = "all") %>%
   flextable::fontsize(size = 9, part = "all") %>%
   flextable::fontsize(size = 8, part = "footer") %>%
   flextable::set_table_properties(layout = "fixed") %>%
