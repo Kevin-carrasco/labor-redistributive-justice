@@ -6,6 +6,8 @@ The paper is written in Quarto and the analyses run in R.
 **Status:** manuscript under peer review (Journal of European Social Policy).
 Contents may change in response to the review process.
 
+[Submitted version available here](https://kevin-carrasco.github.io/labor-redistributive-justice/paper-anonymized.html)
+
 ## Overview
 
 The study examines perceived redistributive justice, understood as the sense of
