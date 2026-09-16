@@ -1,1 +1,42 @@
+.gitignore · GITIGNORE
+# ---- Proyecto ----
 /.luarc.json
+ 
+# ---- Microdatos y bases de datos ----
+# Los microdatos de la OCDE (Risks That Matter) se distribuyen bajo las
+# condiciones de acceso de la OCDE y no se versionan en este repositorio.
+input/original/
+input/proc/
+ 
+# Formatos de datos en cualquier ubicación del proyecto
+*.dta
+*.sav
+*.por
+*.RData
+*.rda
+*.rds
+*.Rds
+*.RDS
+*.sas7bdat
+*.xpt
+*.parquet
+*.feather
+*.db
+*.sqlite
+*.sqlite3
+*.zip
+*.7z
+*.gz
+*.tar
+*.tar.gz
+ 
+# Datos tabulares. Comentar estas líneas si alguna tabla de apoyo
+# (por ejemplo, indicadores agregados de país) debe quedar versionada.
+*.csv
+*.tsv
+*.xlsx
+*.xls
+ 
+# Excepciones: documentación de los instrumentos que sí debe versionarse
+!input/OECD_Risks_That_Matter_2024_Core_Questionnaire.pdf
+!input/OECD_Risks_That_Matter_2024_Background_Questionnaire.pdf
