@@ -1,0 +1,207 @@
+
+```{r}
+#| label: packages3
+#| echo: false
+#| include: false
+
+if (!require("pacman")) install.packages("pacman")
+
+pacman::p_load(tidyverse,
+               sjmisc,
+               sjPlot,
+               here,
+               sjlabelled,
+               haven,
+               flextable)
+```
+
+## Dimensiones de la percepción del cambio tecnológico
+
+```{r}
+#| label: tbl-efa
+#| tbl-cap: "Análisis factorial exploratorio de los ítems de percepción del cambio tecnológico"
+#| echo: false
+#| warning: false
+#| message: false
+
+load(file = here::here("input/proc/digitalization.RData"))
+
+digitalization <- digitalization %>%
+  dplyr::select(-tecnoestres_2, -tecnoestres_4)
+
+# Etiquetas en español de los ítems (q25a, q25c, q25e a q25i)
+etiquetas_es <- c(
+  tecnoestres_1 = "Reemplazo por un robot",
+  tecnoestres_3 = "Reemplazo por inteligencia artificial",
+  tecnoestres_5 = "Reemplazo por una persona en una plataforma de internet",
+  tecnoestres_6 = "Pérdida del empleo por falta de habilidades",
+  tecnoestres_7 = "Mejor equilibrio entre trabajo y vida privada",
+  tecnoestres_8 = "Trabajo menos peligroso o exigente",
+  tecnoestres_9 = "Trabajo menos aburrido o estresante"
+)
+
+for (v in intersect(names(etiquetas_es), names(digitalization))) {
+  digitalization[[v]] <- sjlabelled::set_label(digitalization[[v]], label = etiquetas_es[[v]])
+}
+
+# capture.output() evita que la línea de consola del análisis paralelo
+# se imprima en el documento; title = "" evita un título duplicado
+invisible(capture.output(
+  tt <- sjPlot::tab_fa(digitalization, title = "", wrap.labels = 100)
+))
+
+# Traducción de la fila de confiabilidad generada por sjPlot
+for (comp in c("page.complete", "page.content", "knitr")) {
+  if (!is.null(tt[[comp]])) {
+    tt[[comp]] <- gsub("Cronbach's &alpha;", "&alpha; de Cronbach", tt[[comp]], fixed = TRUE)
+  }
+}
+
+if (knitr::is_html_output()) {
+  # Coma decimal solo en el texto de las celdas (no en los estilos CSS)
+  tt$knitr <- gsub("(>[^<>]*?[0-9])\\.([0-9][^<>]*?<)", "\\1,\\2", tt$knitr, perl = TRUE)
+  tt
+} else {
+  # En docx y pdf la tabla html de sjPlot no se ve bien, por lo que se
+  # reconstruye con flextable a partir de la misma tabla
+  filas <- xml2::xml_find_all(xml2::read_html(tt$page.content), "//tr")
+  celdas <- lapply(filas, function(f) xml2::xml_find_all(f, "./th|./td"))
+  textos <- lapply(celdas, function(c) trimws(xml2::xml_text(c)))
+  # sjPlot marca con la clase "minval" las cargas bajo el umbral
+  bajas <- do.call(rbind, lapply(celdas[-1], function(c) grepl("minval", xml2::xml_attr(c, "class"))))
+
+  tabla_fa <- as.data.frame(do.call(rbind, textos[-1]), stringsAsFactors = FALSE)
+  names(tabla_fa) <- c("Ítem", textos[[1]][-1])
+  tabla_fa[, -1] <- lapply(tabla_fa[, -1, drop = FALSE], function(x) gsub(".", ",", x, fixed = TRUE))
+
+  ft_fa <- flextable::flextable(tabla_fa) %>%
+    flextable::bold(part = "header") %>%
+    flextable::align(j = 1, align = "left", part = "all") %>%
+    flextable::align(j = 2:ncol(tabla_fa), align = "center", part = "all") %>%
+    flextable::hline(i = nrow(tabla_fa) - 1, part = "body") %>%
+    flextable::padding(padding.top = 1, padding.bottom = 1, part = "all") %>%
+    flextable::fontsize(size = 9, part = "all") %>%
+    flextable::height_all(height = 0.3, unit = "cm") %>%
+    flextable::set_table_properties(layout = "fixed",
+                                    opts_word = list(split = FALSE, keep_with_next = TRUE),
+                                    opts_pdf = list(arraystretch = 1.1)) %>%
+    flextable::width(j = 1, width = 7.5, unit = "cm") %>%
+    flextable::width(j = 2:ncol(tabla_fa), width = 2.2, unit = "cm")
+
+  for (j in seq_len(ncol(bajas))) {
+    i <- which(bajas[, j])
+    if (length(i) > 0) ft_fa <- flextable::color(ft_fa, i = i, j = j, color = "grey60")
+  }
+  ft_fa
+}
+```
+
+## Clasificación de países y tamaños muestrales
+
+```{r}
+#| label: tbl-classification
+#| tbl-cap: "Clasificación de regímenes de bienestar y tamaño muestral por país"
+#| echo: false
+#| warning: false
+#| message: false
+
+data_original <- haven::read_dta(here::here("input/original/OECD_RTM_2024.dta"))
+load(file = here::here("input/proc/data.RData"))
+
+data <- data %>%
+  select(ctrcode, country, distributive, sex, age, educ, income, selfemploy,
+         unnemployment, platform, tecnoestres, pos_tecnoestres, deservingness,
+         welfare_regime)
+
+data <- na.omit(data)
+
+# Mapa código -> país -> régimen (idéntico al case_when de procesamiento.qmd)
+regime_map <- tibble::tribble(
+  ~code, ~pais,            ~regimen,
+   3,    "Canadá",          "Liberal",
+   4,    "Chile",           "Liberal",
+   6,    "Estonia",         "Liberal",
+  11,    "Irlanda",         "Liberal",
+  15,    "Letonia",         "Liberal",
+  16,    "Lituania",        "Liberal",
+  17,    "México",          "Liberal",
+  26,    "Reino Unido",     "Liberal",
+  27,    "Estados Unidos",  "Liberal",
+   5,    "Dinamarca",       "Socialdemócrata",
+   7,    "Finlandia",       "Socialdemócrata",
+  18,    "Países Bajos",    "Socialdemócrata",
+  19,    "Noruega",         "Socialdemócrata",
+   1,    "Austria",         "Conservador",
+   2,    "Bélgica",         "Conservador",
+   8,    "Francia",         "Conservador",
+   9,    "Alemania",        "Conservador",
+  10,    "Grecia",          "Conservador",
+  12,    "Israel",          "Conservador",
+  13,    "Italia",          "Conservador",
+  14,    "Corea",           "Conservador",
+  20,    "Polonia",         "Conservador",
+  21,    "Portugal",        "Conservador",
+  22,    "Eslovenia",       "Conservador",
+  23,    "España",          "Conservador",
+  24,    "Suiza",           "Conservador",
+  25,    "Turquía",         "Conservador"
+) %>%
+  dplyr::mutate(regimen = factor(regimen,
+                                 levels = c("Liberal",
+                                            "Socialdemócrata",
+                                            "Conservador")))
+
+# N por país antes y después de la eliminación de casos perdidos
+n_original <- sjmisc::frq(data_original$country)[[1]] %>%
+  dplyr::filter(!is.na(val)) %>%
+  dplyr::mutate(code = as.numeric(as.character(val))) %>%
+  dplyr::select(code, n_original = frq)
+
+n_final <- sjmisc::frq(data$country)[[1]] %>%
+  dplyr::filter(!is.na(val)) %>%
+  dplyr::mutate(code = as.numeric(as.character(val))) %>%
+  dplyr::select(code, n_final = frq)
+
+tabla_paises <- regime_map %>%
+  dplyr::left_join(n_original, by = "code") %>%
+  dplyr::left_join(n_final,    by = "code") %>%
+  dplyr::arrange(regimen, pais) %>%
+  dplyr::select(regimen, pais, n_original, n_final)
+
+stopifnot(nrow(tabla_paises) == 27,
+          !anyNA(tabla_paises$n_original),
+          !anyNA(tabla_paises$n_final))
+
+tabla_paises %>%
+  dplyr::mutate(regimen = as.character(regimen)) %>%
+  dplyr::bind_rows(
+    dplyr::summarise(.,
+                     regimen    = "Total",
+                     pais       = paste(dplyr::n(), "países"),
+                     n_original = sum(n_original),
+                     n_final    = sum(n_final))
+  ) %>%
+  flextable::flextable() %>%
+  flextable::set_header_labels(regimen    = "Régimen de bienestar",
+                               pais       = "País",
+                               n_original = "N original",
+                               n_final    = "N final") %>%
+  flextable::merge_v(j = "regimen") %>%
+  flextable::valign(j = "regimen", valign = "top") %>%
+  flextable::colformat_num(j = c("n_original", "n_final"), big.mark = ".") %>%
+  flextable::align(j = c("n_original", "n_final"), align = "right", part = "all") %>%
+  flextable::hline(i = cumsum(as.integer(table(tabla_paises$regimen))), part = "body") %>%
+  flextable::bold(i = 28, part = "body") %>%
+  flextable::add_footer_lines("Nota: N original corresponde al total de personas encuestadas en la ola 2024 de Risks That Matter y N final a la muestra analítica tras eliminar casos con valores perdidos. La clasificación sigue a Esping-Andersen (1990); el sur y el centro-este de Europa se asignan según Ferrera (1996) y Fenger (2006), los países bálticos según Aidukaite (2011), y Chile y México según Martínez Franzoni (2008) y Barrientos (2009).") %>%
+  flextable::padding(padding.top = 0, padding.bottom = 0, part = "all") %>%
+  flextable::line_spacing(space = 0.9, part = "all") %>%
+  flextable::fontsize(size = 9, part = "all") %>%
+  flextable::fontsize(size = 8, part = "footer") %>%
+  flextable::height_all(height = 0.3, unit = "cm") %>%
+  flextable::set_table_properties(layout = "fixed",
+                                  opts_word = list(split = FALSE, keep_with_next = TRUE),
+                                  opts_pdf = list(arraystretch = 1.1)) %>%
+  flextable::width(j = 1, width = 3.8, unit = "cm") %>%
+  flextable::width(j = 2, width = 3.4, unit = "cm") %>%
+  flextable::width(j = c(3, 4), width = 2.2, unit = "cm")
+```

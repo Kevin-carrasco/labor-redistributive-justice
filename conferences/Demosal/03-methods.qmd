@@ -1,0 +1,131 @@
+
+Se utilizan datos de la ola 2024 de la encuesta Risks That Matter (RTM) de la OCDE [@oecd_risks_2024], aplicada en línea a 27.229 personas de 18 a 64 años en 27 países, entre ellos Chile y México, los únicos casos latinoamericanos, y ponderada según edad, sexo, región y nivel educativo. El análisis se restringe a quienes tenían empleo (n = 22.063), el único grupo al que se le aplican las preguntas sobre el tipo de empleo, el trabajo de plataformas y el cambio tecnológico. Tras eliminar los casos con valores perdidos, la muestra analítica comprende 19.669 personas, entre 570 y 812 por país (657 en Chile y 645 en México).
+
+## Variables
+
+La variable dependiente es el grado de acuerdo con la afirmación «Siento que recibo una parte justa de los beneficios públicos, dados los impuestos y contribuciones sociales que pago o he pagado en el pasado», en una escala de cinco puntos tratada como ordinal.
+
+La posición laboral se mide con dos indicadores binarios no excluyentes, trabajo por cuenta propia y trabajo mediado por plataformas digitales; quienes obtienen cero en ambos corresponden al empleo formal dependiente, la categoría de referencia. La inseguridad laboral es la preocupación por perder el empleo o los ingresos en el próximo año o dos, en cuatro categorías. La percepción del cambio tecnológico se basa en siete ítems sobre la probabilidad de que ciertos eventos ocurran en el propio empleo en los próximos cinco años. Un análisis factorial exploratorio respalda dos escalas de tres ítems, riesgo de desplazamiento tecnológico (α = 0,83) y beneficio tecnológico percibido (α = 0,78), mientras que el ítem sobre reemplazo por inteligencia artificial forma una tercera dimensión y se excluye. El merecimiento percibido de otros se mide mediante el acuerdo con la afirmación «Muchas personas reciben beneficios públicos sin merecerlo», en cinco puntos.
+
+El régimen de bienestar distingue entre los tipos socialdemócrata, liberal y conservador-corporativista [@esping-andersen_three_1993]. El sur y el centroeste de Europa, Israel, Corea y Turquía se asignan al régimen conservador, y los países bálticos, Chile y México al liberal, estos dos últimos por el peso del mercado y de la informalidad en la provisión de bienestar [@franzoni_welfare_2008; @barrientos_labour_2009], una aproximación que se discute más adelante. En el nivel país se incluyen el coeficiente de Gini, el PIB per cápita (PPA, en logaritmo), la tasa de desempleo y el gasto social público como porcentaje del PIB, del Banco Mundial y de la OCDE, estandarizados. Todos los modelos controlan por sexo, edad, nivel educativo y decil de ingreso. Los estadísticos descriptivos se presentan en la @tbl-descriptivos.
+
+```{r}
+#| label: tbl-descriptivos
+#| tbl-cap: "Principales estadísticos descriptivos (n = 19.669)"
+#| tbl-cap-location: top
+#| echo: false
+
+if (! require("pacman")) install.packages("pacman")
+
+pacman::p_load(tidyverse,
+               haven,
+               here,
+               sjlabelled,
+               summarytools,
+               flextable)
+
+summarytools::st_options(lang = "es")
+
+# Se carga en un entorno propio para no reemplazar objetos de otras secciones
+datos_desc <- new.env()
+load(file = here::here("input/proc/data.RData"), envir = datos_desc)
+
+descriptive <- datos_desc$data %>%
+  select(ctrcode, country, distributive, sex, age, educ, income, selfemploy,
+         unnemployment, platform, tecnoestres, pos_tecnoestres, deservingness,
+         welfare_regime, gini, gdp_pc, unemp, socx) %>%
+  na.omit() %>%
+  select(distributive, sex, age, educ, income, selfemploy, platform,
+         unnemployment, tecnoestres, pos_tecnoestres, deservingness,
+         welfare_regime)
+
+acuerdo <- c("Muy en desacuerdo", "En desacuerdo",
+             "Ni acuerdo ni desacuerdo", "De acuerdo", "Muy de acuerdo")
+
+descriptive <- descriptive %>%
+  mutate(
+    distributive    = factor(as.numeric(distributive), levels = 1:5, labels = acuerdo),
+    sex             = factor(as.numeric(sex), levels = 1:2, labels = c("Hombre", "Mujer")),
+    age             = factor(as.numeric(age), levels = 1:5,
+                             labels = c("18-24", "25-34", "35-44", "45-54", "55-64")),
+    educ            = factor(as.numeric(educ), levels = 1:3,
+                             labels = c("Bajo", "Medio", "Alto")),
+    income          = as.numeric(income),
+    selfemploy      = factor(as.numeric(selfemploy), levels = 1:2, labels = c("No", "Sí")),
+    platform        = factor(as.numeric(platform), levels = 1:2, labels = c("No", "Sí")),
+    unnemployment   = factor(as.numeric(unnemployment), levels = 1:4,
+                             labels = c("Nada preocupado", "No tan preocupado",
+                                        "Algo preocupado", "Muy preocupado")),
+    tecnoestres     = as.numeric(tecnoestres),
+    pos_tecnoestres = as.numeric(pos_tecnoestres),
+    deservingness   = factor(as.numeric(as_factor(deservingness)), levels = 1:5, labels = acuerdo),
+    welfare_regime  = factor(as.character(welfare_regime),
+                             levels = c("Liberal", "Social-democratic", "Conservative"),
+                             labels = c("Liberal", "Socialdemócrata", "Conservador"))
+  )
+
+etiquetas <- c(
+  distributive    = "Justicia redistributiva",
+  sex             = "Sexo",
+  age             = "Tramo de edad",
+  educ            = "Nivel educativo",
+  income          = "Decil de ingreso",
+  selfemploy      = "Trabajo por cuenta propia",
+  platform        = "Trabajo de plataformas",
+  unnemployment   = "Perder el empleo",
+  tecnoestres     = "Riesgo de desplazamiento tecnológico",
+  pos_tecnoestres = "Beneficio tecnológico percibido",
+  deservingness   = "Merecimiento de otros",
+  welfare_regime  = "Régimen de bienestar"
+)
+
+for (v in names(etiquetas)) {
+  descriptive[[v]] <- sjlabelled::set_label(descriptive[[v]], label = etiquetas[[v]])
+}
+
+df <- dfSummary(descriptive,
+                plain.ascii = FALSE,
+                style = "multiline",
+                tmp.img.dir = "/tmp",
+                graph.magnif = 0.75,
+                headings = FALSE,   # encabezado
+                varnumbers = FALSE, # número de variable
+                labels.col = TRUE,  # etiquetas
+                na.col = FALSE,     # casos perdidos
+                graph.col = FALSE,  # gráficos
+                valid.col = FALSE,  # n válido (igual para todas las variables)
+                decimal.mark = ",",
+                max.distinct.values = 5, # el decil de ingreso se resume sin frecuencias
+                big.mark = ".")
+
+df$Variable <- NULL # se elimina la columna con el nombre de la variable
+
+# El resumen de dfSummary se presenta con flextable para que la tabla se vea
+# igual en html, pdf y docx: se quitan los escapes de markdown y se usan
+# saltos de línea reales dentro de cada celda
+limpiar <- function(x) {
+  x <- gsub("\\\n", "\n", x, fixed = TRUE) # salto de línea de markdown
+  trimws(gsub("\\", "", x, fixed = TRUE))  # escapes restantes
+}
+tabla_desc <- as.data.frame(df, stringsAsFactors = FALSE)
+tabla_desc[] <- lapply(tabla_desc, limpiar)
+
+flextable::flextable(tabla_desc) %>%
+  flextable::bold(part = "header") %>%
+  flextable::align(align = "left", part = "all") %>%
+  flextable::valign(valign = "top", part = "body") %>%
+  flextable::hline(part = "body", border = officer::fp_border(color = "grey80", width = 0.5)) %>%
+  flextable::padding(padding.top = 1, padding.bottom = 1, part = "all") %>%
+  flextable::line_spacing(space = 1, part = "all") %>%
+  flextable::fontsize(size = 8, part = "all") %>%
+  flextable::height_all(height = 0.3, unit = "cm") %>%
+  flextable::set_table_properties(layout = "fixed", opts_word = list(split = FALSE),
+                                  opts_pdf = list(arraystretch = 1.1)) %>%
+  flextable::width(j = 1, width = 4.6, unit = "cm") %>%
+  flextable::width(j = 2, width = 5.6, unit = "cm") %>%
+  flextable::width(j = 3, width = 4.6, unit = "cm")
+```
+
+## Estrategia de análisis
+
+Las hipótesis fueron preregistradas en el Open Science Framework [@carrasco_redistributive_2026]. Se estiman modelos de regresión logística ordinal multinivel con interceptos aleatorios por país, mediante la función clmm del paquete ordinal de R [@haubo_cumulative_2018]. Los modelos 1 a 8 incorporan por bloques el tipo de empleo, la inseguridad laboral, las percepciones tecnológicas, el merecimiento, los controles, los indicadores macroeconómicos (modelos 6 y 7) y el régimen de bienestar. Los modelos 9 a 14 añaden, una a una, la interacción entre el trabajo por cuenta propia y el de plataformas y las interacciones entre el régimen y cada predictor. Los ponderadores de la OCDE se tratan como ponderadores de frecuencia, por lo que el número de observaciones corresponde a la suma de los ponderadores (17.296).

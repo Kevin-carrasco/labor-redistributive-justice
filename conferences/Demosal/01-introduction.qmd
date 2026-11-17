@@ -1,0 +1,163 @@
+
+Entre 2022 y 2025, varios países de América Latina legislaron sobre el trabajo mediado por plataformas digitales y el acceso de sus trabajadores a la seguridad social. Chile extiende la cobertura de seguridad social a quienes trabajan como independientes [@ley21431_2022]; México considera subordinados a quienes perciben al menos un salario mínimo mensual neto [@dof_plataformas_2024]; Uruguay fijó niveles mínimos de protección para repartidores y conductores [@ley20396_2025]; y Colombia obligó a las plataformas de reparto a financiar el 60% de las cotizaciones de los repartidores independientes [@ley2466_2025]. En 2026, además, la Conferencia Internacional del Trabajo adoptó un convenio sobre el trabajo decente en la economía de plataformas [@oit_convenio_2026]. Como la directiva europea de 2024 [@europeanparliamentandcounciloftheeuropeanunion_directive_2024], estas iniciativas responden a sistemas de protección organizados en torno al empleo asalariado estable, con los que quienes trabajan fuera de ese modelo mantienen un vínculo débil.
+
+En América Latina, este diagnóstico tiene un peso particular. La seguridad social se construyó de manera estratificada [@mesalago_social_1978] y, con cerca de la mitad de los ocupados en la informalidad [@ilo_panorama_2025], la relación entre lo que se aporta y lo que se recibe del Estado resulta fragmentaria para muchos trabajadores [@barrientos_labour_2009]. El trabajo de plataformas se superpone a formas previas de trabajo por cuenta propia e informalidad [@gutierrezcrocco_effects_2022], y las nuevas leyes buscan incorporar a estos trabajadores a un intercambio contributivo del que han estado, en gran medida, al margen.
+
+La investigación sobre actitudes hacia el Estado de bienestar ha mostrado que la exposición al riesgo laboral y a la automatización aumenta la demanda de protección social [@busemeyer_social_2022], también en América Latina [@carnes_explaining_2015]. Sin embargo, menos atención ha recibido la justicia redistributiva percibida, es decir, el juicio sobre si los beneficios que una persona recibe del Estado compensan de manera justa los impuestos y contribuciones que paga [@roosma_just_2016]. Esa evaluación es central para las nuevas regulaciones, porque incorporar a los trabajadores de plataformas a la seguridad social implica pedirles contribuciones a cambio de beneficios.
+
+Con la ola 2024 de la encuesta Risks That Matter de la OCDE, que incluye a Chile y México, este trabajo examina si la justicia redistributiva percibida se relaciona con la posición laboral y la percepción del riesgo tecnológico, y si los regímenes de bienestar condicionan dichas relaciones. El argumento central es que la justicia percibida del intercambio fiscal se ancla en la experiencia cotidiana del trabajo.
+
+## La justicia redistributiva como reciprocidad
+
+La investigación sobre actitudes hacia la desigualdad distingue entre preferencias, creencias sobre cómo deberían distribuirse los recursos, y percepciones, juicios sobre cómo funciona efectivamente el sistema. La justicia redistributiva percibida pertenece al segundo grupo y evalúa el intercambio entre impuestos y contribuciones, por un lado, y servicios y transferencias, por otro. Su fundamento es la reciprocidad, según la cual la legitimidad del sistema descansa también en la justicia percibida de las instituciones que asignan contribuciones y beneficios [@mau_moral_2014]. Estas percepciones varían de manera sistemática entre países [@blekesaune_public_2003]. Como muestra la @fig-cleveland, Chile se ubica entre los tres países con los valores más bajos, y México también queda por debajo del promedio.
+
+```{r}
+#| label: packages
+#| echo: false
+#| include: false
+
+if (!require("pacman")) install.packages("pacman")
+
+pacman::p_load(tidyverse,
+               haven,
+               sjmisc,
+               sjPlot,
+               here,
+               performance,
+               texreg,
+               sjlabelled,
+               ggpubr,
+               ordinal,
+               emmeans,
+               flextable)
+
+options(scipen = 999)
+rm(list = ls())
+```
+
+```{r}
+#| label: data
+#| echo: false
+#| include: false
+
+load(file = here::here("input/proc/data.RData"))
+```
+
+```{r}
+#| label: fig-cleveland
+#| echo: false
+#| fig-cap: "Justicia redistributiva percibida promedio por país"
+#| fig-cap-location: top
+
+# Nombres de países en español a partir del código ISO3 (ctrcode)
+paises_es <- c(AUT = "Austria", BEL = "Bélgica", CAN = "Canadá", CHE = "Suiza",
+               CHL = "Chile", DEU = "Alemania", DNK = "Dinamarca", ESP = "España",
+               EST = "Estonia", FIN = "Finlandia", FRA = "Francia", GBR = "Reino Unido",
+               GRC = "Grecia", IRL = "Irlanda", ISR = "Israel", ITA = "Italia",
+               KOR = "Corea", LTU = "Lituania", LVA = "Letonia", MEX = "México",
+               NLD = "Países Bajos", NOR = "Noruega", POL = "Polonia", PRT = "Portugal",
+               SVN = "Eslovenia", TUR = "Turquía", USA = "Estados Unidos")
+
+promedios <- data %>%
+  mutate(ctr = as.character(ctrcode),
+         pais = dplyr::coalesce(unname(paises_es[ctr]), ctr)) %>%
+  group_by(pais) %>%
+  summarise(mean_dis = round(mean(as.numeric(distributive), na.rm = TRUE), 2), .groups = "drop")
+
+media_global <- mean(promedios$mean_dis)
+
+promedios <- promedios %>%
+  mutate(grupo = case_when(pais %in% c("Chile", "México") ~ "América Latina",
+                           mean_dis > media_global ~ "Sobre el promedio",
+                           TRUE ~ "Bajo el promedio"),
+         pais = reorder(pais, mean_dis))
+
+decimal_coma <- function(x) formatC(x, format = "f", digits = 2, decimal.mark = ",")
+
+ggplot(promedios, aes(x = mean_dis, y = pais)) +
+  geom_segment(aes(x = 1, xend = mean_dis, yend = pais), colour = "grey70") +
+  geom_vline(xintercept = media_global, colour = "grey30", linewidth = 0.6) +
+  geom_point(aes(fill = grupo), shape = 21, size = 3, colour = "black", stroke = 0.8) +
+  scale_fill_manual(values = c("Sobre el promedio" = "white",
+                               "Bajo el promedio" = "black",
+                               "América Latina" = "#B2182B"),
+                    guide = "none") +
+  scale_x_continuous(limits = c(1, 4),
+                     breaks = c(1, 2, round(media_global, 2), 3, 4),
+                     labels = decimal_coma) +
+  labs(x = "Justicia redistributiva percibida",
+       y = NULL,
+       caption = paste0("Fuente: elaboración propia con datos de la encuesta Risks That Matter 2024 (OCDE). ",
+                        "Escala de 1 a 5.\nLa línea vertical indica el promedio de los países; ",
+                        "Chile y México se destacan en rojo.")) +
+  theme_bw() +
+  theme(plot.caption = element_text(hjust = 0, size = 8))
+```
+
+## Posición laboral, inseguridad y trabajo de plataformas
+
+Como las instituciones de bienestar se diseñaron en torno a la relación laboral estándar, quienes se apartan de ella mantienen un vínculo más débil con la protección social [@schwander_who_2013]. Los asalariados formales acumulan derechos reconocibles, mientras que los trabajadores por cuenta propia enfrentan una relación más opaca y, a menudo, menos favorable [@marx_effect_2014]. En América Latina, esta distancia se superpone a la informalidad y a una política social que concentró los seguros contributivos en los asalariados formales [@holland_easy_2017]. El trabajo de plataformas es una forma especialmente aguda de empleo no estándar, porque la clasificación como contratistas independientes sitúa a estos trabajadores, en gran medida, fuera de los seguros sociales [@gutierrezcrocco_effects_2022]. Esta posición permite prever una evaluación más negativa de su relación con el Estado, como lo plantea la siguiente hipótesis:
+
+::: callout
+
+H1: Los trabajadores en empleo no estándar (trabajo de plataformas y por cuenta propia) percibirán menor justicia redistributiva que los asalariados formales.
+
+:::
+
+La inseguridad laboral, entendida como la preocupación por perder el empleo o los ingresos a corto plazo, también afecta a trabajadores formalmente protegidos. Quien anticipa perder su trabajo examina con más detalle lo que recibiría del Estado y, si no confía en su capacidad protectora, tenderá a juzgar el intercambio como menos justo [@marx_effect_2014], como lo plantea la siguiente hipótesis:
+
+::: callout
+
+H2: Una mayor inseguridad laboral percibida se asociará con menor justicia redistributiva percibida.
+
+:::
+
+## Percepción del cambio tecnológico
+
+Las estimaciones sobre la proporción de empleos automatizables varían ampliamente y, en América Latina, esos riesgos se distribuyen de manera desigual entre los grupos sociales [@bustelo_automation_2020]. Para las actitudes hacia el bienestar importa, además, cómo los trabajadores anticipan esos efectos en su propio empleo [@gallego_automation_2022], y esa anticipación tiene dos caras. La primera es el riesgo de desplazamiento, es decir, la probabilidad de que el propio empleo sea reemplazado por un robot, por inteligencia artificial o por alguien que ofrece un servicio similar en una plataforma, o de perderlo por falta de habilidades digitales. Como esta exposición aumenta la demanda de protección social [@busemeyer_social_2022], quienes se sienten amenazados tendrían mayores expectativas de protección y juzgarían su intercambio como insuficiente. De este argumento se desprende la siguiente hipótesis:
+
+::: callout
+
+H3: Quienes perciben mayor probabilidad de ser desplazados por la automatización, la competencia de plataformas o la obsolescencia de sus habilidades reportarán menor justicia redistributiva percibida.
+
+:::
+
+La segunda es el beneficio tecnológico, es decir, la probabilidad de que la tecnología haga la jornada más compatible con la vida privada o el trabajo menos exigente y monótono. Percibir la tecnología como una mejora implica una menor exposición al riesgo y un mayor optimismo laboral, por lo que se plantea la siguiente hipótesis:
+
+::: callout
+
+H4: Quienes perciben la tecnología como habilitante percibirán mayor justicia redistributiva.
+
+:::
+
+## Merecimiento percibido de otros
+
+Las percepciones de justicia dependen, además, de los juicios sobre quién merece recibir del Estado. En contextos muy mercantilizados, las creencias meritocráticas refuerzan la tendencia a considerar inmerecidos a quienes parecen no aportar lo suficiente [@castillo_perceptions_2025], y si los recursos propios parecen sostener a quienes no cumplen su parte, se erosiona la sensación de un trato justo [@vanoorschot_social_2017], como lo plantea la siguiente hipótesis:
+
+::: callout
+
+H5: Quienes perciben que muchas personas reciben beneficios públicos sin merecerlos reportarán menor justicia redistributiva percibida.
+
+:::
+
+## Regímenes de bienestar y el lugar de América Latina
+
+Las percepciones individuales se forman en contextos institucionales que varían según el régimen de bienestar [@esping-andersen_three_1993]. Los regímenes latinoamericanos combinan rasgos de los tipos liberal y conservador con una informalidad extendida, y las tipologías regionales distinguen a Chile, con una política social focalizada y orientada al mercado, de México, un régimen dual en el que la seguridad social alcanza sobre todo a los trabajadores formales [@franzoni_welfare_2008]. En estos Estados de bienestar truncados, quienes quedan fuera de la protección contributiva esperan poco del Estado [@holland_diminished_2018]. Aunque el nivel de desarrollo económico también condiciona las expectativas sobre el sistema [@blekesaune_public_2003], se espera que la justicia percibida sea mayor donde la protección es más universal, como se plantea en la siguiente hipótesis:
+
+::: callout
+
+H6: En promedio, los trabajadores de regímenes socialdemócratas percibirán mayor justicia redistributiva que los de regímenes liberales y conservadores.
+
+:::
+
+El contexto institucional puede, además, moderar el efecto de los predictores individuales. La distancia entre el empleo no estándar y la protección social es mayor en los regímenes liberales y conservadores [@schwander_who_2013], y en los universalistas la protección frente a los riesgos de la digitalización depende menos de la trayectoria laboral [@busemeyer_social_2022] y las distinciones de merecimiento pierden fuerza [@vanoorschot_social_2017]. De este argumento se desprenden las siguientes hipótesis de interacción:
+
+::: callout
+
+H7: La relación negativa entre el empleo no estándar (trabajo de plataformas y por cuenta propia) y la justicia redistributiva percibida será moderada por el régimen de bienestar.
+
+H8: El efecto negativo del riesgo de desplazamiento tecnológico sobre la justicia redistributiva percibida será moderado por el régimen de bienestar.
+
+H9: El efecto negativo del merecimiento percibido de otros sobre la justicia redistributiva percibida será moderado por el régimen de bienestar.
+
+:::

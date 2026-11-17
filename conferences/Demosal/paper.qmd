@@ -1,0 +1,101 @@
+---
+title: "¿Una parte justa? Posición en el mercado laboral, riesgo tecnológico percibido y justicia redistributiva según régimen de bienestar en 27 países de la OCDE"
+lang: es
+format:
+  html:
+    code-fold: true
+    html-math-method: katex
+    number-sections: true
+  docx:
+    number-sections: true
+  pdf:
+    geometry: margin=2cm
+    template-partials:
+      - title.tex
+    keep-tex: true
+    include-in-header:
+      text: |
+        \usepackage[noblocks]{authblk}
+        \renewcommand*{\Authsep}{, }
+        \renewcommand*{\Authand}{, }
+        \renewcommand*{\Authands}{, }
+        \renewcommand\Affilfont{\small}
+        \AtBeginDocument{\renewcommand{\abstractname}{Resumen}}
+    number-sections: true
+editor: source
+bibliography: "../../input/bib/redistributive-work.bib"
+csl: "../../input/bib/sage-harvard.csl"
+crossref:
+  fig-prefix: figura
+  tbl-prefix: tabla
+author:
+  - name: Kevin Carrasco
+    orcid: 0000-0002-9348-8361
+    email: kevin.carrasco@uchile.cl
+    affiliations:
+      - ref: 1
+      - ref: 2
+affiliations:
+  - id: 1
+    name: Núcleo Milenio sobre Evolución del Trabajo (M-NEW)
+  - id: 2
+    name: SEED - DipLab
+thanks: "Ponencia para el IX Seminario Internacional Desigualdad y Movilidad Social en América Latina (DEMOSAL), Montevideo, 1 al 3 de marzo de 2027. Este trabajo cuenta con el apoyo del Núcleo Milenio sobre Evolución del Trabajo (M-NEW), NCS2024_021."
+citeproc: true
+abstract-title: "Resumen"
+abstract: |
+  Varios países latinoamericanos aprobaron recientemente leyes para incorporar a los trabajadores de plataformas digitales a la seguridad social, mientras que la automatización y la intermediación digital debilitan el vínculo entre el empleo y la protección social. Este trabajo examina la justicia redistributiva percibida, entendida como la sensación de recibir una parte justa de los beneficios públicos dados los impuestos y las contribuciones pagados. Con datos de la encuesta Risks That Matter 2024 de la OCDE (19.669 trabajadores de 27 países, entre ellos Chile y México), se estiman modelos de regresión ordinal multinivel. La inseguridad laboral y la creencia de que otros reciben beneficios inmerecidos reducen la justicia percibida, mientras que considerar la tecnología como una mejora la aumenta. En contra de lo esperado, los trabajadores de plataformas y quienes anticipan un desplazamiento tecnológico reportan una mayor justicia percibida, sobre todo en el régimen liberal, donde se ubican Chile y México.
+  \newline
+  \newline
+  **Palabras clave**: justicia redistributiva, trabajo de plataformas, cambio tecnológico, regímenes de bienestar
+link-citations: true
+linestretch: 1.15
+mainfont: Times New Roman
+fontsize: 12pt
+colorlinks: true
+fig-height: 4
+fig-width: 7.5
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE, cache = FALSE, out.width = '85%')
+options(scipen = 999)
+options(kableExtra.auto_format = FALSE)
+rm(list = ls())
+options(knitr.kable.NA = '')
+options(knitr.graphics.error = FALSE)
+```
+
+::: {.content-visible unless-format="pdf"}
+Kevin Carrasco - [kevin.carrasco@uchile.cl](mailto:kevin.carrasco@uchile.cl) - <https://kevin-carrasco.github.io/>  
+Investigador predoctoral en el Núcleo Milenio sobre Evolución del Trabajo (M-NEW), Chile
+
+Ponencia para el IX Seminario Internacional Desigualdad y Movilidad Social en América Latina (DEMOSAL), Montevideo, 1 al 3 de marzo de 2027.
+:::
+
+# Introducción
+
+{{< include 01-introduction.qmd >}}
+
+# Datos, variables y métodos
+
+## Datos
+
+{{< include 03-methods.qmd >}}
+
+# Resultados
+
+{{< include 04-results.qmd >}}
+
+# Discusión
+
+{{< include 05-discussion.qmd >}}
+
+# Conclusiones
+
+{{< include 06-conclusion.qmd >}}
+
+# Referencias
+
+::: {#refs}
+:::

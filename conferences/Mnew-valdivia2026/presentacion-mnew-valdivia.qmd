@@ -1,0 +1,857 @@
+---
+pagetitle: "¿Una parte justa? Posición laboral, riesgo tecnológico y justicia redistributiva"
+author: Kevin Carrasco
+bibliography: "../../input/bib/redistributive-work.bib"
+csl: "../../input/bib/apa6.csl"
+lang: es
+
+knitr:
+  opts_chunk:
+    collapse: true
+    comment: "#>"
+    R.options:
+      knitr.graphics.auto_pdf: true
+
+format:
+  revealjs:
+    slide-number: true
+    theme: presentaciones.scss
+    navigationMode: linear
+    transition: fade
+    transition-speed: slow
+    auto-stretch: false
+    title-slide-attributes:
+      visibility: false
+    auto-play-media: true
+
+editor:
+  render-on-save: true
+---
+
+```{r}
+#| label: setup
+#| include: false
+
+library(knitr)
+knitr::opts_chunk$set(echo = FALSE,
+                      warning = FALSE,
+                      error = FALSE,
+                      message = FALSE,
+                      fig.align = "center",
+                      dpi = 200)
+```
+
+```{r}
+#| label: packages
+#| include: false
+
+if (! require("pacman")) install.packages("pacman")
+
+pacman::p_load(dplyr, tidyr, ggplot2, ordinal, emmeans, sjlabelled, haven,
+               here, patchwork, scales)
+
+options(scipen = 999)
+rm(list = ls())
+
+# Paleta de presentaciones.scss
+azul       <- "#04245f"
+azul_medio <- "#0b49bf"
+azul_claro <- "#4f97ff"
+rojo       <- "#c0392b"
+gris       <- "#a3aaae"
+tinta      <- "#272828"
+
+col_regimen <- c("Liberal" = azul_medio, "Socialdemócrata" = azul_claro, "Conservador" = rojo)
+forma_regimen <- c("Liberal" = 16, "Socialdemócrata" = 17, "Conservador" = 15)
+reg_es <- c("Liberal" = "Liberal", "Social-democratic" = "Socialdemócrata", "Conservative" = "Conservador")
+
+theme_set(theme_minimal(base_size = 16) +
+            theme(panel.grid.minor = element_blank(),
+                  text = element_text(colour = tinta),
+                  axis.text = element_text(colour = tinta),
+                  legend.position = "top"))
+
+# Números con coma decimal
+num <- function(x, d = 2) formatC(x, format = "f", digits = d, decimal.mark = ",", big.mark = ".")
+entero <- function(x) formatC(x, format = "d", big.mark = ".", decimal.mark = ",")
+```
+
+```{r}
+#| label: data
+#| include: false
+
+load(here::here("input/proc/data.RData"))
+load(here::here("input/proc/digitalization.RData"))
+
+data_full <- data
+
+# Muestra analítica (igual que en el paper)
+data <- data %>%
+  dplyr::select(ctrcode, country, distributive, sex, age, educ, income, selfemploy,
+                unnemployment, platform, tecnoestres, pos_tecnoestres, deservingness,
+                welfare_regime, weight, gini_z, gdp_pc_log_z, unemp_z, socx_z) %>%
+  na.omit()
+
+data$deservingness <- as.numeric(sjlabelled::as_factor(data$deservingness))
+data$distributive  <- sjlabelled::as_factor(data$distributive)
+
+n_analitico <- nrow(data)
+n_elegible  <- 22063
+n_paises    <- dplyr::n_distinct(data$ctrcode)
+
+paises_es <- c(AUT = "Austria", BEL = "Bélgica", CAN = "Canadá", CHE = "Suiza", CHL = "Chile",
+               DEU = "Alemania", DNK = "Dinamarca", ESP = "España", EST = "Estonia",
+               FIN = "Finlandia", FRA = "Francia", GBR = "Reino Unido", GRC = "Grecia",
+               IRL = "Irlanda", ISR = "Israel", ITA = "Italia", KOR = "Corea", LTU = "Lituania",
+               LVA = "Letonia", MEX = "México", NLD = "Países Bajos", NOR = "Noruega",
+               POL = "Polonia", PRT = "Portugal", SVN = "Eslovenia", TUR = "Turquía",
+               USA = "Estados Unidos")
+```
+
+```{r}
+#| label: modelos
+#| include: false
+#| cache: true
+#| cache.extra: !expr tools::md5sum(here::here("input/proc/data.RData"))
+
+# Modelo nulo
+m0 <- clmm(distributive ~ 1 + (1 | ctrcode), data = data, weights = weight)
+
+# Modelo 8: especificación completa
+reg8 <- clmm(distributive ~ sex + age + educ + income + selfemploy + platform + unnemployment +
+               tecnoestres + pos_tecnoestres + deservingness + gini_z + gdp_pc_log_z + unemp_z +
+               socx_z + welfare_regime + (1 | ctrcode), data = data, weights = weight)
+
+# Interacciones entre niveles
+reg10 <- clmm(distributive ~ sex + age + educ + income + selfemploy*welfare_regime + platform +
+                unnemployment + tecnoestres + pos_tecnoestres + deservingness + gini_z +
+                gdp_pc_log_z + unemp_z + socx_z + welfare_regime + (1 | ctrcode),
+              data = data, weights = weight)
+
+reg11 <- clmm(distributive ~ sex + age + educ + income + selfemploy + platform*welfare_regime +
+                unnemployment + tecnoestres + pos_tecnoestres + deservingness + gini_z +
+                gdp_pc_log_z + unemp_z + socx_z + welfare_regime + (1 | ctrcode),
+              data = data, weights = weight)
+
+reg13 <- clmm(distributive ~ sex + age + educ + income + selfemploy + platform + unnemployment +
+                tecnoestres*welfare_regime + pos_tecnoestres + deservingness + gini_z +
+                gdp_pc_log_z + unemp_z + socx_z + welfare_regime + (1 | ctrcode),
+              data = data, weights = weight)
+
+reg14 <- clmm(distributive ~ sex + age + educ + income + selfemploy + platform + unnemployment +
+                tecnoestres + pos_tecnoestres + deservingness*welfare_regime + gini_z +
+                gdp_pc_log_z + unemp_z + socx_z + welfare_regime + (1 | ctrcode),
+              data = data, weights = weight)
+```
+
+```{r}
+#| label: resultados
+#| include: false
+
+var_pais <- function(m) as.numeric(VarCorr(m)[[1]])
+v0  <- var_pais(m0)
+v8  <- var_pais(reg8)
+icc <- v0 / (v0 + pi^2 / 3)
+
+b8 <- coef(reg8)
+or_plat <- exp(b8[["platform2"]])
+
+coefs <- function(modelo, terminos) {
+  s <- coef(summary(modelo))
+  tibble::tibble(term = rownames(s), est = s[, 1], se = s[, 2], p = s[, 4]) %>%
+    dplyr::filter(term %in% names(terminos)) %>%
+    dplyr::mutate(etiqueta  = factor(terminos[term], levels = rev(terminos)),
+                  lo        = est - 1.96 * se,
+                  hi        = est + 1.96 * se,
+                  signo     = factor(dplyr::case_when(p >= .05 ~ "No significativo",
+                                                      est > 0  ~ "Positivo",
+                                                      TRUE     ~ "Negativo"),
+                                     levels = c("Positivo", "Negativo", "No significativo")),
+                  estrellas = dplyr::case_when(p < .001 ~ "***", p < .01 ~ "**",
+                                               p < .05 ~ "*", TRUE ~ ""),
+                  valor     = paste0(num(est), estrellas))
+}
+
+plot_coefs <- function(df) {
+  ggplot(df, aes(x = est, y = etiqueta, colour = signo)) +
+    geom_vline(xintercept = 0, colour = "grey45", linetype = "dashed", linewidth = .6) +
+    geom_linerange(aes(xmin = lo, xmax = hi), linewidth = 1.2) +
+    geom_point(size = 4) +
+    geom_text(aes(label = valor), vjust = -1.1, size = 5.2, colour = tinta, show.legend = FALSE) +
+    scale_colour_manual(values = c("Positivo" = azul_medio, "Negativo" = rojo,
+                                   "No significativo" = gris),
+                        drop = FALSE, name = NULL) +
+    scale_x_continuous(labels = label_number(decimal.mark = ",")) +
+    labs(x = "Coeficiente (log-odds acumulados) e IC 95%", y = NULL) +
+    theme(panel.grid.major.y = element_blank(),
+          legend.position = "bottom")
+}
+
+terminos_ind <- c("platform2"       = "Trabajo de plataformas",
+                  "selfemploy2"     = "Trabajo por cuenta propia",
+                  "unnemployment"   = "Inseguridad laboral",
+                  "tecnoestres"     = "Riesgo de desplazamiento tecnológico",
+                  "pos_tecnoestres" = "Beneficio tecnológico percibido",
+                  "deservingness"   = "Otros reciben beneficios sin merecerlos")
+
+terminos_pais <- c("gdp_pc_log_z"                    = "PIB per cápita (log)",
+                   "gini_z"                          = "Coeficiente de Gini",
+                   "unemp_z"                         = "Tasa de desempleo",
+                   "socx_z"                          = "Gasto social público",
+                   "welfare_regimeSocial-democratic" = "Socialdemócrata (ref. liberal)",
+                   "welfare_regimeConservative"      = "Conservador (ref. liberal)")
+```
+
+::: columns
+::: {.column width="18%"}
+<br>
+
+![](https://images.squarespace-cdn.com/content/v1/6227a866103b1a7b51c084ce/e642ee83-a23b-4411-8267-073919d56570/MNEW-2.jpg?format=1500w){width="100%"}
+
+<br>
+
+![](images/qr.png){width="85%"}
+:::
+
+::: {.column .column-right width="82%"}
+<br>
+
+## **¿Una parte justa?**
+
+### Posición laboral, riesgo tecnológico percibido y justicia redistributiva en 27 países de la OCDE
+
+------------------------------------------------------------------------
+
+**Kevin Carrasco**
+
+Núcleo Milenio sobre Evolución del Trabajo (M-NEW)
+
+::: {.medium}
+[ANID, Programa Iniciativa Científica Milenio, NCS2024_021]{style="color:#c0392b;"}
+
+Workshop M-NEW · Valdivia, noviembre de 2026
+:::
+:::
+:::
+
+## Antecedentes: **Trabajo, tecnología y protección social**
+
+::: {.incremental .highlight-last style="font-size: 100%;"}
+
+- La automatización, la inteligencia artificial, la gestión algorítmica y las plataformas digitales alteran la relación entre trabajadores y sistemas de protección social [@frey_future_2017; @vallas_what_2020; @busemeyer_social_2022]
+
+- Esos sistemas se construyeron sobre el empleo estable, de jornada completa y de largo plazo, con contribuciones predecibles y derechos acumulados en trayectorias continuas [@esping-andersen_three_1993; @korpi_paradox_1998]
+
+- El desacople entre ese modelo y las formas actuales de trabajo (contratos temporales, cuenta propia, plataformas) abre la pregunta por cómo evalúan hoy los trabajadores la justicia del intercambio que mantienen con el Estado
+
+:::
+
+## Antecedentes: **Justicia redistributiva percibida**
+
+::: {.incremental .highlight-last style="font-size: 100%;"}
+
+- La investigación distingue entre **preferencias**, creencias sobre cómo deberían distribuirse los recursos, y **percepciones**, juicios sobre cómo funciona efectivamente el sistema [@osberg_fair_2006; @castillo_perception_2022]
+
+- La **justicia redistributiva percibida** es el juicio sobre si lo que se recibe del Estado compensa de manera justa los impuestos y contribuciones pagados [@roosma_just_2016]
+
+- Su fundamento es la reciprocidad. La legitimidad del sistema descansa en la justicia percibida de las instituciones que asignan contribuciones y beneficios [@rothstein_just_1998; @mau_moral_2014]
+
+- La literatura se ha concentrado en la demanda de redistribución, y el juicio sobre el propio intercambio fiscal ha recibido menos atención [@cavaille_fair_2025]
+
+:::
+
+## Antecedentes: **Variación entre países**
+
+::: {.small}
+*"Siento que recibo una parte justa de los beneficios públicos, dados los impuestos y contribuciones sociales que pago o he pagado en el pasado"* (1 = muy en desacuerdo, 5 = muy de acuerdo)
+:::
+
+```{r}
+#| label: graf-paises
+#| fig-width: 10
+#| fig-height: 5.1
+#| out-width: "94%"
+
+promedios <- data_full %>%
+  dplyr::filter(!is.na(distributive)) %>%
+  dplyr::group_by(ctrcode, welfare_regime) %>%
+  dplyr::summarise(media = mean(as.numeric(distributive)), .groups = "drop") %>%
+  dplyr::mutate(pais    = paises_es[ctrcode],
+                regimen = factor(reg_es[as.character(welfare_regime)], levels = reg_es))
+
+media_global <- mean(promedios$media)
+
+ggplot(promedios, aes(x = media, y = reorder(pais, media))) +
+  geom_vline(xintercept = media_global, colour = "grey45", linewidth = .6) +
+  geom_segment(aes(x = media_global, xend = media, yend = reorder(pais, media), colour = regimen),
+               linewidth = .9, show.legend = FALSE) +
+  geom_point(aes(colour = regimen, shape = regimen), size = 3.6) +
+  geom_point(data = dplyr::filter(promedios, ctrcode == "CHL"),
+             shape = 21, size = 7, colour = tinta, stroke = 1) +
+  scale_colour_manual(values = col_regimen, name = NULL) +
+  scale_shape_manual(values = forma_regimen, name = NULL) +
+  scale_x_continuous(labels = label_number(decimal.mark = ",")) +
+  labs(x = paste0("Justicia redistributiva percibida (promedio). Línea vertical: promedio de los países (",
+                  num(media_global), ")"),
+       y = NULL) +
+  theme(panel.grid.major.y = element_blank(),
+        axis.text.y = element_text(size = 12),
+        axis.title.x = element_text(size = 13),
+        legend.position = "right")
+```
+
+## Antecedentes: **Este estudio**
+
+::: {.antecedentes-grid style="font-size: 0.68em; max-width: 100%;"}
+
+::: {.antecedente-card .fragment .fx-rise}
+[1]{.badge}
+
+**Tipo de empleo.** Asalariados formales, trabajadores por cuenta propia y trabajadores de plataformas mantienen vínculos desiguales con la protección social
+
+::: refs
+@kalleberg_good_2011; @schwander_who_2013; @vallas_what_2020
+:::
+:::
+
+::: {.antecedente-card .fragment .fx-rise}
+[2]{.badge}
+
+**Riesgo tecnológico percibido.** Una dimensión amenazante (desplazamiento) y otra habilitante (beneficio), distintas de la inseguridad laboral convencional
+
+::: refs
+@gallego_automation_2022; @busemeyer_social_2022
+:::
+:::
+
+::: {.antecedente-card .fragment .fx-rise}
+[3]{.badge}
+
+**Merecimiento de otros.** El juicio sobre si otras personas reciben del Estado beneficios que no merecen
+
+::: refs
+@oorschot_who_2000; @vanoorschot_making_2006
+:::
+:::
+
+::: {.antecedente-card .fragment .fx-rise}
+[4]{.badge}
+
+**Regímenes de bienestar.** Contextos institucionales que pueden moderar la relación entre vulnerabilidad laboral y juicios de justicia
+
+::: refs
+@esping-andersen_three_1993; @larsen_institutional_2008
+:::
+:::
+
+:::
+
+##  {data-background-color="black"}
+
+::: {.v-center-container}
+::: {}
+### ¿Se relaciona la justicia redistributiva percibida con la posición en el mercado laboral y con la percepción del riesgo tecnológico?
+
+<br>
+
+### ¿Condicionan los regímenes de bienestar esas relaciones?
+:::
+:::
+
+## Hipótesis
+
+::: {.small}
+
+|        | Predictor                                                        | Relación esperada con la justicia percibida              |
+|:-------|:-----------------------------------------------------------------|:---------------------------------------------------------|
+| **H1** | Empleo no formal (plataformas y cuenta propia)                   | ↓ Menor que en el empleo formal                          |
+| **H2** | Inseguridad laboral                                              | ↓ Negativa                                               |
+| **H3** | Riesgo de desplazamiento tecnológico                             | ↓ Negativa                                               |
+| **H4** | Beneficio tecnológico percibido                                  | ↑ Positiva                                               |
+| **H5** | Percepción de que otros reciben beneficios sin merecerlos        | ↓ Negativa                                               |
+| **H6** | Régimen socialdemócrata (frente a liberal y conservador)         | ↑ Mayor justicia percibida                               |
+| **H7–H9** | Régimen de bienestar × empleo no formal, desplazamiento y merecimiento | Efectos negativos más marcados en regímenes liberales y conservadores |
+
+Hipótesis preregistradas en OSF
+
+:::
+
+# Datos, variables y métodos {data-background-color="black"}
+
+## Datos
+
+::: {.incremental .highlight-last style="font-size: 100%;"}
+
+- Encuesta *Risks That Matter* (RTM) de la OCDE, ola 2024, aplicada en línea a 27.229 personas de 18 a 64 años en 27 países [@oecd_risks_2024]
+
+- Las preguntas sobre tipo de empleo y cambio tecnológico se aplican solo a personas ocupadas o temporalmente ausentes de su empleo (n = 22.063)
+
+- Muestra analítica de **`r entero(n_analitico)` personas** (`r num(100 * n_analitico / n_elegible, 1)`% de la muestra elegible) anidadas en `r n_paises` países
+
+- Chile y México son los dos casos latinoamericanos de la encuesta
+
+:::
+
+## Variable dependiente
+
+> **Justicia redistributiva percibida.** *"Siento que recibo una parte justa de los beneficios públicos, dados los impuestos y contribuciones sociales que pago o he pagado en el pasado"*
+
+```{r}
+#| label: graf-vd
+#| fig-width: 11
+#| fig-height: 4.2
+#| out-width: "100%"
+
+cat_vd <- c("Muy en desacuerdo", "En desacuerdo", "Ni de acuerdo ni en desacuerdo",
+            "De acuerdo", "Muy de acuerdo")
+cat_vd_ley <- c("Muy en desacuerdo", "En desacuerdo", "Ni acuerdo ni desacuerdo",
+                "De acuerdo", "Muy de acuerdo")
+col_vd <- setNames(c(rojo, "#e7a198", "#d9dcde", "#7fb6ff", azul_medio), cat_vd)
+
+vd <- data %>%
+  dplyr::mutate(regimen = reg_es[as.character(welfare_regime)],
+                resp = factor(cat_vd[as.numeric(distributive)], levels = cat_vd))
+
+vd <- dplyr::bind_rows(vd, dplyr::mutate(vd, regimen = "Total")) %>%
+  dplyr::count(regimen, resp) %>%
+  dplyr::group_by(regimen) %>%
+  dplyr::mutate(prop = n / sum(n)) %>%
+  dplyr::ungroup() %>%
+  dplyr::mutate(regimen = factor(regimen, levels = rev(c("Total", reg_es))),
+                txt_col = ifelse(resp %in% c("Muy en desacuerdo", "Muy de acuerdo"), "white", tinta))
+
+ggplot(vd, aes(x = prop, y = regimen, fill = resp)) +
+  geom_col(width = .72, colour = "white", linewidth = .8,
+           position = position_stack(reverse = TRUE)) +
+  geom_text(aes(label = ifelse(prop >= .05, percent(prop, accuracy = 1), ""),
+                colour = txt_col, group = resp),
+            position = position_stack(vjust = .5, reverse = TRUE), size = 4.8, show.legend = FALSE) +
+  scale_fill_manual(values = col_vd, labels = cat_vd_ley, name = NULL) +
+  scale_colour_identity() +
+  scale_x_continuous(labels = percent, expand = c(0, 0)) +
+  guides(fill = guide_legend(nrow = 1)) +
+  labs(x = NULL, y = NULL) +
+  theme(panel.grid = element_blank(), axis.text.x = element_blank(),
+        legend.text = element_text(size = 12),
+        legend.key.size = unit(.9, "lines"),
+        axis.text.y = element_text(size = 15, face = "bold"))
+```
+
+## Variables independientes
+
+::: {.small}
+
+| Dimensión                            | Medición                                                                                                                         |
+|:-------------------------------------|:---------------------------------------------------------------------------------------------------------------------------------|
+| Posición laboral                     | Trabajo por cuenta propia (sí/no) y trabajo de plataformas (sí/no), indicadores no excluyentes. Referencia: empleo formal dependiente |
+| Inseguridad laboral                  | Preocupación por perder el empleo o el ingreso en los próximos uno o dos años (1 a 4)                                            |
+| Riesgo de desplazamiento tecnológico | Promedio de tres ítems sobre reemplazo o pérdida del empleo por la tecnología en los próximos cinco años (1 a 4)                  |
+| Beneficio tecnológico percibido      | Promedio de tres ítems sobre mejoras del propio trabajo gracias a la tecnología (1 a 4)                                          |
+| Merecimiento de otros                | *"Muchas personas reciben beneficios públicos sin merecerlos"* (1 a 5)                                                           |
+| Controles                            | Sexo, edad, nivel educacional y decil de ingreso                                                                                 |
+
+:::
+
+## Percepción del cambio tecnológico
+
+::: {.small}
+¿Qué tan probable es que ocurra lo siguiente en su trabajo en los próximos cinco años?
+:::
+
+```{r}
+#| label: graf-tecno
+#| fig-width: 11
+#| fig-height: 4.6
+#| out-width: "94%"
+
+items <- c(tecnoestres_1 = "Reemplazo por un robot",
+           tecnoestres_5 = "Reemplazo por alguien que ofrece el servicio en una plataforma",
+           tecnoestres_6 = "Pérdida del empleo por falta de habilidades tecnológicas",
+           tecnoestres_7 = "Horario más compatible con la vida privada",
+           tecnoestres_8 = "Trabajo menos peligroso o exigente físicamente",
+           tecnoestres_9 = "Trabajo menos aburrido, repetitivo o estresante")
+
+cat_tec <- c("Muy improbable", "Improbable", "Probable", "Muy probable")
+col_tec <- setNames(c("#d6e8ff", "#7fb6ff", azul_medio, azul), cat_tec)
+
+tec <- digitalization %>%
+  dplyr::select(dplyr::all_of(names(items))) %>%
+  dplyr::mutate(dplyr::across(dplyr::everything(), as.numeric)) %>%
+  tidyr::pivot_longer(dplyr::everything(), names_to = "item", values_to = "valor") %>%
+  dplyr::filter(valor %in% 1:4) %>%
+  dplyr::count(item, valor) %>%
+  dplyr::group_by(item) %>%
+  dplyr::mutate(prop = n / sum(n)) %>%
+  dplyr::ungroup() %>%
+  dplyr::mutate(dimension = ifelse(item %in% c("tecnoestres_1", "tecnoestres_5", "tecnoestres_6"),
+                                   "Riesgo de desplazamiento", "Beneficio tecnológico"),
+                dimension = factor(dimension, levels = c("Riesgo de desplazamiento", "Beneficio tecnológico")),
+                item = factor(items[item], levels = rev(items)),
+                resp = factor(cat_tec[valor], levels = cat_tec),
+                txt_col = ifelse(valor >= 3, "white", tinta))
+
+ggplot(tec, aes(x = prop, y = item, fill = resp)) +
+  geom_col(width = .72, colour = "white", linewidth = .8,
+           position = position_stack(reverse = TRUE)) +
+  geom_text(aes(label = ifelse(prop >= .05, percent(prop, accuracy = 1), ""),
+                colour = txt_col, group = resp),
+            position = position_stack(vjust = .5, reverse = TRUE), size = 4.4, show.legend = FALSE) +
+  facet_wrap(~ dimension, ncol = 1, scales = "free_y") +
+  scale_fill_manual(values = col_tec, name = NULL) +
+  scale_colour_identity() +
+  scale_x_continuous(labels = percent, expand = c(0, 0)) +
+  guides(fill = guide_legend(nrow = 1)) +
+  labs(x = NULL, y = NULL) +
+  theme(panel.grid = element_blank(), axis.text.x = element_blank(),
+        strip.text = element_text(size = 14, face = "bold", hjust = 0),
+        axis.text.y = element_text(size = 12.5),
+        panel.spacing = unit(.8, "lines"))
+```
+
+::: {.tiny}
+El ítem sobre reemplazo por una herramienta de inteligencia artificial forma una dimensión propia en el análisis factorial y no se incluye en las escalas
+:::
+
+## Nivel país: **regímenes de bienestar**
+
+::: {.antecedentes-grid style="font-size: 0.7em; max-width: 100%; grid-template-columns: 1fr 1fr 1fr;"}
+
+::: {.antecedente-card}
+[**Liberal (9)**]{style="color:#0b49bf;"}
+
+Canadá, **Chile**, Estados Unidos, Estonia, Irlanda, Letonia, Lituania, **México**, Reino Unido
+
+::: refs
+Protección residual y focalizada, organizada en torno a la participación en el mercado
+:::
+:::
+
+::: {.antecedente-card style="border-left-color:#4f97ff;"}
+[**Socialdemócrata (4)**]{style="color:#4f97ff;"}
+
+Dinamarca, Finlandia, Noruega, Países Bajos
+
+::: refs
+Protección amplia y universal
+:::
+:::
+
+::: {.antecedente-card style="border-left-color:#c0392b;"}
+[**Conservador (14)**]{style="color:#c0392b;"}
+
+Alemania, Austria, Bélgica, Corea, Eslovenia, España, Francia, Grecia, Israel, Italia, Polonia, Portugal, Suiza, Turquía
+
+::: refs
+Derechos ligados a la condición laboral
+:::
+:::
+
+:::
+
+<br>
+
+::: {.tiny}
+Clasificación basada en @esping-andersen_three_1993, @ferrera_southern_1996, @Fenger2006WelfareRI, @aidukaite_welfare_2011 y @franzoni_welfare_2008. Indicadores de país estandarizados: coeficiente de Gini, PIB per cápita (log) y tasa de desempleo (Banco Mundial), y gasto social público como porcentaje del PIB (OCDE SOCX)
+:::
+
+## Métodos
+
+::: {.columns}
+::: {.column width="42%"}
+::: {.medium}
+
+- Modelos de regresión logística ordinal multinivel, con individuos anidados en países e intercepto aleatorio por país [@haubo_cumulative_2018]
+
+- ICC del modelo nulo: **`r num(100 * icc, 1)`%** de la varianza entre países
+
+- Ponderadores de la OCDE
+
+- Hipótesis preregistradas en OSF
+
+:::
+:::
+
+::: {.column width="58%"}
+::: {.timeline .xs}
+
+::: tl-item
+[M1–M5]{.tl-dot}
+
+::: {.tl-card style="margin-left: 2.4rem;"}
+<h4>Nivel individual</h4>
+
+Tipo de empleo, inseguridad laboral, percepciones tecnológicas, merecimiento de otros y controles
+:::
+:::
+
+::: tl-item
+[M6–M8]{.tl-dot}
+
+::: {.tl-card style="margin-left: 2.4rem;"}
+<h4>Nivel país</h4>
+
+Gini y PIB per cápita, desempleo y gasto social, régimen de bienestar
+:::
+:::
+
+::: tl-item
+[M9]{.tl-dot}
+
+::: {.tl-card style="margin-left: 2.4rem;"}
+<h4>Interacción individual</h4>
+
+Cuenta propia × plataformas
+:::
+:::
+
+::: tl-item
+[M10–M14]{.tl-dot}
+
+::: {.tl-card style="margin-left: 2.4rem;"}
+<h4>Interacciones entre niveles</h4>
+
+Régimen de bienestar × cada predictor individual
+:::
+:::
+
+:::
+:::
+:::
+
+# Resultados {data-background-color="black"}
+
+## Resultados: **nivel individual**
+
+```{r}
+#| label: graf-coef-ind
+#| fig-width: 10.5
+#| fig-height: 4.8
+#| out-width: "92%"
+
+plot_coefs(coefs(reg8, terminos_ind))
+```
+
+::: {.tiny}
+Modelo 8. Controla por sexo, edad, educación, ingreso, indicadores de país y régimen de bienestar. \* p \< 0,05; \*\* p \< 0,01; \*\*\* p \< 0,001
+:::
+
+## Resultados: **lo esperado y lo inesperado**
+
+::: {.antecedentes-grid style="font-size: 0.66em; max-width: 100%;"}
+
+::: {.antecedente-card .fragment .fx-rise}
+**En la dirección esperada**
+
+::: {style="padding-left: 1.1em;"}
+- La inseguridad laboral reduce la justicia percibida (H2)
+- Percibir que otros reciben beneficios sin merecerlos también la reduce (H5)
+- El beneficio tecnológico percibido la aumenta, con el mayor efecto entre las percepciones tecnológicas (H4)
+:::
+:::
+
+::: {.antecedente-card .fragment .fx-rise style="border-left-color:#c0392b;"}
+**Contrario a lo esperado**
+
+::: {style="padding-left: 1.1em;"}
+- Quienes trabajan en plataformas reportan **mayor** justicia percibida (OR = `r num(or_plat, 1)`) (H1)
+- El trabajo por cuenta propia no muestra asociación (H1)
+- El riesgo de desplazamiento tecnológico se asocia **positivamente** con la justicia percibida (H3)
+:::
+:::
+
+:::
+
+## Resultados: **nivel país**
+
+```{r}
+#| label: graf-coef-pais
+#| fig-width: 10.5
+#| fig-height: 4.7
+#| out-width: "92%"
+
+plot_coefs(coefs(reg8, terminos_pais))
+```
+
+::: {.tiny}
+Modelo 8. Indicadores de país estandarizados. La varianza entre países baja de `r num(v0, 3)` en el modelo nulo a `r num(v8, 3)` en el modelo 8. \* p \< 0,05; \*\* p \< 0,01; \*\*\* p \< 0,001
+:::
+
+```{r}
+#| label: interacciones
+#| include: false
+
+prep_emm <- function(df) {
+  df$regimen <- factor(reg_es[as.character(df$welfare_regime)], levels = reg_es)
+  df
+}
+
+nui <- c("sex", "age", "educ", "income", "platform")
+
+emm_self <- prep_emm(emmip(reg10, welfare_regime ~ selfemploy, mode = "latent",
+                           CIs = FALSE, plotit = FALSE))
+emm_plat <- prep_emm(emmip(reg11, welfare_regime ~ platform, mode = "latent",
+                           CIs = FALSE, plotit = FALSE))
+emm_tec_l <- prep_emm(emmip(reg13, welfare_regime ~ tecnoestres,
+                            at = list(tecnoestres = seq(1, 4, length.out = 50)),
+                            nuisance = nui, mode = "latent", CIs = FALSE, plotit = FALSE))
+emm_tec_p <- prep_emm(emmip(reg13, welfare_regime ~ tecnoestres,
+                            at = list(tecnoestres = 1:4),
+                            nuisance = nui, mode = "latent", CIs = FALSE, plotit = FALSE))
+emm_des_l <- prep_emm(emmip(reg14, welfare_regime ~ deservingness,
+                            at = list(deservingness = seq(1, 5, length.out = 50)),
+                            nuisance = nui, mode = "latent", CIs = FALSE, plotit = FALSE))
+emm_des_p <- prep_emm(emmip(reg14, welfare_regime ~ deservingness,
+                            at = list(deservingness = 1:5),
+                            nuisance = nui, mode = "latent", CIs = FALSE, plotit = FALSE))
+
+lim_y <- range(c(emm_self$yvar, emm_plat$yvar, emm_tec_l$yvar, emm_des_l$yvar))
+lim_y <- lim_y + c(-.1, .1)
+
+escala_regimen <- list(
+  scale_colour_manual(values = col_regimen, name = NULL),
+  scale_shape_manual(values = forma_regimen, name = NULL),
+  scale_y_continuous(limits = lim_y, labels = label_number(decimal.mark = ",")),
+  labs(y = "Justicia redistributiva percibida\n(escala latente)")
+)
+
+int_cat <- function(df, x, titulo) {
+  ggplot(df, aes(x = .data[[x]], y = yvar, colour = regimen, shape = regimen, group = regimen)) +
+    geom_line(linewidth = 1.1) +
+    geom_point(size = 4) +
+    scale_x_discrete(labels = c("No", "Sí")) +
+    escala_regimen +
+    labs(x = titulo)
+}
+
+int_cont <- function(lineas, puntos, x, titulo) {
+  ggplot(lineas, aes(x = .data[[x]], y = yvar, colour = regimen, group = regimen)) +
+    geom_line(linewidth = 1.1) +
+    geom_point(data = puntos, aes(shape = regimen), size = 3.6) +
+    scale_x_continuous(breaks = unique(puntos[[x]])) +
+    escala_regimen +
+    labs(x = titulo)
+}
+```
+
+## Moderación: **posición laboral**
+
+```{r}
+#| label: graf-int-laboral
+#| fig-width: 11
+#| fig-height: 4.9
+#| out-width: "100%"
+
+(int_cat(emm_self, "selfemploy", "Trabajo por cuenta propia") |
+   int_cat(emm_plat, "platform", "Trabajo de plataformas") + labs(y = NULL)) +
+  plot_layout(guides = "collect") & theme(legend.position = "top")
+```
+
+::: {.tiny}
+Propensión latente estimada por régimen de bienestar (modelos 10 y 11). Todas las interacciones con el régimen son negativas respecto del liberal
+:::
+
+## Moderación: **tecnología y merecimiento**
+
+```{r}
+#| label: graf-int-tec
+#| fig-width: 11
+#| fig-height: 4.9
+#| out-width: "100%"
+
+(int_cont(emm_tec_l, emm_tec_p, "tecnoestres", "Riesgo de desplazamiento tecnológico") |
+   int_cont(emm_des_l, emm_des_p, "deservingness", "Otros reciben beneficios sin merecerlos") +
+   labs(y = NULL)) +
+  plot_layout(guides = "collect") & theme(legend.position = "top")
+```
+
+::: {.tiny}
+Propensión latente estimada por régimen de bienestar (modelos 13 y 14)
+:::
+
+## Síntesis de hipótesis
+
+::: {.small}
+
+|        | Expectativa                      | Resultado                                                                                       |
+|:-------|:---------------------------------|:------------------------------------------------------------------------------------------------|
+| **H1** | Empleo no formal ↓               | [✗]{style="color:#c0392b;"} Plataformas ↑, cuenta propia sin asociación                          |
+| **H2** | Inseguridad laboral ↓            | [✓]{style="color:#0b49bf;"} Se cumple                                                            |
+| **H3** | Desplazamiento tecnológico ↓     | [✗]{style="color:#c0392b;"} Asociación positiva                                                  |
+| **H4** | Beneficio tecnológico ↑          | [✓]{style="color:#0b49bf;"} Se cumple, con el mayor efecto entre las percepciones tecnológicas   |
+| **H5** | Merecimiento de otros ↓          | [✓]{style="color:#0b49bf;"} Se cumple                                                            |
+| **H6** | Socialdemócrata ↑                | [≈]{style="color:#5f6b73;"} Parcial. Conservador menor que liberal, socialdemócrata sin diferencia |
+| **H7** | Moderación de la posición laboral | [≈]{style="color:#5f6b73;"} Parcial. Efecto de plataformas atenuado en el socialdemócrata, cuenta propia negativo solo en ese régimen |
+| **H8** | Moderación del desplazamiento    | [≈]{style="color:#5f6b73;"} Parcial. Efecto positivo, más débil en socialdemócrata y conservador |
+| **H9** | Moderación del merecimiento      | [≈]{style="color:#5f6b73;"} Parcial. Gradiente más pronunciado en el conservador                 |
+
+:::
+
+# Discusión y conclusiones {data-background-color="black"}
+
+## Discusión: **dos hallazgos contraintuitivos** {data-background-color="black"}
+
+::: {.incremental .highlight-last2 style="font-size: 88%;"}
+
+- **Trabajo de plataformas.** Categoría heterogénea, que reúne ingresos suplementarios e intermitentes, y cuyo efecto se debilita entre quienes además trabajan por cuenta propia [@vallas_what_2020; @schor_gig_2020]
+
+- La justicia percibida es un juicio de proporcionalidad. Quienes contribuyen poco al sistema esperan poco de él, mientras los asalariados formales, con contribuciones visibles, pueden sentirse en desventaja [@schwander_who_2013]
+
+- **Riesgo de desplazamiento.** Demandar más protección y evaluar como justo el intercambio actual son actitudes analíticamente distintas [@roosma_just_2016; @busemeyer_social_2022]
+
+- La encuesta observa solo a quienes siguen ocupados pese al riesgo que perciben. Ese riesgo es prospectivo y abstracto (cinco años), mientras la inseguridad que sí erosiona la justicia percibida es concreta (uno o dos años) [@gallego_automation_2022]
+
+:::
+
+## Conclusiones {data-background-color="black"}
+
+::: {.incremental .highlight-last2 style="font-size: 88%;"}
+
+- La justicia redistributiva percibida se ancla en la experiencia laboral, aunque no en la dirección que anticipa la perspectiva de riesgo y redistribución
+
+- Preferencias y percepciones deben mantenerse separadas. La misma exposición al riesgo que eleva la demanda de redistribución puede dejar igual, o incluso mejorar, la evaluación del propio intercambio
+
+- Las diferencias de nivel entre regímenes se explican en buena parte por la riqueza de los países. Los regímenes parecen moldear cuánto se traducen las circunstancias individuales en juicios de justicia [@larsen_institutional_2008]
+
+- Extender la protección social a trabajadores de plataformas (Recomendación del Consejo de la UE de 2019, Directiva de 2024, Ley 21.431 en Chile) supone un intercambio más completo, cuya legitimidad dependerá de que los nuevos derechos sean proporcionales y visibles
+
+:::
+
+## Limitaciones y próximos pasos {data-background-color="black"}
+
+::: {.incremental .highlight-last2 style="font-size: 88%;"}
+
+- Muestra condicionada al empleo por diseño del cuestionario, sin información sobre personas desocupadas o inactivas
+
+- Datos transversales, que identifican asociaciones y no descartan causalidad inversa
+
+- Con 27 países, las moderaciones por régimen se leen como patrones descriptivos
+
+- **Próximos pasos.** Datos panel, instrumentos que separen riesgo concreto y prospectivo, indicadores de política continuos y atención a la heterogeneidad de los regímenes latinoamericanos [@perez-ahumada_conditioning_2026]
+
+:::
+
+##  {data-background-color="black"}
+
+::: {.v-center-container}
+::: {.columns style="width: 100%; align-items: center;"}
+::: {.column width="25%"}
+![](images/qr.png){width="90%" fig-align="center"}
+:::
+
+::: {.column width="75%"}
+### ¡Gracias!
+
+------------------------------------------------------------------------
+
+### **Kevin Carrasco**
+#### kevin.carrasco@uchile.cl
+#### Núcleo Milenio sobre Evolución del Trabajo (M-NEW)
+#### [github.com/Kevin-carrasco/labor-redistributive-justice](https://github.com/Kevin-carrasco/labor-redistributive-justice)
+:::
+:::
+:::
+
+## Referencias {.scrollable}
+
+::: {#refs .tiny}
+:::

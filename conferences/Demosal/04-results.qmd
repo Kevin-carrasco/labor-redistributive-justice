@@ -1,0 +1,300 @@
+
+```{r}
+#| label: packages2
+#| echo: false
+#| include: false
+
+if (!require("pacman")) install.packages("pacman")
+
+pacman::p_load(tidyverse,
+               haven,
+               sjmisc,
+               sjPlot,
+               here,
+               performance,
+               texreg,
+               sjlabelled,
+               ggpubr,
+               ordinal,
+               emmeans,
+               flextable)
+
+options(scipen = 999)
+rm(list = ls())
+```
+
+```{r}
+#| label: data2
+#| echo: false
+#| include: false
+
+load(file = here::here("input/proc/data.RData"))
+
+# Muestra analítica
+data <- data %>%
+  select(ctrcode, country, distributive, sex, age, educ, income, selfemploy,
+         unnemployment, platform, tecnoestres, pos_tecnoestres, deservingness,
+         welfare_regime, weight, gini_z, gdp_pc_log_z, unemp_z, socx_z)
+
+data <- na.omit(data)
+
+data$deservingness <- as.numeric(sjlabelled::as_factor(data$deservingness))
+```
+
+```{r}
+#| label: modelos
+#| echo: false
+#| include: false
+#| cache: true
+
+data$selfemploy <- sjlabelled::set_labels(data$selfemploy, labels = c("No" = 1, "Sí" = 2))
+data$platform <- sjlabelled::set_labels(data$platform, labels = c("No" = 1, "Sí" = 2))
+
+data$distributive <- sjlabelled::as_factor(data$distributive)
+
+m0 <- clmm(distributive ~ 1 + (1 | ctrcode), data = data, weights = weight)
+icc_m0 <- performance::icc(m0, by_group = TRUE)
+
+# Nivel 1
+reg1 <- clmm(distributive ~ selfemploy + platform + (1|ctrcode), data = data, weights = weight)
+reg2 <- clmm(distributive ~ selfemploy + platform + unnemployment + (1|ctrcode), data = data, weights = weight)
+reg3 <- clmm(distributive ~ selfemploy + platform + unnemployment + tecnoestres + pos_tecnoestres + (1|ctrcode), data = data, weights = weight)
+reg4 <- clmm(distributive ~ selfemploy + platform + unnemployment + tecnoestres + pos_tecnoestres + deservingness + (1|ctrcode), data = data, weights = weight)
+
+# Controles
+reg5 <- clmm(distributive ~ sex + age + educ + income + selfemploy + platform + unnemployment + tecnoestres + pos_tecnoestres + deservingness + (1|ctrcode), data = data, weights = weight)
+
+# Nivel 2
+reg6 <- clmm(distributive ~ sex + age + educ + income + selfemploy + platform + unnemployment + tecnoestres + pos_tecnoestres + deservingness + gini_z + gdp_pc_log_z + (1|ctrcode), data = data, weights = weight)
+reg7 <- clmm(distributive ~ sex + age + educ + income + selfemploy + platform + unnemployment + tecnoestres + pos_tecnoestres + deservingness + gini_z + gdp_pc_log_z + unemp_z + socx_z + (1|ctrcode), data = data, weights = weight)
+reg8 <- clmm(distributive ~ sex + age + educ + income + selfemploy + platform + unnemployment + tecnoestres + pos_tecnoestres + deservingness + gini_z + gdp_pc_log_z + unemp_z + socx_z + welfare_regime + (1|ctrcode), data = data, weights = weight)
+
+# Interacciones
+reg9 <- clmm(distributive ~ sex + age + educ + income + selfemploy + platform*selfemploy + unnemployment + tecnoestres + pos_tecnoestres + deservingness + gini_z + gdp_pc_log_z + unemp_z + socx_z + welfare_regime + (1|ctrcode), data = data, weights = weight)
+reg10 <- clmm(distributive ~ sex + age + educ + income + selfemploy*welfare_regime + platform + unnemployment + tecnoestres + pos_tecnoestres + deservingness + gini_z + gdp_pc_log_z + unemp_z + socx_z + welfare_regime + (1|ctrcode), data = data, weights = weight)
+reg11 <- clmm(distributive ~ sex + age + educ + income + selfemploy + platform*welfare_regime + unnemployment + tecnoestres + pos_tecnoestres + deservingness + gini_z + gdp_pc_log_z + unemp_z + socx_z + welfare_regime + (1|ctrcode), data = data, weights = weight)
+reg12 <- clmm(distributive ~ sex + age + educ + income + selfemploy + platform + unnemployment*welfare_regime + tecnoestres + pos_tecnoestres + deservingness + gini_z + gdp_pc_log_z + unemp_z + socx_z + welfare_regime + (1|ctrcode), data = data, weights = weight)
+reg13 <- clmm(distributive ~ sex + age + educ + income + selfemploy + platform + unnemployment + tecnoestres*welfare_regime + pos_tecnoestres + deservingness + gini_z + gdp_pc_log_z + unemp_z + socx_z + welfare_regime + (1|ctrcode), data = data, weights = weight)
+reg14 <- clmm(distributive ~ sex + age + educ + income + selfemploy + platform + unnemployment + tecnoestres + pos_tecnoestres + deservingness*welfare_regime + gini_z + gdp_pc_log_z + unemp_z + socx_z + welfare_regime + (1|ctrcode), data = data, weights = weight)
+```
+
+```{r}
+#| label: funciones-tablas
+#| echo: false
+#| include: false
+
+# Coma decimal en las celdas numéricas de las tablas
+coma <- function(x) gsub("(?<=[0-9])\\.(?=[0-9])", ",", x, perl = TRUE)
+
+gof_es <- c("BIC", "N (suma de ponderadores)", "Países",
+            "Varianza del intercepto (país)")
+
+# Convierte la matriz de texreg en data frame con formato en español:
+# coma decimal, BIC con un decimal y separador de miles en BIC y N
+formatear_tabla <- function(mat) {
+  df <- as.data.frame(mat[-1, , drop = FALSE], stringsAsFactors = FALSE)
+  names(df) <- c("term", mat[1, -1])
+  miles <- function(x, d) {
+    v <- suppressWarnings(as.numeric(x))
+    ifelse(is.na(v), x, formatC(v, format = "f", digits = d, big.mark = ".", decimal.mark = ","))
+  }
+  fila_bic <- df$term == "BIC"
+  fila_n <- df$term == "N (suma de ponderadores)"
+  otras <- !(fila_bic | fila_n)
+  for (j in names(df)[-1]) {
+    df[[j]][fila_bic] <- miles(df[[j]][fila_bic], 1)
+    df[[j]][fila_n] <- miles(df[[j]][fila_n], 0)
+    df[[j]][otras] <- coma(df[[j]][otras])
+  }
+  df
+}
+
+nota_tablas <- "Nota: coeficientes de regresión (log-odds acumulados) con errores estándar entre paréntesis. * p < 0,05; ** p < 0,01; *** p < 0,001."
+```
+
+
+```{r}
+#| label: tbl-modelos
+#| echo: false
+#| tbl-cap: "Modelos multinivel de justicia redistributiva percibida"
+#| tbl-cap-location: top
+
+ccoef <- list(
+  "selfemploy2" = "Trabajo por cuenta propia (ref.: no)",
+  "platform2" = "Trabajo de plataformas (ref.: no)",
+  "unnemployment" = "Preocupación por perder empleo o ingresos",
+  "tecnoestres" = "Riesgo de desplazamiento tecnológico",
+  "pos_tecnoestres" = "Beneficio tecnológico percibido",
+  "deservingness" = "Merecimiento percibido de otros",
+  "gini_z" = "Coeficiente de Gini (estandarizado)",
+  "gdp_pc_log_z" = "PIB per cápita (estandarizado)",
+  "unemp_z" = "Tasa de desempleo (estandarizada)",
+  "socx_z" = "Gasto social (estandarizado)",
+  "welfare_regimeSocial-democratic" = "Socialdemócrata",
+  "welfare_regimeConservative" = "Conservador"
+)
+
+mat1 <- matrixreg(list(reg1, reg2, reg3, reg4, reg5, reg6, reg7, reg8),
+                  custom.model.names = paste0("Modelo ", 1:8),
+                  stars = c(0.05, 0.01, 0.001),
+                  custom.coef.map = ccoef,
+                  digits = 3,
+                  leading.zero = TRUE,
+                  include.loglik = FALSE,
+                  include.aic = FALSE,
+                  custom.gof.names = gof_es,
+                  output.type = "ascii",
+                  trim = TRUE)
+
+df1 <- formatear_tabla(mat1)
+df1 <- df1[df1$term != "Países", ] # los 27 países se indican en la nota
+
+# Fila de grupo antes de la categoría socialdemócrata
+pos <- which(df1$term == "Socialdemócrata")[1]
+grp <- df1[1, ]
+grp[1, ] <- ""
+grp$term <- "Régimen de bienestar (ref.: liberal)"
+df1 <- rbind(df1[1:(pos - 1), ], grp, df1[pos:nrow(df1), ])
+
+ft1 <- flextable::flextable(df1) %>%
+  flextable::set_header_labels(term = "") %>%
+  flextable::bold(part = "header") %>%
+  flextable::italic(i = pos, j = 1, part = "body") %>%
+  flextable::align(j = 1, align = "left", part = "all") %>%
+  flextable::align(j = 2:9, align = "center", part = "all") %>%
+  flextable::padding(padding.top = 0, padding.bottom = 0,
+                     padding.left = 2, padding.right = 2, part = "all") %>%
+  flextable::line_spacing(space = 0.9, part = "all") %>%
+  flextable::fontsize(size = 8, part = "all") %>%
+  flextable::add_footer_lines(paste(nota_tablas, "27 países. Los modelos 5 a 8 controlan por sexo, edad, educación e ingreso; sexo, edad e ingreso muestran efectos significativos, la educación no.")) %>%
+  flextable::fontsize(size = 7, part = "footer") %>%
+  flextable::height_all(height = 0.3, unit = "cm") %>%
+  flextable::set_table_properties(layout = "fixed",
+                                  opts_word = list(split = FALSE, keep_with_next = TRUE),
+                                  opts_pdf = list(arraystretch = 1.1)) %>%
+  flextable::width(j = 1, width = 3.6, unit = "cm") %>%
+  flextable::width(j = 2:9, width = 1.6, unit = "cm")
+
+ft1
+```
+
+La correlación intraclase del modelo nulo ubica el 6,8% de la varianza en el nivel país. Los coeficientes de la @tbl-modelos son log-odds acumulados, de modo que un valor positivo indica mayores chances de reportar una categoría más alta de justicia percibida.
+
+El trabajo de plataformas es el predictor más fuerte y estable. Su coeficiente disminuye de 1,177 en el modelo 1 a 0,787 en el modelo 8 (p < 0,001; OR ≈ 2,2), alrededor del doble de chances de reportar mayor justicia percibida que los asalariados formales. El trabajo por cuenta propia no es significativo en ningún modelo, y la preocupación por perder el empleo o los ingresos es negativa y se fortalece al controlar por las percepciones tecnológicas (de −0,058 en el modelo 2 a −0,163 en el modelo 8; p < 0,001).
+
+El beneficio tecnológico percibido tiene el mayor efecto entre los predictores individuales (≈ 0,44 a 0,47; p < 0,001), seguido por el riesgo de desplazamiento (≈ 0,35 a 0,37; p < 0,001), cuyo signo es contrario al hipotetizado. El merecimiento percibido de otros es negativo y estable (≈ −0,18; p < 0,001), y los controles no alteran esta estructura. En el nivel país, solo el PIB per cápita muestra una asociación significativa (0,191 en el modelo 8; p < 0,05), y la justicia percibida es menor en el régimen conservador que en el liberal (−0,350; p < 0,05), mientras que el contraste socialdemócrata no es significativo.
+
+
+La @fig-interact muestra las moderaciones estimadas en los modelos 9 a 14. La interacción entre el trabajo por cuenta propia y el de plataformas es negativa (−0,368; p < 0,01), de modo que la asociación del trabajo de plataformas es más débil entre quienes también trabajan por cuenta propia.
+
+Respecto del régimen liberal, todas las interacciones son negativas. El trabajo de plataformas es positivo en los tres regímenes, pero su pendiente es mucho menor en el socialdemócrata (−0,596; p < 0,001), y el riesgo de desplazamiento se atenúa en el socialdemócrata (−0,258) y en el conservador (−0,136; ambos p < 0,001). El trabajo por cuenta propia solo resulta negativo bajo el régimen socialdemócrata (−0,418; p < 0,001), mientras que en el conservador se acentúan los gradientes negativos del merecimiento (−0,081; p < 0,01) y de la inseguridad laboral (−0,115; p < 0,001). Así, las asociaciones positivas del trabajo de plataformas y del riesgo de desplazamiento con la justicia percibida alcanzan su mayor intensidad en el régimen liberal.
+
+```{r}
+#| label: graficos-interaccion
+#| echo: false
+#| include: false
+
+# Etiquetas en español para los regímenes y el eje vertical
+regimen_es <- function(d) {
+  d$welfare_regime <- factor(dplyr::recode(as.character(d$welfare_regime),
+                                           "Social-democratic" = "Socialdemócrata",
+                                           "Conservative" = "Conservador"),
+                             levels = c("Liberal", "Socialdemócrata", "Conservador"))
+  d
+}
+
+eje_y <- scale_y_continuous(name = "Justicia redistributiva percibida (escala latente)",
+                            limits = c(-0.7, 0.8),
+                            breaks = c(-0.6, -0.3, 0, 0.3, 0.6),
+                            labels = function(x) formatC(x, format = "f", digits = 1, decimal.mark = ","))
+
+nui <- c("sex", "age", "educ", "income", "platform")
+
+emm1 <- regimen_es(emmip(reg10, welfare_regime ~ selfemploy,
+                         mode = "latent", CIs = FALSE, plotit = FALSE))
+
+int1 <- ggplot(emm1, aes(x = selfemploy, y = yvar,
+                         color = welfare_regime, shape = welfare_regime,
+                         group = welfare_regime)) +
+  geom_line() +
+  geom_point(size = 2.8) +
+  scale_shape_manual(values = c(16, 17, 15)) +
+  scale_x_discrete(name = "Trabajo por cuenta propia", labels = c("No", "Sí")) +
+  eje_y +
+  labs(color = "Régimen de bienestar", shape = "Régimen de bienestar") +
+  theme_bw()
+
+emm2 <- regimen_es(emmip(reg11, welfare_regime ~ platform,
+                         mode = "latent", CIs = FALSE, plotit = FALSE))
+
+int2 <- ggplot(emm2, aes(x = platform, y = yvar,
+                         color = welfare_regime, shape = welfare_regime,
+                         group = welfare_regime)) +
+  geom_line() +
+  geom_point(size = 2.8) +
+  scale_shape_manual(values = c(16, 17, 15)) +
+  scale_x_discrete(name = "Trabajo de plataformas", labels = c("No", "Sí")) +
+  eje_y +
+  labs(color = "Régimen de bienestar", shape = "Régimen de bienestar") +
+  theme_bw()
+
+emm3_line <- regimen_es(emmip(reg13, welfare_regime ~ tecnoestres,
+                              at = list(tecnoestres = seq(1, 4, length.out = 50)),
+                              nuisance = nui, mode = "latent", CIs = FALSE, plotit = FALSE))
+emm3_pts <- regimen_es(emmip(reg13, welfare_regime ~ tecnoestres,
+                             at = list(tecnoestres = seq(1, 4, length.out = 4)),
+                             nuisance = nui, mode = "latent", CIs = FALSE, plotit = FALSE))
+
+int3 <- ggplot(emm3_line, aes(x = tecnoestres, y = yvar,
+                              color = welfare_regime, group = welfare_regime)) +
+  geom_line(linewidth = 0.8) +
+  geom_point(data = emm3_pts, aes(shape = welfare_regime), size = 2.8) +
+  scale_shape_manual(values = c(16, 17, 15)) +
+  scale_x_continuous(name = "Riesgo de desplazamiento tecnológico") +
+  eje_y +
+  labs(color = "Régimen de bienestar", shape = "Régimen de bienestar") +
+  theme_bw()
+
+emm4_line <- regimen_es(emmip(reg14, welfare_regime ~ deservingness,
+                              at = list(deservingness = seq(1, 5, length.out = 50)),
+                              nuisance = nui, mode = "latent", CIs = FALSE, plotit = FALSE))
+emm4_pts <- regimen_es(emmip(reg14, welfare_regime ~ deservingness,
+                             at = list(deservingness = seq(1, 5, length.out = 5)),
+                             nuisance = nui, mode = "latent", CIs = FALSE, plotit = FALSE))
+
+int4 <- ggplot(emm4_line, aes(x = deservingness, y = yvar,
+                              color = welfare_regime, group = welfare_regime)) +
+  geom_line(linewidth = 0.8) +
+  geom_point(data = emm4_pts, aes(shape = welfare_regime), size = 2.8) +
+  scale_shape_manual(values = c(16, 17, 15)) +
+  scale_x_continuous(name = "Merecimiento percibido de otros") +
+  eje_y +
+  labs(color = "Régimen de bienestar", shape = "Régimen de bienestar") +
+  theme_bw()
+```
+
+```{r}
+#| label: fig-interact
+#| echo: false
+#| fig-cap: "Propensión latente estimada de justicia redistributiva percibida según predictores seleccionados y régimen de bienestar (modelos 10, 11, 13 y 14)"
+#| fig-cap-location: top
+#| fig-height: 5
+
+int1 <- int1 + theme(axis.title.y = element_blank())
+int2 <- int2 + theme(axis.title.y = element_blank())
+int3 <- int3 + theme(axis.title.y = element_blank())
+int4 <- int4 + theme(axis.title.y = element_blank())
+
+fig <- ggarrange(int1, int2,
+                 int3, int4,
+                 ncol = 2,
+                 nrow = 2,
+                 common.legend = TRUE,
+                 legend = "top")
+
+annotate_figure(fig,
+                left = text_grob("Justicia redistributiva percibida (escala latente)",
+                                 rot = 90, size = 10),
+                bottom = text_grob("Fuente: elaboración propia con datos de la encuesta Risks That Matter 2024 (OCDE).",
+                                   size = 8, x = 0.01, hjust = 0))
+```
