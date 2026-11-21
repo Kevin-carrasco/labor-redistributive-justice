@@ -118,28 +118,28 @@ paises_es <- c(AUT = "Austria", BEL = "Bélgica", CAN = "Canadá", CHE = "Suiza"
 m0 <- clmm(distributive ~ 1 + (1 | ctrcode), data = data, weights = weight)
 
 # Modelo 8: especificación completa
-reg8 <- clmm(distributive ~ sex + age + educ + income + selfemploy + platform + unnemployment +
-               tecnoestres + pos_tecnoestres + deservingness + gini_z + gdp_pc_log_z + unemp_z +
+reg8 <- clmm(distributive ~ sex + age + educ + income + selfemploy + platform + tecnoestres +
+               pos_tecnoestres + unnemployment + deservingness + gini_z + gdp_pc_log_z + unemp_z +
                socx_z + welfare_regime + (1 | ctrcode), data = data, weights = weight)
 
 # Interacciones entre niveles
 reg10 <- clmm(distributive ~ sex + age + educ + income + selfemploy*welfare_regime + platform +
-                unnemployment + tecnoestres + pos_tecnoestres + deservingness + gini_z +
+                tecnoestres + pos_tecnoestres + unnemployment + deservingness + gini_z +
                 gdp_pc_log_z + unemp_z + socx_z + welfare_regime + (1 | ctrcode),
               data = data, weights = weight)
 
 reg11 <- clmm(distributive ~ sex + age + educ + income + selfemploy + platform*welfare_regime +
-                unnemployment + tecnoestres + pos_tecnoestres + deservingness + gini_z +
+                tecnoestres + pos_tecnoestres + unnemployment + deservingness + gini_z +
                 gdp_pc_log_z + unemp_z + socx_z + welfare_regime + (1 | ctrcode),
               data = data, weights = weight)
 
-reg13 <- clmm(distributive ~ sex + age + educ + income + selfemploy + platform + unnemployment +
-                tecnoestres*welfare_regime + pos_tecnoestres + deservingness + gini_z +
-                gdp_pc_log_z + unemp_z + socx_z + welfare_regime + (1 | ctrcode),
+reg13 <- clmm(distributive ~ sex + age + educ + income + selfemploy + platform +
+                tecnoestres*welfare_regime + pos_tecnoestres + unnemployment + deservingness +
+                gini_z + gdp_pc_log_z + unemp_z + socx_z + welfare_regime + (1 | ctrcode),
               data = data, weights = weight)
 
-reg14 <- clmm(distributive ~ sex + age + educ + income + selfemploy + platform + unnemployment +
-                tecnoestres + pos_tecnoestres + deservingness*welfare_regime + gini_z +
+reg14 <- clmm(distributive ~ sex + age + educ + income + selfemploy + platform + tecnoestres +
+                pos_tecnoestres + unnemployment + deservingness*welfare_regime + gini_z +
                 gdp_pc_log_z + unemp_z + socx_z + welfare_regime + (1 | ctrcode),
               data = data, weights = weight)
 ```
@@ -187,11 +187,11 @@ plot_coefs <- function(df) {
           legend.position = "bottom")
 }
 
-terminos_ind <- c("platform2"       = "Trabajo de plataformas",
-                  "selfemploy2"     = "Trabajo por cuenta propia",
-                  "unnemployment"   = "Inseguridad laboral",
+terminos_ind <- c("selfemploy2"     = "Trabajo por cuenta propia",
+                  "platform2"       = "Trabajo de plataformas",
                   "tecnoestres"     = "Riesgo de desplazamiento tecnológico",
                   "pos_tecnoestres" = "Beneficio tecnológico percibido",
+                  "unnemployment"   = "Inseguridad laboral",
                   "deservingness"   = "Otros reciben beneficios sin merecerlos")
 
 terminos_pais <- c("gdp_pc_log_z"                    = "PIB per cápita (log)",
@@ -216,9 +216,7 @@ terminos_pais <- c("gdp_pc_log_z"                    = "PIB per cápita (log)",
 ::: {.column .column-right width="82%"}
 <br>
 
-## **¿Una parte justa?**
-
-### Posición laboral, riesgo tecnológico percibido y justicia redistributiva en 27 países de la OCDE
+### Justicia redistributiva, posición laboral y perceción del riesgo tecnológico: cómo la posición en el mercado laboral modera la legitimidad del Estado de bienestar en 27 países de la OCDE
 
 ------------------------------------------------------------------------
 
@@ -250,13 +248,11 @@ Workshop M-NEW · Valdivia, noviembre de 2026
 
 ::: {.incremental .highlight-last style="font-size: 100%;"}
 
-- La investigación distingue entre **preferencias**, creencias sobre cómo deberían distribuirse los recursos, y **percepciones**, juicios sobre cómo funciona efectivamente el sistema [@osberg_fair_2006; @castillo_perception_2022]
+- La investigación distingue entre **preferencias**, creencias sobre cómo deberían distribuirse los recursos, y **percepciones**, juicios sobre cómo funciona efectivamente el sistema [@osberg_fair_2006; @castillo_perception_2022]. La literatura, principalmente, se centra en la demanda por redistribución [@cavaille_fair_2025]
 
 - La **justicia redistributiva percibida** es el juicio sobre si lo que se recibe del Estado compensa de manera justa los impuestos y contribuciones pagados [@roosma_just_2016]
 
 - Su fundamento es la reciprocidad. La legitimidad del sistema descansa en la justicia percibida de las instituciones que asignan contribuciones y beneficios [@rothstein_just_1998; @mau_moral_2014]
-
-- La literatura se ha concentrado en la demanda de redistribución, y el juicio sobre el propio intercambio fiscal ha recibido menos atención [@cavaille_fair_2025]
 
 :::
 
@@ -267,82 +263,113 @@ Workshop M-NEW · Valdivia, noviembre de 2026
 :::
 
 ```{r}
-#| label: graf-paises
-#| fig-width: 10
-#| fig-height: 5.1
-#| out-width: "94%"
+#| label: graf-paises-datos
+#| include: false
 
 promedios <- data_full %>%
   dplyr::filter(!is.na(distributive)) %>%
-  dplyr::group_by(ctrcode, welfare_regime) %>%
+  dplyr::group_by(ctrcode) %>%
   dplyr::summarise(media = mean(as.numeric(distributive)), .groups = "drop") %>%
-  dplyr::mutate(pais    = paises_es[ctrcode],
-                regimen = factor(reg_es[as.character(welfare_regime)], levels = reg_es))
+  dplyr::mutate(pais = paises_es[ctrcode])
 
 media_global <- mean(promedios$media)
 
-ggplot(promedios, aes(x = media, y = reorder(pais, media))) +
+p_paises <- ggplot(promedios, aes(x = media, y = reorder(pais, media))) +
   geom_vline(xintercept = media_global, colour = "grey45", linewidth = .6) +
-  geom_segment(aes(x = media_global, xend = media, yend = reorder(pais, media), colour = regimen),
-               linewidth = .9, show.legend = FALSE) +
-  geom_point(aes(colour = regimen, shape = regimen), size = 3.6) +
-  geom_point(data = dplyr::filter(promedios, ctrcode == "CHL"),
-             shape = 21, size = 7, colour = tinta, stroke = 1) +
-  scale_colour_manual(values = col_regimen, name = NULL) +
-  scale_shape_manual(values = forma_regimen, name = NULL) +
+  geom_segment(aes(x = media_global, xend = media, yend = reorder(pais, media)),
+               colour = azul_medio, linewidth = .9) +
+  geom_point(colour = azul_medio, size = 3.6) +
   scale_x_continuous(labels = label_number(decimal.mark = ",")) +
   labs(x = paste0("Justicia redistributiva percibida (promedio). Línea vertical: promedio de los países (",
                   num(media_global), ")"),
        y = NULL) +
   theme(panel.grid.major.y = element_blank(),
         axis.text.y = element_text(size = 12),
-        axis.title.x = element_text(size = 13),
-        legend.position = "right")
+        axis.title.x = element_text(size = 13))
+
+circulo_chile <- geom_point(data = dplyr::filter(promedios, ctrcode == "CHL"),
+                            shape = 21, size = 7, colour = tinta, stroke = 1)
 ```
 
-## Antecedentes: **Este estudio**
+::: {.r-stack}
 
-::: {.antecedentes-grid style="font-size: 0.68em; max-width: 100%;"}
+::: {}
+```{r}
+#| label: graf-paises
+#| fig-width: 10
+#| fig-height: 5.1
+#| out-width: "94%"
 
-::: {.antecedente-card .fragment .fx-rise}
-[1]{.badge}
-
-**Tipo de empleo.** Asalariados formales, trabajadores por cuenta propia y trabajadores de plataformas mantienen vínculos desiguales con la protección social
-
-::: refs
-@kalleberg_good_2011; @schwander_who_2013; @vallas_what_2020
-:::
-:::
-
-::: {.antecedente-card .fragment .fx-rise}
-[2]{.badge}
-
-**Riesgo tecnológico percibido.** Una dimensión amenazante (desplazamiento) y otra habilitante (beneficio), distintas de la inseguridad laboral convencional
-
-::: refs
-@gallego_automation_2022; @busemeyer_social_2022
-:::
+p_paises
+```
 :::
 
-::: {.antecedente-card .fragment .fx-rise}
-[3]{.badge}
+::: {.fragment}
+```{r}
+#| label: graf-paises-chile
+#| fig-width: 10
+#| fig-height: 5.1
+#| out-width: "94%"
 
-**Merecimiento de otros.** El juicio sobre si otras personas reciben del Estado beneficios que no merecen
-
-::: refs
-@oorschot_who_2000; @vanoorschot_making_2006
+p_paises + circulo_chile
+```
 :::
+
 :::
 
-::: {.antecedente-card .fragment .fx-rise}
-[4]{.badge}
+## Antecedentes: **Tipo de empleo**
 
-**Regímenes de bienestar.** Contextos institucionales que pueden moderar la relación entre vulnerabilidad laboral y juicios de justicia
+::: {.incremental .highlight-last style="font-size: 100%;"}
 
-::: refs
-@esping-andersen_three_1993; @larsen_institutional_2008
+- Asalariados formales, trabajadores por cuenta propia y trabajadores de plataformas mantienen vínculos desiguales con la protección social [@kalleberg_good_2011; @schwander_who_2013]
+
+- Los asalariados formales acumulan derechos reconocibles. Para quienes trabajan por cuenta propia, la relación con el Estado es más opaca y, a menudo, menos favorable [@marx_effect_2014]
+
+- La clasificación como contratistas independientes deja a los trabajadores de plataformas, en gran medida, fuera de los seguros sociales [@vallas_what_2020; @gutierrezcrocco_effects_2022]
+
+- En América Latina, esta distancia se superpone a la informalidad y a seguros contributivos concentrados en el empleo formal [@holland_easy_2017]
+
 :::
+
+## Antecedentes: **Riesgo tecnológico percibido**
+
+::: {.incremental .highlight-last style="font-size: 100%;"}
+
+- Para las actitudes hacia el bienestar importa cómo los trabajadores anticipan los efectos de la tecnología en su propio empleo [@gallego_automation_2022]
+
+- Esa anticipación tiene dos caras, distintas de la inseguridad laboral convencional
+
+- **Desplazamiento:** ser reemplazado por un robot, por IA o por una plataforma, o perder el empleo por falta de habilidades digitales. Aumenta la demanda de protección social [@busemeyer_social_2022]
+
+- **Beneficio:** que la tecnología haga el trabajo más compatible con la vida privada y menos exigente o monótono
+
 :::
+
+## Antecedentes: **Inseguridad laboral y merecimiento de otros**
+
+::: {.incremental .highlight-last style="font-size: 100%;"}
+
+- **Inseguridad laboral:** la preocupación por perder el empleo o los ingresos afecta también a trabajadores formalmente protegidos
+
+- Quien anticipa perder su trabajo examina lo que recibiría del Estado y, si no confía en su protección, juzga el intercambio como menos justo [@marx_effect_2014]
+
+- **Merecimiento de otros:** las percepciones de justicia dependen también del juicio sobre quién merece recibir del Estado [@oorschot_who_2000; @castillo_perceptions_2025]
+
+- Si los recursos propios parecen sostener a quienes no cumplen su parte, se erosiona la sensación de recibir un trato justo [@vanoorschot_social_2017]
+
+:::
+
+## Antecedentes: **Regímenes de bienestar**
+
+::: {.incremental .highlight-last style="font-size: 100%;"}
+
+- Las percepciones individuales se forman en contextos institucionales que varían según el régimen de bienestar [@esping-andersen_three_1993; @larsen_institutional_2008]
+
+- En los regímenes universalistas, la protección depende menos de la trayectoria laboral y las distinciones de merecimiento pierden fuerza [@busemeyer_social_2022; @vanoorschot_social_2017]
+
+- Los regímenes latinoamericanos combinan rasgos liberales y conservadores con informalidad extendida: Chile, focalizado y orientado al mercado; México, un régimen dual [@franzoni_welfare_2008]
+
+- En estos Estados de bienestar truncados, quienes quedan fuera de la protección contributiva esperan poco del Estado [@holland_diminished_2018]
 
 :::
 
@@ -365,14 +392,14 @@ ggplot(promedios, aes(x = media, y = reorder(pais, media))) +
 |        | Predictor                                                        | Relación esperada con la justicia percibida              |
 |:-------|:-----------------------------------------------------------------|:---------------------------------------------------------|
 | **H1** | Empleo no formal (plataformas y cuenta propia)                   | ↓ Menor que en el empleo formal                          |
-| **H2** | Inseguridad laboral                                              | ↓ Negativa                                               |
-| **H3** | Riesgo de desplazamiento tecnológico                             | ↓ Negativa                                               |
-| **H4** | Beneficio tecnológico percibido                                  | ↑ Positiva                                               |
+| **H2** | Riesgo de desplazamiento tecnológico                             | ↓ Negativa                                               |
+| **H3** | Beneficio tecnológico percibido                                  | ↑ Positiva                                               |
+| **H4** | Inseguridad laboral                                              | ↓ Negativa                                               |
 | **H5** | Percepción de que otros reciben beneficios sin merecerlos        | ↓ Negativa                                               |
 | **H6** | Régimen socialdemócrata (frente a liberal y conservador)         | ↑ Mayor justicia percibida                               |
 | **H7–H9** | Régimen de bienestar × empleo no formal, desplazamiento y merecimiento | Efectos negativos más marcados en regímenes liberales y conservadores |
 
-Hipótesis preregistradas en OSF
+Hipótesis preregistradas en OSF. La numeración sigue el orden de los modelos
 
 :::
 
@@ -444,9 +471,9 @@ ggplot(vd, aes(x = prop, y = regimen, fill = resp)) +
 | Dimensión                            | Medición                                                                                                                         |
 |:-------------------------------------|:---------------------------------------------------------------------------------------------------------------------------------|
 | Posición laboral                     | Trabajo por cuenta propia (sí/no) y trabajo de plataformas (sí/no), indicadores no excluyentes. Referencia: empleo formal dependiente |
-| Inseguridad laboral                  | Preocupación por perder el empleo o el ingreso en los próximos uno o dos años (1 a 4)                                            |
 | Riesgo de desplazamiento tecnológico | Promedio de tres ítems sobre reemplazo o pérdida del empleo por la tecnología en los próximos cinco años (1 a 4)                  |
 | Beneficio tecnológico percibido      | Promedio de tres ítems sobre mejoras del propio trabajo gracias a la tecnología (1 a 4)                                          |
+| Inseguridad laboral                  | Preocupación por perder el empleo o el ingreso en los próximos uno o dos años (1 a 4)                                            |
 | Merecimiento de otros                | *"Muchas personas reciben beneficios públicos sin merecerlos"* (1 a 5)                                                           |
 | Controles                            | Sexo, edad, nivel educacional y decil de ingreso                                                                                 |
 
@@ -580,7 +607,7 @@ Clasificación basada en @esping-andersen_three_1993, @ferrera_southern_1996, @F
 ::: {.tl-card style="margin-left: 2.4rem;"}
 <h4>Nivel individual</h4>
 
-Tipo de empleo, inseguridad laboral, percepciones tecnológicas, merecimiento de otros y controles
+Tipo de empleo, percepciones tecnológicas, inseguridad laboral, merecimiento de otros y controles
 :::
 :::
 
@@ -643,9 +670,9 @@ Modelo 8. Controla por sexo, edad, educación, ingreso, indicadores de país y r
 **En la dirección esperada**
 
 ::: {style="padding-left: 1.1em;"}
-- La inseguridad laboral reduce la justicia percibida (H2)
+- El beneficio tecnológico percibido aumenta la justicia percibida, con el mayor efecto entre las percepciones tecnológicas (H3)
+- La inseguridad laboral la reduce (H4)
 - Percibir que otros reciben beneficios sin merecerlos también la reduce (H5)
-- El beneficio tecnológico percibido la aumenta, con el mayor efecto entre las percepciones tecnológicas (H4)
 :::
 :::
 
@@ -655,7 +682,7 @@ Modelo 8. Controla por sexo, edad, educación, ingreso, indicadores de país y r
 ::: {style="padding-left: 1.1em;"}
 - Quienes trabajan en plataformas reportan **mayor** justicia percibida (OR = `r num(or_plat, 1)`) (H1)
 - El trabajo por cuenta propia no muestra asociación (H1)
-- El riesgo de desplazamiento tecnológico se asocia **positivamente** con la justicia percibida (H3)
+- El riesgo de desplazamiento tecnológico se asocia **positivamente** con la justicia percibida (H2)
 :::
 :::
 
@@ -775,9 +802,9 @@ Propensión latente estimada por régimen de bienestar (modelos 13 y 14)
 |        | Expectativa                      | Resultado                                                                                       |
 |:-------|:---------------------------------|:------------------------------------------------------------------------------------------------|
 | **H1** | Empleo no formal ↓               | [✗]{style="color:#c0392b;"} Plataformas ↑, cuenta propia sin asociación                          |
-| **H2** | Inseguridad laboral ↓            | [✓]{style="color:#0b49bf;"} Se cumple                                                            |
-| **H3** | Desplazamiento tecnológico ↓     | [✗]{style="color:#c0392b;"} Asociación positiva                                                  |
-| **H4** | Beneficio tecnológico ↑          | [✓]{style="color:#0b49bf;"} Se cumple, con el mayor efecto entre las percepciones tecnológicas   |
+| **H2** | Desplazamiento tecnológico ↓     | [✗]{style="color:#c0392b;"} Asociación positiva                                                  |
+| **H3** | Beneficio tecnológico ↑          | [✓]{style="color:#0b49bf;"} Se cumple, con el mayor efecto entre las percepciones tecnológicas   |
+| **H4** | Inseguridad laboral ↓            | [✓]{style="color:#0b49bf;"} Se cumple                                                            |
 | **H5** | Merecimiento de otros ↓          | [✓]{style="color:#0b49bf;"} Se cumple                                                            |
 | **H6** | Socialdemócrata ↑                | [≈]{style="color:#5f6b73;"} Parcial. Conservador menor que liberal, socialdemócrata sin diferencia |
 | **H7** | Moderación de la posición laboral | [≈]{style="color:#5f6b73;"} Parcial. Efecto de plataformas atenuado en el socialdemócrata, cuenta propia negativo solo en ese régimen |
