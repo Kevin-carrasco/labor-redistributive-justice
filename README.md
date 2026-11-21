@@ -8,6 +8,8 @@ Contents may change in response to the review process.
 
 [Submitted version available here](https://kevin-carrasco.github.io/labor-redistributive-justice/paper-anonymized.html)
 
+[Presentation at the M-NEW Workshop, Valdivia, November 2026 (in Spanish)](https://kevin-carrasco.github.io/labor-redistributive-justice/conferences/Mnew-valdivia2026/presentacion-mnew-valdivia.html)
+
 ## Overview
 
 The study examines perceived redistributive justice, understood as the sense of
